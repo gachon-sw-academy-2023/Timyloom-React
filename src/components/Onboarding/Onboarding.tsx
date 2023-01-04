@@ -49,7 +49,7 @@ function Onboarding() {
               </Fade>
               <Fade>
                 <S.TextDiv style={{ fontSize: '30px', color: 'grey' }}>
-                  financial transactions remotely using a mobile device such as a smartphone or tablet.
+                  Financial transactions remotely using a mobile device such as a smartphone or tablet.
                 </S.TextDiv>
               </Fade>
             </S.TextWrapper>
