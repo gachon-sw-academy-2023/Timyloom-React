@@ -12,6 +12,7 @@ module.exports = {
     'plugin:import/warnings', // eslint-plugin-import 설치한 경우
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
   ],
   rules: {
     'prettier/prettier': 0,
