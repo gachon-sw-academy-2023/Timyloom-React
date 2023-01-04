@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const MainWrapper = styled.div`
   width: 100%;
-  height: 5000px;
   background-color: #ccc1be;
   margin: 0;
 `;
@@ -39,4 +38,84 @@ export const MainContent = styled.div<{ fontSize?: string; fontWeight?: string; 
   font-size: ${(props) => (props.fontSize ? props.fontSize : '3vw')};
   font-weight: ${(props) => (props.fontWeight ? 'none' : 'bold')};
   color: ${(props) => (props.color ? props.color : 'black')};
+`;
+
+export const PhotoDiv = styled.div`
+  width: 80%;
+  height: 700px;
+  background-color: beige;
+  margin: 30px auto;
+`;
+
+export const ContextDiv = styled.div`
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 7vw;
+  span {
+    color: #494949;
+  }
+  strong {
+    font-size: 3vw;
+    color: #2c2c2c;
+    margin-right: 10px;
+  }
+`;
+
+export const ContextWrapperL = styled.div`
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ContextWrapperR = styled.div`
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 50px;
+  @media (max-width: 768px) {
+    top: 0;
+  }
+`;
+
+export const ContextTitleBlock = styled.div`
+  text-align: left;
+`;
+
+export const TextWrapper = styled.div`
+  float: left;
+  height: 100%;
+  margin: auto;
+`;
+
+export const PhotoWrapper = styled.div`
+  float: right;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+`;
+
+export const TextDiv = styled.div`
+  margin: 50px 10px;
+`;
+
+export const BlankDiv = styled.div`
+  height: 200px;
+`;
+
+export const HorizontalLine = styled.div`
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #aaa;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+`;
+
+export const DodgeImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
