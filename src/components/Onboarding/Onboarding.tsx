@@ -1,8 +1,8 @@
 import * as S from './OnboardingStyle';
 
-import onboardingMain from '../../assets/onboardingMain.png';
-import dodge from '../../assets/dodge.jpg';
-import trello from '../../assets/Trello.png';
+import onboardingMain from '@/assets/images/onboardingMain.png';
+import dodge from '@/assets/images/dodge.jpg';
+import trello from '@/assets/images/Trello.png';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';

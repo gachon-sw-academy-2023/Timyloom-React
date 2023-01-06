@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import * as S from './HeaderStyle';
 import { FaBars } from 'react-icons/fa';
 
-import { ReactComponent as Logo } from '../../assets/logo.svg';
+import { ReactComponent as Logo } from '@/assets/images/logo.svg';
 
 function Header() {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
