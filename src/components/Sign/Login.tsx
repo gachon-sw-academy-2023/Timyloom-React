@@ -1,8 +1,7 @@
-import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Eyesvg from '@/assets/images/eye.svg';
-import Swal from 'sweetalert2';
 import * as S from './SignStyle';
+import axios from 'axios';
 
 function Login() {
   const [inputs, setInputs] = useState({
@@ -10,23 +9,16 @@ function Login() {
     password: '',
   });
 
-  const [alert, setAlert] = useState(true);
-
   const { id, password } = inputs; //구조분해할당
 
   const regExp = new RegExp('[a-z]+[a-z0-9]{5,19}$/g'); //id 정규식
   const regPass = new RegExp('(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}'); //비밀번호 정규식
+
   const onChange = (e: any) => {
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
     });
-    console.log(e.target);
-  };
-
-  const onAlert = (e: any) => {
-    setAlert(!alert);
-    console.log(alert);
   };
 
   const showPassword = () => {
@@ -34,37 +26,21 @@ function Login() {
     test.type === 'password' ? (test.type = 'text') : (test.type = 'password');
   };
 
-  const onCheck = () => {
-    {
-      !regExp.test(id) &&
-        !regPass.test(password) &&
-        Swal.fire({
-          title: 'Incorrect!',
-          text: 'id or password incorrect',
-          icon: 'error',
-          confirmButtonText: '확인',
-        });
-    }
-
-    {
-      !regExp.test(id) &&
-        Swal.fire({
-          title: 'Incorrect!',
-          text: 'id incorrect',
-          icon: 'error',
-          confirmButtonText: '확인',
-        });
-    }
-
-    {
-      !regPass.test(password) &&
-        Swal.fire({
-          title: 'Incorrect!',
-          text: 'password incorrect',
-          icon: 'error',
-          confirmButtonText: '확인',
-        });
-    }
+  const onSubmit = () => {
+    axios
+      .post(`/login`, inputs)
+      .then((res) => {
+        console.log(res);
+        switch (res.status) {
+          case 200:
+            localStorage.setItem('id', `${res.data.id}`);
+            document.location.href = '/';
+            break;
+        }
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
   };
   return (
     <S.SignWrapper>
@@ -72,7 +48,7 @@ function Login() {
         <S.SignPanel signStart={true}>
           <S.FormTitle>LOGIN</S.FormTitle>
           <S.InputWrap>
-            <S.FormInput name="id" value={id} onChange={onChange} onClick={onAlert} />
+            <S.FormInput name="id" value={id} onChange={onChange} />
             <S.InputTitle value={id} data-placeholder="ID"></S.InputTitle>
           </S.InputWrap>
           <S.InputWrap data-validate="Enter password">
@@ -85,13 +61,12 @@ function Login() {
               type="password"
               value={password}
               onChange={onChange}
-              onClick={onAlert}
               placeholder="영문과 특수문자 숫자를 포함하며 8자 이상"
             />
             <S.InputTitle value={password} data-placeholder="Password"></S.InputTitle>
           </S.InputWrap>
           <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
-          <S.SignBtn onClick={onCheck}>LOGIN</S.SignBtn>
+          <S.SignBtn onClick={onSubmit}>LOGIN</S.SignBtn>
         </S.SignPanel>
         <S.ImgPanel imgStart={false}></S.ImgPanel>
       </S.SignCard>

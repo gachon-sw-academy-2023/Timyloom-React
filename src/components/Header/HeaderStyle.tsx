@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header<{ ScrollActive: boolean }>`
+  z-index: 9999;
   position: sticky;
   top: ${(props) => (props.ScrollActive ? '10px' : '0px')};
   background-color: ${(props) => (props.ScrollActive ? '#456085' : '#ccc1be')};
@@ -42,7 +43,7 @@ export const StyledHeader = styled.header<{ ScrollActive: boolean }>`
   transition: all 300ms ease-in;
 `;
 
-export const NavManu = styled.ul<{ isToggleOpen: boolean }>`
+export const NavMenu = styled.ul<{ isToggleOpen: boolean }>`
   list-style: none;
   display: flex;
   margin: 0 15px;
@@ -70,5 +71,14 @@ export const NavManu = styled.ul<{ isToggleOpen: boolean }>`
     align-items: center;
     width: 100%;
     margin-top: 5px;
+  }
+`;
+
+export const NameBox = styled.div<{ ScrollActive: boolean }>`
+  font-size: 1.3rem;
+  color: ${(props) => props.ScrollActive === true && 'white'};
+  &:hover {
+    cursor: pointer;
+    color: #f38704;
   }
 `;

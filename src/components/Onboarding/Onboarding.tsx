@@ -8,7 +8,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 import { Bounce, Fade, Flip, Hinge, JackInTheBox, Roll, Rotate, Slide, Zoom } from 'react-awesome-reveal';
-import { HashRouter } from 'react-router-dom';
 
 function Onboarding() {
   return (
@@ -40,7 +39,6 @@ function Onboarding() {
             </Grid>
           </Grid>
         </Box>
-        <S.BlankDiv />
         <Slide direction="up" triggerOnce>
           <S.PhotoDiv>
             <S.TextWrapper style={{ width: '50%' }}>

@@ -34,6 +34,10 @@ function Header() {
     }
   }
 
+  const onLogout = () => {
+    localStorage.removeItem('id');
+    document.location.href = '/';
+  };
   return (
     <>
       <S.StyledHeader ScrollActive={ScrollActive}>
@@ -43,18 +47,26 @@ function Header() {
             TimyLoom
           </Link>
         </div>
-        <S.NavManu isToggleOpen={isToggleOpen}>
-          <li>
-            <Link to={'/login'} className="nav-menu-list">
-              LOGIN
-            </Link>
-          </li>
-          <li>
-            <Link to={'/signup'} className="nav-menu-list">
-              SIGNUP
-            </Link>
-          </li>
-        </S.NavManu>
+        <S.NavMenu isToggleOpen={isToggleOpen}>
+          {localStorage.getItem('id') ? (
+            <S.NameBox onClick={onLogout} ScrollActive={ScrollActive}>
+              Welcome! <b>{localStorage.getItem('id')}</b>
+            </S.NameBox>
+          ) : (
+            <>
+              <li>
+                <Link to={'/login'} className="nav-menu-list">
+                  LOGIN
+                </Link>
+              </li>
+              <li>
+                <Link to={'/signup'} className="nav-menu-list">
+                  SIGNUP
+                </Link>
+              </li>
+            </>
+          )}
+        </S.NavMenu>
         <FaBars className="menuToggleBtn" onClick={handleToggleOpen} />
       </S.StyledHeader>
     </>
