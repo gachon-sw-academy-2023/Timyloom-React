@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import background from '@/assets/images/signMain.png';
-import React from 'react';
+import { ReactComponent as Eye } from '@/assets/images/eye.svg';
 
 export const SignWrapper = styled.div`
   display: flex;
@@ -15,6 +15,10 @@ export const SignCard = styled.div`
   height: 70vh;
   border-radius: 20px;
   margin: auto;
+
+  @media (max-width: 600px) {
+    width: 80vw;
+  }
 `;
 
 export const SignPanel = styled.div<{ signStart: boolean }>`
@@ -102,6 +106,24 @@ export const SignLink = styled.a`
   }
 `;
 
+export const EyeSvg = styled(Eye)<{ see: boolean }>`
+  color: ${(props) => (props.see ? '#844685' : '#999999')};
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  padding-right: 5px;
+  cursor: pointer;
+
+  transition: all 0.4s;
+  &:hover {
+    color: #844685;
+  }
+`;
+
 export const InputTitle = styled.span<{ value: string }>`
   position: absolute;
   display: block;
@@ -173,19 +195,4 @@ export const ImgPanel = styled.div<{ imgStart: boolean }>`
   }
 `;
 
-export const ShownPw = styled.div`
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  right: 0;
-  padding-right: 5px;
-  cursor: pointer;
-  /* color: #999999; */
-  /* transition: all 0.4s;
-  &:hover {
-    color: #6a7dfe;
-  } */
-`;
+export const ShownPw = styled.div``;
