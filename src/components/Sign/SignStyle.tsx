@@ -124,7 +124,7 @@ export const EyeSvg = styled(Eye)<{ see: boolean }>`
   }
 `;
 
-export const InputTitle = styled.span<{ value: string }>`
+export const InputTitle = styled.span<{ value: string; isReg: boolean }>`
   position: absolute;
   display: block;
   width: 100%;
@@ -147,7 +147,7 @@ export const InputTitle = styled.span<{ value: string }>`
 
   ::after {
     font-size: 15px;
-    color: #808080;
+    color: ${(props) => (props.isReg ? '#808080' : '#f8bd8d')};
     line-height: 1.2;
     content: attr(data-placeholder);
     display: block;
