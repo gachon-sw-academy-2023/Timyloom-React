@@ -26,6 +26,7 @@
     "react-router-dom": "^6.6.1",
     "recoil": "^0.7.6",
     "styled-components": "^5.3.6",
+    "sweetalert2": "^11.6.16",
     "vite-plugin-svgr": "^2.4.0"
   },
   "devDependencies": {
