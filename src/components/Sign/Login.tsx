@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Eyesvg from '@/assets/images/eye.svg';
+import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 import * as S from './SignStyle';
 import axios from 'axios';
 
@@ -9,12 +9,14 @@ function Login() {
     password: '',
   });
 
+
+  const [seePass, setSeePass] = useState(false);
   const { id, password } = inputs; //구조분해할당
 
   const regExp = new RegExp('[a-z]+[a-z0-9]{5,19}$/g'); //id 정규식
   const regPass = new RegExp('(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}'); //비밀번호 정규식
 
-  const onChange = (e: any) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
@@ -22,8 +24,8 @@ function Login() {
   };
 
   const showPassword = () => {
-    const test: any = document.getElementById('password');
-    test.type === 'password' ? (test.type = 'text') : (test.type = 'password');
+    const test = document.getElementById('password') as HTMLInputElement;
+    test.type === 'password' ? ((test.type = 'text'), setSeePass(true)) : ((test.type = 'password'), setSeePass(false));
   };
 
   const onSubmit = () => {
@@ -52,9 +54,7 @@ function Login() {
             <S.InputTitle value={id} data-placeholder="ID"></S.InputTitle>
           </S.InputWrap>
           <S.InputWrap data-validate="Enter password">
-            <S.ShownPw onClick={showPassword}>
-              <img src={Eyesvg} alt="" />
-            </S.ShownPw>
+            <S.EyeSvg see={seePass} onClick={showPassword} />
             <S.FormInput
               id="password"
               name="password"
