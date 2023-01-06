@@ -1,4 +1,5 @@
 import * as S from './OnboardingStyle';
+import axios from 'axios';
 
 import onboardingMain from '../../assets/onboardingMain.png';
 import dodge from '../../assets/dodge.jpg';
@@ -11,6 +12,17 @@ import { Bounce, Fade, Flip, Hinge, JackInTheBox, Roll, Rotate, Slide, Zoom } fr
 import { HashRouter } from 'react-router-dom';
 
 function Onboarding() {
+  const inputs = [1, 2, 3, 4, 5];
+
+  axios
+    .post(`/login`, inputs)
+    .then((res) => {
+      // console.log(res);
+    })
+    .catch((Error) => {
+      console.log(Error);
+    });
+
   return (
     <div>
       <S.MainWrapper>
