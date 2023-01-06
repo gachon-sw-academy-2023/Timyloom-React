@@ -12,11 +12,6 @@ export const handlers = [
 
   //login
   rest.post('/login', (req, res, ctx) => {
-    return res();
-    // ctx.status(200),
-    // ctx.json({
-    //   message: '정상로그인',
-    //   req: req,
-    // }),
+    return res(ctx.status(200), ctx.json(req.body));
   }),
 ];

@@ -1,5 +1,4 @@
 import * as S from './OnboardingStyle';
-import axios from 'axios';
 
 import onboardingMain from '@/assets/images/onboardingMain.png';
 import dodge from '@/assets/images/dodge.jpg';
@@ -9,20 +8,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 import { Bounce, Fade, Flip, Hinge, JackInTheBox, Roll, Rotate, Slide, Zoom } from 'react-awesome-reveal';
-import { HashRouter } from 'react-router-dom';
 
 function Onboarding() {
-  const inputs = [1, 2, 3, 4, 5];
-
-  axios
-    .post(`/login`, inputs)
-    .then((res) => {
-      // console.log(res);
-    })
-    .catch((Error) => {
-      console.log(Error);
-    });
-
   return (
     <div>
       <S.MainWrapper>
@@ -52,7 +39,6 @@ function Onboarding() {
             </Grid>
           </Grid>
         </Box>
-        <S.BlankDiv />
         <Slide direction="up" triggerOnce>
           <S.PhotoDiv>
             <S.TextWrapper style={{ width: '50%' }}>
