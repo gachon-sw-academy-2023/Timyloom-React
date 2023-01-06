@@ -2,7 +2,7 @@ import * as S from './OnboardingStyle';
 
 import onboardingMain from '../../assets/onboardingMain.png';
 import dodge from '../../assets/dodge.jpg';
-import coco from '../../assets/cocoColor.png';
+import trello from '../../assets/Trello.png';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -65,31 +65,31 @@ function Onboarding() {
           <Bounce direction="down" cascade triggerOnce>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
           </Bounce>
         </S.ContextDiv>
@@ -100,31 +100,31 @@ function Onboarding() {
           <Fade cascade triggerOnce>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
           </Fade>
         </S.ContextDiv>
@@ -135,31 +135,31 @@ function Onboarding() {
           <Flip cascade triggerOnce>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
           </Flip>
         </S.ContextDiv>
@@ -170,31 +170,31 @@ function Onboarding() {
           <Hinge cascade triggerOnce>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
           </Hinge>
         </S.ContextDiv>
@@ -205,31 +205,31 @@ function Onboarding() {
           <JackInTheBox cascade triggerOnce>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
           </JackInTheBox>
         </S.ContextDiv>
@@ -240,31 +240,31 @@ function Onboarding() {
           <Roll cascade triggerOnce>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
           </Roll>
         </S.ContextDiv>
@@ -275,31 +275,31 @@ function Onboarding() {
           <Rotate cascade triggerOnce>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
           </Rotate>
         </S.ContextDiv>
@@ -310,31 +310,31 @@ function Onboarding() {
           <Slide cascade triggerOnce>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
           </Slide>
         </S.ContextDiv>
@@ -345,31 +345,31 @@ function Onboarding() {
           <Zoom cascade triggerOnce>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
             <S.ContextWrapperL>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperL>
             <S.ContextWrapperR>
               <S.ContextTitleBlock>
-                <strong>Tindux</strong>
-                <span>소셜 블라인드 데이트 앱</span>
+                <strong>Timyloom</strong>
+                <span>팀 작업 기반의 워크스페이스</span>
               </S.ContextTitleBlock>
-              <img src={coco}></img>
+              <img src={trello}></img>
             </S.ContextWrapperR>
           </Zoom>
         </S.ContextDiv>
