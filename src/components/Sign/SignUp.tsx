@@ -6,6 +6,11 @@ import { userAtom } from '../recoil/userAtom';
 import axios from 'axios';
 
 function SignUp() {
+
+  const regId = new RegExp('(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{5,20}$'); //id 정규식
+  const regPw = new RegExp('(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}'); //password 정규식
+  const regEmail = new RegExp('[a-z0-9]+@[a-z]+[a-z]{2,3}'); //email 정규식
+  
   const [user, setUser] = useRecoilState(userAtom);
 
   useEffect(() => {
@@ -16,9 +21,6 @@ function SignUp() {
     setUser([...user, inputs]);
   };
 
-  const regExp = new RegExp('(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{5,20}$'); //id 정규식
-  const regPass = new RegExp('(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}'); //password 정규식
-  const regEm = new RegExp('[a-z0-9]+@[a-z]+[a-z]{2,3}'); //email 정규식
 
   const [inputs, setInputs] = useState({
     id: '',
@@ -27,31 +29,30 @@ function SignUp() {
     name: '',
     email: '',
   });
-  const [seePass, setSeePass] = useState(false);
-  const [seeChPass, setSeeChPass] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showCheckPassword, setShowCheckPassword] = useState(false);
 
   const { id, password, checkPassword, name, email } = inputs; // 구조분해할당
 
-  const onChange = (e: any) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
     });
   };
 
-  const showPassword = () => {
+  const onShowPassword = () => {
     const passType = document.getElementById('password') as HTMLInputElement;
     passType.type === 'password'
-      ? ((passType.type = 'text'), setSeePass(true))
-      : ((passType.type = 'password'), setSeePass(false));
-    console.log(typeof document.getElementById('password'));
+      ? ((passType.type = 'text'), setShowPassword(true))
+      : ((passType.type = 'password'), setShowPassword(false));
   };
 
-  const showCheckPassword = () => {
+  const onShowCheckPassword = () => {
     const chPassType = document.getElementById('checkPassword') as HTMLInputElement;
     chPassType.type === 'password'
-      ? ((chPassType.type = 'text'), setSeeChPass(true))
-      : ((chPassType.type = 'password'), setSeeChPass(false));
+      ? ((chPassType.type = 'text'), setShowCheckPassword(true))
+      : ((chPassType.type = 'password'), setShowCheckPassword(false));
   };
 
   const onCheck = () => {
@@ -96,27 +97,34 @@ function SignUp() {
             <S.FormInput name="id" value={id} onChange={onChange} />
             <S.InputTitle
               value={id}
-              data-placeholder={regExp.test(id) || inputs.id.length === 0 ? 'ID' : 'ID Incorrect '}
-              isReg={regExp.test(id) || inputs.id.length === 0}
+              data-placeholder={regId.test(id) || inputs.id.length === 0 ? 'ID' : 'ID Incorrect '}
+              isReg={regId.test(id) || inputs.id.length === 0}
             ></S.InputTitle>
           </S.InputWrap>
           <S.InputWrap>
-            <S.EyeSvg see={seePass} onClick={showPassword} />
-            <S.FormInput id="password" name="password" type="password" value={password} onChange={onChange} />
+            <S.EyeSvg $isShow={showPassword} onClick={onShowPassword} />
+            <S.FormInput
+              id="password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={onChange}
+              placeholder="영문과 특수문자 숫자를 포함하며 8자 이상"
+            />
             <S.InputTitle
               value={password}
               data-placeholder={
-                regPass.test(password) || inputs.password.length === 0 ? 'Password' : 'Password Incorrect'
+                regPw.test(password) || inputs.password.length === 0 ? 'Password' : 'Password Incorrect'
               }
-              isReg={regPass.test(password) || inputs.password.length === 0}
+              isReg={regPw.test(password) || inputs.password.length === 0}
             ></S.InputTitle>
           </S.InputWrap>
           <S.InputWrap>
-            <S.EyeSvg see={seeChPass} onClick={showCheckPassword} />
+            <S.EyeSvg $isShow={showCheckPassword} onClick={onShowCheckPassword} />
             <S.FormInput
               id="checkPassword"
               name="checkPassword"
-              type="checkPassword"
+              type="password"
               value={checkPassword}
               onChange={onChange}
             />
@@ -135,14 +143,12 @@ function SignUp() {
             <S.InputTitle value={name} data-placeholder="Name" isReg={true}></S.InputTitle>
           </S.InputWrap>
           <S.InputWrap>
-            <div>
-              <S.FormInput name="email" value={email} onChange={onChange} />
-              <S.InputTitle
-                value={email}
-                data-placeholder={regEm.test(email) || inputs.email.length === 0 ? 'Email' : 'Email Incorrect '}
-                isReg={regEm.test(email) || inputs.email.length === 0}
-              ></S.InputTitle>
-            </div>
+            <S.FormInput name="email" value={email} onChange={onChange} />
+            <S.InputTitle
+              value={email}
+              data-placeholder={regEmail.test(email) || inputs.email.length === 0 ? 'Email' : 'Email Incorrect '}
+              isReg={regEmail.test(email) || inputs.email.length === 0}
+            ></S.InputTitle>
           </S.InputWrap>
           <S.SignLink href="/login">Do You have an account?</S.SignLink>
           <S.SignBtn onClick={onCheck}>SIGN UP</S.SignBtn>

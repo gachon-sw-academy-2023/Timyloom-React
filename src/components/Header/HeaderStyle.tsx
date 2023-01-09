@@ -9,11 +9,14 @@ export const StyledHeader = styled.header<{ ScrollActive: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 7%;
+  box-sizing: border-box;
   border-radius: ${(props) => (props.ScrollActive ? '50px' : '0px')};
-  margin: ${(props) => (props.ScrollActive ? '0 5%' : '0px')};
+  margin: ${(props) => (props.ScrollActive ? '0 5% auto' : '0 auto')};
+  box-shadow: inset 0px -1px 0px #e2e2ea;
   .nav_logo {
-    margin: 0 12px;
-
+    box-sizing: border-box;
+    margin-left: 25px;
     .nav-logo-link {
       display: flex;
       align-items: center;
@@ -21,6 +24,7 @@ export const StyledHeader = styled.header<{ ScrollActive: boolean }>`
       font-size: 24px;
       color: ${(props) => (props.ScrollActive ? '#ffffff' : 'black')};
       font-weight: bold;
+      /* margin-left: 25px; */
     }
   }
   .menuToggleBtn {
@@ -34,16 +38,20 @@ export const StyledHeader = styled.header<{ ScrollActive: boolean }>`
   }
 
   @media screen and (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
+    /* flex-direction: column; */
+    /* align-items: flex-end; */
     .menuToggleBtn {
       display: block;
+    }
+    .nav_logo {
+      margin-left: 0px;
     }
   }
   transition: all 300ms ease-in;
 `;
 
 export const NavMenu = styled.ul<{ isToggleOpen: boolean }>`
+  //로그인 로그아웃 버튼
   list-style: none;
   display: flex;
   margin: 0 15px;
