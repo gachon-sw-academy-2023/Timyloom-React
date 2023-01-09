@@ -9,10 +9,15 @@ export const StyledHeader = styled.header<{ ScrollActive: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 7%;
+  box-sizing: border-box;
   border-radius: ${(props) => (props.ScrollActive ? '50px' : '0px')};
   margin: ${(props) => (props.ScrollActive ? '0 5%' : '0px')};
   .nav_logo {
-    margin: 0 12px;
+    display: flex;
+    padding: 12px 10px 5px;
+    height: 7%;
+    box-sizing: border-box;
 
     .nav-logo-link {
       display: flex;

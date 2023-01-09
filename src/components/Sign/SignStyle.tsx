@@ -4,9 +4,10 @@ import { ReactComponent as Eye } from '@/assets/images/eye.svg';
 
 export const SignWrapper = styled.div`
   display: flex;
-  width: 100vw;
-  height: 100vh;
-  background: #ccc1be;
+  width: 100%;
+  height: 93%;
+  /* background: #ccc1be; */
+  background: pink;
 `;
 
 export const SignCard = styled.div`
@@ -106,8 +107,8 @@ export const SignLink = styled.a`
   }
 `;
 
-export const EyeSvg = styled(Eye)<{ see: boolean }>`
-  color: ${(props) => (props.see ? '#844685' : '#999999')};
+export const EyeSvg = styled(Eye)<{ $see: boolean }>`
+  color: ${(props) => (props.$see ? '#844685' : '#999999')};
   font-size: 15px;
   display: flex;
   align-items: center;
@@ -124,7 +125,7 @@ export const EyeSvg = styled(Eye)<{ see: boolean }>`
   }
 `;
 
-export const InputTitle = styled.span<{ value: string; isReg: boolean }>`
+export const InputTitle = styled.div<{ value: string; isReg: boolean }>`
   position: absolute;
   display: block;
   width: 100%;
@@ -178,8 +179,6 @@ export const ImgPanel = styled.div<{ imgStart: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* background-color: #f1e5dd;
-  background-blend-mode: multiply; */
   padding: 2rem;
   flex-grow: 4;
   border-radius: 20px;
@@ -194,5 +193,3 @@ export const ImgPanel = styled.div<{ imgStart: boolean }>`
     display: none;
   }
 `;
-
-export const ShownPw = styled.div``;

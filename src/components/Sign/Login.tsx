@@ -9,7 +9,6 @@ function Login() {
     password: '',
   });
 
-
   const [seePass, setSeePass] = useState(false);
   const { id, password } = inputs; //구조분해할당
 
@@ -51,19 +50,12 @@ function Login() {
           <S.FormTitle>LOGIN</S.FormTitle>
           <S.InputWrap>
             <S.FormInput name="id" value={id} onChange={onChange} />
-            <S.InputTitle value={id} data-placeholder="ID"></S.InputTitle>
+            <S.InputTitle value={id} data-placeholder="ID" isReg={true}></S.InputTitle>
           </S.InputWrap>
           <S.InputWrap data-validate="Enter password">
-            <S.EyeSvg see={seePass} onClick={showPassword} />
-            <S.FormInput
-              id="password"
-              name="password"
-              type="password"
-              value={password}
-              onChange={onChange}
-              placeholder="영문과 특수문자 숫자를 포함하며 8자 이상"
-            />
-            <S.InputTitle value={password} data-placeholder="Password"></S.InputTitle>
+            <S.EyeSvg $see={seePass} onClick={showPassword} />
+            <S.FormInput id="password" name="password" type="password" value={password} onChange={onChange} />
+            <S.InputTitle value={password} data-placeholder="Password" isReg={true}></S.InputTitle>
           </S.InputWrap>
           <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
           <S.SignBtn onClick={onSubmit}>LOGIN</S.SignBtn>
