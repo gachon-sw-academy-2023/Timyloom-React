@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import onboardingMain from '@/assets/images/onboardingMain.png';
 
 export const MainWrapper = styled.div`
   width: 100%;
@@ -6,15 +7,24 @@ export const MainWrapper = styled.div`
   margin: 0;
 `;
 
-export const ImgWrapper = styled.div`
-  padding-left: 30px;
-  text-align: right;
+export const MainImg = styled.div`
+  width: 45vw;
+  height: 45vw;
+  min-width: 300px;
+  min-height: 300px;
+  background-image: url(${onboardingMain});
+  background-repeat: repeat;
+  background-size: cover;
+  margin: auto;
 `;
 
 export const ContentsWrapper = styled.div`
   box-sizing: border-box;
-  padding-right: 50px;
   text-align: center;
+  margin-top: 20px;
+  @media (max-width: 900px) {
+    margin-top: 0px;
+  }
 `;
 
 export const BtnWrapper = styled.div`
@@ -28,9 +38,15 @@ export const StartBtn = styled.button`
   background-color: #f38704;
   color: #fff;
   border-radius: 30px;
-  border: 0px;
+  border: 0;
   &:hover {
     cursor: pointer;
+    background-color: #d47400;
+    border: 3px solid #c96f00;
+  }
+  @media (max-width: 900px) {
+    width: max(75px, 10vw);
+    height: max(30px, 4vw);
   }
 `;
 
@@ -38,6 +54,9 @@ export const MainContent = styled.div<{ fontSize?: string; fontWeight?: string; 
   font-size: ${(props) => (props.fontSize ? props.fontSize : '3vw')};
   font-weight: ${(props) => (props.fontWeight ? 'none' : 'bold')};
   color: ${(props) => (props.color ? props.color : 'black')};
+  @media (max-width: 900px) {
+    font-size: max(3vw, 40px);
+  }
 `;
 
 export const PhotoDiv = styled.div`
