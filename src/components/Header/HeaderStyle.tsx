@@ -14,7 +14,6 @@ export const HeaderWrapper = styled.header<{ ScrollActive: boolean }>`
   box-sizing: border-box;
   border-radius: ${(props) => (props.ScrollActive ? '50px' : '0px')};
   margin: ${(props) => (props.ScrollActive ? '0 5% auto' : '0 auto')};
-  box-shadow: inset 0px -1px 0px #e2e2ea;
   transition: all 300ms ease-in;
 `;
 
@@ -60,7 +59,6 @@ export const NavMenu = styled.ul<{ isToggleOpen: boolean }>`
   display: flex;
   margin: 0 15px;
   padding: 0;
-  background-color: red;
 
   @media screen and (max-width: 768px) {
     display: ${(props) => (props.isToggleOpen ? 'block' : 'none')};
