@@ -6,8 +6,7 @@ export const SignWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 93%;
-  background: #ccc1be;
-  /* background: pink; */
+  background: ${(props) => props.theme.colors.primaryColor_2};
 `;
 
 export const SignCard = styled.div`
@@ -27,7 +26,7 @@ export const SignPanel = styled.div<{ signStart: boolean }>`
   flex-direction: column;
   justify-content: center;
   flex-grow: 0.5;
-  background: white;
+  background: ${(props) => props.theme.colors.white};
   padding: 1rem 5rem;
   border-radius: 20px;
   border-top-left-radius: ${(props) => (props.signStart ? 'none' : '0')};
@@ -51,7 +50,7 @@ export const FormTitle = styled.div`
 export const InputWrap = styled.div`
   width: 100%;
   position: relative;
-  border-bottom: 2px solid #808080;
+  border-bottom: 2px solid ${(props) => props.theme.colors.gray_2};
   margin-bottom: 3vh;
 `;
 
@@ -87,28 +86,28 @@ export const SignBtn = styled.button`
   height: 5vh;
   border-radius: 25px;
   margin-top: 2vh;
-  background-color: #f1e5dd;
-  color: #ccc1be;
+  background-color: ${(props) => props.theme.colors.primaryColor_2};
+  color: ${(props) => props.theme.colors.gray_1};
   border: none;
 
   &:hover {
-    background-color: #f8bd8d;
-    color: white;
+    background-color: ${(props) => props.theme.colors.secondaryColor};
+    color: ${(props) => props.theme.colors.white};
   }
 `;
 
 export const SignLink = styled.a`
   margin: 0.8rem;
-  color: #808080;
+  color: ${(props) => props.theme.colors.gray_1};
   text-align: center;
 
   &:hover {
-    color: #f8bd8d;
+    color: ${(props) => props.theme.colors.secondaryColor};
   }
 `;
 
 export const EyeSvg = styled(Eye)<{ $isShow: boolean }>`
-  color: ${(props) => (props.$isShow ? '#844685' : '#999999')};
+  color: ${(props) => (props.$isShow ? props.theme.colors.pupple : props.theme.colors.gray_2)};
   font-size: 15px;
   display: flex;
   align-items: center;
@@ -121,7 +120,7 @@ export const EyeSvg = styled(Eye)<{ $isShow: boolean }>`
 
   transition: all 0.4s;
   &:hover {
-    color: #844685;
+    color: ${(props) => props.theme.colors.pupple};
   }
 `;
 
@@ -143,12 +142,13 @@ export const InputTitle = styled.div<{ value: string; isReg: boolean }>`
     width: ${(props) => (props.value ? '100%' : '0')};
     height: 2px;
     transition: all 0.4s;
+    ${(props) => props.theme.colors.primaryColor_2}
     background: -webkit-linear-gradient(left, #ccc1be, #844685);
   }
 
   ::after {
     font-size: 15px;
-    color: ${(props) => (props.isReg ? '#808080' : '#f8bd8d')};
+    color: ${(props) => (props.isReg ? props.theme.colors.gray_2 : props.theme.colors.secondaryColor)};
     line-height: 1.2;
     content: attr(data-placeholder);
     display: block;

@@ -9,25 +9,24 @@ function Login() {
     password: '',
   });
 
-  const [seePass, setSeePass] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { id, password } = inputs; //구조분해할당
 
-  const regExp = new RegExp('[a-z]+[a-z0-9]{5,19}$/g'); //id 정규식
-  const regPass = new RegExp('(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}'); //비밀번호 정규식
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
     });
   };
 
-  const showPassword = () => {
+  const handleShowPassword = () => {
     const test = document.getElementById('password') as HTMLInputElement;
-    test.type === 'password' ? ((test.type = 'text'), setSeePass(true)) : ((test.type = 'password'), setSeePass(false));
+    test.type === 'password'
+      ? ((test.type = 'text'), setShowPassword(true))
+      : ((test.type = 'password'), setShowPassword(false));
   };
 
-  const onSubmit = () => {
+  const HandleLogin = () => {
     axios
       .post(`/login`, inputs)
       .then((res) => {
@@ -49,16 +48,16 @@ function Login() {
         <S.SignPanel signStart={true}>
           <S.FormTitle>LOGIN</S.FormTitle>
           <S.InputWrap>
-            <S.FormInput name="id" value={id} onChange={onChange} />
+            <S.FormInput name="id" value={id} onChange={handleInputs} />
             <S.InputTitle value={id} data-placeholder="ID" isReg={true}></S.InputTitle>
           </S.InputWrap>
           <S.InputWrap data-validate="Enter password">
-            <S.EyeSvg $see={seePass} onClick={showPassword} />
-            <S.FormInput id="password" name="password" type="password" value={password} onChange={onChange} />
+            <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} />
+            <S.FormInput id="password" name="password" type="password" value={password} onChange={handleInputs} />
             <S.InputTitle value={password} data-placeholder="Password" isReg={true}></S.InputTitle>
           </S.InputWrap>
           <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
-          <S.SignBtn onClick={onSubmit}>LOGIN</S.SignBtn>
+          <S.SignBtn onClick={HandleLogin}>LOGIN</S.SignBtn>
         </S.SignPanel>
         <S.ImgPanel imgStart={false}></S.ImgPanel>
       </S.SignCard>
