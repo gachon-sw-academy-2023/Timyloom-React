@@ -17,7 +17,7 @@ function Header() {
     scrollListener(); // window 에서 스크롤을 감시
     return () => {
       window.removeEventListener('scroll', handleScroll);
-    }; //  window 에서 스크롤을 감시를 종료
+    };
   });
 
   const handleToggleOpen = () => {
