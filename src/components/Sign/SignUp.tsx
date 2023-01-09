@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import * as S from './SignStyle';
 import { atom, useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
-import { userAtom } from '../recoil/userAtom';
+import { userAtom } from '@/recoil/userAtom';
 import axios from 'axios';
 
 function SignUp() {
