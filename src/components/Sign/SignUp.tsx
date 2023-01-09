@@ -6,11 +6,10 @@ import { userAtom } from '../recoil/userAtom';
 import axios from 'axios';
 
 function SignUp() {
-
   const regId = new RegExp('(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{5,20}$'); //id 정규식
   const regPw = new RegExp('(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}'); //password 정규식
   const regEmail = new RegExp('[a-z0-9]+@[a-z]+[a-z]{2,3}'); //email 정규식
-  
+
   const [user, setUser] = useRecoilState(userAtom);
 
   useEffect(() => {
@@ -20,7 +19,6 @@ function SignUp() {
   const userRegistration = () => {
     setUser([...user, inputs]);
   };
-
 
   const [inputs, setInputs] = useState({
     id: '',
@@ -56,7 +54,7 @@ function SignUp() {
   };
 
   const onCheck = () => {
-    if (regExp.test(id) && regPass.test(password) && regEm.test(email) && inputs.password === inputs.checkPassword) {
+    if (regId.test(id) && regPw.test(password) && regEmail.test(email) && inputs.password === inputs.checkPassword) {
       axios
         .post(`/signup`, inputs)
         .then((res) => {

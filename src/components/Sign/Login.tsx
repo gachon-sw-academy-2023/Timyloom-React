@@ -12,9 +12,6 @@ function Login() {
   const [seePass, setSeePass] = useState(false);
   const { id, password } = inputs; //구조분해할당
 
-  const regExp = new RegExp('[a-z]+[a-z0-9]{5,19}$/g'); //id 정규식
-  const regPass = new RegExp('(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}'); //비밀번호 정규식
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
       ...inputs,
