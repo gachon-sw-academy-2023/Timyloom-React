@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import * as S from './SignStyle';
+import { atom, useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { userAtom } from '../recoil/userAtom';
+import axios from 'axios';
 
 function SignUp() {
+
   const regId = new RegExp('(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{5,20}$'); //id 정규식
   const regPw = new RegExp('(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}'); //password 정규식
   const regEmail = new RegExp('[a-z0-9]+@[a-z]+[a-z]{2,3}'); //email 정규식
+  
+  const [user, setUser] = useRecoilState(userAtom);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  const userRegistration = () => {
+    setUser([...user, inputs]);
+  };
+
 
   const [inputs, setInputs] = useState({
     id: '',
@@ -41,25 +56,34 @@ function SignUp() {
   };
 
   const onCheck = () => {
-    {
-      (!regId.test(id) ||
-        !regPw.test(password) ||
-        !regEmail.test(email) ||
-        !(inputs.password === inputs.checkPassword)) &&
-        Swal.fire({
-          title: 'Incorrect!',
-          text: 'Please check the input information again.',
-          icon: 'error',
-          confirmButtonText: '확인',
+    if (regExp.test(id) && regPass.test(password) && regEm.test(email) && inputs.password === inputs.checkPassword) {
+      axios
+        .post(`/signup`, inputs)
+        .then((res) => {
+          console.log(res);
+          switch (res.status) {
+            case 200:
+              userRegistration();
+              Swal.fire({
+                title: 'Success!',
+                icon: 'success',
+                confirmButtonText: '확인',
+              });
+              break;
+            default:
+              console.log('정의된 값이 아닙니다.');
+          }
+        })
+        .catch((Error) => {
+          console.log(Error);
         });
-    }
-    {
-      regPw.test(password) &&
-        Swal.fire({
-          title: 'Success!',
-          icon: 'success',
-          confirmButtonText: '확인',
-        });
+    } else {
+      Swal.fire({
+        title: 'Incorrect!',
+        text: 'Please check the input information again.',
+        icon: 'error',
+        confirmButtonText: '확인',
+      });
     }
   };
 
@@ -126,7 +150,6 @@ function SignUp() {
               isReg={regEmail.test(email) || inputs.email.length === 0}
             ></S.InputTitle>
           </S.InputWrap>
-
           <S.SignLink href="/login">Do You have an account?</S.SignLink>
           <S.SignBtn onClick={onCheck}>SIGN UP</S.SignBtn>
         </S.SignPanel>
