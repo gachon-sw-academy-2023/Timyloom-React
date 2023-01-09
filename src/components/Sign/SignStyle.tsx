@@ -107,8 +107,8 @@ export const SignLink = styled.a`
   }
 `;
 
-export const EyeSvg = styled(Eye)<{ $see: boolean }>`
-  color: ${(props) => (props.$see ? '#844685' : '#999999')};
+export const EyeSvg = styled(Eye)<{ $isShow: boolean }>`
+  color: ${(props) => (props.$isShow ? '#844685' : '#999999')};
   font-size: 15px;
   display: flex;
   align-items: center;

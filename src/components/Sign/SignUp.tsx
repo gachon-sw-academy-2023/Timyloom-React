@@ -100,7 +100,7 @@ function SignUp() {
             <S.FormInput
               id="checkPassword"
               name="checkPassword"
-              type="checkPassword"
+              type="password"
               value={checkPassword}
               onChange={onChange}
             />
