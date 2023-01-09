@@ -6,8 +6,8 @@ export const SignWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 93%;
-  /* background: #ccc1be; */
-  background: pink;
+  background: #ccc1be;
+  /* background: pink; */
 `;
 
 export const SignCard = styled.div`
