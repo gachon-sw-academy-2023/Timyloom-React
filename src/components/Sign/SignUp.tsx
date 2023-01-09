@@ -1,9 +1,21 @@
-import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
-import * as S from './SignStyle';
 import Swal from 'sweetalert2';
+import * as S from './SignStyle';
+import { atom, useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { userAtom } from '../recoil/userAtom';
+import axios from 'axios';
 
 function SignUp() {
+  const [user, setUser] = useRecoilState(userAtom);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  const userRegistration = () => {
+    setUser([...user, inputs]);
+  };
+
   const regExp = new RegExp('(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{5,20}$'); //id 정규식
   const regPass = new RegExp('(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}'); //password 정규식
   const regEm = new RegExp('[a-z0-9]+@[a-z]+[a-z]{2,3}'); //email 정규식
@@ -15,6 +27,8 @@ function SignUp() {
     name: '',
     email: '',
   });
+  const [seePass, setSeePass] = useState(false);
+  const [seeChPass, setSeeChPass] = useState(false);
 
   const { id, password, checkPassword, name, email } = inputs; // 구조분해할당
 
@@ -23,35 +37,52 @@ function SignUp() {
       ...inputs,
       [e.target.name]: e.target.value,
     });
-    console.log(e.target);
   };
 
-  const onAlert = (e: any) => {
-    console.log(e.target);
-    console.log('sss');
+  const showPassword = () => {
+    const passType = document.getElementById('password') as HTMLInputElement;
+    passType.type === 'password'
+      ? ((passType.type = 'text'), setSeePass(true))
+      : ((passType.type = 'password'), setSeePass(false));
+    console.log(typeof document.getElementById('password'));
+  };
+
+  const showCheckPassword = () => {
+    const chPassType = document.getElementById('checkPassword') as HTMLInputElement;
+    chPassType.type === 'password'
+      ? ((chPassType.type = 'text'), setSeeChPass(true))
+      : ((chPassType.type = 'password'), setSeeChPass(false));
   };
 
   const onCheck = () => {
-    {
-      (!regExp.test(id) ||
-        !regPass.test(password) ||
-        !regEm.test(email) ||
-        !(inputs.password === inputs.checkPassword)) &&
-        Swal.fire({
-          title: 'Incorrect!',
-          text: 'Please check the input information again.',
-          icon: 'error',
-          confirmButtonText: '확인',
+    if (regExp.test(id) && regPass.test(password) && regEm.test(email) && inputs.password === inputs.checkPassword) {
+      axios
+        .post(`/signup`, inputs)
+        .then((res) => {
+          console.log(res);
+          switch (res.status) {
+            case 200:
+              userRegistration();
+              Swal.fire({
+                title: 'Success!',
+                icon: 'success',
+                confirmButtonText: '확인',
+              });
+              break;
+            default:
+              console.log('정의된 값이 아닙니다.');
+          }
+        })
+        .catch((Error) => {
+          console.log(Error);
         });
-    }
-    {
-      regExp.test(password) &&
-        Swal.fire({
-          title: 'Success!',
-          text: 'yes',
-          icon: 'success',
-          confirmButtonText: '확인',
-        });
+    } else {
+      Swal.fire({
+        title: 'Incorrect!',
+        text: 'Please check the input information again.',
+        icon: 'error',
+        confirmButtonText: '확인',
+      });
     }
   };
 
@@ -70,7 +101,8 @@ function SignUp() {
             ></S.InputTitle>
           </S.InputWrap>
           <S.InputWrap>
-            <S.FormInput name="password" value={password} onChange={onChange} />
+            <S.EyeSvg see={seePass} onClick={showPassword} />
+            <S.FormInput id="password" name="password" type="password" value={password} onChange={onChange} />
             <S.InputTitle
               value={password}
               data-placeholder={
@@ -80,7 +112,14 @@ function SignUp() {
             ></S.InputTitle>
           </S.InputWrap>
           <S.InputWrap>
-            <S.FormInput name="checkPassword" value={checkPassword} onChange={onChange} />
+            <S.EyeSvg see={seeChPass} onClick={showCheckPassword} />
+            <S.FormInput
+              id="checkPassword"
+              name="checkPassword"
+              type="checkPassword"
+              value={checkPassword}
+              onChange={onChange}
+            />
             <S.InputTitle
               value={checkPassword}
               data-placeholder={
@@ -97,7 +136,7 @@ function SignUp() {
           </S.InputWrap>
           <S.InputWrap>
             <div>
-              <S.FormInput name="email" value={email} onChange={onChange} onClick={onAlert} />
+              <S.FormInput name="email" value={email} onChange={onChange} />
               <S.InputTitle
                 value={email}
                 data-placeholder={regEm.test(email) || inputs.email.length === 0 ? 'Email' : 'Email Incorrect '}
@@ -105,9 +144,8 @@ function SignUp() {
               ></S.InputTitle>
             </div>
           </S.InputWrap>
-
           <S.SignLink href="/login">Do You have an account?</S.SignLink>
-          <S.SignBtn onClick={onCheck}>SIGN IN</S.SignBtn>
+          <S.SignBtn onClick={onCheck}>SIGN UP</S.SignBtn>
         </S.SignPanel>
       </S.SignCard>
     </S.SignWrapper>
