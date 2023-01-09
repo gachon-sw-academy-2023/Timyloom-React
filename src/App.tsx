@@ -10,20 +10,18 @@ import theme from '@/styles/theme';
 
 function App() {
   return (
-    <>
-      <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          <BrowserRouter>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Onboarding />}></Route>
-              <Route path="/login" element={<Login></Login>}></Route>
-              <Route path="/signup" element={<SignUp></SignUp>}></Route>
-            </Routes>
-          </BrowserRouter>
-        </ThemeProvider>
-      </RecoilRoot>
-    </>
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Onboarding />}></Route>
+            <Route path="/login" element={<Login></Login>}></Route>
+            <Route path="/signup" element={<SignUp></SignUp>}></Route>
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 

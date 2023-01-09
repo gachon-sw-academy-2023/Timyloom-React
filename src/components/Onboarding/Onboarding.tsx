@@ -1,12 +1,8 @@
 import * as S from './OnboardingStyle';
-
-import onboardingMain from '@/assets/images/onboardingMain.png';
 import dodge from '@/assets/images/dodge.jpg';
 import trello from '@/assets/images/Trello.png';
-
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
 import { Bounce, Fade, Flip, Hinge, JackInTheBox, Roll, Rotate, Slide, Zoom } from 'react-awesome-reveal';
 
 function Onboarding() {
@@ -17,9 +13,7 @@ function Onboarding() {
           <Grid container spacing={0}>
             <Grid item xs={12} md={7}>
               <Slide direction="left" triggerOnce>
-                <S.ImgWrapper>
-                  <img width="80%" src={onboardingMain} />
-                </S.ImgWrapper>
+                <S.MainImg />
               </Slide>
             </Grid>
             <Grid item xs={12} md={5}>
@@ -39,6 +33,7 @@ function Onboarding() {
             </Grid>
           </Grid>
         </Box>
+        {/* react-awesome-reveal 데모입니다. 추후에 코드 정리 필요 */}
         <Slide direction="up" triggerOnce>
           <S.PhotoDiv>
             <S.TextWrapper style={{ width: '50%' }}>
