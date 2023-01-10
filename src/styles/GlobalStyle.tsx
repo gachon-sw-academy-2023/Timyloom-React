@@ -7,12 +7,10 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     };
     button{
-        display: flex;
         justify-content: center;
         cursor: pointer;
     };
     input{
-        display: flex;
         outline: none;
     }
 `;

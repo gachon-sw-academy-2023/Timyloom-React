@@ -20,8 +20,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <BrowserRouter>
-          {/* {window.location.pathname !== '/workspace' && <Header />} */}
-          {/* <Header /> */}
+          <Header />
           <Routes>
             <Route path="/" element={<Onboarding />}></Route>
             <Route path="/login" element={<Login />}></Route>
