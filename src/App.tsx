@@ -7,6 +7,10 @@ import Header from '@/components/Header/Header';
 import Login from '@/components/Sign/Login';
 import SignUp from '@/components/Sign/SignUp';
 import theme from '@/styles/theme';
+import { DBConfig } from '../DBConfig';
+import { initDB } from 'react-indexed-db';
+
+initDB(DBConfig);
 
 function App() {
   return (
