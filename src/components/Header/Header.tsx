@@ -60,9 +60,6 @@ function Header() {
             <S.NavMenuContent>
               <S.MenuLink to={'/signup'}>SIGNUP</S.MenuLink>
             </S.NavMenuContent>
-            <S.NavMenuContent>
-              <S.MenuLink to={'/workspace'}>워크스페이스</S.MenuLink>
-            </S.NavMenuContent>
           </>
         )}
       </S.NavMenu>

@@ -1,10 +1,4 @@
-import React, { useEffect, useState } from 'react';
 import * as S from './WorkspaceStyle';
-import dodge from '@/assets/images/dodge.jpg';
-import trello from '@/assets/images/Trello.png';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import { Bounce, Fade, Flip, Hinge, JackInTheBox, Roll, Rotate, Slide, Zoom } from 'react-awesome-reveal';
 import { ReactComponent as Logo } from '@/assets/images/logo.svg';
 import { ReactComponent as Dashboard } from '@/assets/images/dashboard.svg';
 import { ReactComponent as Setting } from '@/assets/images/setting.svg';
