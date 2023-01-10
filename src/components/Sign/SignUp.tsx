@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import * as S from './SignStyle';
-import { atom, useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
-import { userAtom } from '@/recoil/userAtom';
 import axios from 'axios';
 import { idCheck, passwordCheck, samePasswordCheck, emailCheck } from '@/utils/confirmReg';
 
 function SignUp() {
-  const [user, setUser] = useRecoilState(userAtom);
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
-  const userRegistration = () => {
-    setUser([...user, inputs]);
-  };
-
   const [inputs, setInputs] = useState({
     id: '',
     password: '',
@@ -27,7 +15,7 @@ function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showconfirmPassword, setShowconfirmPassword] = useState(false);
 
-  const { id, password, confirmPassword, name, email } = inputs; // 구조분해할당
+  const { id, password, confirmPassword, name, email } = inputs;
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
@@ -58,10 +46,18 @@ function SignUp() {
           console.log(res);
           switch (res.status) {
             case 200:
-              userRegistration();
               Swal.fire({
                 title: 'Success!',
                 icon: 'success',
+                confirmButtonText: '확인',
+              }).then(() => {
+                window.location.href = '/';
+              });
+              break;
+            case 202:
+              Swal.fire({
+                title: 'ID already registered',
+                icon: 'error',
                 confirmButtonText: '확인',
               });
               break;

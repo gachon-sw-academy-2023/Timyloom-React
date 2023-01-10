@@ -10,7 +10,7 @@ function Login() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const { id, password } = inputs; //구조분해할당
+  const { id, password } = inputs;
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
@@ -36,6 +36,12 @@ function Login() {
             localStorage.setItem('id', `${res.data.id}`);
             document.location.href = '/';
             break;
+          case 202:
+            Swal.fire({
+              title: 'Invalid input.',
+              icon: 'error',
+              confirmButtonText: '확인',
+            });
         }
       })
       .catch((Error) => {

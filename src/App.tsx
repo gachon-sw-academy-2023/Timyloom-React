@@ -9,6 +9,10 @@ import SignUp from '@/components/Sign/SignUp';
 import Workspace from '@/components/Workspace/Workspace';
 import theme from '@/styles/theme';
 import GlobalStyle from '@/styles/GlobalStyle';
+import { DBConfig } from '../DBConfig';
+import { initDB } from 'react-indexed-db';
+
+initDB(DBConfig);
 
 function App() {
   return (
