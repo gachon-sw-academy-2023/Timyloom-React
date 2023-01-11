@@ -23,14 +23,6 @@ export const HeaderWrapper = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.colors.gray_3};
 `;
 
-export const ArticleWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  height: 93vh;
-  min-width: 250px;
-  background-color: ${(props) => props.theme.colors.primaryColor_1};
-`;
-
 export const LogoLink = styled(Link)`
   display: flex;
   text-decoration: none;
