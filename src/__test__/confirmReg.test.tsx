@@ -1,4 +1,4 @@
-import { idCheck, passwordCheck, samePasswordCheck, emailCheck, phoneKeyCheck } from '@/utils/confirmReg';
+import { idCheck, passwordCheck, samePasswordCheck, emailCheck, phoneKeyCheck } from '../utils/confirmReg';
 
 describe('confirmReg Test', () => {
   it('idCheck test', () => {
