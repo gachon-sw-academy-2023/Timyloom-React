@@ -17,15 +17,10 @@ const boards = [
 function WorkspaceContent() {
   const [goals, setGoals] = useRecoilState(objTodosDataResult);
   const tempGoals: any = JSON.parse(JSON.stringify(goals));
-  console.log(tempGoals);
-
-  useEffect(() => {
-    console.log(goals, 'recoil이 변경되었어요!!!!!!');
-  }, [goals]);
 
   const onDragEnd = (result: any) => {
     if (!result) return;
-    const tempGoals = [...goals];
+    let tempGoals = [...goals];
     const [reorderedItem] = tempGoals.splice(result.source.index, 1);
     console.log(reorderedItem);
     tempGoals.splice(result.destination.index, 0, reorderedItem);
@@ -43,7 +38,7 @@ function WorkspaceContent() {
                   {(provided) => (
                     <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                       <div>{goal.goalTitle}</div>
-                      <Board todos={goal.todos} />
+                      <Board todos={goal.todos} index={index} />
                     </div>
                   )}
                 </Draggable>
