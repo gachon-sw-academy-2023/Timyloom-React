@@ -22,7 +22,7 @@ function App() {
       <ThemeProvider theme={colors}>
         <GlobalStyle />
         <BrowserRouter>
-          <Header />
+          {window.location.pathname !== '/workspace' && <Header />}
           <Routes>
             <Route path="/" element={<Onboarding />}></Route>
             <Route path="/login" element={<Login />}></Route>

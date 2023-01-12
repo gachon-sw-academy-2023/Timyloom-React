@@ -9,6 +9,8 @@ const colors = {
   primaryColor_1: '#ccc1be',
   primaryColor_2: '#f1e5dd',
   secondaryColor: ' #f8bd8d',
+  test1: '#EEE6E2',
+  test2: '#FBF7F4',
 } as const;
 
 export default colors;
