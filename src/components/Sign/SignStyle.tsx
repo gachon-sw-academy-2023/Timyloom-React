@@ -48,7 +48,7 @@ export const FormTitle = styled.div`
   text-align: center;
 `;
 
-export const InputWrap = styled.div`
+export const InputWrapper = styled.div`
   width: 100%;
   position: relative;
   border-bottom: 2px solid ${(props) => props.theme.gray_2};
