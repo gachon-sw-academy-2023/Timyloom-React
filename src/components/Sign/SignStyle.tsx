@@ -110,7 +110,7 @@ export const SignLink = styled.a`
   }
 `;
 
-export const EyeSvg = styled(Eye)<{ $isShow: boolean }>`
+export const EyeSvg = styled((props) => <Eye {...props} />)<{ $isShow: boolean }>`
   color: ${(props) => (props.$isShow ? props.theme.pupple : props.theme.gray_2)};
   font-size: 15px;
   display: flex;
@@ -146,7 +146,6 @@ export const InputTitle = styled.div<{ value: string; isReg: boolean }>`
     width: ${(props) => (props.value ? '100%' : '0')};
     height: 2px;
     transition: all 0.4s;
-    ${(props) => props.theme.primaryColor_2}
     background: -webkit-linear-gradient(left, #ccc1be, #844685);
   }
 

@@ -143,7 +143,7 @@ function SignUp() {
               isReg={emailCheck(email) || inputs.email.length === 0}
             ></S.InputTitle>
           </S.InputWrap>
-          <S.SignLink href="/login">Do You have an account?</S.SignLink>
+          <S.SignLink href="/login">Do you have an account?</S.SignLink>
           <S.SignBtn onClick={HandleSignUp}>SIGN UP</S.SignBtn>
           <S.Buttontest size={'lg'} onClick={HandleSignUp}>
             SIGN UP

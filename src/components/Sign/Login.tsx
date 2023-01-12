@@ -54,16 +54,25 @@ function Login() {
         <S.SignPanel signStart={true}>
           <S.FormTitle>LOGIN</S.FormTitle>
           <S.InputWrap>
-            <S.FormInput name="id" value={id} onChange={handleInputs} />
+            <S.FormInput name="id" value={id} onChange={handleInputs} data-testid="id-input" />
             <S.InputTitle value={id} data-placeholder="ID" isReg={true}></S.InputTitle>
           </S.InputWrap>
           <S.InputWrap data-validate="Enter password">
             <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} />
-            <S.FormInput id="password" name="password" type="password" value={password} onChange={handleInputs} />
+            <S.FormInput
+              id="password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={handleInputs}
+              data-testid="pw-input"
+            />
             <S.InputTitle value={password} data-placeholder="Password" isReg={true}></S.InputTitle>
           </S.InputWrap>
           <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
-          <S.SignBtn onClick={HandleLogin}>LOGIN</S.SignBtn>
+          <S.SignBtn onClick={HandleLogin} data-testid="login-button">
+            LOGIN
+          </S.SignBtn>
         </S.SignPanel>
         <S.ImgPanel imgStart={false}></S.ImgPanel>
       </S.SignCard>
