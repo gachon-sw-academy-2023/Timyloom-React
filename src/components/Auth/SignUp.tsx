@@ -3,8 +3,7 @@ import Swal from 'sweetalert2';
 import * as S from './SignStyle';
 import axios from 'axios';
 import { idCheck, passwordCheck, samePasswordCheck, emailCheck } from '@/utils/confirmReg';
-import Button from '@/components/Common/Button/Button';
-import { Small } from '@/components/Common//Button/Button.stories';
+import Button from '@/components/Button/Button';
 
 function SignUp() {
   const [inputs, setInputs] = useState({
@@ -40,7 +39,7 @@ function SignUp() {
       : ((chPassType.type = 'password'), setShowconfirmPassword(false));
   };
 
-  const HandleSignUp = () => {
+  const handleSignUp = () => {
     if (idCheck(id) && passwordCheck(password) && samePasswordCheck(password, confirmPassword) && emailCheck(email)) {
       axios
         .post(`/signup`, inputs)
@@ -144,10 +143,9 @@ function SignUp() {
             ></S.InputTitle>
           </S.InputWrapper>
           <S.SignLink href="/login">Do you have an account?</S.SignLink>
-          <S.SignBtn onClick={HandleSignUp}>SIGN UP</S.SignBtn>
-          {/* <S.Buttontest size={'lg'} onClick={HandleSignUp}>
+          <Button onClick={handleSignUp} size="lg" themes="sign">
             SIGN UP
-          </S.Buttontest> */}
+          </Button>
         </S.SignPanel>
       </S.SignCard>
     </S.SignWrapper>

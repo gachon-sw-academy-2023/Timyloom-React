@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import * as S from './SignStyle';
 import axios from 'axios';
+import Button from '@/components/Button/Button';
 
 function Login() {
   const [inputs, setInputs] = useState({
@@ -26,7 +27,7 @@ function Login() {
       : ((test.type = 'password'), setShowPassword(false));
   };
 
-  const HandleLogin = () => {
+  const handleLogin = () => {
     axios
       .post(`/login`, inputs)
       .then((res) => {
@@ -72,9 +73,9 @@ function Login() {
             </S.InputWrapper>
           </S.InputsWrapper>
           <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
-          <S.SignBtn onClick={HandleLogin} data-testid="login-button">
+          <Button onClick={handleLogin} size="lg" themes="sign">
             LOGIN
-          </S.SignBtn>
+          </Button>
         </S.SignPanel>
         <S.ImgPanel imgStart={false}></S.ImgPanel>
       </S.SignCard>

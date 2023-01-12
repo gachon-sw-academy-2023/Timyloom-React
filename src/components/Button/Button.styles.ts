@@ -4,16 +4,18 @@ import { ButtonProps } from './Button';
 import { variant } from 'styled-system';
 
 const themeVariants = variant({
-  prop: 'theme',
+  prop: 'themes',
   variants: {
     default: {
-      css`
-          border: 1px solid #808080;
-        `
+      color: 'black',
     },
-    primary: {
-      backgroundColor: 'black',
-      color: '#FFFFFF',
+    sign: {
+      backgroundColor: '#f1e5dd',
+      color: '#808080',
+      '&:hover': {
+        backgroundColor: '#f8bd8d',
+        color: 'white',
+      },
     },
     success: {
       border: 'none',
@@ -27,7 +29,7 @@ const themeVariants = variant({
     },
   },
 });
-export const Container = styled.button<Omit<ButtonProps, 'label'>>`
+export const Container = styled.button<Omit<ButtonProps, 'children'>>`
   font-size: 15px;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
@@ -74,9 +76,7 @@ export const Container = styled.button<Omit<ButtonProps, 'label'>>`
       : css`
           padding: 1rem 2.5rem;
         `}
-
+  ${themeVariants}
   background-color: ${({ color }) => color && colors[color]};
   color: ${({ textColor }) => textColor && colors[textColor]};
-
-  ${themeVariants};
 `;

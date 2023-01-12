@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import background from '@/assets/images/signMain.png';
 import { ReactComponent as Eye } from '@/assets/images/eye.svg';
-import Button from '@/components/Common/Button/Button';
 
 export const SignWrapper = styled.div`
   display: flex;
@@ -91,13 +90,6 @@ export const SignBtn = styled.button`
   color: ${(props) => props.theme.gray_1};
   border: none;
 
-  &:hover {
-    background-color: ${(props) => props.theme.secondaryColor};
-    color: ${(props) => props.theme.white};
-  }
-`;
-
-export const Buttontest = styled(Button)`
   &:hover {
     background-color: ${(props) => props.theme.secondaryColor};
     color: ${(props) => props.theme.white};
