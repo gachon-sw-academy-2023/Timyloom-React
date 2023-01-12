@@ -1,4 +1,4 @@
-import Board from '../Board/Board';
+import Board from '../Card/Card';
 import * as S from './WorkspaceContentStyle';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
