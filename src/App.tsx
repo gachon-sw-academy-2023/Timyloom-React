@@ -8,7 +8,7 @@ import List from '@/pages/Board/index';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
-import theme from '@/styles/theme';
+import colors from '@/styles/colors';
 import GlobalStyle from '@/styles/GlobalStyle';
 
 import { DBConfig } from '../DBConfig';
@@ -19,7 +19,7 @@ initDB(DBConfig);
 function App() {
   return (
     <RecoilRoot>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={colors}>
         <GlobalStyle />
         <BrowserRouter>
           <Header />

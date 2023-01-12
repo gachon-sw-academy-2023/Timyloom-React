@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import background from '@/assets/images/signMain.png';
 import { ReactComponent as Eye } from '@/assets/images/eye.svg';
+import Button from '@/components/Common/Button/Button';
 
 export const SignWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 93%;
-  background: ${(props) => props.theme.colors.primaryColor_2};
+  background: ${(props) => props.theme.primaryColor_2};
 `;
 
 export const SignCard = styled.div`
@@ -26,7 +27,7 @@ export const SignPanel = styled.div<{ signStart: boolean }>`
   flex-direction: column;
   justify-content: center;
   flex-grow: 0.5;
-  background: ${(props) => props.theme.colors.white};
+  background: ${(props) => props.theme.white};
   padding: 1rem 5rem;
   border-radius: 20px;
   border-top-left-radius: ${(props) => (props.signStart ? 'none' : '0')};
@@ -47,10 +48,10 @@ export const FormTitle = styled.div`
   text-align: center;
 `;
 
-export const InputWrap = styled.div`
+export const InputWrapper = styled.div`
   width: 100%;
   position: relative;
-  border-bottom: 2px solid ${(props) => props.theme.colors.gray_2};
+  border-bottom: 2px solid ${(props) => props.theme.gray_2};
   margin-bottom: 3vh;
 `;
 
@@ -78,36 +79,39 @@ export const FormInput = styled.input`
 
 export const SignBtn = styled.button`
   font-size: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-  width: 100%;
+  padding: 1rem 2.5rem;
   height: 5vh;
   border-radius: 25px;
   margin-top: 2vh;
-  background-color: ${(props) => props.theme.colors.primaryColor_2};
-  color: ${(props) => props.theme.colors.gray_1};
+  background-color: ${(props) => props.theme.primaryColor_2};
+  color: ${(props) => props.theme.gray_1};
   border: none;
 
   &:hover {
-    background-color: ${(props) => props.theme.colors.secondaryColor};
-    color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.secondaryColor};
+    color: ${(props) => props.theme.white};
+  }
+`;
+
+export const Buttontest = styled(Button)`
+  &:hover {
+    background-color: ${(props) => props.theme.secondaryColor};
+    color: ${(props) => props.theme.white};
   }
 `;
 
 export const SignLink = styled.a`
   margin: 0.8rem;
-  color: ${(props) => props.theme.colors.gray_1};
+  color: ${(props) => props.theme.gray_1};
   text-align: center;
 
   &:hover {
-    color: ${(props) => props.theme.colors.secondaryColor};
+    color: ${(props) => props.theme.secondaryColor};
   }
 `;
 
 export const EyeSvg = styled((props) => <Eye {...props} />)<{ $isShow: boolean }>`
-  color: ${(props) => (props.$isShow ? props.theme.colors.pupple : props.theme.colors.gray_2)};
+  color: ${(props) => (props.$isShow ? props.theme.pupple : props.theme.gray_2)};
   font-size: 15px;
   display: flex;
   align-items: center;
@@ -120,7 +124,7 @@ export const EyeSvg = styled((props) => <Eye {...props} />)<{ $isShow: boolean }
 
   transition: all 0.4s;
   &:hover {
-    color: ${(props) => props.theme.colors.pupple};
+    color: ${(props) => props.theme.pupple};
   }
 `;
 
@@ -147,7 +151,7 @@ export const InputTitle = styled.div<{ value: string; isReg: boolean }>`
 
   ::after {
     font-size: 15px;
-    color: ${(props) => (props.isReg ? props.theme.colors.gray_2 : props.theme.colors.secondaryColor)};
+    color: ${(props) => (props.isReg ? props.theme.gray_2 : props.theme.secondaryColor)};
     line-height: 1.2;
     content: attr(data-placeholder);
     display: block;

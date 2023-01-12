@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.header<{ ScrollActive: boolean }>`
   z-index: 9999;
   position: sticky;
   top: ${(props) => (props.ScrollActive ? '10px' : '0px')};
-  background-color: ${(props) => (props.ScrollActive ? '#456085' : props.theme.colors.primaryColor_2)};
+  background-color: ${(props) => (props.ScrollActive ? '#456085' : props.theme.primaryColor_2)};
   padding: 15px 50px 15px 50px;
   display: flex;
   align-items: center;
