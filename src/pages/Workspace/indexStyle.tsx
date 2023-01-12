@@ -25,7 +25,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 7vh;
-  border-bottom: 1px solid ${(props) => props.theme.colors.gray_3};
+  border-bottom: 1px solid ${(props) => props.theme.gray_3};
 `;
 
 export const LogoLink = styled(Link)`
