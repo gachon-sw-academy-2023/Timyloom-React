@@ -8,16 +8,8 @@ export const WorkspaceContentWrapper = styled.div`
   width: 100%;
   height: 93vh;
   min-width: 250px;
-  background-color: ${(props) => props.theme.colors.primaryColor_1};
+  background-color: ${(props) => props.theme.primaryColor_1};
   padding: 30px;
-`;
-
-export const BoardWrapper = styled.div`
-  font-size: 30px;
-  background-color: #65ff86;
-  width: 200px;
-  height: 200px;
-  margin: 10px;
 `;
 
 export const ColumnDiv = styled.div`

@@ -15,12 +15,17 @@ export const ContentWrapper = styled.div`
   background-color: white;
 `;
 
+export const BoardWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 export const HeaderWrapper = styled.div`
   background-color: white;
   display: flex;
   width: 100%;
   height: 7vh;
-  border-bottom: 1px solid ${(props) => props.theme.colors.gray_3};
+  border-bottom: 1px solid ${(props) => props.theme.gray_3};
 `;
 
 export const LogoLink = styled(Link)`
