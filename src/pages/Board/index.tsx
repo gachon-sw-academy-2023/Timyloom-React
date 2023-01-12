@@ -1,6 +1,9 @@
 import ListLayout from '@/components/List/List';
+import { useParams } from 'react-router-dom';
+
 function List() {
-  const boardIndex = 0;
-  return <ListLayout boardIndex={boardIndex} />;
+  let { boardId } = useParams();
+  console.log(boardId);
+  return <ListLayout boardId={boardId} />;
 }
 export default List;

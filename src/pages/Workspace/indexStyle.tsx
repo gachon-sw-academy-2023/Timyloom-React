@@ -18,6 +18,7 @@ export const ContentWrapper = styled.div`
 export const BoardWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 export const HeaderWrapper = styled.div`

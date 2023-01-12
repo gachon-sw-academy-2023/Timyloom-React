@@ -2,10 +2,11 @@ import * as S from '@/components/Board/BoardStyle';
 import { Link } from 'react-router-dom';
 
 function Board({ title, board }: any) {
-  console.log(board);
+  const URL = `/board/${board.boardId}`;
   return (
     <S.BoardWrapper>
-      <Link to="/list/1">{title}</Link>
+      <S.BoardTitle placeholder={title} />
+      <Link to={URL}>이동!</Link>
     </S.BoardWrapper>
   );
 }

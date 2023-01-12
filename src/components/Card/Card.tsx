@@ -4,23 +4,27 @@ import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState 
 import { taskAtom } from '@/recoil/taskAtom';
 
 //any 추후 타입지정 필요
-function Board({ list, boardIndex, listIndex }: any) {
+function Board({ list, boardId, listIndex, listId }: any) {
   const [boards, setBoards] = useRecoilState(taskAtom);
 
+  //이부분 주석 안적으면 까먹음....ㄹㅇ루
+  let tempBoards = JSON.parse(JSON.stringify(boards));
+  let [selectedBoard] = JSON.parse(JSON.stringify(boards.filter((board) => board.boardId === boardId)));
+  let tempList = JSON.parse(JSON.stringify(list));
+  let tempLists = selectedBoard.list;
   let tempCards = JSON.parse(JSON.stringify(list.card));
 
   const onDragEnd = (result: any) => {
+    console.log(`선택한 BoardId : ${boardId}, listId:${listId}`);
     if (!result) return;
-    console.log(boardIndex, listIndex);
-    let tempBoards = JSON.parse(JSON.stringify(boards));
-    console.log(result);
     let [reorderedItem] = tempCards.splice(result.source.index, 1);
     tempCards.splice(result.destination.index, 0, reorderedItem);
-    console.log(tempCards, 'tempCards');
-
-    tempBoards[boardIndex].list[listIndex].card = tempCards;
-
-    setBoards(tempBoards);
+    tempList.card = tempCards;
+    let newLists = tempLists.map((list: any) => (list.listId === listId ? tempList : list));
+    console.log(newLists);
+    selectedBoard.list = newLists;
+    let newBoards = tempBoards.map((board: any) => (board.boardId === boardId ? selectedBoard : board));
+    setBoards(newBoards);
   };
 
   return (

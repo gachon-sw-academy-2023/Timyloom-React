@@ -28,7 +28,7 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/workspace" element={<Workspace />}></Route>
-            <Route path="/list/1" element={<List />}></Route>
+            <Route path="/board/:boardId" element={<List />}></Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
