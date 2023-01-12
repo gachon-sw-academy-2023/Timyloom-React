@@ -1,4 +1,4 @@
-import * as S from './OnboardingStyle';
+import * as S from '@/pages/Onboarding/indexStyle';
 import dodge from '@/assets/images/dodge.jpg';
 import trello from '@/assets/images/Trello.png';
 import Box from '@mui/material/Box';

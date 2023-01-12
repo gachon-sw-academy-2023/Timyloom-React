@@ -7,8 +7,8 @@ export const SidebarWrapper = styled.div`
   flex-direction: column;
   max-width: 250px;
   height: 100vh;
-  background: ${(props) => props.theme.colors.primaryColor_2};
-  border-right: 1px solid ${(props) => props.theme.colors.gray_3};
+  background: ${(props) => props.theme.primaryColor_2};
+  border-right: 1px solid ${(props) => props.theme.gray_3};
 `;
 
 export const LogoWrapper = styled.div`
@@ -52,28 +52,28 @@ export const NavItem = styled(NavLink)`
   padding: 5px 0px;
 
   svg {
-    fill: ${(props) => props.theme.colors.gray_2};
+    fill: ${(props) => props.theme.gray_2};
     width: 22px;
     height: 22px;
   }
 
   &.active {
-    background-color: ${(props) => props.theme.colors.secondaryColor};
+    background-color: ${(props) => props.theme.secondaryColor};
     padding: 10px 0px;
     border-radius: 0 20px 20px 0;
     width: 200px;
 
     svg {
-      fill: ${(props) => props.theme.colors.black_1};
+      fill: ${(props) => props.theme.black_1};
     }
     span {
-      color: ${(props) => props.theme.colors.black_1};
+      color: ${(props) => props.theme.black_1};
     }
   }
 
   &:hover {
     svg {
-      fill: ${(props) => props.theme.colors.gray_1};
+      fill: ${(props) => props.theme.gray_1};
     }
   }
 
@@ -91,7 +91,7 @@ export const Icon = styled.div`
 export const ItemTitle = styled.span`
   font-size: 1rem;
   font-weight: bold;
-  color: ${(props) => props.theme.colors.gray_2};
+  color: ${(props) => props.theme.gray_2};
   @media (max-width: 620px) {
     display: none;
   }
@@ -101,9 +101,9 @@ export const ViewsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  border: 1px solid ${(props) => props.theme.colors.gray_2};
+  border: 1px solid ${(props) => props.theme.gray_2};
   border-radius: 20px;
-  background-color: ${(props) => props.theme.colors.primaryColor_1};
+  background-color: ${(props) => props.theme.primaryColor_1};
   margin: 10px;
   @media (max-width: 620px) {
     display: none;
@@ -116,7 +116,7 @@ export const ViewsTitle = styled.h3`
   font-size: 15px;
   margin: 10px;
   padding: 10px;
-  border-bottom: 1px solid ${(props) => props.theme.colors.gray_2};
+  border-bottom: 1px solid ${(props) => props.theme.gray_2};
 `;
 
 export const ViewsButtonsWrapper = styled.div`
@@ -126,7 +126,7 @@ export const ViewsButtonsWrapper = styled.div`
 `;
 
 export const ViewsButton = styled.button`
-  border: 1px solid ${(props) => props.theme.colors.gray_2};
+  border: 1px solid ${(props) => props.theme.gray_2};
   border-radius: 50px;
   width: 80px;
   height: 70px;
@@ -150,7 +150,7 @@ export const BoardsWrapper = styled.div`
 export const BoardsTitle = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid ${(props) => props.theme.colors.gray_2};
+  border-bottom: 1px solid ${(props) => props.theme.gray_2};
   margin: 10px;
   padding: 10px;
   @media (max-width: 620px) {
