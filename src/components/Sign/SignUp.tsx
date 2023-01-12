@@ -3,6 +3,8 @@ import Swal from 'sweetalert2';
 import * as S from './SignStyle';
 import axios from 'axios';
 import { idCheck, passwordCheck, samePasswordCheck, emailCheck } from '@/utils/confirmReg';
+import Button from '@/components/Common/Button/Button';
+import { Small } from '@/components/Common//Button/Button.stories';
 
 function SignUp() {
   const [inputs, setInputs] = useState({
@@ -143,6 +145,9 @@ function SignUp() {
           </S.InputWrap>
           <S.SignLink href="/login">Do You have an account?</S.SignLink>
           <S.SignBtn onClick={HandleSignUp}>SIGN UP</S.SignBtn>
+          <S.Buttontest size={'lg'} onClick={HandleSignUp}>
+            SIGN UP
+          </S.Buttontest>
         </S.SignPanel>
       </S.SignCard>
     </S.SignWrapper>
