@@ -6,7 +6,7 @@ import Button from '@/components/Common/Button/Button';
 export const SignWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 93%;
+  height: 93vh;
   background: ${(props) => props.theme.primaryColor_2};
 `;
 
@@ -17,7 +17,7 @@ export const SignCard = styled.div`
   border-radius: 20px;
   margin: auto;
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     width: 80vw;
   }
 `;
@@ -25,7 +25,7 @@ export const SignCard = styled.div`
 export const SignPanel = styled.div<{ signStart: boolean }>`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-grow: 0.5;
   background: ${(props) => props.theme.white};
   padding: 1rem 5rem;
@@ -36,7 +36,7 @@ export const SignPanel = styled.div<{ signStart: boolean }>`
   border-top-right-radius: ${(props) => (props.signStart ? '0' : 'none')};
   border-bottom-right-radius: ${(props) => (props.signStart ? '0' : 'none')};
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     border-radius: 20px;
   }
 `;
@@ -48,18 +48,23 @@ export const FormTitle = styled.div`
   text-align: center;
 `;
 
+export const InputsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  justify-content: space-evenly;
+`;
+
 export const InputWrapper = styled.div`
   width: 100%;
   position: relative;
   border-bottom: 2px solid ${(props) => props.theme.gray_2};
-  margin-bottom: 3vh;
+  margin-bottom: 1.5vh;
 `;
 
 export const FormInput = styled.input`
-  display: block;
   width: 100%;
   height: 4vh;
-  background: 0 0;
   padding: 0 5px;
   outline: none;
   border: none;
@@ -82,7 +87,6 @@ export const SignBtn = styled.button`
   padding: 1rem 2.5rem;
   height: 5vh;
   border-radius: 25px;
-  margin-top: 2vh;
   background-color: ${(props) => props.theme.primaryColor_2};
   color: ${(props) => props.theme.gray_1};
   border: none;
@@ -192,7 +196,7 @@ export const ImgPanel = styled.div<{ imgStart: boolean }>`
   border-top-right-radius: ${(props) => (props.imgStart ? '0' : 'none')};
   border-bottom-right-radius: ${(props) => (props.imgStart ? '0' : 'none')};
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     display: none;
   }
 `;

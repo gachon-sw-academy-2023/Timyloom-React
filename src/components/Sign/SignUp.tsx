@@ -125,8 +125,8 @@ function SignUp() {
               value={confirmPassword}
               data-placeholder={
                 samePasswordCheck(password, confirmPassword) || inputs.confirmPassword.length === 0
-                  ? 'confirmPassword'
-                  : 'confirmPassword Incorrect'
+                  ? 'ConfirmPassword'
+                  : 'ConfirmPassword Incorrect'
               }
               isReg={inputs.password === inputs.confirmPassword || inputs.confirmPassword.length === 0}
             ></S.InputTitle>
@@ -145,9 +145,9 @@ function SignUp() {
           </S.InputWrapper>
           <S.SignLink href="/login">Do you have an account?</S.SignLink>
           <S.SignBtn onClick={HandleSignUp}>SIGN UP</S.SignBtn>
-          <S.Buttontest size={'lg'} onClick={HandleSignUp}>
+          {/* <S.Buttontest size={'lg'} onClick={HandleSignUp}>
             SIGN UP
-          </S.Buttontest>
+          </S.Buttontest> */}
         </S.SignPanel>
       </S.SignCard>
     </S.SignWrapper>

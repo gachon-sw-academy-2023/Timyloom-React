@@ -2,15 +2,15 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.header<{ ScrollActive: boolean }>`
-  z-index: 9999;
+  /* z-index: 9999; */
   position: sticky;
   top: ${(props) => (props.ScrollActive ? '10px' : '0px')};
   background-color: ${(props) => (props.ScrollActive ? '#456085' : props.theme.primaryColor_2)};
-  padding: 15px 50px 15px 50px;
+  padding: 1rem 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 7%;
+  height: 7vh;
   box-sizing: border-box;
   border-radius: ${(props) => (props.ScrollActive ? '50px' : '0px')};
   margin: ${(props) => (props.ScrollActive ? '0 5% auto' : '0 auto')};
