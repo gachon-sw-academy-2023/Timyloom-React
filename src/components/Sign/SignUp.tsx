@@ -3,6 +3,8 @@ import Swal from 'sweetalert2';
 import * as S from './SignStyle';
 import axios from 'axios';
 import { idCheck, passwordCheck, samePasswordCheck, emailCheck } from '@/utils/confirmReg';
+import Button from '@/components/Common/Button/Button';
+import { Small } from '@/components/Common//Button/Button.stories';
 
 function SignUp() {
   const [inputs, setInputs] = useState({
@@ -84,15 +86,15 @@ function SignUp() {
         <S.ImgPanel imgStart={true} />
         <S.SignPanel signStart={false}>
           <S.FormTitle>SIGN UP</S.FormTitle>
-          <S.InputWrap>
+          <S.InputWrapper>
             <S.FormInput name="id" value={id} onChange={handleInputs} />
             <S.InputTitle
               value={id}
               data-placeholder={idCheck(id) || inputs.id.length === 0 ? 'ID' : 'ID Incorrect '}
               isReg={idCheck(id) || inputs.id.length === 0}
             ></S.InputTitle>
-          </S.InputWrap>
-          <S.InputWrap>
+          </S.InputWrapper>
+          <S.InputWrapper>
             <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} />
             <S.FormInput
               id="password"
@@ -109,8 +111,8 @@ function SignUp() {
               }
               isReg={passwordCheck(password) || inputs.password.length === 0}
             ></S.InputTitle>
-          </S.InputWrap>
-          <S.InputWrap>
+          </S.InputWrapper>
+          <S.InputWrapper>
             <S.EyeSvg $isShow={showconfirmPassword} onClick={handleShowconfirmPassword} />
             <S.FormInput
               id="confirmPassword"
@@ -128,21 +130,24 @@ function SignUp() {
               }
               isReg={inputs.password === inputs.confirmPassword || inputs.confirmPassword.length === 0}
             ></S.InputTitle>
-          </S.InputWrap>
-          <S.InputWrap>
+          </S.InputWrapper>
+          <S.InputWrapper>
             <S.FormInput name="name" value={name} onChange={handleInputs} />
             <S.InputTitle value={name} data-placeholder="Name" isReg={true}></S.InputTitle>
-          </S.InputWrap>
-          <S.InputWrap>
+          </S.InputWrapper>
+          <S.InputWrapper>
             <S.FormInput name="email" value={email} onChange={handleInputs} />
             <S.InputTitle
               value={email}
               data-placeholder={emailCheck(email) || inputs.email.length === 0 ? 'Email' : 'Email Incorrect '}
               isReg={emailCheck(email) || inputs.email.length === 0}
             ></S.InputTitle>
-          </S.InputWrap>
+          </S.InputWrapper>
           <S.SignLink href="/login">Do you have an account?</S.SignLink>
           <S.SignBtn onClick={HandleSignUp}>SIGN UP</S.SignBtn>
+          <S.Buttontest size={'lg'} onClick={HandleSignUp}>
+            SIGN UP
+          </S.Buttontest>
         </S.SignPanel>
       </S.SignCard>
     </S.SignWrapper>

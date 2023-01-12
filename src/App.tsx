@@ -7,7 +7,7 @@ import Header from '@/components/Header/Header';
 import Login from '@/components/Sign/Login';
 import SignUp from '@/components/Sign/SignUp';
 import Workspace from '@/components/Workspace/Workspace';
-import theme from '@/styles/theme';
+import colors from '@/styles/colors';
 import GlobalStyle from '@/styles/GlobalStyle';
 import { DBConfig } from '../DBConfig';
 import { initDB } from 'react-indexed-db';
@@ -17,7 +17,7 @@ initDB(DBConfig);
 function App() {
   return (
     <RecoilRoot>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={colors}>
         <GlobalStyle />
         <BrowserRouter>
           <Header />

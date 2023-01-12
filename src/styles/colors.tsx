@@ -5,14 +5,10 @@ const colors = {
   gray_1: '#808080',
   gray_2: '#999999',
   gray_3: '#e2e2ea',
-  pupple: '#844685',
+  purple: '#844685',
   primaryColor_1: '#ccc1be',
   primaryColor_2: '#f1e5dd',
   secondaryColor: ' #f8bd8d',
-};
+} as const;
 
-const theme = {
-  colors,
-};
-
-export default theme;
+export default colors;
