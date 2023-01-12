@@ -15,4 +15,5 @@ module.exports = {
     '\\.svg$': '<rootDir>/src/__test__/__mocks__/svgMock.js',
     '@/(.*)$': '<rootDir>/src/$1',
   },
+  verbose: true,
 };

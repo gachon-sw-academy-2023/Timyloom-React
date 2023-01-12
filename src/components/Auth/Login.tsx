@@ -48,6 +48,7 @@ function Login() {
         console.log(Error);
       });
   };
+
   return (
     <S.SignWrapper>
       <S.SignCard>
@@ -58,7 +59,7 @@ function Login() {
             <S.InputTitle value={id} data-placeholder="ID" isReg={true}></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper data-validate="Enter password">
-            <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} />
+            <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} data-testid="eye-svg" />
             <S.FormInput
               id="password"
               name="password"
