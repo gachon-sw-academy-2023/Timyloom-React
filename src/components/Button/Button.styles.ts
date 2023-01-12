@@ -1,8 +1,35 @@
 import colors from '@/styles/colors';
 import styled, { css } from 'styled-components';
 import { ButtonProps } from './Button';
+import { variant } from 'styled-system';
 
-export const Container = styled.button<Omit<ButtonProps, 'label'>>`
+const themeVariants = variant({
+  prop: 'themes',
+  variants: {
+    default: {
+      color: 'black',
+    },
+    sign: {
+      backgroundColor: '#f1e5dd',
+      color: '#808080',
+      '&:hover': {
+        backgroundColor: '#f8bd8d',
+        color: 'white',
+      },
+    },
+    success: {
+      border: 'none',
+      backgroundColor: '#21D05F',
+      color: '#FFFFFF',
+    },
+    danger: {
+      border: 'none',
+      backgroundColor: '#FF4D4E',
+      color: '#FFFFFF',
+    },
+  },
+});
+export const Container = styled.button<Omit<ButtonProps, 'children'>>`
   font-size: 15px;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
@@ -14,6 +41,11 @@ export const Container = styled.button<Omit<ButtonProps, 'label'>>`
         `
       : css`
           border: none;
+
+          &:hover {
+            background-color: ${(props) => props.theme.secondaryColor};
+            color: ${(props) => props.theme.white};
+          }
         `}
   ${({ radius }) =>
     radius === 'square'
@@ -44,7 +76,7 @@ export const Container = styled.button<Omit<ButtonProps, 'label'>>`
       : css`
           padding: 1rem 2.5rem;
         `}
-
+  ${themeVariants}
   background-color: ${({ color }) => color && colors[color]};
   color: ${({ textColor }) => textColor && colors[textColor]};
 `;

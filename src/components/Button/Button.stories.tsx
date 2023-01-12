@@ -14,11 +14,11 @@ Default.args = {
   children: '버튼',
 };
 
-export const Small = Template.bind({});
-Small.args = {
+export const Sign = Template.bind({});
+Sign.args = {
   ...Default.args,
-  size: 'sm',
-  textColor: 'black_1',
+  size: 'lg',
+  themes: 'sign',
 };
 
 export const Large = Template.bind({});
