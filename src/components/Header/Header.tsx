@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import * as S from './HeaderStyle';
 import { FaBars } from 'react-icons/fa';
 
-import { ReactComponent as Logo } from '@/assets/images/logo.svg';
-
 function Header() {
   const MIN_PIXEL = 100;
   const [isToggleOpen, setIsToggleOpen] = useState(false);
@@ -43,8 +41,7 @@ function Header() {
     <S.HeaderWrapper ScrollActive={ScrollActive}>
       <S.LogoWrapper>
         <S.LogoLink to={'/'} ScrollActive={ScrollActive}>
-          <Logo width="45px" height="45px" />
-          TimyLoom
+          <S.Logo />
         </S.LogoLink>
       </S.LogoWrapper>
       <S.NavMenu isToggleOpen={isToggleOpen}>
