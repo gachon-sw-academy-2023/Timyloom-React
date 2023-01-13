@@ -1,51 +1,53 @@
-import Card from '@/components/Card/Card';
-import * as S from '@/components/List/ListStyle';
+import * as S from './ListStyle';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { taskAtom } from '@/recoil/taskAtom';
-import { useEffect } from 'react';
 
-function List({ boardId }: any) {
-  const [boards, setBoards] = useRecoilState(taskAtom); // useRecoilState를 사용해서 boards를 가져온다.
-  const [selectedBoard] = JSON.parse(JSON.stringify(boards)).filter((board: any) => board.boardId === boardId); // JSON.parse(JSON.stringify()) -> 깊은 복사를 위해 사용
-  let tempBoards = JSON.parse(JSON.stringify(boards)); // 원하는 값을 변경 한 뒤에 tempBoards에 넣어줄 것이다.
-  let tempList = JSON.parse(JSON.stringify(selectedBoard.list)); // 원하는 값을 변경하기 위함
+//any 추후 타입지정 필요
+function List({ list, boardId, listIndex, listId }: any) {
+  const [boards, setBoards] = useRecoilState(taskAtom); // recoil에서 관리하는 board들을 담고 있는 데이터
+
+  let tempBoards = JSON.parse(JSON.stringify(boards)); //보드들 정보를 tempBoards에 저장
+  let [selectedBoard] = JSON.parse(JSON.stringify(boards.filter((board) => board.boardId === boardId))); // 선택한 보드 1개를 저장
+  let tempList = JSON.parse(JSON.stringify(list)); // 선택한 리스트 1개를 저장
+  let tempLists = selectedBoard.list; // 선택된 보드 1개에서 list 배열을 tempLists에 담는다
+  let tempCards = JSON.parse(JSON.stringify(list.card)); // 선택한 리스트에서 카드 배열을 tempCards에 담는다
 
   const onDragEnd = (result: any) => {
+    console.log(`선택한 BoardId : ${boardId}, listId:${listId}`);
     if (!result) return;
-    const [reorderedItem] = tempList.splice(result.source.index, 1); // 내가 드래그 하려고 하는 요소를 tempList에서 제외한다.
-    tempList.splice(result.destination.index, 0, reorderedItem); // 내가 드래그해서 가려고 하는 목적지에 reorderedItem을 넣어준다.
-    selectedBoard.list = tempList; // 현재 보드의 list를 새로운 list로 변경한다.
-    tempBoards = tempBoards.map((board: any) => (board.boardId === boardId ? selectedBoard : board)); // 보드배열을 반복하면서 내가 변경한 보드 ID와 배열안에 있는 보드ID 가 일치하면 변경
-    setBoards(tempBoards); // taskAtom recoil 업데이트!
+    let [reorderedItem] = tempCards.splice(result.source.index, 1); // 선택한 카드를 배열에서 빼서 reorderedItem에 담는다.
+    tempCards.splice(result.destination.index, 0, reorderedItem); // 목적지에 reorderedItem을 넣는다.
+    tempList.card = tempCards; // tempList 객체서 card 배열을 변경한다.
+    let newLists = tempLists.map((list: any) => (list.listId === listId ? tempList : list)); //리스트 배열 중에서 listId가 일치하는 곳에 새로운 List를 넣어준다.
+    selectedBoard.list = newLists; // 새로운리스트들을 선택한 보드의 리스트 배열에 넣어준다.
+    let newBoards = tempBoards.map((board: any) => (board.boardId === boardId ? selectedBoard : board)); // 전체 보드에서 바뀐 보드를 업데이트 해준다.
+    setBoards(newBoards); //recoil을 재설정한다.
   };
-
-  useEffect(() => {
-    console.log(boards);
-  }, [boards]);
+  // 반복을 통해서 리스트 들을 보여준다.
 
   return (
-    <S.WorkspaceContentWrapper>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="list" direction="horizontal">
-          {(provided) => (
-            <S.ColumnDiv {...provided.droppableProps} ref={provided.innerRef}>
-              {tempList.map((list: any, index: any) => (
-                <Draggable draggableId={String(index)} index={index} key={String(index)}>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId="Card">
+        {(provided) => (
+          <div ref={provided.innerRef} {...provided.droppableProps}>
+            <S.ListWrapper>
+              {tempCards.map((card: any, index: any) => (
+                <Draggable draggableId={String(index)} index={index} key={index}>
                   {(provided) => (
                     <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                      <div>{list.listTitle}</div>
-                      <Card list={list} boardId={boardId} listIndex={index} listId={list.listId} />
+                      <S.CardWrapper>{card.cardTitle}</S.CardWrapper>
+                      {/* 여기 바로 위에 진짜 Card 컴포넌트가 들어가야함 */}
                     </div>
                   )}
                 </Draggable>
               ))}
-              {provided.placeholder}
-            </S.ColumnDiv>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </S.WorkspaceContentWrapper>
+            </S.ListWrapper>
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 }
 

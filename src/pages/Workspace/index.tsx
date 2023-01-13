@@ -1,9 +1,9 @@
 import Sidebar from '@/components/Sidebar/Sidebar';
-import Board from '@/components/Board/Board';
 import * as S from '@/pages/Workspace/indexStyle';
 import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { taskAtom } from '@/recoil/taskAtom';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Workspace() {
   const [boards, setBoards] = useRecoilState(taskAtom);
@@ -32,6 +32,7 @@ function Workspace() {
       },
     ]);
   };
+
   return (
     <S.WorkspaceWrapper>
       <Sidebar />
@@ -39,12 +40,16 @@ function Workspace() {
         <S.HeaderWrapper>
           <S.SearchWrapper>{/* <S.Search></S.Search> */}</S.SearchWrapper>
         </S.HeaderWrapper>
-        <S.BoardWrapper>
+        <S.BoardContainer>
           {boards.map((board) => (
-            <Board title={board.boardTitle} board={board} />
+            // <Board title={board.boardTitle} board={board} />
+            <S.BoardWrapper>
+              <S.BoardTitle placeholder={board.boardTitle} />
+              <Link to={`/board/${board.boardId}`}>이동!</Link>
+            </S.BoardWrapper>
           ))}
           <button onClick={handleAddboard}>보드 추가하기!</button>
-        </S.BoardWrapper>
+        </S.BoardContainer>
       </S.ContentWrapper>
     </S.WorkspaceWrapper>
   );
