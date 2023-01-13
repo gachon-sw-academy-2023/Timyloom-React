@@ -26,9 +26,9 @@ export interface ButtonProps {
 
 export const Button = ({
   size = 'md',
-  color = 'primaryColor_2',
+  color,
   border = false,
-  textColor = 'gray_1',
+  textColor,
   radius = 'circle',
   themes,
   children,

@@ -2,6 +2,8 @@ import Sidebar from '@/components/Sidebar/Sidebar';
 import * as S from '@/pages/Workspace/indexStyle';
 import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { taskAtom } from '@/recoil/taskAtom';
+import { ReactComponent as UserSvg } from '@/assets/images/userAvatar.svg';
+import { Avatar } from '@mui/material';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -37,8 +39,16 @@ function Workspace() {
     <S.WorkspaceWrapper>
       <Sidebar />
       <S.ContentWrapper>
+        <Avatar>H</Avatar>
         <S.HeaderWrapper>
-          <S.SearchWrapper>{/* <S.Search></S.Search> */}</S.SearchWrapper>
+          <S.SearchWrapper>
+            <S.Search type="search" placeholder="Search for Boards here"></S.Search>
+            <S.SearchIcon />
+          </S.SearchWrapper>
+          <S.ProfileWrapper>
+            <div>ddd</div>
+            <Avatar>H</Avatar>
+          </S.ProfileWrapper>
         </S.HeaderWrapper>
         <S.BoardContainer>
           {boards.map((board) => (
