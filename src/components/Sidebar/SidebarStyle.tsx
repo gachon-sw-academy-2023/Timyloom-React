@@ -16,9 +16,9 @@ export const LogoWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 12vh;
-  margin: 0 30px;
+  padding: 0 30px;
   @media screen and (max-width: 620px) {
-    margin: 0 10px;
+    padding: 0 10px;
   }
 `;
 export const LogoLink = styled(Link)`

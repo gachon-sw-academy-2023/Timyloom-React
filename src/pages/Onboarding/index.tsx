@@ -1,4 +1,5 @@
 import * as S from '@/pages/Onboarding/indexStyle';
+import { Link } from 'react-router-dom';
 import dodge from '@/assets/images/dodge.jpg';
 import trello from '@/assets/images/Trello.png';
 import Box from '@mui/material/Box';
@@ -26,7 +27,9 @@ function Onboarding() {
                     TimyLoom
                   </S.MainContent>
                   <S.BtnWrapper>
-                    <S.StartBtn>START</S.StartBtn>
+                    <Link to="/workspace">
+                      <S.StartBtn>START</S.StartBtn>
+                    </Link>
                   </S.BtnWrapper>
                 </S.ContentsWrapper>
               </Slide>
