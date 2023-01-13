@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as SearchSvg } from '@/assets/images/search.svg';
 import { Avatar } from '@mui/material';
+import boardbackground from '@/assets/images/backgroundimg.jpg';
 
 export const SearchIcon = styled(SearchSvg)`
   position: absolute;
@@ -26,9 +27,10 @@ export const ContentWrapper = styled.div`
   background-color: white;
 `;
 
-export const BoardWrapper = styled.div`
+export const BoardContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 export const HeaderWrapper = styled.div`
@@ -81,4 +83,36 @@ export const WithAvatarWrapper = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 40px;
+`;
+
+export const BoardWrapper = styled.div`
+  background-image: url(${boardbackground});
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 130px;
+  margin: 30px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  font-size: 1rem;
+`;
+
+export const BoardTitle = styled.input`
+  background-color: #ff0000fc;
+  border: 0;
+  text-align: center;
+  width: 180px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 1rem;
+
+  ::placeholder {
+    color: black;
+  }
+
+  &:focus {
+    background-color: #ffffff;
+    border: 2px solid black;
+  }
 `;
