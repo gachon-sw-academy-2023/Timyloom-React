@@ -3,7 +3,7 @@ import Onboarding from '@/pages/Onboarding/index';
 import Login from '@/pages/Auth/Login/index';
 import SignUp from '@/pages/Auth/SignUp/index';
 import Workspace from '@/pages/Workspace/index';
-import List from '@/pages/Board/index';
+import BoardPage from '@/pages/Board/index';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
@@ -28,7 +28,7 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/workspace" element={<Workspace />}></Route>
-            <Route path="/list/1" element={<List />}></Route>
+            <Route path="/board/:boardId" element={<BoardPage />}></Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
