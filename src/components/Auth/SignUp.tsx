@@ -3,8 +3,7 @@ import Swal from 'sweetalert2';
 import * as S from './SignStyle';
 import axios from 'axios';
 import { idCheck, passwordCheck, samePasswordCheck, emailCheck } from '@/utils/confirmReg';
-import Button from '@/components/Common/Button/Button';
-import { Small } from '@/components/Common//Button/Button.stories';
+import Button from '@/components/Button/Button';
 
 function SignUp() {
   const [inputs, setInputs] = useState({
@@ -40,7 +39,7 @@ function SignUp() {
       : ((chPassType.type = 'password'), setShowconfirmPassword(false));
   };
 
-  const HandleSignUp = () => {
+  const handleSignUp = () => {
     if (idCheck(id) && passwordCheck(password) && samePasswordCheck(password, confirmPassword) && emailCheck(email)) {
       axios
         .post(`/signup`, inputs)
@@ -87,7 +86,7 @@ function SignUp() {
         <S.SignPanel signStart={false}>
           <S.FormTitle>SIGN UP</S.FormTitle>
           <S.InputWrapper>
-            <S.FormInput name="id" value={id} onChange={handleInputs} />
+            <S.FormInput name="id" value={id} onChange={handleInputs} data-testid="id-input" />
             <S.InputTitle
               value={id}
               data-placeholder={idCheck(id) || inputs.id.length === 0 ? 'ID' : 'ID Incorrect '}
@@ -95,7 +94,7 @@ function SignUp() {
             ></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} />
+            <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} data-testid="eye-svg-pw" />
             <S.FormInput
               id="password"
               name="password"
@@ -103,6 +102,7 @@ function SignUp() {
               value={password}
               onChange={handleInputs}
               placeholder="영문과 특수문자 숫자를 포함하며 8자 이상"
+              data-testid="pw-input"
             />
             <S.InputTitle
               value={password}
@@ -113,30 +113,35 @@ function SignUp() {
             ></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.EyeSvg $isShow={showconfirmPassword} onClick={handleShowconfirmPassword} />
+            <S.EyeSvg
+              $isShow={showconfirmPassword}
+              onClick={handleShowconfirmPassword}
+              data-testid="eye-svg-confirmpw"
+            />
             <S.FormInput
               id="confirmPassword"
               name="confirmPassword"
               type="password"
               value={confirmPassword}
               onChange={handleInputs}
+              data-testid="confirmpw-input"
             />
             <S.InputTitle
               value={confirmPassword}
               data-placeholder={
                 samePasswordCheck(password, confirmPassword) || inputs.confirmPassword.length === 0
-                  ? 'confirmPassword'
-                  : 'confirmPassword Incorrect'
+                  ? 'ConfirmPassword'
+                  : 'ConfirmPassword Incorrect'
               }
               isReg={inputs.password === inputs.confirmPassword || inputs.confirmPassword.length === 0}
             ></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.FormInput name="name" value={name} onChange={handleInputs} />
+            <S.FormInput name="name" value={name} onChange={handleInputs} data-testid="name-input" />
             <S.InputTitle value={name} data-placeholder="Name" isReg={true}></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.FormInput name="email" value={email} onChange={handleInputs} />
+            <S.FormInput name="email" value={email} onChange={handleInputs} data-testid="email-input" />
             <S.InputTitle
               value={email}
               data-placeholder={emailCheck(email) || inputs.email.length === 0 ? 'Email' : 'Email Incorrect '}
@@ -144,10 +149,9 @@ function SignUp() {
             ></S.InputTitle>
           </S.InputWrapper>
           <S.SignLink href="/login">Do you have an account?</S.SignLink>
-          <S.SignBtn onClick={HandleSignUp}>SIGN UP</S.SignBtn>
-          <S.Buttontest size={'lg'} onClick={HandleSignUp}>
+          <Button onClick={handleSignUp} size="lg" themes="sign">
             SIGN UP
-          </S.Buttontest>
+          </Button>
         </S.SignPanel>
       </S.SignCard>
     </S.SignWrapper>
