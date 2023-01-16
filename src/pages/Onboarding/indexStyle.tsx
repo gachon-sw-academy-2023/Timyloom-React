@@ -30,6 +30,7 @@ export const ContentsWrapper = styled.div`
 export const BtnWrapper = styled.div`
   text-align: center;
 `;
+
 export const StartBtn = styled.button`
   width: 10vw;
   height: 4vw;

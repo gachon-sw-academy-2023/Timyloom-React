@@ -1,4 +1,5 @@
 import * as S from '@/pages/Onboarding/indexStyle';
+import { movePage } from '@/utils/movePage';
 import dodge from '@/assets/images/dodge.jpg';
 import trello from '@/assets/images/Trello.png';
 import Box from '@mui/material/Box';
@@ -26,7 +27,13 @@ function Onboarding() {
                     TimyLoom
                   </S.MainContent>
                   <S.BtnWrapper>
-                    <S.StartBtn>START</S.StartBtn>
+                    <S.StartBtn
+                      onClick={() => {
+                        movePage('/workspace');
+                      }}
+                    >
+                      START
+                    </S.StartBtn>
                   </S.BtnWrapper>
                 </S.ContentsWrapper>
               </Slide>

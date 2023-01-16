@@ -7,7 +7,7 @@ const themeVariants = variant({
   prop: 'themes',
   variants: {
     default: {
-      color: 'black',
+      backgroundColor: '#000000',
     },
     sign: {
       backgroundColor: '#f1e5dd',
@@ -30,10 +30,10 @@ const themeVariants = variant({
   },
 });
 export const Container = styled.button<Omit<ButtonProps, 'children'>>`
+  ${themeVariants}
   font-size: 15px;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
-
   ${({ border }) =>
     border
       ? css`
@@ -76,7 +76,7 @@ export const Container = styled.button<Omit<ButtonProps, 'children'>>`
       : css`
           padding: 1rem 2.5rem;
         `}
-  ${themeVariants}
+  
   background-color: ${({ color }) => color && colors[color]};
   color: ${({ textColor }) => textColor && colors[textColor]};
 `;

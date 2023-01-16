@@ -3,7 +3,7 @@ import Onboarding from '@/pages/Onboarding/index';
 import Login from '@/pages/Auth/Login/index';
 import SignUp from '@/pages/Auth/SignUp/index';
 import Workspace from '@/pages/Workspace/index';
-import List from '@/pages/Board/index';
+import BoardPage from '@/pages/Board/index';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
@@ -14,6 +14,9 @@ import GlobalStyle from '@/styles/GlobalStyle';
 import { DBConfig } from '../DBConfig';
 import { initDB } from 'react-indexed-db';
 
+import Ref from './pages/Board/Ref';
+import Board from './components/BLC/Board';
+
 initDB(DBConfig);
 
 function App() {
@@ -22,13 +25,15 @@ function App() {
       <ThemeProvider theme={colors}>
         <GlobalStyle />
         <BrowserRouter>
-          {window.location.pathname !== '/workspace' && <Header />}
+          {/* {window.location.pathname !== '/workspace' && <Header />} */}
           <Routes>
             <Route path="/" element={<Onboarding />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/workspace" element={<Workspace />}></Route>
-            <Route path="/board/:boardId" element={<List />}></Route>
+            <Route path="/board/:boardId" element={<BoardPage />}></Route>
+            <Route path="/ref" element={<Ref />}></Route>
+            <Route path="/board" element={<Board />}></Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
