@@ -36,7 +36,7 @@ export const LogoText = styled.div`
   }
 `;
 
-export const ItemWrapper = styled.nav`
+export const ItemContainer = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -118,13 +118,13 @@ export const ViewsTitle = styled.h3`
   border-bottom: 2px solid ${(props) => props.theme.gray_3};
 `;
 
-export const ViewsButtonsWrapper = styled.div`
+export const ViewButtonsContainer = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 2px 10px;
 `;
 
-export const NavViews = styled(NavLink)`
+export const NavView = styled(NavLink)`
   display: flex;
   flex-direction: column;
   padding: 5px 10px;
@@ -170,7 +170,7 @@ export const ViewTitle = styled.span`
   margin: 5px auto 0;
 `;
 
-export const BoardsWrapper = styled.div`
+export const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -181,7 +181,7 @@ export const BoardsWrapper = styled.div`
   }
 `;
 
-export const BoardsTitle = styled.div`
+export const BoardContainerTitle = styled.div`
   font-size: 1.2rem;
   font-weight: bold;
   border-bottom: 2px solid ${(props) => props.theme.gray_2};
@@ -192,12 +192,12 @@ export const BoardsTitle = styled.div`
   }
 `;
 
-export const BoardWrapper = styled.div`
+export const BoardWrapper = styled.div<{ boardDesign?: string }>`
   border-radius: 5px;
   border: 2px solid ${(props) => props.theme.gray_2};
-  background-color: ${(props) => props.theme.purple};
+  background-color: ${(props) => props.boardDesign};
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
   @media (max-width: 620px) {
     display: none;
   }

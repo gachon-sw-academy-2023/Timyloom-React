@@ -21,7 +21,7 @@ function SignUp() {
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
       ...inputs,
-      [e.target.name]: e.target.value,
+      [e.target.id]: e.target.value,
     });
   };
 
@@ -86,18 +86,17 @@ function SignUp() {
         <S.SignPanel signStart={false}>
           <S.FormTitle>SIGN UP</S.FormTitle>
           <S.InputWrapper>
-            <S.FormInput name="id" value={id} onChange={handleInputs} data-testid="id-input" />
+            <S.FormInput id="id" value={id} onChange={handleInputs} data-testid="id-input" />
             <S.InputTitle
               value={id}
               data-placeholder={idCheck(id) || inputs.id.length === 0 ? 'ID' : 'ID Incorrect '}
-              isReg={idCheck(id) || inputs.id.length === 0}
+              isReg={!(idCheck(id) || inputs.id.length === 0)}
             ></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
             <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} data-testid="eye-svg-pw" />
             <S.FormInput
               id="password"
-              name="password"
               type="password"
               value={password}
               onChange={handleInputs}
@@ -109,7 +108,7 @@ function SignUp() {
               data-placeholder={
                 passwordCheck(password) || inputs.password.length === 0 ? 'Password' : 'Password Incorrect'
               }
-              isReg={passwordCheck(password) || inputs.password.length === 0}
+              isReg={!(passwordCheck(password) || inputs.password.length === 0)}
             ></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
@@ -120,7 +119,6 @@ function SignUp() {
             />
             <S.FormInput
               id="confirmPassword"
-              name="confirmPassword"
               type="password"
               value={confirmPassword}
               onChange={handleInputs}
@@ -133,19 +131,19 @@ function SignUp() {
                   ? 'ConfirmPassword'
                   : 'ConfirmPassword Incorrect'
               }
-              isReg={inputs.password === inputs.confirmPassword || inputs.confirmPassword.length === 0}
+              isReg={!(samePasswordCheck(password, confirmPassword) || inputs.confirmPassword.length === 0)}
             ></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.FormInput name="name" value={name} onChange={handleInputs} data-testid="name-input" />
-            <S.InputTitle value={name} data-placeholder="Name" isReg={true}></S.InputTitle>
+            <S.FormInput id="name" value={name} onChange={handleInputs} data-testid="name-input" />
+            <S.InputTitle value={name} data-placeholder="Name"></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.FormInput name="email" value={email} onChange={handleInputs} data-testid="email-input" />
+            <S.FormInput id="email" value={email} onChange={handleInputs} data-testid="email-input" />
             <S.InputTitle
               value={email}
               data-placeholder={emailCheck(email) || inputs.email.length === 0 ? 'Email' : 'Email Incorrect '}
-              isReg={emailCheck(email) || inputs.email.length === 0}
+              isReg={!(emailCheck(email) || inputs.email.length === 0)}
             ></S.InputTitle>
           </S.InputWrapper>
           <S.SignLink href="/login">Do you have an account?</S.SignLink>
