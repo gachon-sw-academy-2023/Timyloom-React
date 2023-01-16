@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState 
 import { taskAtom } from '@/recoil/taskAtom';
 
 //any 추후 타입지정 필요
-function List({ list, boardId, listIndex, listId }: any) {
+function List({ listIsDragging, list, boardId, listId }: any) {
   const [boards, setBoards] = useRecoilState(taskAtom); // recoil에서 관리하는 board들을 담고 있는 데이터
 
   let tempBoards = JSON.parse(JSON.stringify(boards)); //보드들 정보를 tempBoards에 저장
@@ -31,12 +31,12 @@ function List({ list, boardId, listIndex, listId }: any) {
       <Droppable droppableId="Card">
         {(provided) => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
-            <S.ListWrapper>
+            <S.ListWrapper listIsDragging={listIsDragging}>
               {tempCards.map((card: any, index: any) => (
                 <Draggable draggableId={String(index)} index={index} key={index}>
-                  {(provided) => (
+                  {(provided, snapshot) => (
                     <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                      <S.CardWrapper>{card.cardTitle}</S.CardWrapper>
+                      <S.CardWrapper cardIsDragging={snapshot.isDragging}>{card.cardTitle}</S.CardWrapper>
                       {/* 여기 바로 위에 진짜 Card 컴포넌트가 들어가야함 */}
                     </div>
                   )}

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const ListWrapper = styled.div`
+export const ListWrapper = styled.div<{ listIsDragging: boolean }>`
   font-size: 30px;
-  background-color: #f98080;
+  background-color: ${(props) => (props.listIsDragging ? '#1839bc' : '#d3ccff')};
   border-radius: 20px;
   width: 250px;
   height: 400px;
@@ -10,8 +10,9 @@ export const ListWrapper = styled.div`
   padding: 10px;
 `;
 
-export const CardWrapper = styled.div`
-  background-color: #dcc573;
+export const CardWrapper = styled.div<{ cardIsDragging: boolean }>`
+  background-color: ${(props) => (props.cardIsDragging ? '#796d47' : '#dcc573')};
+  color: ${(props) => (props.cardIsDragging ? '#ffffff' : '#000000')};
   border-radius: 20px;
   padding: 5px;
   text-align: center;
