@@ -21,7 +21,7 @@ function Header() {
       </S.SearchWrapper>
       <S.ProfileWrapper>
         <div>
-          <AlarmIcon width="40" height="40" fill="gray" />
+          <AlarmIcon width="20" height="20" fill="gray" />
         </div>
         <Avatar>H</Avatar>
       </S.ProfileWrapper>
