@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState 
 import { taskAtom } from '@/recoil/taskAtom';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { style } from 'styled-system';
 
 function Workspace() {
   const [boards, setBoards] = useRecoilState(taskAtom);
@@ -43,9 +44,9 @@ function Workspace() {
         <S.BoardContainer>
           {boards.map((board) => (
             // <Board title={board.boardTitle} board={board} />
-            <S.BoardWrapper>
-              <S.BoardTitle placeholder={board.boardTitle} />
-              <Link to={`/board/${board.boardId}`}>이동!</Link>
+            <S.BoardWrapper to={`/board/${board.boardId}`}>
+              <S.BoardTitle className="title">{board.boardTitle}</S.BoardTitle>
+              <S.ImageWrapper className="image" />
             </S.BoardWrapper>
           ))}
           <button onClick={handleAddboard}>보드 추가하기!</button>
