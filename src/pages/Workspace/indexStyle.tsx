@@ -85,34 +85,69 @@ export const WithAvatarWrapper = styled.img`
   border-radius: 40px;
 `;
 
-export const BoardWrapper = styled.div`
-  background-image: url(${boardbackground});
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 200px;
-  height: 130px;
+export const BoardWrapper = styled(Link)`
+  width: 400px;
+  height: 260px;
   margin: 30px;
+  position: relative;
   border-radius: 10px;
   text-align: center;
   padding: 10px;
   font-size: 1rem;
+  overflow: hidden;
+  box-shadow: #091e4240 0px 1px 1px, #091e4221 0px 0px 1px 1px;
+
+  &:hover {
+    box-shadow: #091e4240 0px 4px 8px -2px, #091e4214 0px 0px 0px 1px;
+  }
+
+  &:hover .image {
+    width: 400px;
+    height: 260px;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    transition: all 400ms;
+  }
+
+  &:hover .title {
+    color: #ffffff;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    width: 300px;
+    transition: all 400ms;
+  }
 `;
 
-export const BoardTitle = styled.input`
-  background-color: #ff0000fc;
+export const ImageWrapper = styled.div`
+  width: 100%;
+  height: 170%;
+  border-radius: 100%;
+  background-image: url(${boardbackground});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  z-index: 1;
+`;
+
+export const BoardTitle = styled.div`
+  margin: auto;
   border: 0;
   text-align: center;
-  width: 180px;
-  height: 30px;
+  color: #000000;
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  top: 30%;
+  transform: translate(0, -30%);
   border-radius: 5px;
-  font-size: 1rem;
-
-  ::placeholder {
-    color: black;
-  }
-
-  &:focus {
-    background-color: #ffffff;
-    border: 2px solid black;
-  }
+  font-size: 2rem;
+  font-weight: bold;
+  word-break: keep-all;
+  z-index: 2;
 `;
