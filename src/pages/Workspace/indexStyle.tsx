@@ -144,10 +144,21 @@ export const BoardTitle = styled.div`
   width: 200px;
   height: 60px;
   top: 30%;
+  left: 0;
   transform: translate(0, -30%);
   border-radius: 5px;
   font-size: 2rem;
   font-weight: bold;
   word-break: keep-all;
   z-index: 2;
+`;
+
+export const AddBoardButton = styled.button`
+  width: 400px;
+  height: 260px;
+  margin: 30px;
+  position: relative;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
 `;

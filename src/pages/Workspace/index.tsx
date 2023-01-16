@@ -59,7 +59,7 @@ function Workspace() {
               <S.ImageWrapper className="image" />
             </S.BoardWrapper>
           ))}
-          <button onClick={handleAddboard}>보드 추가하기!</button>
+          <S.AddBoardButton onClick={handleAddboard}>보드 추가하기!</S.AddBoardButton>
         </S.BoardContainer>
       </S.ContentWrapper>
     </S.WorkspaceWrapper>
