@@ -16,7 +16,7 @@ function Login() {
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
       ...inputs,
-      [e.target.name]: e.target.value,
+      [e.target.id]: e.target.value,
     });
   };
 
@@ -57,20 +57,19 @@ function Login() {
           <S.FormTitle>LOGIN</S.FormTitle>
           <S.InputsWrapper>
             <S.InputWrapper>
-              <S.FormInput name="id" value={id} onChange={handleInputs} data-testid="id-input" />
-              <S.InputTitle value={id} data-placeholder="ID" isReg={true}></S.InputTitle>
+              <S.FormInput id="id" value={id} onChange={handleInputs} data-testid="id-input" />
+              <S.InputTitle value={id} data-placeholder="ID"></S.InputTitle>
             </S.InputWrapper>
             <S.InputWrapper data-validate="Enter password">
               <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} />
               <S.FormInput
                 id="password"
-                name="password"
                 type="password"
                 value={password}
                 onChange={handleInputs}
                 data-testid="pw-input"
               />
-              <S.InputTitle value={password} data-placeholder="Password" isReg={true}></S.InputTitle>
+              <S.InputTitle value={password} data-placeholder="Password"></S.InputTitle>
             </S.InputWrapper>
           </S.InputsWrapper>
           <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
