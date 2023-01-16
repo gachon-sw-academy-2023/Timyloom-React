@@ -1,9 +1,10 @@
 import * as S from '@/components/BLC/CardStyle';
 import { Draggable } from 'react-beautiful-dnd';
 
-const Card = ({ cardId, listId, cardData }: any) => {
+const Card = ({ listId, cardId, cardData, index }: any) => {
   return (
-    <Draggable draggableId={cardId} index={cardData.position}>
+    <Draggable draggableId={cardId} index={index}>
+      {/* 기존 index는 listData.position를 사용하는데 map함수의 index를 사용하면 어떨까..?  */}
       {(draggableProvided, draggableSnapshot) => (
         <S.CardDraggable
           ref={draggableProvided.innerRef}
