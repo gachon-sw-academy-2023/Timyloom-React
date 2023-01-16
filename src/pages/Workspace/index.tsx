@@ -1,4 +1,5 @@
 import Sidebar from '@/components/Sidebar/Sidebar';
+import WorkspaceHeader from '@/components/WorkspaceHeader/WorkspaceHeader';
 import * as S from '@/pages/Workspace/indexStyle';
 import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { taskAtom } from '@/recoil/taskAtom';
@@ -40,17 +41,7 @@ function Workspace() {
     <S.WorkspaceWrapper>
       <Sidebar />
       <S.ContentWrapper>
-        <Avatar>H</Avatar>
-        <S.HeaderWrapper>
-          <S.SearchWrapper>
-            <S.Search type="search" placeholder="Search for Boards here"></S.Search>
-            <S.SearchIcon />
-          </S.SearchWrapper>
-          <S.ProfileWrapper>
-            <div>ddd</div>
-            <Avatar>H</Avatar>
-          </S.ProfileWrapper>
-        </S.HeaderWrapper>
+        <WorkspaceHeader />
         <S.BoardContainer>
           {boards.map((board) => (
             // <Board title={board.boardTitle} board={board} />
