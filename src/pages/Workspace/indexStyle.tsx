@@ -4,6 +4,7 @@ import { ReactComponent as SearchSvg } from '@/assets/images/search.svg';
 import { Avatar } from '@mui/material';
 import boardbackground from '@/assets/images/backgroundimg.jpg';
 import { ReactComponent as Add } from '@/assets/images/add.svg';
+import { ReactComponent as UpArrow } from '@/assets/images/upArrow.svg';
 
 export const WorkspaceWrapper = styled.div`
   display: flex;
@@ -123,5 +124,19 @@ export const AddBoardButton = styled.button`
     .st0 {
       fill: ${(props) => props.theme.gray_1};
     }
+  }
+`;
+
+export const ScrollToTopSvg = styled((props) => <UpArrow {...props} />)`
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  z-index: 1;
+  cursor: pointer;
+
+  &:hover {
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
   }
 `;

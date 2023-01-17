@@ -3,15 +3,26 @@ import WorkspaceHeader from '@/components/WorkspaceHeader/WorkspaceHeader';
 import * as S from '@/pages/Workspace/indexStyle';
 import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { taskAtom } from '@/recoil/taskAtom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 function Workspace() {
   const [boards, setBoards] = useRecoilState(taskAtom);
+  const [showTopBtn, setShowTopBtn] = useState(false);
   const scrollRef: any = useRef();
 
   useEffect(() => {
     console.log(boards);
   }, [boards]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        setShowTopBtn(true);
+      } else {
+        setShowTopBtn(false);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
@@ -38,6 +49,13 @@ function Workspace() {
     ]);
   };
 
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <S.WorkspaceWrapper ref={scrollRef}>
       <Sidebar />
@@ -57,6 +75,7 @@ function Workspace() {
           </S.AddBoardButton>
         </S.BoardContainer>
       </S.ContentWrapper>
+      {showTopBtn && <S.ScrollToTopSvg onClick={goToTop}>Top</S.ScrollToTopSvg>}
     </S.WorkspaceWrapper>
   );
 }
