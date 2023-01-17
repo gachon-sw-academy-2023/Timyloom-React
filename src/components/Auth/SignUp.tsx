@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import * as S from './SignStyle';
 import axios from 'axios';
-import { idCheck, passwordCheck, samePasswordCheck, emailCheck } from '@/utils/confirmReg';
+import { checkId, checkPassword, checkSamePassword, checkEmail } from '@/utils/validation';
 import Button from '@/components/Button/Button';
 
 function SignUp() {
@@ -40,7 +40,7 @@ function SignUp() {
   };
 
   const handleSignUp = () => {
-    if (idCheck(id) && passwordCheck(password) && samePasswordCheck(password, confirmPassword) && emailCheck(email)) {
+    if (checkId(id) && checkPassword(password) && checkSamePassword(password, confirmPassword) && checkEmail(email)) {
       axios
         .post(`/signup`, inputs)
         .then((res) => {
@@ -89,8 +89,8 @@ function SignUp() {
             <S.FormInput id="id" value={id} onChange={handleInputs} data-testid="id-input" />
             <S.InputTitle
               value={id}
-              data-placeholder={idCheck(id) || inputs.id.length === 0 ? 'ID' : 'ID Incorrect '}
-              isReg={!(idCheck(id) || inputs.id.length === 0)}
+              data-placeholder={checkId(id) || inputs.id.length === 0 ? 'ID' : 'ID Incorrect '}
+              isReg={!(checkId(id) || inputs.id.length === 0)}
             ></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
@@ -106,9 +106,9 @@ function SignUp() {
             <S.InputTitle
               value={password}
               data-placeholder={
-                passwordCheck(password) || inputs.password.length === 0 ? 'Password' : 'Password Incorrect'
+                checkPassword(password) || inputs.password.length === 0 ? 'Password' : 'Password Incorrect'
               }
-              isReg={!(passwordCheck(password) || inputs.password.length === 0)}
+              isReg={!(checkPassword(password) || inputs.password.length === 0)}
             ></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
@@ -127,11 +127,11 @@ function SignUp() {
             <S.InputTitle
               value={confirmPassword}
               data-placeholder={
-                samePasswordCheck(password, confirmPassword) || inputs.confirmPassword.length === 0
+                checkSamePassword(password, confirmPassword) || inputs.confirmPassword.length === 0
                   ? 'ConfirmPassword'
                   : 'ConfirmPassword Incorrect'
               }
-              isReg={!(samePasswordCheck(password, confirmPassword) || inputs.confirmPassword.length === 0)}
+              isReg={!(checkSamePassword(password, confirmPassword) || inputs.confirmPassword.length === 0)}
             ></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper>
@@ -142,8 +142,8 @@ function SignUp() {
             <S.FormInput id="email" value={email} onChange={handleInputs} data-testid="email-input" />
             <S.InputTitle
               value={email}
-              data-placeholder={emailCheck(email) || inputs.email.length === 0 ? 'Email' : 'Email Incorrect '}
-              isReg={!(emailCheck(email) || inputs.email.length === 0)}
+              data-placeholder={checkEmail(email) || inputs.email.length === 0 ? 'Email' : 'Email Incorrect '}
+              isReg={!(checkEmail(email) || inputs.email.length === 0)}
             ></S.InputTitle>
           </S.InputWrapper>
           <S.SignLink href="/login">Do you have an account?</S.SignLink>
