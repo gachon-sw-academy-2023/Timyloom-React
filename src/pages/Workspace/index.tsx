@@ -3,14 +3,30 @@ import WorkspaceHeader from '@/components/WorkspaceHeader/WorkspaceHeader';
 import * as S from '@/pages/Workspace/indexStyle';
 import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { taskAtom } from '@/recoil/taskAtom';
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 function Workspace() {
   const [boards, setBoards] = useRecoilState(taskAtom);
+  const [showTopBtn, setShowTopBtn] = useState(false);
+  const scrollRef: any = useRef();
 
   useEffect(() => {
     console.log(boards);
   }, [boards]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        setShowTopBtn(true);
+      } else {
+        setShowTopBtn(false);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
+  }, [boards.length]);
 
   //임시 공간입니다!!! 자주사용하는 함수는 모듈로 분리합니다!
   const handleAddboard = () => {
@@ -33,22 +49,33 @@ function Workspace() {
     ]);
   };
 
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <S.WorkspaceWrapper>
+    <S.WorkspaceWrapper ref={scrollRef}>
       <Sidebar />
       <S.ContentWrapper>
         <WorkspaceHeader />
-        <S.BoardContainer>
+        <S.BoardContainer id="workspace">
           {boards.map((board) => (
             // <Board title={board.boardTitle} board={board} />
             <S.BoardWrapper to={`/board/${board.boardId}`}>
-              <S.BoardTitle className="title">{board.boardTitle}</S.BoardTitle>
-              <S.ImageWrapper className="image" />
+              <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
+              <S.ImageWrapper />
             </S.BoardWrapper>
           ))}
-          <S.AddBoardButton onClick={handleAddboard}>보드 추가하기!</S.AddBoardButton>
+          <S.AddBoardButton onClick={handleAddboard}>
+            보드 추가하기!
+            <S.AddSvg />
+          </S.AddBoardButton>
         </S.BoardContainer>
       </S.ContentWrapper>
+      {showTopBtn && <S.ScrollToTopSvg onClick={goToTop}>Top</S.ScrollToTopSvg>}
     </S.WorkspaceWrapper>
   );
 }
