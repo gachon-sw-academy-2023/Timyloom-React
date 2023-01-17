@@ -1,6 +1,6 @@
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import * as S from '@/components/BLC/ListStyle';
-import Card from '@/components/BLC/Card';
+import * as S from '@/components/Board/ListStyle';
+import Card from '@/components/Board/Card';
 import ListTitle from './ListTitle';
 
 function List({ listId, listData, index }: any) {

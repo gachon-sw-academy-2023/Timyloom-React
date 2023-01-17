@@ -15,7 +15,7 @@ import { DBConfig } from '../DBConfig';
 import { initDB } from 'react-indexed-db';
 
 import Ref from './pages/Board/Ref';
-import Board from './components/BLC/Board';
+import Board from './components/Board/Board';
 
 initDB(DBConfig);
 
@@ -32,8 +32,6 @@ function App() {
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/workspace" element={<Workspace />}></Route>
             <Route path="/board/:boardId" element={<BoardPage />}></Route>
-            <Route path="/ref" element={<Ref />}></Route>
-            <Route path="/board" element={<Board />}></Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

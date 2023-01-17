@@ -1,4 +1,4 @@
-import * as S from '@/components/BLC/CardStyle';
+import * as S from '@/components/Board/CardStyle';
 import { Draggable } from 'react-beautiful-dnd';
 
 const Card = ({ listId, cardId, cardData, index }: any) => {

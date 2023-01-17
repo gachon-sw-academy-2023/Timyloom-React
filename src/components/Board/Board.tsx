@@ -1,15 +1,15 @@
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import * as S from '@/components/BLC/BoardStyle';
+import * as S from '@/components/Board/BoardStyle';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
-import List from '@/components/BLC/List';
+import List from '@/components/Board/List';
 
 const onBeforeDragStart = () => {
-  // console.log('onBeforeDragStart');
+  console.log('onBeforeDragStart');
 };
 
 const onDragStart = () => {
-  // console.log('onDragStart');
+  console.log('onDragStart');
 };
 
 function Board() {
@@ -32,7 +32,6 @@ function Board() {
   };
 
   const reorderCardPosition = (source: any, destination: any, cardId: any) => {
-    // console.log(source, destination, cardId);
     let tempBoard = JSON.parse(JSON.stringify(boards));
     let tempSourceList = tempBoard.lists.filter((list: any) => list.listId === source.droppableId)[0];
     let tempDestinationList = tempBoard.lists.filter((list: any) => list.listId === destination.droppableId)[0];

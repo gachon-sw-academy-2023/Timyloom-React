@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as S from '../BLC/ListTitleStyle';
+import * as S from './ListTitleStyle';
 
 const ListTitle = ({ setDragBlocking, dragHandleProps, listId, title }: any) => {
   const titleClick = () => {
