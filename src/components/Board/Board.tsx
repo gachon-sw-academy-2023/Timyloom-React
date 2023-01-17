@@ -1,14 +1,9 @@
 import List from '@/components/Board/List';
 import * as S from '@/components/Board/BoardStyle';
-import { useRecoilState } from 'recoil';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { boardsAtom } from '@/recoil/boardsAtom';
-import { useParams } from 'react-router-dom';
 
-function Board() {
-  let { boardId } = useParams();
-  const [boards, setBoards] = useRecoilState(boardsAtom);
-  let [board] = boards.filter((board) => board.boardId === boardId);
+function Board({ boards, setBoards, boardId }: any) {
+  let [board] = boards.filter((board: any) => board.boardId === boardId);
   let lists = board.lists;
 
   const onBeforeDragStart = () => {
@@ -44,7 +39,7 @@ function Board() {
     tempBoard.lists.map((list: any) => (list.listId === tempSourceList.listId ? tempSourceList : list));
     tempBoard.lists.map((list: any) => (list.listId === tempDestinationList.listId ? tempDestinationList : list));
     let newBoards = tempBoards.map((board: any) => (board.boardId === tempBoard.boardId ? tempBoard : board));
-    setBoards((prev) => newBoards);
+    setBoards((prev: any) => newBoards);
   };
 
   const reorderListPosition = (sourceIndex: any, destinationIndex: any) => {
@@ -53,7 +48,7 @@ function Board() {
     let [reorderList] = tempBoard.lists.splice(sourceIndex, 1);
     tempBoard.lists.splice(destinationIndex, 0, reorderList);
     let newBoards = tempBoards.map((board: any) => (board.boardId === tempBoard.boardId ? tempBoard : board));
-    setBoards((prev) => newBoards);
+    setBoards((prev: any) => newBoards);
   };
 
   return (
@@ -61,7 +56,7 @@ function Board() {
       <Droppable droppableId="board" type="moveList" direction="horizontal">
         {(provided) => (
           <S.BoardContainer ref={provided.innerRef} {...provided.droppableProps}>
-            {lists.map((list, index) => (
+            {lists.map((list: any, index: any) => (
               <List key={list.listId} listId={list.listId} listData={list} index={index}></List>
             ))}
             {provided.placeholder}
