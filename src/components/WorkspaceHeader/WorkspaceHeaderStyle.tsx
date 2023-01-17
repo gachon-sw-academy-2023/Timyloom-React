@@ -31,7 +31,7 @@ export const SearchWrapper = styled.div`
 `;
 
 export const Search = styled.input`
-  width: 25vw;
+  width: 15vw;
   min-width: 250px;
   height: 50px;
   background-color: ${(props) => props.theme.test1};
@@ -40,7 +40,21 @@ export const Search = styled.input`
   text-align: left;
   color: #696974;
   padding-left: 45px;
+  padding-right: 20px;
   border: none;
+  transition: all 400ms;
+  ::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    height: 1em;
+    width: 1em;
+    border-radius: 50em;
+    background-color: red;
+    /* background-size: contain;
+    pointer-events: none; */
+  }
+  &:focus {
+    width: 25vw;
+  }
 `;
 export const SearchIcon = styled(SearchSvg)`
   position: absolute;
