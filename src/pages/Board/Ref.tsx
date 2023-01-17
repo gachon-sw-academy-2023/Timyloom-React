@@ -3,7 +3,7 @@
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { boardsAtom } from '@/recoil/boardsAtom';
+import { boardAtom } from '@/recoil/boardAtom';
 
 // 테스트 아이템 생성
 const getItems = (count: any, offset = 0) =>
@@ -57,7 +57,7 @@ const move = (source: any, destination: any, droppableSource: any, droppableDest
 function Ref() {
   const [state, setState] = useState([getItems(6), getItems(5, 10)]);
   console.log(state);
-  const [board, setBoard] = useRecoilState(boardsAtom);
+  const [board, setBoard] = useRecoilState(boardAtom);
   const onDragEnd = (result: any) => {
     const { source, destination } = result;
     const sourceIndex = +source.droppableId;
