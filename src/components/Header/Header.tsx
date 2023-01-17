@@ -1,55 +1,30 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { movePage } from '@/utils/movePage';
 import * as S from './HeaderStyle';
 import { FaBars } from 'react-icons/fa';
 
-import { ReactComponent as Logo } from '@/assets/images/logo.svg';
-
 function Header() {
-  const MIN_PIXEL = 100;
   const [isToggleOpen, setIsToggleOpen] = useState(false);
-  const [ScrollY, setScrollY] = useState(0);
-  const [ScrollActive, setScrollActive] = useState(false);
-
-  useEffect(() => {
-    function scrollListener() {
-      window.addEventListener('scroll', handleScroll);
-    }
-    scrollListener();
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  });
 
   const handleToggleOpen = () => {
     setIsToggleOpen(!isToggleOpen);
   };
 
-  function handleScroll() {
-    if (ScrollY > MIN_PIXEL) {
-      setScrollY(window.pageYOffset);
-      setScrollActive(true);
-    } else {
-      setScrollY(window.pageYOffset);
-      setScrollActive(false);
-    }
-  }
-
   const handleLogout = () => {
     localStorage.removeItem('id');
     document.location.href = '/';
   };
+
   return (
-    <S.HeaderWrapper ScrollActive={ScrollActive}>
+    <S.HeaderWrapper>
       <S.LogoWrapper>
-        <S.LogoLink to={'/'} ScrollActive={ScrollActive}>
-          <Logo width="45px" height="45px" />
-          TimyLoom
+        <S.LogoLink to={'/'}>
+          <S.Logo />
         </S.LogoLink>
       </S.LogoWrapper>
       <S.NavMenu isToggleOpen={isToggleOpen}>
         {localStorage.getItem('id') ? (
-          <S.NameBox onClick={handleLogout} ScrollActive={ScrollActive}>
+          <S.NameBox onClick={handleLogout}>
             Welcome! <b>{localStorage.getItem('id')}</b>
           </S.NameBox>
         ) : (

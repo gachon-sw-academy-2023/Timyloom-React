@@ -14,6 +14,9 @@ import GlobalStyle from '@/styles/GlobalStyle';
 import { DBConfig } from '../DBConfig';
 import { initDB } from 'react-indexed-db';
 
+import Ref from './pages/Board/Ref';
+import Board from './components/Board/Board';
+
 initDB(DBConfig);
 
 function App() {
@@ -22,7 +25,7 @@ function App() {
       <ThemeProvider theme={colors}>
         <GlobalStyle />
         <BrowserRouter>
-          {window.location.pathname !== '/workspace' && <Header />}
+          {/* {window.location.pathname !== '/workspace' && <Header />} */}
           <Routes>
             <Route path="/" element={<Onboarding />}></Route>
             <Route path="/login" element={<Login />}></Route>
