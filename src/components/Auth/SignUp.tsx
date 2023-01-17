@@ -147,7 +147,7 @@ function SignUp() {
             ></S.InputTitle>
           </S.InputWrapper>
           <S.SignLink href="/login">Do you have an account?</S.SignLink>
-          <Button onClick={handleSignUp} size="lg" themes="sign">
+          <Button onClick={handleSignUp} size="lg" themes="sign" data-testid="signup-button">
             SIGN UP
           </Button>
         </S.SignPanel>

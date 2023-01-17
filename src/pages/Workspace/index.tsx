@@ -46,11 +46,14 @@ function Workspace() {
           {boards.map((board) => (
             // <Board title={board.boardTitle} board={board} />
             <S.BoardWrapper to={`/board/${board.boardId}`}>
-              <S.BoardTitle className="title">{board.boardTitle}</S.BoardTitle>
-              <S.ImageWrapper className="image" />
+              <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
+              <S.ImageWrapper />
             </S.BoardWrapper>
           ))}
-          <S.AddBoardButton onClick={handleAddboard}>보드 추가하기!</S.AddBoardButton>
+          <S.AddBoardButton onClick={handleAddboard}>
+            보드 추가하기!
+            <S.AddSvg />
+          </S.AddBoardButton>
         </S.BoardContainer>
       </S.ContentWrapper>
     </S.WorkspaceWrapper>
