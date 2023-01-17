@@ -4,7 +4,7 @@ import { ReactComponent as Dashboard } from '@/assets/images/dashboard.svg';
 import { ReactComponent as Setting } from '@/assets/images/setting.svg';
 import { useState } from 'react';
 
-const BoardsData = [
+const board = [
   {
     title: 'Board1',
     link: '/',
@@ -64,7 +64,7 @@ function Sidebar() {
       </S.ViewsWrapper>
       <S.BoardContainer>
         <S.BoardContainerTitle>Your Boards</S.BoardContainerTitle>
-        {BoardsData.map((item, index) => (
+        {board.map((item, index) => (
           <S.BoardWrapper key={index} boardDesign={item.color}>
             {item.title}
           </S.BoardWrapper>

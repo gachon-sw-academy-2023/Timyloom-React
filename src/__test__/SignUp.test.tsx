@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import SignUp from '../components/Auth/SignUp';
+import SignUp from '../components/SignCard/SignUpCard';
 import colors from '../styles/colors';
 import { ThemeProvider } from 'styled-components';
 
