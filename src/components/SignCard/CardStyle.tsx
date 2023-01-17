@@ -2,13 +2,6 @@ import styled from 'styled-components';
 import background from '@/assets/images/signMain.png';
 import { ReactComponent as Eye } from '@/assets/images/eye.svg';
 
-export const SignWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  height: 93vh;
-  background: ${(props) => props.theme.primaryColor_2};
-`;
-
 export const SignCard = styled.div`
   display: flex;
   width: 50vw;
@@ -147,8 +140,7 @@ export const InputTitle = styled.div<{ value: string; isReg?: boolean }>`
 
   ::after {
     font-size: 15px;
-    /* color: ${(props) => (props.isReg ? props.theme.gray_2 : props.theme.secondaryColor)}; */
-    color: ${(props) => (props.isReg ? props.theme.secondaryColor : props.theme.gray_2)};
+    color: ${(props) => (props.isReg ? props.theme.gray_2 : props.theme.secondaryColor)};
     line-height: 1.2;
     content: attr(data-placeholder);
     display: block;

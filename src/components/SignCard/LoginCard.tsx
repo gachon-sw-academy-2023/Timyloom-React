@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import * as S from './SignStyle';
+import * as S from './CardStyle';
 import axios from 'axios';
 import Button from '@/components/Button/Button';
 
-function Login() {
+function LoginCard() {
   const [inputs, setInputs] = useState({
     id: '',
     password: '',
@@ -51,36 +51,34 @@ function Login() {
   };
 
   return (
-    <S.SignWrapper>
-      <S.SignCard>
-        <S.SignPanel signStart={true}>
-          <S.FormTitle>LOGIN</S.FormTitle>
-          <S.InputsWrapper>
-            <S.InputWrapper>
-              <S.FormInput id="id" value={id} onChange={handleInputs} data-testid="id-input" />
-              <S.InputTitle value={id} data-placeholder="ID"></S.InputTitle>
-            </S.InputWrapper>
-            <S.InputWrapper data-validate="Enter password">
-              <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} data-testid="eye-svg" />
-              <S.FormInput
-                id="password"
-                type="password"
-                value={password}
-                onChange={handleInputs}
-                data-testid="pw-input"
-              />
-              <S.InputTitle value={password} data-placeholder="Password"></S.InputTitle>
-            </S.InputWrapper>
-          </S.InputsWrapper>
-          <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
-          <Button onClick={handleLogin} size="lg" themes="sign" data-testid="login-button">
-            LOGIN
-          </Button>
-        </S.SignPanel>
-        <S.ImgPanel imgStart={false}></S.ImgPanel>
-      </S.SignCard>
-    </S.SignWrapper>
+    <S.SignCard>
+      <S.SignPanel signStart={true}>
+        <S.FormTitle>LOGIN</S.FormTitle>
+        <S.InputsWrapper>
+          <S.InputWrapper>
+            <S.FormInput id="id" value={id} onChange={handleInputs} data-testid="id-input" />
+            <S.InputTitle value={id} data-placeholder="ID" isReg={true}></S.InputTitle>
+          </S.InputWrapper>
+          <S.InputWrapper data-validate="Enter password">
+            <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} />
+            <S.FormInput
+              id="password"
+              type="password"
+              value={password}
+              onChange={handleInputs}
+              data-testid="pw-input"
+            />
+            <S.InputTitle value={password} data-placeholder="Password" isReg={true}></S.InputTitle>
+          </S.InputWrapper>
+        </S.InputsWrapper>
+        <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
+        <Button onClick={handleLogin} size="lg" themes="sign">
+          LOGIN
+        </Button>
+      </S.SignPanel>
+      <S.ImgPanel imgStart={false}></S.ImgPanel>
+    </S.SignCard>
   );
 }
 
-export default Login;
+export default LoginCard;

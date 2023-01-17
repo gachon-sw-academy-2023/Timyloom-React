@@ -3,11 +3,7 @@ import WorkspaceHeader from '@/components/WorkspaceHeader/WorkspaceHeader';
 import * as S from '@/pages/Workspace/indexStyle';
 import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { taskAtom } from '@/recoil/taskAtom';
-import { ReactComponent as UserSvg } from '@/assets/images/userAvatar.svg';
-import { Avatar } from '@mui/material';
-import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { style } from 'styled-system';
+import { useEffect } from 'react';
 
 function Workspace() {
   const [boards, setBoards] = useRecoilState(taskAtom);
