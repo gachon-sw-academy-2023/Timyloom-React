@@ -6,7 +6,6 @@ export const SidebarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 250px;
-  height: 100vh;
   background: ${(props) => props.theme.primaryColor_2};
   border: 1px solid ${(props) => props.theme.gray_3};
 `;
