@@ -3,7 +3,7 @@ import WorkspaceHeader from '@/components/WorkspaceHeader/WorkspaceHeader';
 import * as S from '@/pages/Workspace/indexStyle';
 import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { taskAtom } from '@/recoil/taskAtom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 function Workspace() {
   const [boards, setBoards] = useRecoilState(taskAtom);
@@ -14,7 +14,7 @@ function Workspace() {
   }, [boards]);
 
   useEffect(() => {
-    window.scrollTo(0, scrollRef.current.scrollHeight);
+    window.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [boards.length]);
 
   //임시 공간입니다!!! 자주사용하는 함수는 모듈로 분리합니다!
@@ -36,11 +36,6 @@ function Workspace() {
         ],
       },
     ]);
-  };
-
-  const handleScroll = () => {
-    const element: any = document.getElementById('workspace');
-    element.scrollIntoView({ behavior: 'smooth', block: 'end' });
   };
 
   return (
