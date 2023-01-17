@@ -14,7 +14,6 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-width: 250px;
   background-color: white;
 `;
 

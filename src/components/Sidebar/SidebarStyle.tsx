@@ -16,7 +16,7 @@ export const LogoWrapper = styled.div`
   align-items: center;
   height: 12vh;
   padding: 0 30px;
-  @media screen and (max-width: 620px) {
+  @media screen and (max-width: 768px) {
     padding: 0 10px;
   }
 `;
@@ -30,7 +30,7 @@ export const LogoText = styled.div`
   font-size: 25px;
   color: ${(props) => props.theme.black_1};
   font-weight: bold;
-  @media screen and (max-width: 620px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -71,7 +71,7 @@ export const NavItem = styled(NavLink)`
     }
   }
 
-  @media screen and (max-width: 620px) {
+  @media screen and (max-width: 768px) {
     &.active {
       width: 70px;
       margin-right: 10px;
@@ -83,7 +83,7 @@ export const ItemTitle = styled.span`
   font-weight: bold;
   color: ${(props) => props.theme.gray_2};
 
-  @media (max-width: 620px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -104,7 +104,7 @@ export const ViewsWrapper = styled.div`
   border-radius: 30px;
   background-color: ${(props) => props.theme.test2};
   margin: 0 15px;
-  @media (max-width: 620px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -175,7 +175,7 @@ export const BoardContainer = styled.div`
   justify-content: center;
   margin-top: 10px;
   padding: 20px;
-  @media (max-width: 620px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -186,7 +186,7 @@ export const BoardContainerTitle = styled.div`
   border-bottom: 2px solid ${(props) => props.theme.gray_2};
   padding: 10px 5px;
   margin-bottom: 15px;
-  @media (max-width: 620px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -197,7 +197,7 @@ export const BoardWrapper = styled.div<{ boardDesign?: string }>`
   background-color: ${(props) => props.boardDesign};
   margin: 5px;
   padding: 10px;
-  @media (max-width: 620px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;

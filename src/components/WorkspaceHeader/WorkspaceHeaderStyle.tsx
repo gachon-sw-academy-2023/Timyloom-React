@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { ReactComponent as SearchSvg } from '@/assets/images/search.svg';
 import { ReactComponent as Alarm } from '@/assets/images/alarm.svg';
 
@@ -17,23 +16,23 @@ export const HeaderWrapper = styled.div`
   min-height: 100px;
   border-bottom: 2px solid ${(props) => props.theme.gray_3};
 
-  @media (max-width: 800px) {
+  @media screen and (max-width: 768px) {
     justify-content: right;
   }
 `;
 
 export const SearchWrapper = styled.div`
   position: relative;
-  width: 400px;
   margin: auto 30px;
   user-select: none;
-  @media (max-width: 800px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
 
 export const Search = styled.input`
-  width: 355px;
+  width: 25vw;
+  min-width: 250px;
   height: 50px;
   background-color: ${(props) => props.theme.test1};
   border-radius: 10px;
@@ -41,10 +40,7 @@ export const Search = styled.input`
   text-align: left;
   color: #696974;
   padding-left: 45px;
-  padding-right: 20px;
   border: none;
-  :focus {
-  }
 `;
 export const SearchIcon = styled(SearchSvg)`
   position: absolute;
@@ -61,7 +57,7 @@ export const ProfileWrapper = styled.div`
   align-items: center;
   grid-template-columns: 3fr 3fr 1fr 1fr;
 
-  @media (max-width: 800px) {
+  @media screen and (max-width: 768px) {
     grid-template-columns: 1fr 1fr 0.5fr;
   }
 `;
