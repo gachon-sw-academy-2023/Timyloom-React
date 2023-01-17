@@ -35,7 +35,7 @@ export const SignPanel = styled.div<{ signStart: boolean }>`
   border-top-right-radius: ${(props) => (props.signStart ? '0' : 'none')};
   border-bottom-right-radius: ${(props) => (props.signStart ? '0' : 'none')};
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     border-radius: 20px;
   }
 `;
@@ -124,7 +124,7 @@ export const EyeSvg = styled((props) => <Eye {...props} />)<{ $isShow: boolean }
   }
 `;
 
-export const InputTitle = styled.div<{ value: string; isReg: boolean }>`
+export const InputTitle = styled.div<{ value: string; isReg?: boolean }>`
   position: absolute;
   display: block;
   width: 100%;
@@ -147,7 +147,8 @@ export const InputTitle = styled.div<{ value: string; isReg: boolean }>`
 
   ::after {
     font-size: 15px;
-    color: ${(props) => (props.isReg ? props.theme.gray_2 : props.theme.secondaryColor)};
+    /* color: ${(props) => (props.isReg ? props.theme.gray_2 : props.theme.secondaryColor)}; */
+    color: ${(props) => (props.isReg ? props.theme.secondaryColor : props.theme.gray_2)};
     line-height: 1.2;
     content: attr(data-placeholder);
     display: block;
@@ -188,7 +189,7 @@ export const ImgPanel = styled.div<{ imgStart: boolean }>`
   border-top-right-radius: ${(props) => (props.imgStart ? '0' : 'none')};
   border-bottom-right-radius: ${(props) => (props.imgStart ? '0' : 'none')};
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     display: none;
   }
 `;

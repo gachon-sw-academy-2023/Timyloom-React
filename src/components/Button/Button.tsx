@@ -1,7 +1,4 @@
 import * as S from './Button.styles';
-// import { ButtonProps } from './Button.types';
-import { addDecorator } from '@storybook/react';
-import { ThemeProvider } from 'styled-components';
 
 export interface ButtonProps {
   size?: 'xs' | 'sm' | 'md' | 'lg';
