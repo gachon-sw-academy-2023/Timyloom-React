@@ -1,18 +1,29 @@
 import Sidebar from '@/components/Sidebar/Sidebar';
 import WorkspaceHeader from '@/components/WorkspaceHeader/WorkspaceHeader';
 import * as S from '@/pages/Workspace/indexStyle';
-import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
-import { taskAtom } from '@/recoil/taskAtom';
 import { useEffect, useState, useRef } from 'react';
+import { useRecoilState } from 'recoil';
+import { boardsAtom } from '@/recoil/boardsAtom';
+import { defaultData } from '@/components/Board/BoardData';
+
+const handleAddBoard = (boards: any, setBoards: any) => {
+  let newData = defaultData();
+  let newBoards = [...JSON.parse(JSON.stringify(boards)), newData];
+  setBoards((prev: any) => newBoards);
+};
+
+const goToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
 
 function Workspace() {
-  const [boards, setBoards] = useRecoilState(taskAtom);
+  const [boards, setBoards] = useRecoilState(boardsAtom);
   const [showTopBtn, setShowTopBtn] = useState(false);
   const scrollRef: any = useRef();
-
-  useEffect(() => {
-    console.log(boards);
-  }, [boards]);
+  let personalBoards = boards.filter((board) => board.owner === localStorage.getItem('id'));
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -28,48 +39,24 @@ function Workspace() {
     window.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [boards.length]);
 
-  //임시 공간입니다!!! 자주사용하는 함수는 모듈로 분리합니다!
-  const handleAddboard = () => {
-    const lastBoardId = Number(boards[boards.length - 1].boardId);
-    const owner: any = localStorage.getItem('id');
-    setBoards((prev) => [
-      ...boards,
-      {
-        owner: owner,
-        boardTitle: '새로운 보드',
-        boardId: (lastBoardId + 1).toString(),
-        list: [
-          {
-            listTitle: '새로운 리스트',
-            listId: '1',
-            card: [],
-          },
-        ],
-      },
-    ]);
-  };
-
-  const goToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <S.WorkspaceWrapper ref={scrollRef}>
       <Sidebar />
       <S.ContentWrapper>
         <WorkspaceHeader />
-        <S.BoardContainer id="workspace">
-          {boards.map((board) => (
+        <S.BoardContainer>
+          {personalBoards.map((board, index) => (
             // <Board title={board.boardTitle} board={board} />
-            <S.BoardWrapper to={`/board/${board.boardId}`}>
+            <S.BoardWrapper key={index} to={`/board/${board.boardId}`}>
               <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
               <S.ImageWrapper />
             </S.BoardWrapper>
           ))}
-          <S.AddBoardButton onClick={handleAddboard}>
+          <S.AddBoardButton
+            onClick={() => {
+              handleAddBoard(boards, setBoards);
+            }}
+          >
             보드 추가하기!
             <S.AddSvg />
           </S.AddBoardButton>

@@ -1,20 +1,18 @@
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import * as S from '@/components/Board/BoardStyle';
-import { useRecoilState } from 'recoil';
-import { boardsAtom } from '@/recoil/boardsAtom';
 import List from '@/components/Board/List';
+import * as S from '@/components/Board/BoardStyle';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-const onBeforeDragStart = () => {
-  console.log('onBeforeDragStart');
-};
+function Board({ boards, setBoards, boardId }: any) {
+  let [board] = boards.filter((board: any) => board.boardId === boardId);
+  let lists = board.lists;
 
-const onDragStart = () => {
-  console.log('onDragStart');
-};
+  const onBeforeDragStart = () => {
+    console.log('onBeforeDragStart');
+  };
 
-function Board() {
-  const [boards, setBoards] = useRecoilState(boardsAtom);
-  let lists = boards.lists;
+  const onDragStart = () => {
+    console.log('onDragStart');
+  };
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return;
@@ -32,21 +30,25 @@ function Board() {
   };
 
   const reorderCardPosition = (source: any, destination: any, cardId: any) => {
-    let tempBoard = JSON.parse(JSON.stringify(boards));
+    let tempBoards = JSON.parse(JSON.stringify(boards));
+    let tempBoard = JSON.parse(JSON.stringify(board));
     let tempSourceList = tempBoard.lists.filter((list: any) => list.listId === source.droppableId)[0];
     let tempDestinationList = tempBoard.lists.filter((list: any) => list.listId === destination.droppableId)[0];
     let [reorderCard] = tempSourceList.cards.splice(source.index, 1);
     tempDestinationList.cards.splice(destination.index, 0, reorderCard);
     tempBoard.lists.map((list: any) => (list.listId === tempSourceList.listId ? tempSourceList : list));
     tempBoard.lists.map((list: any) => (list.listId === tempDestinationList.listId ? tempDestinationList : list));
-    setBoards((prev) => tempBoard);
+    let newBoards = tempBoards.map((board: any) => (board.boardId === tempBoard.boardId ? tempBoard : board));
+    setBoards((prev: any) => newBoards);
   };
 
   const reorderListPosition = (sourceIndex: any, destinationIndex: any) => {
-    let tempBoard = JSON.parse(JSON.stringify(boards));
+    let tempBoards = JSON.parse(JSON.stringify(boards));
+    let tempBoard = JSON.parse(JSON.stringify(board));
     let [reorderList] = tempBoard.lists.splice(sourceIndex, 1);
     tempBoard.lists.splice(destinationIndex, 0, reorderList);
-    setBoards((prev) => tempBoard);
+    let newBoards = tempBoards.map((board: any) => (board.boardId === tempBoard.boardId ? tempBoard : board));
+    setBoards((prev: any) => newBoards);
   };
 
   return (
@@ -54,7 +56,7 @@ function Board() {
       <Droppable droppableId="board" type="moveList" direction="horizontal">
         {(provided) => (
           <S.BoardContainer ref={provided.innerRef} {...provided.droppableProps}>
-            {lists.map((list, index) => (
+            {lists.map((list: any, index: any) => (
               <List key={list.listId} listId={list.listId} listData={list} index={index}></List>
             ))}
             {provided.placeholder}
