@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Login from '../components/Auth/Login';
+import Login from '../components/SignCard/LoginCard';
 import colors from '../styles/colors';
 import { ThemeProvider } from 'styled-components';
 

@@ -1,24 +1,24 @@
-import { idCheck, passwordCheck, samePasswordCheck, emailCheck, phoneKeyCheck } from '../utils/confirmReg';
+import { checkId, checkPassword, checkSamePassword, checkEmail, checkPhone } from '../utils/validation';
 
 describe('confirmReg Test', () => {
-  it('idCheck test', () => {
-    expect(idCheck('bwj0509')).toBe(true);
-    expect(idCheck('1234')).toBe(false);
+  it('checkId test', () => {
+    expect(checkId('bwj0509')).toBe(true);
+    expect(checkId('1234')).toBe(false);
   });
-  it('passwordCheck test', () => {
-    expect(passwordCheck('1q2w3e4r!')).toBe(true);
-    expect(passwordCheck('1234')).toBe(false);
+  it('checkPassword test', () => {
+    expect(checkPassword('1q2w3e4r!')).toBe(true);
+    expect(checkPassword('1234')).toBe(false);
   });
-  it('samePasswordCheck test', () => {
-    expect(samePasswordCheck('1q2w3e4r!', '1q2w3e4r!')).toBe(true);
-    expect(samePasswordCheck('1q2w3e4r!', '1q2w3e4r')).toBe(false);
+  it('checkSamePassword test', () => {
+    expect(checkSamePassword('1q2w3e4r!', '1q2w3e4r!')).toBe(true);
+    expect(checkSamePassword('1q2w3e4r!', '1q2w3e4r')).toBe(false);
   });
-  it('emailCheck test', () => {
-    expect(emailCheck('bwj59@naver.com')).toBe(true);
-    expect(emailCheck('1234')).toBe(false);
+  it('checkEmail test', () => {
+    expect(checkEmail('bwj59@naver.com')).toBe(true);
+    expect(checkEmail('1234')).toBe(false);
   });
-  it('phoneKeyCheck', () => {
-    expect(phoneKeyCheck('010-1234-5678')).toBe(true);
-    expect(phoneKeyCheck('1234')).toBe(false);
+  it('checkPhone', () => {
+    expect(checkPhone('010-1234-5678')).toBe(true);
+    expect(checkPhone('1234')).toBe(false);
   });
 });
