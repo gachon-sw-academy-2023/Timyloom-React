@@ -1,18 +1,15 @@
 import List from '@/components/Board/List';
 import * as S from '@/components/Board/BoardStyle';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import AddList from './AddList';
 
 function Board({ boards, setBoards, boardId }: any) {
   let [board] = boards.filter((board: any) => board.boardId === boardId);
   let lists = board.lists;
 
-  const onBeforeDragStart = () => {
-    console.log('onBeforeDragStart');
-  };
+  const onBeforeDragStart = () => {};
 
-  const onDragStart = () => {
-    console.log('onDragStart');
-  };
+  const onDragStart = () => {};
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return;
@@ -60,6 +57,7 @@ function Board({ boards, setBoards, boardId }: any) {
               <List key={list.listId} listId={list.listId} listData={list} index={index}></List>
             ))}
             {provided.placeholder}
+            <AddList></AddList>
           </S.BoardContainer>
         )}
       </Droppable>
