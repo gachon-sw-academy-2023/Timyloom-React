@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { ReactComponent as SearchSvg } from '@/assets/images/search.svg';
 import { ReactComponent as Alarm } from '@/assets/images/alarm.svg';
 
@@ -17,23 +16,23 @@ export const HeaderWrapper = styled.div`
   min-height: 100px;
   border-bottom: 2px solid ${(props) => props.theme.gray_3};
 
-  @media (max-width: 800px) {
+  @media screen and (max-width: 768px) {
     justify-content: right;
   }
 `;
 
 export const SearchWrapper = styled.div`
   position: relative;
-  width: 400px;
-  margin: auto 30px;
+  margin: auto 30px auto 70px;
   user-select: none;
-  @media (max-width: 800px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
 
 export const Search = styled.input`
-  width: 355px;
+  width: 15vw;
+  min-width: 275px;
   height: 50px;
   background-color: ${(props) => props.theme.test1};
   border-radius: 10px;
@@ -43,7 +42,18 @@ export const Search = styled.input`
   padding-left: 45px;
   padding-right: 20px;
   border: none;
-  :focus {
+  transition: all 400ms;
+  ::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    height: 1em;
+    width: 1em;
+    border-radius: 50em;
+    background-color: red;
+    /* background-size: contain;
+    pointer-events: none; */
+  }
+  &:focus {
+    width: 25vw;
   }
 `;
 export const SearchIcon = styled(SearchSvg)`
@@ -61,7 +71,7 @@ export const ProfileWrapper = styled.div`
   align-items: center;
   grid-template-columns: 3fr 3fr 1fr 1fr;
 
-  @media (max-width: 800px) {
+  @media screen and (max-width: 768px) {
     grid-template-columns: 1fr 1fr 0.5fr;
   }
 `;
