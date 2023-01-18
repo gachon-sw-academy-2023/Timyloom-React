@@ -35,7 +35,7 @@ function SignUpCard() {
         break;
       case 'password':
         setPwValidation(checkPassword(e.target.value));
-        setConfirmPwValidation(checkSamePassword(e.target.value, confirmPassword));
+        // setConfirmPwValidation(checkSamePassword(e.target.value, confirmPassword));
         break;
       case 'confirmPassword':
         setConfirmPwValidation(checkSamePassword(password, e.target.value));
@@ -158,7 +158,7 @@ function SignUpCard() {
         </S.InputWrapper>
         <S.InputWrapper>
           <S.FormInput id="name" value={name} onChange={handleInputs} data-testid="name-input" />
-          <S.InputTitle value={name} data-placeholder="Name"></S.InputTitle>
+          <S.InputTitle value={name} data-placeholder="Name" isReg={true}></S.InputTitle>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.FormInput id="email" value={email} onChange={handleInputs} data-testid="email-input" />
