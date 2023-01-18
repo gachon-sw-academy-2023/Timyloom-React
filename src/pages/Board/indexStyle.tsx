@@ -24,3 +24,12 @@ export const BoardTitle = styled.textarea<{ boardTitle: any }>`
     outline: 0;
   }
 `;
+
+export const DeleteBtn = styled.button`
+  border: 0;
+  padding: 10px;
+  border-radius: 10px;
+  &:hover {
+    background-color: #ffcdcd;
+  }
+`;
