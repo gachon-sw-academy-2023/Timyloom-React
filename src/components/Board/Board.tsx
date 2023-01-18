@@ -54,7 +54,7 @@ function Board({ boards, setBoards, boardId }: any) {
         {(provided) => (
           <S.BoardContainer ref={provided.innerRef} {...provided.droppableProps}>
             {lists.map((list: any, index: any) => (
-              <List key={list.listId} listId={list.listId} listData={list} index={index}></List>
+              <List key={list.listId} boardId={boardId} listId={list.listId} listData={list} index={index}></List>
             ))}
             {provided.placeholder}
             <AddList></AddList>
