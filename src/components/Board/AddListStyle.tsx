@@ -10,7 +10,14 @@ export const AddListWrapper = styled.div`
 
 export const AddListBtn = styled.button`
   font-size: 1rem;
-  background-color: #ffbdbd;
+  background-color: #d4d4d4;
+  border: none;
+  border-radius: 5px;
+  padding: 7px;
+  &:hover {
+    background-color: #ffffffd1;
+  }
+  transition: all 100ms ease-in;
 `;
 
 export const AddListInput = styled.input`
@@ -21,7 +28,7 @@ export const AddListInput = styled.input`
   padding: 4px 8px;
   border: none;
   &:focus {
-    box-shadow: inset 0 0 0 2px #0079bf;
+    box-shadow: inset 0 0 0 2px #ee8d0d;
     outline: 0;
   }
 `;
