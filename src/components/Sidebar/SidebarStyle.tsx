@@ -2,37 +2,49 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
-export const SidebarWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 250px;
+export const SDivider = styled.div`
+  height: 2px;
+  width: 100%;
+  background: ${(props) => props.theme.gray_2};
+  margin: 0 0 24px;
+`;
+
+export const SidebarWrapper = styled.div<{ isOpen: boolean }>`
+  position: relative;
+  min-height: 100vh;
+  padding: 24px;
   background: ${(props) => props.theme.primaryColor_2};
   border: 1px solid ${(props) => props.theme.gray_3};
+  width: ${({ isOpen }) => (isOpen ? `auto` : '300px')};
 `;
 
-export const LogoWrapper = styled.div`
+export const SidebarOpenButton = styled.button<{ isOpen: boolean }>`
+  border: none;
+  position: absolute;
+  top: 48px;
+  right: ${({ isOpen }) => (isOpen ? `-16px` : `-40px`)};
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: ${(props) => props.theme.primaryColor_2};
+  box-shadow: 0 0 4px #e6e6e6, 0 0 7px white;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 12vh;
-  padding: 0 30px;
-  @media screen and (max-width: 768px) {
-    padding: 0 10px;
-  }
-`;
-export const LogoLink = styled(Link)`
-  display: flex;
-  text-decoration: none;
+  justify-content: center;
+  cursor: pointer;
+  transform: ${({ isOpen }) => (isOpen ? `rotate(180deg)` : `initial`)};
 `;
 
-export const LogoText = styled.div`
+export const LogoText = styled.div<{ isOpen: boolean }>`
   padding: 0.3rem;
   font-size: 25px;
   color: ${(props) => props.theme.black_1};
   font-weight: bold;
-  @media screen and (max-width: 768px) {
+  display: ${({ isOpen }) => (isOpen ? 'none' : ``)};
+  margin-left: 5px;
+  /* @media screen and (max-width: 768px) {
     display: none;
-  }
+  } */
 `;
 
 export const ItemContainer = styled.nav`
@@ -46,7 +58,7 @@ export const NavItem = styled(NavLink)`
   align-items: center;
   text-decoration: none;
   letter-spacing: 0.5px;
-  margin-bottom: 15px;
+  margin-bottom: 24px;
   padding: 12px 10px;
 
   &.active {
@@ -78,15 +90,6 @@ export const NavItem = styled(NavLink)`
     }
   }
 `;
-export const ItemTitle = styled.span`
-  font-size: 1rem;
-  font-weight: bold;
-  color: ${(props) => props.theme.gray_2};
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
 export const Icon = styled.div`
   margin: 5px 20px auto 15px;
   svg {
@@ -107,14 +110,6 @@ export const ViewsWrapper = styled.div`
   @media screen and (max-width: 768px) {
     display: none;
   }
-`;
-
-export const ViewsTitle = styled.h3`
-  font-size: 1rem;
-  color: ${(props) => props.theme.black_2};
-  margin: 0 auto;
-  padding: 15px 20px;
-  border-bottom: 2px solid ${(props) => props.theme.gray_3};
 `;
 
 export const ViewButtonsContainer = styled.div`
@@ -169,19 +164,19 @@ export const ViewTitle = styled.span`
   margin: 5px auto 0;
 `;
 
-export const BoardContainer = styled.div`
+export const BoardContainer = styled.div<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 10px;
-  padding: 20px;
+  display: ${({ isOpen }) => (isOpen ? 'none' : ``)};
   @media screen and (max-width: 768px) {
     display: none;
   }
 `;
 
 export const BoardContainerTitle = styled.div`
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   border-bottom: 2px solid ${(props) => props.theme.gray_2};
   padding: 10px 5px;
@@ -197,6 +192,66 @@ export const BoardWrapper = styled.div<{ boardDesign?: string }>`
   background-color: ${(props) => props.boardDesign};
   margin: 5px;
   padding: 10px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const LogoLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-decoration: none;
+
+  svg {
+    height: auto;
+    width: 52px;
+  }
+  cursor: pointer;
+  height: 80px;
+  margin-bottom: 5px;
+`;
+
+export const SLinkContainer = styled.div<{ isActive: boolean }>`
+  background: ${({ isActive, theme }) => (!isActive ? `transparent` : theme.primaryColor_1)};
+  border-radius: 6px;
+  margin: 8px 0;
+  letter-spacing: 0.6px;
+
+  :hover {
+    box-shadow: inset 0 0 0 1px gray;
+  }
+`;
+
+export const SLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  font-size: 16px;
+  padding: 6px 0;
+`;
+
+export const SLinkIcon = styled.div`
+  padding: 8px 16px;
+  display: flex;
+
+  svg {
+    font-size: 20px;
+  }
+`;
+
+export const SLinkLabel = styled.span`
+  display: block;
+  flex: 1;
+  margin-left: 8px;
+  padding-right: 100px;
+`;
+export const ViewsTitle = styled.div<{ isOpen: boolean }>`
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 5px;
+  display: ${({ isOpen }) => (isOpen ? 'none' : ``)};
   @media screen and (max-width: 768px) {
     display: none;
   }

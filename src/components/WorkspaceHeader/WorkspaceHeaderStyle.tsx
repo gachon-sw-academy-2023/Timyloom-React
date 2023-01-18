@@ -23,7 +23,7 @@ export const HeaderWrapper = styled.div`
 
 export const SearchWrapper = styled.div`
   position: relative;
-  margin: auto 30px;
+  margin: auto 30px auto 70px;
   user-select: none;
   @media screen and (max-width: 768px) {
     display: none;
@@ -32,7 +32,7 @@ export const SearchWrapper = styled.div`
 
 export const Search = styled.input`
   width: 15vw;
-  min-width: 250px;
+  min-width: 275px;
   height: 50px;
   background-color: ${(props) => props.theme.test1};
   border-radius: 10px;
