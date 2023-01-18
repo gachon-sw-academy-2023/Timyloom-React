@@ -3,6 +3,34 @@ import { ReactComponent as Logo } from '@/assets/images/logo.svg';
 import { ReactComponent as Dashboard } from '@/assets/images/dashboard.svg';
 import { ReactComponent as Setting } from '@/assets/images/setting.svg';
 import { useState } from 'react';
+import { AiOutlineHome, AiOutlineLeft, AiOutlineSetting, AiOutlineCalendar, AiOutlineTable } from 'react-icons/ai';
+import { useLocation } from 'react-router-dom';
+
+const linksArray = [
+  {
+    label: 'Workspace',
+    icon: <AiOutlineHome />,
+    to: '/workspace',
+  },
+  {
+    label: 'Setting',
+    icon: <AiOutlineSetting />,
+    to: '/statistics',
+  },
+];
+
+const secondaryLinksArray = [
+  {
+    label: 'Table',
+    icon: <AiOutlineTable />,
+    to: '/statistics',
+  },
+  {
+    label: 'Calender',
+    icon: <AiOutlineCalendar />,
+    to: '/statistics',
+  },
+];
 
 const board = [
   {
@@ -23,46 +51,40 @@ const board = [
 ];
 
 function Sidebar() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { pathname } = useLocation();
+
   return (
-    <S.SidebarWrapper>
-      <S.LogoWrapper>
-        <S.LogoLink to={'/'}>
-          <Logo width="45px" height="45px" />
-          <S.LogoText>TimyLoom</S.LogoText>
-        </S.LogoLink>
-      </S.LogoWrapper>
-      <S.ItemContainer>
-        <S.NavItem className={({ isActive }) => (isActive ? 'active' : '')} to="/workspaces">
-          <S.Icon>
-            <Dashboard />
-          </S.Icon>
-          <S.ItemTitle>Workspace</S.ItemTitle>
-        </S.NavItem>
-        <S.NavItem className={({ isActive }) => (isActive ? 'active' : '')} to="/workspace">
-          <S.Icon>
-            <Setting />
-          </S.Icon>
-          <S.ItemTitle>Setting</S.ItemTitle>
-        </S.NavItem>
-      </S.ItemContainer>
-      <S.ViewsWrapper>
-        <S.ViewsTitle>Workspace Views</S.ViewsTitle>
-        <S.ViewButtonsContainer>
-          <S.NavView className={({ isActive }) => (isActive ? 'active' : '')} to="/dd">
-            <S.ViewButton>
-              <Setting width="35px" height="35px" />
-            </S.ViewButton>
-            <S.ViewTitle>Table</S.ViewTitle>
-          </S.NavView>
-          <S.NavView className={({ isActive }) => (isActive ? 'active' : '')} to="/workspace">
-            <S.ViewButton>
-              <Setting width="35px" height="35px" />
-            </S.ViewButton>
-            <S.ViewTitle>Calender</S.ViewTitle>
-          </S.NavView>
-        </S.ViewButtonsContainer>
-      </S.ViewsWrapper>
-      <S.BoardContainer>
+    <S.SidebarWrapper isOpen={sidebarOpen}>
+      <S.SidebarOpenButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p) => !p)}>
+        <AiOutlineLeft />
+      </S.SidebarOpenButton>
+      <S.LogoLink to={'/'}>
+        <Logo width="45px" height="45px" />
+        <S.LogoText isOpen={sidebarOpen}>Timyloom</S.LogoText>
+      </S.LogoLink>
+      <S.SDivider />
+
+      {linksArray.map(({ icon, label, to }) => (
+        <S.SLinkContainer key={label} isActive={pathname === to}>
+          <S.SLink to={to} style={sidebarOpen ? { width: `fit-content` } : {}}>
+            <S.SLinkIcon>{icon}</S.SLinkIcon>
+            {!sidebarOpen && <S.SLinkLabel>{label}</S.SLinkLabel>}
+          </S.SLink>
+        </S.SLinkContainer>
+      ))}
+      <S.ViewsTitle isOpen={sidebarOpen}>Workspace Views</S.ViewsTitle>
+      <S.SDivider />
+      {secondaryLinksArray.map(({ icon, label, to }) => (
+        <S.SLinkContainer key={label} isActive={pathname === to}>
+          <S.SLink to="/" style={sidebarOpen ? { width: `fit-content` } : {}}>
+            <S.SLinkIcon>{icon}</S.SLinkIcon>
+            {!sidebarOpen && <S.SLinkLabel>{label}</S.SLinkLabel>}
+          </S.SLink>
+        </S.SLinkContainer>
+      ))}
+
+      <S.BoardContainer isOpen={sidebarOpen}>
         <S.BoardContainerTitle>Your Boards</S.BoardContainerTitle>
         {board.map((item, index) => (
           <S.BoardWrapper key={index} boardDesign={item.color}>

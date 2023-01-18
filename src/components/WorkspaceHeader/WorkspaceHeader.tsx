@@ -19,7 +19,12 @@ function Header() {
   return (
     <S.HeaderWrapper>
       <S.SearchWrapper>
-        <S.Search type="search" placeholder="Search for Boards here" onChange={handleSearchChange}></S.Search>
+        <S.Search
+          id="search"
+          type="search"
+          placeholder="Search for Boards here"
+          onChange={handleSearchChange}
+        ></S.Search>
         <S.SearchIcon />
       </S.SearchWrapper>
       <S.ProfileWrapper>
