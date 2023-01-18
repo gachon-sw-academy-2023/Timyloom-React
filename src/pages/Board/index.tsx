@@ -13,7 +13,7 @@ function BoardPage() {
   const [boardTitle, setBoardTitle] = useState(board.boardTitle);
 
   const handleChange = (e: any) => {
-    setBoardTitle((prev) => e.target.value);
+    setBoardTitle((prev: any) => e.target.value);
   };
 
   const handleKeyDown = (e: any) => {
@@ -21,8 +21,10 @@ function BoardPage() {
       removeFocus();
       e.preventDefault();
       handleSaveData();
-      let newBoards = boards.map((board) => (board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board));
-      setBoards((prev) => newBoards);
+      let newBoards = boards.map((board: any) =>
+        board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board,
+      );
+      setBoards((prev: any) => newBoards);
     }
   };
 
@@ -30,8 +32,10 @@ function BoardPage() {
     (document.activeElement as HTMLElement).blur();
   };
   const handleSaveData = () => {
-    let newBoards = boards.map((board) => (board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board));
-    setBoards((prev) => newBoards);
+    let newBoards = boards.map((board: any) =>
+      board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board,
+    );
+    setBoards((prev: any) => newBoards);
   };
 
   const handleDeleteBoard = () => {
@@ -43,10 +47,9 @@ function BoardPage() {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-        await setBoards((prev) => boards.filter((board) => board.boardId !== boardId));
-        // document.location.href = '/workspace';
+        location.replace(`/remove/${boardId}`);
       }
     });
   };
