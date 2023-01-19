@@ -24,18 +24,26 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: any) => {
   };
 
   const saveTitle = () => {
-    let newBoards = boards.map((board) =>
+    let newBoards = boards.map((board: any) =>
       board.boardId === boardId
         ? {
             ...board,
-            lists: board.lists.map((list) => (list.listId === listId ? { ...list, listTitle: newTitle } : list)),
+            lists: board.lists.map((list: any) => (list.listId === listId ? { ...list, listTitle: newTitle } : list)),
           }
         : board,
     );
-    setBoards((prev) => newBoards);
+    setBoards((prev: any) => newBoards);
     seteditMode(false);
   };
 
+  const handleDeleteList = () => {
+    let newBoards = boards.map((board: any) =>
+      board.boardId === boardId
+        ? { ...board, lists: board.lists.filter((list: any) => list.listId !== listId) }
+        : board,
+    );
+    setBoards((prev: any) => newBoards);
+  };
   return (
     <S.Container {...dragHandleProps}>
       <S.TextAreaWrapper>
@@ -59,6 +67,7 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: any) => {
             {newTitle}
           </S.Textdiv>
         )}
+        <S.Delete onClick={handleDeleteList}>X</S.Delete>
       </S.TextAreaWrapper>
     </S.Container>
   );
