@@ -42,9 +42,6 @@ export const LogoText = styled.div<{ isOpen: boolean }>`
   font-weight: bold;
   display: ${({ isOpen }) => (isOpen ? 'none' : ``)};
   margin-left: 5px;
-  /* @media screen and (max-width: 768px) {
-    display: none;
-  } */
 `;
 
 export const ItemContainer = styled.nav`
@@ -112,12 +109,6 @@ export const ViewsWrapper = styled.div`
   }
 `;
 
-export const ViewButtonsContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 2px 10px;
-`;
-
 export const NavView = styled(NavLink)`
   display: flex;
   flex-direction: column;
@@ -181,9 +172,6 @@ export const BoardContainerTitle = styled.div`
   border-bottom: 2px solid ${(props) => props.theme.gray_2};
   padding: 10px 5px;
   margin-bottom: 15px;
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
 `;
 
 export const BoardWrapper = styled.div<{ boardDesign?: string }>`
@@ -192,9 +180,6 @@ export const BoardWrapper = styled.div<{ boardDesign?: string }>`
   background-color: ${(props) => props.boardDesign};
   margin: 5px;
   padding: 10px;
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
 `;
 
 export const LogoLink = styled(Link)`
@@ -212,7 +197,12 @@ export const LogoLink = styled(Link)`
   margin-bottom: 5px;
 `;
 
-export const SLinkContainer = styled.div<{ isActive: boolean }>`
+export const ViewContainer = styled.div<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (isOpen ? '' : `flex`)};
+  justify-content: space-between;
+`;
+
+export const LinkWrapper = styled.div<{ isActive: boolean }>`
   background: ${({ isActive, theme }) => (!isActive ? `transparent` : theme.primaryColor_1)};
   border-radius: 6px;
   margin: 8px 0;
@@ -230,6 +220,10 @@ export const SLink = styled(Link)`
   color: inherit;
   font-size: 16px;
   padding: 6px 0;
+
+  @media screen and (max-width: 768px) {
+    width: fit-content;
+  }
 `;
 
 export const SLinkIcon = styled.div`
@@ -246,7 +240,12 @@ export const SLinkLabel = styled.span`
   flex: 1;
   margin-left: 8px;
   padding-right: 100px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
+
 export const ViewsTitle = styled.div<{ isOpen: boolean }>`
   font-size: 1rem;
   font-weight: bold;
