@@ -5,17 +5,17 @@ import { NavLink } from 'react-router-dom';
 export const SidebarWrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
   min-height: 100vh;
-  padding: 24px;
+  padding: 15px;
   background: ${(props) => props.theme.primaryColor_2};
   border: 1px solid ${(props) => props.theme.gray_3};
-  width: ${({ isOpen }) => (isOpen ? `auto` : '300px')};
+  width: ${({ isOpen }) => (!isOpen ? `auto` : '300px')};
 `;
 
 export const SidebarOpenButton = styled.button<{ isOpen: boolean }>`
   border: none;
   position: absolute;
   top: 48px;
-  right: ${({ isOpen }) => (isOpen ? `-16px` : `-40px`)};
+  right: ${({ isOpen }) => (!isOpen ? `-16px` : `-40px`)};
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -25,7 +25,7 @@ export const SidebarOpenButton = styled.button<{ isOpen: boolean }>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transform: ${({ isOpen }) => (isOpen ? `rotate(180deg)` : `initial`)};
+  transform: ${({ isOpen }) => (!isOpen ? `rotate(180deg)` : `initial`)};
 `;
 
 export const LogoLink = styled(Link)`
@@ -48,7 +48,7 @@ export const LogoText = styled.div<{ isOpen: boolean }>`
   font-size: 25px;
   color: ${(props) => props.theme.black_1};
   font-weight: bold;
-  display: ${({ isOpen }) => (isOpen ? 'none' : ``)};
+  display: ${({ isOpen }) => (!isOpen ? 'none' : ``)};
   margin-left: 5px;
 `;
 
@@ -69,17 +69,15 @@ export const SLinkWrapper = styled.div<{ isActive: boolean }>`
   }
 `;
 
-export const SLink = styled(Link)`
+export const SLink = styled(Link)<{ isOpen: boolean; column?: boolean }>`
   display: flex;
   align-items: center;
   text-decoration: none;
   color: inherit;
   font-size: 16px;
   padding: 6px 0;
-
-  @media screen and (max-width: 768px) {
-    width: fit-content;
-  }
+  width: ${({ isOpen }) => (!isOpen ? 'fit-content' : `120px`)};
+  flex-direction: ${({ column }) => (column ? 'column' : `row`)};
 `;
 
 export const LinkIcon = styled.div`
@@ -91,21 +89,21 @@ export const LinkIcon = styled.div`
   }
 `;
 
-export const LinkLabel = styled.span`
+export const LinkLabel = styled.span<{ column?: boolean }>`
   display: block;
   flex: 1;
   margin-left: 8px;
-  padding-right: 100px;
+  padding-right: ${({ column }) => (column ? '5px' : `100px`)};
 `;
 export const SidebarSubtitle = styled.div<{ isOpen: boolean }>`
   font-size: 1rem;
   font-weight: bold;
   padding: 10px 5px;
-  display: ${({ isOpen }) => (isOpen ? 'none' : ``)};
+  display: ${({ isOpen }) => (!isOpen ? 'none' : ``)};
 `;
 
 export const ViewContainer = styled.div<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? '' : `flex`)};
+  display: ${({ isOpen }) => (!isOpen ? '' : `flex`)};
   justify-content: space-between;
 `;
 
@@ -113,7 +111,7 @@ export const BoardContainer = styled.div<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  display: ${({ isOpen }) => (isOpen ? 'none' : ``)};
+  display: ${({ isOpen }) => (!isOpen ? 'none' : ``)};
 `;
 
 export const BoardWrapper = styled.div<{ boardDesign?: string }>`
