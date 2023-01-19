@@ -3,7 +3,7 @@ import * as S from '@/components/Board/ListStyle';
 import Card from '@/components/Board/Card';
 import ListTitle from './ListTitle';
 
-function List({ listId, listData, index }: any) {
+function List({ listId, listData, index, boardId }: any) {
   let cards = listData.cards;
   return (
     <Draggable draggableId={listId} index={index}>
@@ -13,6 +13,7 @@ function List({ listId, listData, index }: any) {
           <S.ListContent>
             <ListTitle
               dragHandleProps={provided.dragHandleProps}
+              boardId={boardId}
               listId={listId}
               title={listData.listTitle}
             ></ListTitle>

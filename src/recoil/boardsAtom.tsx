@@ -1,7 +1,11 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 export const boardsAtom = atom({
   key: 'boardsAtom',
+  effects_UNSTABLE: [persistAtom],
   default: [
     {
       boardTitle: '개인 일정 정리 보드',
