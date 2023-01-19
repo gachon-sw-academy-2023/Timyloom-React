@@ -4,9 +4,10 @@ import Login from '@/pages/Auth/Login/index';
 import SignUp from '@/pages/Auth/SignUp/index';
 import Workspace from '@/pages/Workspace/index';
 import BoardPage from '@/pages/Board/index';
+import Remove from '@/pages/Remove';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import colors from '@/styles/colors';
 import GlobalStyle from '@/styles/GlobalStyle';
@@ -29,6 +30,7 @@ function App() {
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/workspace" element={<Workspace />}></Route>
             <Route path="/board/:boardId" element={<BoardPage />}></Route>
+            <Route path="/remove/:boardId" element={<Remove />}></Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
