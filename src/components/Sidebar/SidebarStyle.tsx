@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 
 export const SidebarWrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
@@ -9,6 +8,7 @@ export const SidebarWrapper = styled.div<{ isOpen: boolean }>`
   background: ${(props) => props.theme.primaryColor_2};
   border: 1px solid ${(props) => props.theme.gray_3};
   width: ${({ isOpen }) => (!isOpen ? `auto` : '300px')};
+  box-shadow: -3px 0 5px 0 #555;
 `;
 
 export const SidebarOpenButton = styled.button<{ isOpen: boolean }>`
@@ -28,7 +28,7 @@ export const SidebarOpenButton = styled.button<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (!isOpen ? `rotate(180deg)` : `initial`)};
 `;
 
-export const LogoLink = styled(Link)`
+export const LogoLink = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
@@ -45,8 +45,8 @@ export const LogoLink = styled(Link)`
 
 export const LogoText = styled.div<{ isOpen: boolean }>`
   padding: 0.3rem;
-  font-size: 25px;
-  color: ${(props) => props.theme.black_1};
+  font-size: 35px;
+  color: gray;
   font-weight: bold;
   display: ${({ isOpen }) => (!isOpen ? 'none' : ``)};
   margin-left: 5px;
@@ -69,7 +69,7 @@ export const SLinkWrapper = styled.div<{ isActive: boolean }>`
   }
 `;
 
-export const SLink = styled(Link)<{ isOpen: boolean; column?: boolean }>`
+export const SLink = styled(Link)<{ isOpen: boolean; $column?: boolean }>`
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -77,7 +77,7 @@ export const SLink = styled(Link)<{ isOpen: boolean; column?: boolean }>`
   font-size: 16px;
   padding: 6px 0;
   width: ${({ isOpen }) => (!isOpen ? 'fit-content' : `120px`)};
-  flex-direction: ${({ column }) => (column ? 'column' : `row`)};
+  flex-direction: ${({ $column }) => ($column ? 'column' : `row`)};
 `;
 
 export const LinkIcon = styled.div`
@@ -89,11 +89,11 @@ export const LinkIcon = styled.div`
   }
 `;
 
-export const LinkLabel = styled.span<{ column?: boolean }>`
+export const LinkLabel = styled.span<{ $column?: boolean }>`
   display: block;
   flex: 1;
   margin-left: 8px;
-  padding-right: ${({ column }) => (column ? '5px' : `100px`)};
+  padding-right: ${({ $column }) => ($column ? '5px' : `100px`)};
 `;
 export const SidebarSubtitle = styled.div<{ isOpen: boolean }>`
   font-size: 1rem;

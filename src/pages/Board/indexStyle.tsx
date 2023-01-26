@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const BoardWrapper = styled.div`
   width: 100%;
-  background-color: #a8a8a8;
+  height: 100vh;
+  background-color: red;
 `;
 
 export const BoardTitle = styled.textarea<{ boardTitle: any }>`

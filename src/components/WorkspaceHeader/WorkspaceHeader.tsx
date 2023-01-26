@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as S from './WorkspaceHeaderStyle';
 import { ReactComponent as AlarmIcon } from '@/assets/images/alarm.svg';
-import Bg from '@/assets/images/profile.png';
+import Avatar from '@/assets/images/avatar.jpg';
 
 const textNotification = `React can also render on the server using Node and power mobile apps using React Native`;
 
@@ -32,7 +32,7 @@ function Header() {
           <S.ShareInfo>
             <S.InfoAvatarWrapper>
               {' '}
-              <S.Avatar avatarSmall={true} src={Bg} />
+              <S.Avatar avatarSmall={true} src={Avatar} />
               <span>@MikeCobain:</span>
             </S.InfoAvatarWrapper>
             <S.Text>{textNotification}</S.Text>
@@ -40,7 +40,7 @@ function Header() {
           <S.Notification></S.Notification>
           <AlarmIcon width="30" height="30" fill="gray" />
         </S.AlarmWrapper>
-        <S.Avatar src={Bg} />
+        <S.Avatar src={Avatar} />
       </S.ProfileWrapper>
     </S.HeaderWrapper>
   );
