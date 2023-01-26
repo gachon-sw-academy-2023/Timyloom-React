@@ -1,47 +1,7 @@
-import { useState, useEffect } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import styled from 'styled-components';
-import { CgClose } from 'react-icons/cg';
-
-const ModalContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ModalBtn = styled.button`
-  background-color: #4000c7;
-  text-decoration: none;
-  border: none;
-  padding: 20px;
-  color: white;
-  border-radius: 30px;
-  cursor: grab;
-`;
-
-const ModalCloseBtn = styled.button`
-  display: inline-flex;
-  justify-content: center;
-  width: auto;
-  height: auto;
-  cursor: pointer;
-  border: 1px solid;
-  border-radius: 999px;
-  transition: all 200ms ease-in-out;
-  overflow: hidden;
-  position: absolute;
-  padding: 11px;
-  top: 8px;
-  right: 8px;
-  z-index: 1;
-  border-color: transparent;
-  background-color: transparent;
-  &:hover {
-    background-color: #d9d9d9;
-  }
-`;
+import ModalDefault from './ModalDefalut';
+import ModalBoard from './ModalBoard';
 
 const ModalBackdrop = styled.div`
   width: 100%;
@@ -100,39 +60,28 @@ const ModalMain = styled.div`
   box-sizing: border-box;
 `;
 
-const ModalLabel = styled.div`
-  float: right;
-  overflow: hidden;
-  padding: 0 16px 8px 8px;
-  width: calc(100% - 400px);
-  box-sizing: border-box;
-`;
-
-export const Modal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModalHandler = () => {
-    setIsOpen(!isOpen);
-  };
-
+type ModalProps = {
+  showModal: boolean;
+  setShowModal: Function;
+  data?: any;
+  themes?: 'default' | 'board' | 'list' | 'card';
+};
+const Modal: React.FunctionComponent<ModalProps> = ({ showModal, setShowModal, data, themes = 'default' }) => {
   return (
     <>
-      <ModalBtn onClick={openModalHandler}>{isOpen ? 'Opened !' : 'Open Modal'}</ModalBtn>
-      {isOpen ? (
-        <ModalBackdrop onClick={openModalHandler}>
-          <ModalView>
-            <ModaHeader>
-              <ModalCloseBtn onClick={openModalHandler}>
-                <CgClose size="25" color="black" />
-              </ModalCloseBtn>
-              <ModaHeaderTitle>Hello World</ModaHeaderTitle>
-              <ModalContent>in list Teams</ModalContent>
-            </ModaHeader>
-            <ModalMain>
-              Description<br></br>dddddd
-            </ModalMain>
-            <ModalLabel>Add to card</ModalLabel>
-          </ModalView>
+      {showModal ? (
+        <ModalBackdrop
+          onClick={() => {
+            setShowModal(!showModal);
+          }}
+        >
+          {themes === 'default' ? (
+            <ModalDefault showModal={showModal} setShowModal={setShowModal} data={data} />
+          ) : themes === 'board' ? (
+            <ModalBoard showModal={showModal} setShowModal={setShowModal} data={data} />
+          ) : (
+            <p>반갑</p>
+          )}
         </ModalBackdrop>
       ) : null}
     </>
