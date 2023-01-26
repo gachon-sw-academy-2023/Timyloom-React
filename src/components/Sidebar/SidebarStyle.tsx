@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Logos_orange from '@/assets/images/timyloom_logo_orange.png';
+
 
 export const SidebarWrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
@@ -31,7 +33,7 @@ export const SidebarOpenButton = styled.button<{ isOpen: boolean }>`
 export const LogoLink = styled.div`
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
   text-decoration: none;
 
   svg {
@@ -120,4 +122,13 @@ export const BoardWrapper = styled.div<{ boardDesign?: string }>`
   background-color: ${(props) => props.boardDesign};
   margin: 5px;
   padding: 10px;
+`;
+
+export const Logo = styled.div<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (!isOpen ? 'none' : ``)};
+  background-image: url(${Logos_orange});
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 190px;
+  height: 50px;
 `;

@@ -31,12 +31,14 @@ export const BtnWrapper = styled.div`
   text-align: center;
 `;
 
-export const StartBtn = styled.button`
+export const StartBtn = styled.button<{ gradationColor: any }>`
   width: 10vw;
   height: 4vw;
   font-size: 2vw;
   margin: 3vw 0px 0px 0px;
-  background-color: #f38704;
+  background-color: ${(props) => (props.gradationColor != '' ? `${props.gradationColor}` : `#f7ad53`)};
+  background-image: ${(props) =>
+    props.gradationColor ? `linear-gradient(to right,${props.gradationColor} )` : 'none'};
   color: #fff;
   border-radius: 30px;
   border: 0;
@@ -138,4 +140,38 @@ export const DodgeImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+export const Field = styled.div<{ field: any }>`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 135px;
+  height: 135px;
+  background-color: #fffbf0;
+  color: #333333;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0px 8px 24px 0 rgb(87 63 0 / 10%);
+  border: ${(props) => (props.field.select ? `4px solid ${props.field.color}` : 'none')};
+  cursor: pointer;
+  &:hover {
+    border: ${(props) => `2px solid ${props.field.color}`};
+  }
+  &:active {
+    border: ${(props) => `4px solid ${props.field.color}`};
+  }
+`;
+
+export const Title = styled.div`
+  margin-top: 5px;
+`;
+
+export const FieldContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
 `;

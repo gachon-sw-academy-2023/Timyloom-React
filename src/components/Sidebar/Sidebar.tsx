@@ -67,13 +67,8 @@ function Sidebar() {
       <S.SidebarOpenButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p) => !p)}>
         <AiOutlineLeft />
       </S.SidebarOpenButton>
-      <S.LogoLink
-        onClick={() => {
-          movePage('/');
-        }}
-      >
-        <Logo width="45px" height="45px" />
-        <S.LogoText isOpen={sidebarOpen}>Timyloom</S.LogoText>
+      <S.LogoLink to={'/'}>
+        <S.Logo isOpen={sidebarOpen} />
       </S.LogoLink>
       <S.Divider />
       {linksArray.map(({ icon, label, to }) => (
