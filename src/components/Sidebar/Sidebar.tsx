@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from '@/assets/images/logo.svg';
 import { useState } from 'react';
 import { AiOutlineHome, AiOutlineLeft, AiOutlineSetting, AiOutlineCalendar, AiOutlineTable } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
+import { movePage } from '@/utils/movePage';
 
 const linksArray = [
   {
@@ -66,7 +67,11 @@ function Sidebar() {
       <S.SidebarOpenButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p) => !p)}>
         <AiOutlineLeft />
       </S.SidebarOpenButton>
-      <S.LogoLink to={'/'}>
+      <S.LogoLink
+        onClick={() => {
+          movePage('/');
+        }}
+      >
         <Logo width="45px" height="45px" />
         <S.LogoText isOpen={sidebarOpen}>Timyloom</S.LogoText>
       </S.LogoLink>
@@ -84,9 +89,9 @@ function Sidebar() {
       <S.ViewContainer isOpen={sidebarOpen}>
         {secondaryLinksArray.map(({ icon, label, to }) => (
           <S.SLinkWrapper key={label} isActive={pathname === to}>
-            <S.SLink to="/" isOpen={sidebarOpen} column={true}>
+            <S.SLink to="/" isOpen={sidebarOpen} $column={true}>
               <S.LinkIcon>{icon}</S.LinkIcon>
-              {sidebarOpen && <S.LinkLabel column={true}>{label}</S.LinkLabel>}
+              {sidebarOpen && <S.LinkLabel $column={true}>{label}</S.LinkLabel>}
             </S.SLink>
           </S.SLinkWrapper>
         ))}
