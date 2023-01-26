@@ -60,7 +60,7 @@ function LoginCard() {
             <S.InputTitle value={id} data-placeholder="ID" isReg={true}></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper data-validate="Enter password">
-            <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} />
+            <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} data-testid="eye-svg" />
             <S.FormInput
               id="password"
               type="password"
@@ -72,7 +72,7 @@ function LoginCard() {
           </S.InputWrapper>
         </S.InputsWrapper>
         <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
-        <Button onClick={handleLogin} size="lg" themes="sign">
+        <Button onClick={handleLogin} size="lg" themes="sign" data-testid="login-button">
           LOGIN
         </Button>
       </S.SignPanel>

@@ -4,13 +4,15 @@ import colors from '../styles/colors';
 import { ThemeProvider } from 'styled-components';
 
 describe('Login Test', () => {
-  it('Rendering Test', () => {
+  beforeEach(() => {
     render(
       <ThemeProvider theme={colors}>
         <Login />
       </ThemeProvider>,
     );
+  });
 
+  it('Rendering Test', () => {
     const idInput = screen.getByTestId('id-input');
     expect(idInput).toBeInTheDocument();
 
@@ -22,12 +24,6 @@ describe('Login Test', () => {
   });
 
   it('handleInputs Test', () => {
-    render(
-      <ThemeProvider theme={colors}>
-        <Login />
-      </ThemeProvider>,
-    );
-
     const idInput = screen.getByTestId('id-input');
     fireEvent.change(idInput, { target: { value: 'bwj0509' } });
     expect((idInput as HTMLInputElement).value).toBe('bwj0509');
@@ -38,12 +34,6 @@ describe('Login Test', () => {
   });
 
   it('handleShowPassword Test', () => {
-    render(
-      <ThemeProvider theme={colors}>
-        <Login />
-      </ThemeProvider>,
-    );
-
     const eyeSvg = screen.getByTestId('eye-svg');
     const pwInput = screen.getByTestId('pw-input');
     fireEvent.click(eyeSvg);

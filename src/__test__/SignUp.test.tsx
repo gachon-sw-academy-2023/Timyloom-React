@@ -4,13 +4,15 @@ import colors from '../styles/colors';
 import { ThemeProvider } from 'styled-components';
 
 describe('SignUp Test', () => {
-  it('Rendering Test', () => {
+  beforeEach(() => {
     render(
       <ThemeProvider theme={colors}>
         <SignUp />
       </ThemeProvider>,
     );
+  });
 
+  it('Rendering Test', () => {
     const idInput = screen.getByTestId('id-input');
     expect(idInput).toBeInTheDocument();
 
@@ -31,12 +33,6 @@ describe('SignUp Test', () => {
   });
 
   it('handleInputs Test', () => {
-    render(
-      <ThemeProvider theme={colors}>
-        <SignUp />
-      </ThemeProvider>,
-    );
-
     const idInput = screen.getByTestId('id-input');
     fireEvent.change(idInput, { target: { value: 'bwj0509' } });
     expect((idInput as HTMLInputElement).value).toBe('bwj0509');
@@ -59,12 +55,6 @@ describe('SignUp Test', () => {
   });
 
   it('handleShowPassword Test', () => {
-    render(
-      <ThemeProvider theme={colors}>
-        <SignUp />
-      </ThemeProvider>,
-    );
-
     const eyeSvg = screen.getByTestId('eye-svg-pw');
     const pwInput = screen.getByTestId('pw-input');
     fireEvent.click(eyeSvg);
@@ -74,12 +64,6 @@ describe('SignUp Test', () => {
   });
 
   it('handleShowconfirmPassword Test', () => {
-    render(
-      <ThemeProvider theme={colors}>
-        <SignUp />
-      </ThemeProvider>,
-    );
-
     const eyeSvg = screen.getByTestId('eye-svg-confirmpw');
     const confirmpwInput = screen.getByTestId('confirmpw-input');
     fireEvent.click(eyeSvg);
