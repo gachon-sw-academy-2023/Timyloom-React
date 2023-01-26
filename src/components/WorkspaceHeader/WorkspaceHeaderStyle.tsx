@@ -43,15 +43,14 @@ export const Search = styled.input`
   padding-right: 20px;
   border: none;
   transition: all 400ms;
-  ::-webkit-search-cancel-button {
+  outline: none;
+  /* ::-webkit-search-cancel-button {
     -webkit-appearance: none;
     height: 1em;
     width: 1em;
     border-radius: 50em;
     background-color: red;
-    /* background-size: contain;
-    pointer-events: none; */
-  }
+  } */
   &:focus {
     width: 25vw;
   }

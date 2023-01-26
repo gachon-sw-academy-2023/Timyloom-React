@@ -2,6 +2,7 @@ import Sidebar from '@/components/Sidebar/Sidebar';
 import WorkspaceHeader from '@/components/WorkspaceHeader/WorkspaceHeader';
 import * as S from '@/pages/Workspace/indexStyle';
 import { useEffect, useState, useRef } from 'react';
+import { useDidMountEffect } from '../../hooks/useDidMountEffect';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import { defaultData } from '@/components/Board/BoardData';
@@ -35,7 +36,7 @@ function Workspace() {
     });
   }, []);
 
-  useEffect(() => {
+  useDidMountEffect(() => {
     window.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [boards.length]);
 
