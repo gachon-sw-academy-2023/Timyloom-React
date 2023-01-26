@@ -147,8 +147,8 @@ export const Field = styled.div<{ field: any }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 135px;
-  height: 135px;
+  width: 180px;
+  height: 180px;
   background-color: #fffbf0;
   color: #333333;
   border-radius: 10px;
