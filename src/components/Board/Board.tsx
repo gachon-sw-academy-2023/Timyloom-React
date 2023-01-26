@@ -49,19 +49,21 @@ function Board({ boards, setBoards, boardId }: any) {
   };
 
   return (
-    <DragDropContext onBeforeDragStart={onBeforeDragStart} onDragStart={onDragStart} onDragEnd={onDragEnd}>
-      <Droppable droppableId="board" type="moveList" direction="horizontal">
-        {(provided) => (
-          <S.BoardContainer ref={provided.innerRef} {...provided.droppableProps}>
-            {lists.map((list: any, index: any) => (
-              <List key={list.listId} boardId={boardId} listId={list.listId} listData={list} index={index}></List>
-            ))}
-            {provided.placeholder}
-            <AddList></AddList>
-          </S.BoardContainer>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <>
+      <DragDropContext onBeforeDragStart={onBeforeDragStart} onDragStart={onDragStart} onDragEnd={onDragEnd}>
+        <Droppable droppableId="board" type="moveList" direction="horizontal">
+          {(provided) => (
+            <S.BoardContainer ref={provided.innerRef} {...provided.droppableProps}>
+              {lists.map((list: any, index: any) => (
+                <List key={list.listId} boardId={boardId} listId={list.listId} listData={list} index={index}></List>
+              ))}
+              {provided.placeholder}
+              <AddList></AddList>
+            </S.BoardContainer>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </>
   );
 }
 export default Board;

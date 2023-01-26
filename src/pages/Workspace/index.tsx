@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import { defaultData } from '@/components/Board/BoardData';
+import Modal from '@/components/Modal/Modal';
 
 const handleAddBoard = (boards: any, setBoards: any) => {
   let newData = defaultData();
@@ -22,6 +23,7 @@ const goToTop = () => {
 function Workspace() {
   const [boards, setBoards] = useRecoilState(boardsAtom);
   const [showTopBtn, setShowTopBtn] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const scrollRef: any = useRef();
   let personalBoards = boards.filter((board) => board.owner === localStorage.getItem('id'));
 
@@ -55,6 +57,7 @@ function Workspace() {
           <S.AddBoardButton
             onClick={() => {
               handleAddBoard(boards, setBoards);
+              setShowModal(!showModal);
             }}
           >
             보드 추가하기!
@@ -63,6 +66,7 @@ function Workspace() {
         </S.BoardContainer>
       </S.ContentWrapper>
       {showTopBtn && <S.ScrollToTopSvg onClick={goToTop}>Top</S.ScrollToTopSvg>}
+      <Modal showModal={showModal} setShowModal={setShowModal} themes={'board'}></Modal>
     </S.WorkspaceWrapper>
   );
 }
