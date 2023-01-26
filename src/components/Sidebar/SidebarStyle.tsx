@@ -69,7 +69,7 @@ export const SLinkWrapper = styled.div<{ isActive: boolean }>`
   }
 `;
 
-export const SLink = styled(Link)<{ isOpen: boolean; column?: boolean }>`
+export const SLink = styled(Link)<{ isOpen: boolean; $column?: boolean }>`
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -77,7 +77,7 @@ export const SLink = styled(Link)<{ isOpen: boolean; column?: boolean }>`
   font-size: 16px;
   padding: 6px 0;
   width: ${({ isOpen }) => (!isOpen ? 'fit-content' : `120px`)};
-  flex-direction: ${({ column }) => (column ? 'column' : `row`)};
+  flex-direction: ${({ $column }) => ($column ? 'column' : `row`)};
 `;
 
 export const LinkIcon = styled.div`
@@ -89,11 +89,11 @@ export const LinkIcon = styled.div`
   }
 `;
 
-export const LinkLabel = styled.span<{ column?: boolean }>`
+export const LinkLabel = styled.span<{ $column?: boolean }>`
   display: block;
   flex: 1;
   margin-left: 8px;
-  padding-right: ${({ column }) => (column ? '5px' : `100px`)};
+  padding-right: ${({ $column }) => ($column ? '5px' : `100px`)};
 `;
 export const SidebarSubtitle = styled.div<{ isOpen: boolean }>`
   font-size: 1rem;
