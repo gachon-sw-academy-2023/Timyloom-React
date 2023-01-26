@@ -67,8 +67,7 @@ function Sidebar() {
         <AiOutlineLeft />
       </S.SidebarOpenButton>
       <S.LogoLink to={'/'}>
-        <Logo width="45px" height="45px" />
-        <S.LogoText isOpen={sidebarOpen}>Timyloom</S.LogoText>
+        <S.Logo isOpen={sidebarOpen} />
       </S.LogoLink>
       <S.Divider />
       {linksArray.map(({ icon, label, to }) => (
