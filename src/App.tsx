@@ -11,6 +11,7 @@ import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import colors from '@/styles/colors';
 import GlobalStyle from '@/styles/GlobalStyle';
+import '@/styles/fonts.css';
 
 import { DBConfig } from '../DBConfig';
 import { initDB } from 'react-indexed-db';
