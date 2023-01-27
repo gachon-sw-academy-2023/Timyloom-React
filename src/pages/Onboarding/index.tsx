@@ -47,7 +47,7 @@ function Onboarding() {
             <Grid item xs={12} md={5}>
               <Slide direction="right" triggerOnce>
                 <S.ContentsWrapper>
-                  <S.MainContent fontWeight="none">What is your Purpose?</S.MainContent>
+                  <S.MainTitle>What are you gonna do?</S.MainTitle>
                   <S.FieldContainer>
                     {fields.map((field, index) => {
                       return (
