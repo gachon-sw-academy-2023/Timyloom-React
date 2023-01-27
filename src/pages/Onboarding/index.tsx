@@ -13,9 +13,9 @@ function Onboarding() {
   const [fields, setFields] = useState(fieldData);
   const [gradationColor, setGradationColor] = useState('');
 
-  const handleField = (e: any) => {
+  const handleField = (fieldIndex: number) => {
     const tempFields = fields;
-    tempFields[e.target.id].select = !tempFields[e.target.id].select;
+    tempFields[fieldIndex].select = !tempFields[fieldIndex].select;
     setFields((prev) => [...tempFields]);
 
     let colorArr = gradationColor.split(', ');
@@ -23,12 +23,12 @@ function Onboarding() {
       colorArr.pop();
     }
 
-    if (colorArr.indexOf(tempFields[e.target.id].color) >= 0) {
-      colorArr.splice(colorArr.indexOf(tempFields[e.target.id].color), 1);
+    if (colorArr.indexOf(tempFields[fieldIndex].color) >= 0) {
+      colorArr.splice(colorArr.indexOf(tempFields[fieldIndex].color), 1);
       let newGradationColor = colorArr.join(', ');
       setGradationColor((prev) => newGradationColor);
     } else {
-      colorArr.push(tempFields[e.target.id].color);
+      colorArr.push(tempFields[fieldIndex].color);
       let newGradationColor = colorArr.join(', ');
       setGradationColor((prev) => newGradationColor);
     }
@@ -51,7 +51,13 @@ function Onboarding() {
                   <S.FieldContainer>
                     {fields.map((field, index) => {
                       return (
-                        <S.Field id={field.index} key={index} onClick={handleField} field={field}>
+                        <S.Field
+                          key={field.index}
+                          onClick={() => {
+                            handleField(field.index);
+                          }}
+                          field={field}
+                        >
                           <AiOutlineWindows size="40px" fill={field.color} />
                           <S.Title>{field.title}</S.Title>
                         </S.Field>
