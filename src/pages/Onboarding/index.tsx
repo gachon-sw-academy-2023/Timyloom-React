@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import * as S from '@/pages/Onboarding/indexStyle';
 import { movePage } from '@/utils/movePage';
 import dodge from '@/assets/images/dodge.jpg';
@@ -5,8 +6,34 @@ import trello from '@/assets/images/Trello.png';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Bounce, Fade, Flip, Hinge, JackInTheBox, Roll, Rotate, Slide, Zoom } from 'react-awesome-reveal';
+import { fieldData } from '@/pages/Onboarding/colorData';
+import { AiOutlineWindows } from 'react-icons/ai';
 
 function Onboarding() {
+  const [fields, setFields] = useState(fieldData);
+  const [gradationColor, setGradationColor] = useState('');
+
+  const handleField = (fieldIndex: number) => {
+    const tempFields = fields;
+    tempFields[fieldIndex].select = !tempFields[fieldIndex].select;
+    setFields((prev) => [...tempFields]);
+
+    let colorArr = gradationColor.split(', ');
+    if (colorArr[0] === '') {
+      colorArr.pop();
+    }
+
+    if (colorArr.indexOf(tempFields[fieldIndex].color) >= 0) {
+      colorArr.splice(colorArr.indexOf(tempFields[fieldIndex].color), 1);
+      let newGradationColor = colorArr.join(', ');
+      setGradationColor((prev) => newGradationColor);
+    } else {
+      colorArr.push(tempFields[fieldIndex].color);
+      let newGradationColor = colorArr.join(', ');
+      setGradationColor((prev) => newGradationColor);
+    }
+  };
+
   return (
     <div>
       <S.MainWrapper>
@@ -20,14 +47,26 @@ function Onboarding() {
             <Grid item xs={12} md={5}>
               <Slide direction="right" triggerOnce>
                 <S.ContentsWrapper>
-                  <S.MainContent fontSize="6vw">Creation</S.MainContent>
-                  <S.MainContent fontSize="6vw">Passion</S.MainContent>
-                  <S.MainContent fontWeight="none">With</S.MainContent>
-                  <S.MainContent fontSize="6vw" color="#f38704">
-                    TimyLoom
-                  </S.MainContent>
+                  <S.MainTitle>What are you gonna do?</S.MainTitle>
+                  <S.FieldContainer>
+                    {fields.map((field, index) => {
+                      return (
+                        <S.Field
+                          key={field.index}
+                          onClick={() => {
+                            handleField(field.index);
+                          }}
+                          field={field}
+                        >
+                          <AiOutlineWindows size="40px" fill={field.color} />
+                          <S.Title>{field.title}</S.Title>
+                        </S.Field>
+                      );
+                    })}
+                  </S.FieldContainer>
                   <S.BtnWrapper>
                     <S.StartBtn
+                      gradationColor={gradationColor}
                       onClick={() => {
                         movePage('/workspace');
                       }}

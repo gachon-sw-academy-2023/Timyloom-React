@@ -37,6 +37,11 @@ export const ImageWrapper = styled.div`
   top: 20%;
   left: 50%;
   z-index: 1;
+
+  @media screen and (max-width: 425px) {
+    height: 110%;
+    top: 50%;
+  }
 `;
 
 export const BoardTitle = styled.div`
@@ -54,12 +59,18 @@ export const BoardTitle = styled.div`
   font-weight: bold;
   word-break: keep-all;
   z-index: 2;
+
+  @media screen and (max-width: 425px) {
+    width: 100px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
 `;
 
 export const BoardWrapper = styled(Link)`
   width: 440px;
   height: 286px;
-  margin: 50px;
+  margin: 45px;
   position: relative;
   border-radius: 10px;
   text-align: center;
@@ -90,6 +101,26 @@ export const BoardWrapper = styled(Link)`
     transform: translate(-45%, -10%);
     width: 300px;
     transition: all 300ms;
+  }
+
+  @media screen and (max-width: 425px) {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+
+    &:hover ${ImageWrapper} {
+      width: 200px;
+      height: 200px;
+    }
+
+    &:hover ${BoardTitle} {
+      font-size: 1.5rem;
+      top: 10%;
+      left: 35%;
+      transform: translate(-35%, -10%);
+      width: 150px;
+      transition: all 300ms;
+    }
   }
 `;
 
@@ -123,6 +154,13 @@ export const AddBoardButton = styled.button`
     .st0 {
       fill: ${(props) => props.theme.gray_1};
     }
+  }
+
+  @media screen and (max-width: 425px) {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    font-size: 1.2rem;
   }
 `;
 

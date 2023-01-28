@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'GmarketSansTTFMedium';
+    font-style: normal;
+    src: url('@/assets/fonts/GmarketSansTTF/GmarketSansTTFMedium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Azonix';
+    src: url('@/assets/fonts/Azonix.otf') format('opentype');
+}

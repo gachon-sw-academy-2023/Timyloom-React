@@ -17,7 +17,7 @@ describe('confirmReg Test', () => {
     expect(checkEmail('bwj59@naver.com')).toBe(true);
     expect(checkEmail('1234')).toBe(false);
   });
-  it('checkPhone', () => {
+  it('checkPhone test', () => {
     expect(checkPhone('010-1234-5678')).toBe(true);
     expect(checkPhone('1234')).toBe(false);
   });

@@ -3,7 +3,8 @@ import onboardingMain from '@/assets/images/onboardingMain.png';
 
 export const MainWrapper = styled.div`
   width: 100%;
-  background-color: ${(props) => props.theme.primaryColor_2};
+  /* background-color: ${(props) => props.theme.primaryColor_2}; */
+  background-color: #eef4fe;
   margin: 0;
 `;
 
@@ -21,7 +22,7 @@ export const MainImg = styled.div`
 export const ContentsWrapper = styled.div`
   box-sizing: border-box;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 60px;
   @media (max-width: 900px) {
     margin-top: 0px;
   }
@@ -31,19 +32,19 @@ export const BtnWrapper = styled.div`
   text-align: center;
 `;
 
-export const StartBtn = styled.button`
-  width: 10vw;
-  height: 4vw;
-  font-size: 2vw;
-  margin: 3vw 0px 0px 0px;
-  background-color: #f38704;
+export const StartBtn = styled.button<{ gradationColor: any }>`
+  width: 200px;
+  height: 70px;
+  font-size: 1.5rem;
+  margin: 30px 0px 0px 0px;
+  background-color: ${(props) => (props.gradationColor != '' ? `${props.gradationColor}` : `#a0c3ff`)};
+  background-image: ${(props) =>
+    props.gradationColor ? `linear-gradient(to right,${props.gradationColor} )` : 'none'};
   color: #fff;
   border-radius: 30px;
   border: 0;
   &:hover {
     cursor: pointer;
-    background-color: #d47400;
-    border: 3px solid #c96f00;
   }
   @media (max-width: 900px) {
     width: max(75px, 10vw);
@@ -138,4 +139,56 @@ export const DodgeImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+export const Field = styled.div<{ field: any }>`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 180px;
+  background-color: #ffffff;
+  color: #333333;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0px 8px 24px 0 rgb(0 28 81 / 15%);
+  border: ${(props) => (props.field.select ? `4px solid ${props.field.color}` : 'none')};
+  cursor: pointer;
+  &:hover {
+    border: ${(props) => `4px solid ${props.field.color}`};
+  }
+  &:active {
+    border: ${(props) => `6px solid ${props.field.color}`};
+  }
+`;
+
+export const Title = styled.div`
+  margin-top: 20px;
+  font-size: 1.1rem;
+`;
+
+export const FieldContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+`;
+
+export const MainTitle = styled.div`
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #063183;
+  margin-bottom: 20px;
+`;
+export const MainDescription = styled.div`
+  font-size: 1.2rem;
+  color: #0e0e0e;
+`;
+
+export const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
 `;
