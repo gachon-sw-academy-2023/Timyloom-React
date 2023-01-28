@@ -6,6 +6,7 @@ export const MainWrapper = styled.div`
   /* background-color: ${(props) => props.theme.primaryColor_2}; */
   background-color: #eef4fe;
   margin: 0;
+  padding: 0px 10vw;
 `;
 
 export const MainImg = styled.div`
@@ -22,7 +23,7 @@ export const MainImg = styled.div`
 export const ContentsWrapper = styled.div`
   box-sizing: border-box;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 120px;
   @media (max-width: 900px) {
     margin-top: 0px;
   }
@@ -47,8 +48,9 @@ export const StartBtn = styled.button<{ gradationColor: any }>`
     cursor: pointer;
   }
   @media (max-width: 900px) {
-    width: max(75px, 10vw);
-    height: max(30px, 4vw);
+    width: 100px;
+    height: 35px;
+    font-size: 0.75rem;
   }
 `;
 
@@ -146,8 +148,8 @@ export const Field = styled.div<{ field: any }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 180px;
-  height: 180px;
+  width: 140px;
+  height: 140px;
   background-color: #ffffff;
   color: #333333;
   border-radius: 10px;
@@ -160,6 +162,24 @@ export const Field = styled.div<{ field: any }>`
   }
   &:active {
     border: ${(props) => `6px solid ${props.field.color}`};
+  }
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+
+    border: ${(props) => (props.field.select ? `2px solid ${props.field.color}` : 'none')};
+    &:hover {
+      border: ${(props) => `2px solid ${props.field.color}`};
+    }
+    &:active {
+      border: ${(props) => `3px solid ${props.field.color}`};
+    }
+
+    > div {
+      margin-top: 5px;
+      font-size: 0.5rem;
+    }
   }
 `;
 
@@ -177,10 +197,13 @@ export const FieldContainer = styled.div`
 `;
 
 export const MainTitle = styled.div`
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-weight: bold;
   color: #063183;
   margin-bottom: 20px;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
 `;
 export const MainDescription = styled.div`
   font-size: 1.2rem;
@@ -191,4 +214,13 @@ export const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 100px;
+`;
+
+export const Video = styled.video`
+  @media (max-width: 768px) {
+    width: 280px;
+  }
+`;
+export const VideoContainer = styled.div`
+  text-align: center;
 `;

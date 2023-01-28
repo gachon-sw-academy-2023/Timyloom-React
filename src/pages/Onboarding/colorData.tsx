@@ -41,4 +41,18 @@ export const fieldData = [
     select: false,
     icon: 'AiOutlineWindows',
   },
+  {
+    title: 'Woojin',
+    index: 6,
+    color: '#d2ff3f',
+    select: false,
+    icon: 'AiOutlineWindows',
+  },
+  {
+    title: 'Timyloom',
+    index: 7,
+    color: '#ff9f44',
+    select: false,
+    icon: 'AiOutlineWindows',
+  },
 ];
