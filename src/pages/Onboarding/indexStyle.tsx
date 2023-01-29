@@ -3,8 +3,7 @@ import onboardingMain from '@/assets/images/onboardingMain.png';
 
 export const MainWrapper = styled.div`
   width: 100%;
-  background-color: ${(props) => props.theme.primaryColor_2};
-  margin: 0;
+  background-color: #eef4fe;
 `;
 
 export const MainImg = styled.div`
@@ -21,7 +20,7 @@ export const MainImg = styled.div`
 export const ContentsWrapper = styled.div`
   box-sizing: border-box;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 120px;
   @media (max-width: 900px) {
     margin-top: 0px;
   }
@@ -32,11 +31,11 @@ export const BtnWrapper = styled.div`
 `;
 
 export const StartBtn = styled.button<{ gradationColor: any }>`
-  width: 10vw;
-  height: 4vw;
-  font-size: 2vw;
-  margin: 3vw 0px 0px 0px;
-  background-color: ${(props) => (props.gradationColor != '' ? `${props.gradationColor}` : `#f7ad53`)};
+  width: 200px;
+  height: 70px;
+  font-size: 1.5rem;
+  margin: 30px 0px 0px 0px;
+  background-color: ${(props) => (props.gradationColor != '' ? `${props.gradationColor}` : `#a0c3ff`)};
   background-image: ${(props) =>
     props.gradationColor ? `linear-gradient(to right,${props.gradationColor} )` : 'none'};
   color: #fff;
@@ -44,12 +43,11 @@ export const StartBtn = styled.button<{ gradationColor: any }>`
   border: 0;
   &:hover {
     cursor: pointer;
-    background-color: #d47400;
-    border: 3px solid #c96f00;
   }
   @media (max-width: 900px) {
-    width: max(75px, 10vw);
-    height: max(30px, 4vw);
+    width: 100px;
+    height: 35px;
+    font-size: 0.75rem;
   }
 `;
 
@@ -147,25 +145,44 @@ export const Field = styled.div<{ field: any }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 135px;
-  height: 135px;
-  background-color: #fffbf0;
+  width: 140px;
+  height: 140px;
+  background-color: #ffffff;
   color: #333333;
   border-radius: 10px;
   margin: 10px;
-  box-shadow: 0px 8px 24px 0 rgb(87 63 0 / 10%);
+  box-shadow: 0px 8px 24px 0 rgb(0 28 81 / 15%);
   border: ${(props) => (props.field.select ? `4px solid ${props.field.color}` : 'none')};
   cursor: pointer;
   &:hover {
-    border: ${(props) => `2px solid ${props.field.color}`};
+    border: ${(props) => `4px solid ${props.field.color}`};
   }
   &:active {
-    border: ${(props) => `4px solid ${props.field.color}`};
+    border: ${(props) => `6px solid ${props.field.color}`};
+  }
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+
+    border: ${(props) => (props.field.select ? `2px solid ${props.field.color}` : 'none')};
+    &:hover {
+      border: ${(props) => `2px solid ${props.field.color}`};
+    }
+    &:active {
+      border: ${(props) => `3px solid ${props.field.color}`};
+    }
+
+    > div {
+      margin-top: 5px;
+      font-size: 0.5rem;
+    }
   }
 `;
 
 export const Title = styled.div`
-  margin-top: 5px;
+  margin-top: 20px;
+  font-size: 1.1rem;
 `;
 
 export const FieldContainer = styled.div`
@@ -174,4 +191,33 @@ export const FieldContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+`;
+
+export const MainTitle = styled.div`
+  font-size: 2.3rem;
+  font-weight: bold;
+  color: #063183;
+  margin-bottom: 20px;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
+`;
+export const MainDescription = styled.div`
+  font-size: 1.2rem;
+  color: #0e0e0e;
+`;
+
+export const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+`;
+
+export const Video = styled.video`
+  @media (max-width: 768px) {
+    width: 280px;
+  }
+`;
+export const VideoContainer = styled.div`
+  text-align: center;
 `;

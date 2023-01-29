@@ -1,22 +1,20 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Logos_orange from '@/assets/images/timyloom_logo_orange.png';
 
 export const HeaderWrapper = styled.header`
-  background-color: ${(props) => props.theme.primaryColor_2};
+  width: 100%;
+  height: 80px;
+  border-bottom: 0.5px solid #6b6b6b2e;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  border-radius: 0px;
-  margin: 0 auto;
-  padding: 20px 40px;
-  transition: all 300ms ease-in;
+  padding: 10px 10vw;
 `;
 
 export const ToggleWrapper = styled.div`
   display: none;
-  color: white;
+  color: #ffffff;
   font-size: 24px;
   position: absolute;
   right: 20px;
@@ -45,7 +43,7 @@ export const LogoLink = styled(Link)`
 
 export const MenuLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: #000000;
   display: block;
   padding: 10px 10px;
 `;
@@ -68,7 +66,7 @@ export const NavMenu = styled.ul<{ isToggleOpen: boolean }>`
 export const NavMenuContent = styled.li`
   border-radius: 10px;
   margin: 0 5px;
-  border: 3px solid white;
+  border: 1px solid black;
   &:hover {
     cursor: pointer;
     border-radius: 20px;
@@ -78,17 +76,13 @@ export const NavMenuContent = styled.li`
 
 export const NameBox = styled.div`
   font-size: 1.3rem;
-  color: white;
+  color: #373737;
   &:hover {
     cursor: pointer;
-    color: #f38704;
+    color: #96bcfb;
   }
 `;
 
-export const Logo = styled.div`
-  background-image: url(${Logos_orange});
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 190px;
-  height: 50px;
+export const Test = styled.div`
+  font-family: 'Azonix';
 `;

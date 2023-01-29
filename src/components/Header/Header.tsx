@@ -19,7 +19,7 @@ function Header() {
     <S.HeaderWrapper>
       <S.LogoWrapper>
         <S.LogoLink to={'/'}>
-          <S.Logo />
+          <S.Test>Timyloom</S.Test>
         </S.LogoLink>
       </S.LogoWrapper>
       <S.NavMenu isToggleOpen={isToggleOpen}>
@@ -30,10 +30,10 @@ function Header() {
         ) : (
           <>
             <S.NavMenuContent>
-              <S.MenuLink to={'/login'}>LOGIN</S.MenuLink>
+              <S.MenuLink to={'/login'}>Login</S.MenuLink>
             </S.NavMenuContent>
             <S.NavMenuContent>
-              <S.MenuLink to={'/signup'}>SIGNUP</S.MenuLink>
+              <S.MenuLink to={'/signup'}>Signin</S.MenuLink>
             </S.NavMenuContent>
           </>
         )}

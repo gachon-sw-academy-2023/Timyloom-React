@@ -3,6 +3,7 @@ import * as S from '@/pages/Onboarding/indexStyle';
 import { movePage } from '@/utils/movePage';
 import dodge from '@/assets/images/dodge.jpg';
 import trello from '@/assets/images/Trello.png';
+import MainVideo from '@/assets/video/landing.mp4';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Bounce, Fade, Flip, Hinge, JackInTheBox, Roll, Rotate, Slide, Zoom } from 'react-awesome-reveal';
@@ -13,9 +14,9 @@ function Onboarding() {
   const [fields, setFields] = useState(fieldData);
   const [gradationColor, setGradationColor] = useState('');
 
-  const handleField = (e: any) => {
+  const handleField = (fieldIndex: number) => {
     const tempFields = fields;
-    tempFields[e.target.id].select = !tempFields[e.target.id].select;
+    tempFields[fieldIndex].select = !tempFields[fieldIndex].select;
     setFields((prev) => [...tempFields]);
 
     let colorArr = gradationColor.split(', ');
@@ -23,12 +24,12 @@ function Onboarding() {
       colorArr.pop();
     }
 
-    if (colorArr.indexOf(tempFields[e.target.id].color) >= 0) {
-      colorArr.splice(colorArr.indexOf(tempFields[e.target.id].color), 1);
+    if (colorArr.indexOf(tempFields[fieldIndex].color) >= 0) {
+      colorArr.splice(colorArr.indexOf(tempFields[fieldIndex].color), 1);
       let newGradationColor = colorArr.join(', ');
       setGradationColor((prev) => newGradationColor);
     } else {
-      colorArr.push(tempFields[e.target.id].color);
+      colorArr.push(tempFields[fieldIndex].color);
       let newGradationColor = colorArr.join(', ');
       setGradationColor((prev) => newGradationColor);
     }
@@ -38,21 +39,31 @@ function Onboarding() {
     <div>
       <S.MainWrapper>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={0}>
-            <Grid item xs={12} md={7}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={12} lg={6}>
               <Slide direction="left" triggerOnce>
-                <S.MainImg />
+                {/* <S.MainImg /> */}
+                <S.VideoContainer>
+                  <S.Video src={MainVideo} autoPlay loop muted />
+                </S.VideoContainer>
               </Slide>
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={12} lg={6}>
               <Slide direction="right" triggerOnce>
                 <S.ContentsWrapper>
-                  <S.MainContent fontWeight="none">What is your Purpose?</S.MainContent>
+                  <S.MainTitle>What schedule will you manage?</S.MainTitle>
+                  <S.MainTitle>With us, everything is possible.</S.MainTitle>
                   <S.FieldContainer>
                     {fields.map((field, index) => {
                       return (
-                        <S.Field id={field.index} key={index} onClick={handleField} field={field}>
-                          <AiOutlineWindows size="40px" fill={field.color} />
+                        <S.Field
+                          key={field.index}
+                          onClick={() => {
+                            handleField(field.index);
+                          }}
+                          field={field}
+                        >
+                          <AiOutlineWindows size="50px" fill={field.color} />
                           <S.Title>{field.title}</S.Title>
                         </S.Field>
                       );
@@ -74,338 +85,6 @@ function Onboarding() {
           </Grid>
         </Box>
         {/* react-awesome-reveal 데모입니다. 추후에 코드 정리 필요 */}
-        <Slide direction="up" triggerOnce>
-          <S.PhotoDiv>
-            <S.TextWrapper style={{ width: '50%' }}>
-              <Fade>
-                <S.TextDiv style={{ fontSize: '100px', fontWeight: 'bold' }}>Life Should Be Easy.</S.TextDiv>
-              </Fade>
-              <Fade>
-                <S.TextDiv style={{ fontSize: '30px', color: 'grey' }}>
-                  Financial transactions remotely using a mobile device such as a smartphone or tablet.
-                </S.TextDiv>
-              </Fade>
-            </S.TextWrapper>
-            <S.PhotoWrapper>
-              <S.DodgeImage src={dodge} />
-            </S.PhotoWrapper>
-          </S.PhotoDiv>
-        </Slide>
-        <S.BlankDiv />
-        <S.ContextDiv>
-          <strong>Bounce 효과</strong>
-          <S.HorizontalLine />
-          <Bounce direction="down" cascade triggerOnce>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-          </Bounce>
-        </S.ContextDiv>
-        <S.BlankDiv />
-        <S.ContextDiv>
-          <strong>Fade 효과</strong>
-          <S.HorizontalLine />
-          <Fade cascade triggerOnce>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-          </Fade>
-        </S.ContextDiv>
-        <S.BlankDiv />
-        <S.ContextDiv>
-          <strong>Flip 효과</strong>
-          <S.HorizontalLine />
-          <Flip cascade triggerOnce>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-          </Flip>
-        </S.ContextDiv>
-        <S.BlankDiv />
-        <S.ContextDiv>
-          <strong>Hinge 효과</strong>
-          <S.HorizontalLine />
-          <Hinge cascade triggerOnce>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-          </Hinge>
-        </S.ContextDiv>
-        <S.BlankDiv />
-        <S.ContextDiv>
-          <strong>JackInTheBox 효과</strong>
-          <S.HorizontalLine />
-          <JackInTheBox cascade triggerOnce>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-          </JackInTheBox>
-        </S.ContextDiv>
-        <S.BlankDiv />
-        <S.ContextDiv>
-          <strong>Roll 효과</strong>
-          <S.HorizontalLine />
-          <Roll cascade triggerOnce>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-          </Roll>
-        </S.ContextDiv>
-        <S.BlankDiv />
-        <S.ContextDiv>
-          <strong>Rotate 효과</strong>
-          <S.HorizontalLine />
-          <Rotate cascade triggerOnce>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-          </Rotate>
-        </S.ContextDiv>
-        <S.BlankDiv />
-        <S.ContextDiv>
-          <strong>Slide 효과</strong>
-          <S.HorizontalLine />
-          <Slide cascade triggerOnce>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-          </Slide>
-        </S.ContextDiv>
-        <S.BlankDiv />
-        <S.ContextDiv>
-          <strong>Zoom 효과</strong>
-          <S.HorizontalLine />
-          <Zoom cascade triggerOnce>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-            <S.ContextWrapperL>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperL>
-            <S.ContextWrapperR>
-              <S.ContextTitleBlock>
-                <strong>Timyloom</strong>
-                <span>팀 작업 기반의 워크스페이스</span>
-              </S.ContextTitleBlock>
-              <img src={trello}></img>
-            </S.ContextWrapperR>
-          </Zoom>
-        </S.ContextDiv>
       </S.MainWrapper>
     </div>
   );
