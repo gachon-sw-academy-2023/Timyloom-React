@@ -2,15 +2,14 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.header`
-  /* background-color: ${(props) => props.theme.primaryColor_2}; */
+  width: 100%;
+  height: 80px;
   border-bottom: 0.5px solid #6b6b6b2e;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  border-radius: 0px;
-  margin: 0 auto;
-  padding: 20px 40px;
+  padding: 10px 10vw;
 `;
 
 export const ToggleWrapper = styled.div`
@@ -77,10 +76,10 @@ export const NavMenuContent = styled.li`
 
 export const NameBox = styled.div`
   font-size: 1.3rem;
-  color: white;
+  color: #373737;
   &:hover {
     cursor: pointer;
-    color: #f38704;
+    color: #96bcfb;
   }
 `;
 

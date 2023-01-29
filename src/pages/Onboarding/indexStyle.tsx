@@ -3,10 +3,7 @@ import onboardingMain from '@/assets/images/onboardingMain.png';
 
 export const MainWrapper = styled.div`
   width: 100%;
-  /* background-color: ${(props) => props.theme.primaryColor_2}; */
   background-color: #eef4fe;
-  margin: 0;
-  padding: 0px 10vw;
 `;
 
 export const MainImg = styled.div`
