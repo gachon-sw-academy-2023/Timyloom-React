@@ -40,7 +40,7 @@ function Onboarding() {
       <S.MainWrapper>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={12} lg={6}>
               <Slide direction="left" triggerOnce>
                 {/* <S.MainImg /> */}
                 <S.VideoContainer>
@@ -48,7 +48,7 @@ function Onboarding() {
                 </S.VideoContainer>
               </Slide>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={12} lg={6}>
               <Slide direction="right" triggerOnce>
                 <S.ContentsWrapper>
                   <S.MainTitle>What schedule will you manage?</S.MainTitle>
