@@ -19,7 +19,7 @@ function Header() {
     <S.HeaderWrapper>
       <S.LogoWrapper>
         <S.LogoLink to={'/'}>
-          <S.Test>Timyloom</S.Test>
+          <S.Logo>Timyloom</S.Logo>
         </S.LogoLink>
       </S.LogoWrapper>
       <S.NavMenu isToggleOpen={isToggleOpen}>

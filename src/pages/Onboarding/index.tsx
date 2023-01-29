@@ -36,57 +36,54 @@ function Onboarding() {
   };
 
   return (
-    <div>
-      <S.MainWrapper>
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={12} lg={6}>
-              <Slide direction="left" triggerOnce>
-                {/* <S.MainImg /> */}
-                <S.VideoContainer>
-                  <S.Video src={MainVideo} autoPlay loop muted />
-                </S.VideoContainer>
-              </Slide>
-            </Grid>
-            <Grid item xs={12} md={12} lg={6}>
-              <Slide direction="right" triggerOnce>
-                <S.ContentsWrapper>
-                  <S.MainTitle>What schedule will you manage?</S.MainTitle>
-                  <S.MainTitle>With us, everything is possible.</S.MainTitle>
-                  <S.FieldContainer>
-                    {fields.map((field, index) => {
-                      return (
-                        <S.Field
-                          key={field.index}
-                          onClick={() => {
-                            handleField(field.index);
-                          }}
-                          field={field}
-                        >
-                          <AiOutlineWindows size="50px" fill={field.color} />
-                          <S.Title>{field.title}</S.Title>
-                        </S.Field>
-                      );
-                    })}
-                  </S.FieldContainer>
-                  <S.BtnWrapper>
-                    <S.StartBtn
-                      gradationColor={gradationColor}
-                      onClick={() => {
-                        movePage('/workspace');
-                      }}
-                    >
-                      START
-                    </S.StartBtn>
-                  </S.BtnWrapper>
-                </S.ContentsWrapper>
-              </Slide>
-            </Grid>
+    <S.MainWrapper>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={12} lg={6}>
+            <Slide direction="left" triggerOnce>
+              <S.VideoContainer>
+                <S.Video src={MainVideo} autoPlay loop muted />
+              </S.VideoContainer>
+            </Slide>
           </Grid>
-        </Box>
-        {/* react-awesome-reveal 데모입니다. 추후에 코드 정리 필요 */}
-      </S.MainWrapper>
-    </div>
+          <Grid item xs={12} md={12} lg={6}>
+            <Slide direction="right" triggerOnce>
+              <S.ContentsWrapper>
+                <S.MainTitle>What schedule will you manage?</S.MainTitle>
+                <S.MainTitle>With us, everything is possible.</S.MainTitle>
+                <S.FieldContainer>
+                  {fields.map((field, index) => {
+                    return (
+                      <S.Field
+                        key={field.index}
+                        onClick={() => {
+                          handleField(field.index);
+                        }}
+                        field={field}
+                      >
+                        <AiOutlineWindows size="50px" fill={field.color} />
+                        <S.Title>{field.title}</S.Title>
+                      </S.Field>
+                    );
+                  })}
+                </S.FieldContainer>
+                <S.BtnWrapper>
+                  <S.StartBtn
+                    gradationColor={gradationColor}
+                    onClick={() => {
+                      movePage('/workspace');
+                    }}
+                  >
+                    START
+                  </S.StartBtn>
+                </S.BtnWrapper>
+              </S.ContentsWrapper>
+            </Slide>
+          </Grid>
+        </Grid>
+      </Box>
+      {/* react-awesome-reveal 데모입니다. 추후에 코드 정리 필요 */}
+    </S.MainWrapper>
   );
 }
 

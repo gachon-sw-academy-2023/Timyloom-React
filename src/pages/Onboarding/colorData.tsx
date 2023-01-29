@@ -42,14 +42,14 @@ export const fieldData = [
     icon: 'AiOutlineWindows',
   },
   {
-    title: 'Woojin',
+    title: 'Education',
     index: 6,
     color: '#d2ff3f',
     select: false,
     icon: 'AiOutlineWindows',
   },
   {
-    title: 'Timyloom',
+    title: 'Cooperation',
     index: 7,
     color: '#ff9f44',
     select: false,

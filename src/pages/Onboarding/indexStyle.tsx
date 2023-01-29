@@ -1,20 +1,10 @@
 import styled from 'styled-components';
-import onboardingMain from '@/assets/images/onboardingMain.png';
 
 export const MainWrapper = styled.div`
+  max-width: 1920px;
   width: 100%;
   background-color: #eef4fe;
-`;
-
-export const MainImg = styled.div`
-  width: 45vw;
-  height: 45vw;
-  min-width: 300px;
-  min-height: 300px;
-  background-image: url(${onboardingMain});
-  background-repeat: repeat;
-  background-size: cover;
-  margin: auto;
+  padding: 0px 10vw;
 `;
 
 export const ContentsWrapper = styled.div`
@@ -161,8 +151,8 @@ export const Field = styled.div<{ field: any }>`
     border: ${(props) => `6px solid ${props.field.color}`};
   }
   @media (max-width: 768px) {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     margin: 5px;
 
     border: ${(props) => (props.field.select ? `2px solid ${props.field.color}` : 'none')};
@@ -173,9 +163,13 @@ export const Field = styled.div<{ field: any }>`
       border: ${(props) => `3px solid ${props.field.color}`};
     }
 
-    > div {
-      margin-top: 5px;
+    > :first-child {
+      display: none;
+    }
+
+    > :last-child {
       font-size: 0.5rem;
+      margin: auto;
     }
   }
 `;

@@ -3,18 +3,19 @@ import styled from 'styled-components';
 
 export const HeaderWrapper = styled.header`
   width: 100%;
-  height: 80px;
+  height: 60px;
   border-bottom: 0.5px solid #6b6b6b2e;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
   padding: 10px 10vw;
+  margin-bottom: 16px;
 `;
 
 export const ToggleWrapper = styled.div`
   display: none;
-  color: #ffffff;
+  color: #333333;
   font-size: 24px;
   position: absolute;
   right: 20px;
@@ -83,6 +84,7 @@ export const NameBox = styled.div`
   }
 `;
 
-export const Test = styled.div`
+export const Logo = styled.div`
+  color: #333333;
   font-family: 'Azonix';
 `;
