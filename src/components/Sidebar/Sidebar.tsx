@@ -49,8 +49,7 @@ const board = [
   },
 ];
 
-function Sidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
   const { pathname } = useLocation();
 
   const changeHandler = (e: MediaQueryListEvent) => {

@@ -10,12 +10,24 @@ export const WorkspaceWrapper = styled.div`
   min-height: 100vh;
 `;
 
-export const ContentWrapper = styled.div`
+export const PageWrapper = styled.div<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   width: 100%;
   background-color: white;
-  margin-left: 20px;
+`;
+
+export const ContentWrapper = styled.div<{ isOpen: boolean }>`
+  display: flex;
+  margin-left: ${({ isOpen }) => (!isOpen ? `7%` : `3%`)};
+
+  @media screen and (max-width: 768px) {
+    margin-left: ${({ isOpen }) => (!isOpen ? `2%` : `19%`)};
+  }
+
+  @media screen and (max-width: 425px) {
+    margin-left: ${({ isOpen }) => (!isOpen ? `4%` : `0`)};
+  }
 `;
 
 export const BoardContainer = styled.div`
@@ -62,14 +74,14 @@ export const BoardTitle = styled.div`
   @media screen and (max-width: 425px) {
     width: 100px;
     height: 30px;
-    font-size: 0.7rem;
+    font-size: 1.4rem;
   }
 `;
 
 export const BoardWrapper = styled(Link)`
-  width: 261px;
-  height: 174px;
-  margin: 30px;
+  width: 255px;
+  height: 170px;
+  margin: 25px;
   position: relative;
   border-radius: 10px;
   text-align: center;
@@ -83,8 +95,8 @@ export const BoardWrapper = styled(Link)`
   }
 
   &:hover ${ImageWrapper} {
-    width: 261px;
-    height: 174px;
+    width: 255px;
+    height: 170px;
     border-radius: 10px;
     top: 0;
     left: 0;
@@ -113,7 +125,7 @@ export const BoardWrapper = styled(Link)`
     }
 
     &:hover ${BoardTitle} {
-      font-size: 0.5rem;
+      font-size: 1.1rem;
       top: 10%;
       left: 35%;
       transform: translate(-35%, -10%);
@@ -133,9 +145,9 @@ export const AddSvg = styled((props) => <Add {...props} />)`
 `;
 
 export const AddBoardButton = styled.button`
-  width: 261px;
-  height: 174px;
-  margin: 30px;
+  width: 255px;
+  height: 170px;
+  margin: 25px;
   position: relative;
   border: 0;
   border-radius: 10px;
@@ -175,5 +187,10 @@ export const ScrollToTopSvg = styled((props) => <UpArrow {...props} />)`
 
   &:hover {
     filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+  }
+
+  @media screen and (max-width: 425px) {
+    width: 40px;
+    height: 40px;
   }
 `;

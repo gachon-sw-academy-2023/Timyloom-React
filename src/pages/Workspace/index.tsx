@@ -23,14 +23,16 @@ const goToTop = () => {
 
 function Workspace() {
   const [boards, setBoards] = useRecoilState(boardsAtom);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showTopBtn, setShowTopBtn] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const scrollRef: any = useRef();
+  const screenView = 300;
   let personalBoards = boards.filter((board) => board.owner === localStorage.getItem('id'));
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) {
+      if (window.scrollY > screenView) {
         setShowTopBtn(true);
       } else {
         setShowTopBtn(false);
@@ -44,28 +46,30 @@ function Workspace() {
 
   return (
     <S.WorkspaceWrapper ref={scrollRef}>
-      <Sidebar />
-      <S.ContentWrapper>
+      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <S.PageWrapper isOpen={sidebarOpen}>
         <WorkspaceHeader />
-        <S.BoardContainer>
-          {personalBoards.map((board, index) => (
-            // <Board title={board.boardTitle} board={board} />
-            <S.BoardWrapper key={index} to={`/board/${board.boardId}`}>
-              <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
-              <S.ImageWrapper />
-            </S.BoardWrapper>
-          ))}
-          <S.AddBoardButton
-            onClick={() => {
-              handleAddBoard(boards, setBoards);
-              setShowModal(!showModal);
-            }}
-          >
-            보드 추가하기!
-            <S.AddSvg />
-          </S.AddBoardButton>
-        </S.BoardContainer>
-      </S.ContentWrapper>
+        <S.ContentWrapper isOpen={sidebarOpen}>
+          <S.BoardContainer>
+            {personalBoards.map((board, index) => (
+              // <Board title={board.boardTitle} board={board} />
+              <S.BoardWrapper key={index} to={`/board/${board.boardId}`}>
+                <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
+                <S.ImageWrapper />
+              </S.BoardWrapper>
+            ))}
+            <S.AddBoardButton
+              onClick={() => {
+                handleAddBoard(boards, setBoards);
+                setShowModal(!showModal);
+              }}
+            >
+              보드 추가하기!
+              <S.AddSvg />
+            </S.AddBoardButton>
+          </S.BoardContainer>
+        </S.ContentWrapper>
+      </S.PageWrapper>
       {showTopBtn && <S.ScrollToTopSvg onClick={goToTop}>Top</S.ScrollToTopSvg>}
       <Modal showModal={showModal} setShowModal={setShowModal} themes={'board'}></Modal>
     </S.WorkspaceWrapper>
