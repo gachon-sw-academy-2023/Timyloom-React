@@ -4,6 +4,7 @@ import * as S from './CardStyle';
 import axios from 'axios';
 import { checkId, checkPassword, checkSamePassword, checkEmail } from '@/utils/validation';
 import Button from '@/components/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpCard() {
   const [inputs, setInputs] = useState({
@@ -15,13 +16,12 @@ function SignUpCard() {
   });
   const [showPw, setShowPw] = useState(false);
   const [showConfirmPw, setShowConfirmPw] = useState(false);
-
   const [idValidation, setIdValidation] = useState(true);
   const [pwValidation, setPwValidation] = useState(true);
   const [confirmPwValidation, setConfirmPwValidation] = useState(true);
   const [emailValidation, setEmailValidation] = useState(true);
-
   const { id, password, confirmPassword, name, email } = inputs;
+  const navigate = useNavigate();
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
@@ -73,7 +73,7 @@ function SignUpCard() {
                 icon: 'success',
                 confirmButtonText: '확인',
               }).then(() => {
-                window.location.href = '/';
+                navigate('/');
               });
               break;
             case 202:

@@ -3,7 +3,6 @@ import { ReactComponent as Logo } from '@/assets/images/logo.svg';
 import { useState } from 'react';
 import { AiOutlineHome, AiOutlineLeft, AiOutlineSetting, AiOutlineCalendar, AiOutlineTable } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
-import { movePage } from '@/utils/movePage';
 
 const linksArray = [
   {
