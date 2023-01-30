@@ -35,7 +35,7 @@ function Onboarding() {
   return (
     <S.MainWrapper>
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={0}>
           <Grid item xs={12} md={12} lg={6}>
             <Slide direction="left" triggerOnce>
               <S.LeftContentsContainer>
