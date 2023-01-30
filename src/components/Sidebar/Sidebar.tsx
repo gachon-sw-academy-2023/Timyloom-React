@@ -67,7 +67,7 @@ function Sidebar() {
       <S.SidebarOpenButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p) => !p)}>
         <AiOutlineLeft />
       </S.SidebarOpenButton>
-      <S.LogoLink to={'/'}>
+      <S.LogoLink>
         <S.Logo isOpen={sidebarOpen} />
       </S.LogoLink>
       <S.Divider />
