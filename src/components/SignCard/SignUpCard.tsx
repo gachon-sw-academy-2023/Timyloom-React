@@ -168,8 +168,15 @@ function SignUpCard() {
             isReg={emailValidation}
           ></S.InputTitle>
         </S.InputWrapper>
-        <S.SignLink href="/login">Do you have an account?</S.SignLink>
-        <Button onClick={handleSignUp} size="lg" themes="sign" data-testid="signup-button">
+        <S.SignLink to={'/login'}>Do you have an account?</S.SignLink>
+        <Button
+          onClick={handleSignUp}
+          radius="circle"
+          border={false}
+          size="lg"
+          themes="sign"
+          data-testid="signup-button"
+        >
           SIGN UP
         </Button>
       </S.SignPanel>

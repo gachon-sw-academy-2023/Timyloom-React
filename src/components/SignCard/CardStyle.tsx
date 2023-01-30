@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import background from '@/assets/images/signMain.png';
 import { ReactComponent as EyeSvg } from '@/assets/images/eye.svg';
+import { Link } from 'react-router-dom';
 
 export const SignCard = styled.div`
   display: flex;
@@ -174,7 +175,7 @@ export const SignBtn = styled.button`
   }
 `;
 
-export const SignLink = styled.a`
+export const SignLink = styled(Link)`
   margin: 0.8rem;
   color: ${(props) => props.theme.gray_1};
   text-align: center;
