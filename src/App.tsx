@@ -5,6 +5,7 @@ import SignUp from '@/pages/Auth/SignUp/index';
 import Workspace from '@/pages/Workspace/index';
 import BoardPage from '@/pages/Board/index';
 import Remove from '@/pages/Remove';
+import Sidebar from './components/Sidebar/Sidebar';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
@@ -29,7 +30,7 @@ function App() {
             <Route path="/" element={<Onboarding />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
-            <Route path="/workspace" element={<Workspace />}></Route>
+            <Route path="/workspace/*" element={<Workspace />}></Route>
             <Route path="/board/:boardId" element={<BoardPage />}></Route>
             <Route path="/remove/:boardId" element={<Remove />}></Route>
           </Routes>
