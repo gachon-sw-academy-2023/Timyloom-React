@@ -26,7 +26,7 @@ function RemoveCard() {
   }, []);
 
   setInterval(() => {
-    location.href = '/workspace';
+    location.href = '/workspace/boards';
   }, 5000);
 
   return (
@@ -34,7 +34,7 @@ function RemoveCard() {
       <S.CardTitle size="1.5rem">보드를 삭제하였습니다.</S.CardTitle>
       <S.CardTitle size="1.3rem">삭제된 보드는 30일간 보관되며 이후에 영구삭제 됩니다.</S.CardTitle>
       <Button themes="sign" onClick={handlePage}>
-        Move to Main
+        Move to Workspace
       </Button>
     </S.CardWrapper>
   );

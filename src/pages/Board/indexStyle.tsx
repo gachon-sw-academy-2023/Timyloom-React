@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const BoardWrapper = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #f1e5dd;
+  background-color: #ffffff;
 `;
 
 export const BoardTitle = styled.textarea<{ boardTitle: any }>`
