@@ -35,7 +35,7 @@ function SignUpCard() {
         break;
       case 'password':
         setPwValidation(checkPassword(e.target.value));
-        // setConfirmPwValidation(checkSamePassword(e.target.value, confirmPassword));
+        setConfirmPwValidation(checkSamePassword(e.target.value, confirmPassword));
         break;
       case 'confirmPassword':
         setConfirmPwValidation(checkSamePassword(password, e.target.value));
@@ -106,7 +106,7 @@ function SignUpCard() {
       <S.SignPanel signStart={false}>
         <S.FormTitle>SIGN UP</S.FormTitle>
         <S.InputWrapper>
-          <S.FormInput id="id" value={id} onChange={handleInputs} data-testid="id-input" />
+          <S.InputForm id="id" value={id} onChange={handleInputs} data-testid="id-input" />
           <S.InputTitle
             value={id}
             data-placeholder={idValidation ? 'ID' : 'ID Incorrect '}
@@ -114,14 +114,14 @@ function SignUpCard() {
           ></S.InputTitle>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.EyeSvg
+          <S.EyeIcon
             $isShow={showPw}
             onClick={() => {
               handleShowPassword('password');
             }}
             data-testid="eye-svg-pw"
           />
-          <S.FormInput
+          <S.InputForm
             id="password"
             type="password"
             value={password}
@@ -136,14 +136,14 @@ function SignUpCard() {
           ></S.InputTitle>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.EyeSvg
+          <S.EyeIcon
             $isShow={showConfirmPw}
             onClick={() => {
               handleShowPassword('confirmPassword');
             }}
             data-testid="eye-svg-confirmpw"
           />
-          <S.FormInput
+          <S.InputForm
             id="confirmPassword"
             type="password"
             value={confirmPassword}
@@ -157,11 +157,11 @@ function SignUpCard() {
           ></S.InputTitle>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.FormInput id="name" value={name} onChange={handleInputs} data-testid="name-input" />
+          <S.InputForm id="name" value={name} onChange={handleInputs} data-testid="name-input" />
           <S.InputTitle value={name} data-placeholder="Name" isReg={true}></S.InputTitle>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.FormInput id="email" value={email} onChange={handleInputs} data-testid="email-input" />
+          <S.InputForm id="email" value={email} onChange={handleInputs} data-testid="email-input" />
           <S.InputTitle
             value={email}
             data-placeholder={emailValidation ? 'Email' : 'Email Incorrect '}

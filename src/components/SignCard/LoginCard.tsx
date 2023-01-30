@@ -54,14 +54,14 @@ function LoginCard() {
     <S.SignCard>
       <S.SignPanel signStart={true}>
         <S.FormTitle>LOGIN</S.FormTitle>
-        <S.InputsWrapper>
+        <S.InputContainer>
           <S.InputWrapper>
-            <S.FormInput id="id" value={id} onChange={handleInputs} data-testid="id-input" />
+            <S.InputForm id="id" value={id} onChange={handleInputs} data-testid="id-input" />
             <S.InputTitle value={id} data-placeholder="ID" isReg={true}></S.InputTitle>
           </S.InputWrapper>
           <S.InputWrapper data-validate="Enter password">
-            <S.EyeSvg $isShow={showPassword} onClick={handleShowPassword} data-testid="eye-svg" />
-            <S.FormInput
+            <S.EyeIcon $isShow={showPassword} onClick={handleShowPassword} data-testid="eye-svg" />
+            <S.InputForm
               id="password"
               type="password"
               value={password}
@@ -70,7 +70,7 @@ function LoginCard() {
             />
             <S.InputTitle value={password} data-placeholder="Password" isReg={true}></S.InputTitle>
           </S.InputWrapper>
-        </S.InputsWrapper>
+        </S.InputContainer>
         <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
         <Button onClick={handleLogin} size="lg" themes="sign" data-testid="login-button">
           LOGIN

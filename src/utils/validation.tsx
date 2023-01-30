@@ -4,7 +4,7 @@ const regEmail = new RegExp('[a-z0-9]+@[a-z]+[a-z]{2,3}');
 const regPhone = new RegExp('01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$');
 
 export const checkId = (id: string) => {
-  if (regId.test(id) || id.length === 0) {
+  if (regId.test(id)) {
     return true;
   }
   return false;
@@ -18,10 +18,12 @@ export const checkPassword = (password: string) => {
 };
 
 export const checkSamePassword = (password: string, confirmPassword: string) => {
-  if (password === confirmPassword) {
-    return true;
+  if (confirmPassword.length > 0) {
+    if (password != confirmPassword) {
+      return false;
+    }
   }
-  return false;
+  return true;
 };
 
 export const checkEmail = (email: string) => {
