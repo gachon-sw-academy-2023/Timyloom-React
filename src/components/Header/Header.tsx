@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { movePage } from '@/utils/movePage';
 import * as S from './HeaderStyle';
 import { FaBars } from 'react-icons/fa';
 
@@ -15,11 +14,19 @@ function Header() {
     document.location.href = '/';
   };
 
+  const handleMoveLogin = () => {
+    document.location.href = '/login';
+  };
+
+  const handleMoveSignup = () => {
+    document.location.href = '/signup';
+  };
+
   return (
     <S.HeaderWrapper>
       <S.LogoWrapper>
         <S.LogoLink to={'/'}>
-          <S.Test>Timyloom</S.Test>
+          <S.Logo>Timyloom</S.Logo>
         </S.LogoLink>
       </S.LogoWrapper>
       <S.NavMenu isToggleOpen={isToggleOpen}>
@@ -29,12 +36,8 @@ function Header() {
           </S.NameBox>
         ) : (
           <>
-            <S.NavMenuContent>
-              <S.MenuLink to={'/login'}>Login</S.MenuLink>
-            </S.NavMenuContent>
-            <S.NavMenuContent>
-              <S.MenuLink to={'/signup'}>Signin</S.MenuLink>
-            </S.NavMenuContent>
+            <S.LoginBtn onClick={handleMoveLogin}>Login</S.LoginBtn>
+            <S.SigninBtn onClick={handleMoveSignup}>Signup</S.SigninBtn>
           </>
         )}
       </S.NavMenu>
