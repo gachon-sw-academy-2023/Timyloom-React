@@ -81,6 +81,7 @@ function Sidebar() {
       ))}
       <S.SidebarSubtitle isOpen={sidebarOpen}>Workspace Views</S.SidebarSubtitle>
       <S.Divider />
+
       <S.ViewContainer isOpen={sidebarOpen}>
         {secondaryLinksArray.map(({ icon, label, to }) => (
           <S.SLinkWrapper key={label} isActive={pathname === to}>

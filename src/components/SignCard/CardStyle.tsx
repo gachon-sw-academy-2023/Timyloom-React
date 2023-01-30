@@ -1,16 +1,46 @@
 import styled from 'styled-components';
 import background from '@/assets/images/signMain.png';
-import { ReactComponent as Eye } from '@/assets/images/eye.svg';
+import { ReactComponent as EyeSvg } from '@/assets/images/eye.svg';
 
 export const SignCard = styled.div`
   display: flex;
   width: 50vw;
-  height: 70vh;
+  height: 75vh;
   border-radius: 20px;
   margin: auto;
 
-  @media (max-width: 700px) {
+  @media (max-width: 1400px) {
+    width: 500px;
+  }
+
+  @media (max-width: 768px) {
+    width: 70vw;
+  }
+
+  @media (max-width: 425px) {
     width: 80vw;
+  }
+`;
+
+export const ImgPanel = styled.div<{ imgStart: boolean }>`
+  background-image: url(${background});
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  flex-grow: 4;
+  border-radius: 20px;
+
+  border-top-left-radius: ${(props) => (props.imgStart ? 'none' : '0')};
+  border-bottom-left-radius: ${(props) => (props.imgStart ? 'none' : '0')};
+
+  border-top-right-radius: ${(props) => (props.imgStart ? '0' : 'none')};
+  border-bottom-right-radius: ${(props) => (props.imgStart ? '0' : 'none')};
+
+  @media (max-width: 1400px) {
+    display: none;
   }
 `;
 
@@ -36,11 +66,11 @@ export const SignPanel = styled.div<{ signStart: boolean }>`
 export const FormTitle = styled.div`
   font-size: 1.9rem;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 `;
 
-export const InputsWrapper = styled.div`
+export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 20vh;
@@ -54,7 +84,7 @@ export const InputWrapper = styled.div`
   margin-bottom: 1.5vh;
 `;
 
-export const FormInput = styled.input`
+export const InputForm = styled.input`
   width: 100%;
   height: 4vh;
   padding: 0 5px;
@@ -64,7 +94,6 @@ export const FormInput = styled.input`
   &:focus {
     ::placeholder {
       color: #808080;
-      font-size: 10px;
     }
   }
 
@@ -72,48 +101,11 @@ export const FormInput = styled.input`
     color: transparent;
     font-size: 12px;
   }
-`;
 
-export const SignBtn = styled.button`
-  font-size: 15px;
-  padding: 1rem 2.5rem;
-  height: 5vh;
-  border-radius: 25px;
-  background-color: ${(props) => props.theme.primaryColor_2};
-  color: ${(props) => props.theme.gray_1};
-  border: none;
-
-  &:hover {
-    background-color: ${(props) => props.theme.secondaryColor};
-    color: ${(props) => props.theme.white};
-  }
-`;
-
-export const SignLink = styled.a`
-  margin: 0.8rem;
-  color: ${(props) => props.theme.gray_1};
-  text-align: center;
-
-  &:hover {
-    color: ${(props) => props.theme.secondaryColor};
-  }
-`;
-
-export const EyeSvg = styled((props) => <Eye {...props} />)<{ $isShow: boolean }>`
-  color: ${(props) => (props.$isShow ? props.theme.pupple : props.theme.gray_2)};
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  right: 0;
-  padding-right: 5px;
-  cursor: pointer;
-
-  transition: all 0.4s;
-  &:hover {
-    color: ${(props) => props.theme.pupple};
+  @media (max-width: 768px) {
+    ::placeholder {
+      font-size: 6px;
+    }
   }
 `;
 
@@ -150,12 +142,8 @@ export const InputTitle = styled.div<{ value: string; isReg?: boolean }>`
     left: 0px;
     padding-left: 5px;
     transition: all 0.4s;
-
-    @media (max-height: 700px) {
-      top: ${(props) => (props.value ? '-15px' : '0px')};
-    }
   }
-  ${FormInput}:focus ~ & {
+  ${InputForm}:focus ~ & {
     ::before {
       width: 100%;
     }
@@ -163,25 +151,53 @@ export const InputTitle = styled.div<{ value: string; isReg?: boolean }>`
       top: -15px;
     }
   }
+
+  @media (max-width: 425px) {
+    ::after {
+      font-size: 5px;
+    }
+  }
 `;
-export const ImgPanel = styled.div<{ imgStart: boolean }>`
-  background-image: url(${background});
-  background-repeat: no-repeat;
-  background-size: cover;
+
+export const SignBtn = styled.button`
+  font-size: 15px;
+  padding: 1rem 2.5rem;
+  height: 5vh;
+  border-radius: 25px;
+  background-color: ${(props) => props.theme.primaryColor_2};
+  color: ${(props) => props.theme.gray_1};
+  border: none;
+
+  &:hover {
+    background-color: ${(props) => props.theme.secondaryColor};
+    color: ${(props) => props.theme.white};
+  }
+`;
+
+export const SignLink = styled.a`
+  margin: 0.8rem;
+  color: ${(props) => props.theme.gray_1};
+  text-align: center;
+  text-decoration: none;
+  &:hover {
+    color: ${(props) => props.theme.secondaryColor};
+  }
+`;
+
+export const EyeIcon = styled((props) => <EyeSvg {...props} />)<{ $isShow: boolean }>`
+  color: ${(props) => (props.$isShow ? props.theme.pupple : props.theme.gray_2)};
+  font-size: 15px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
-  flex-grow: 4;
-  border-radius: 20px;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  padding-right: 5px;
+  cursor: pointer;
 
-  border-top-left-radius: ${(props) => (props.imgStart ? 'none' : '0')};
-  border-bottom-left-radius: ${(props) => (props.imgStart ? 'none' : '0')};
-
-  border-top-right-radius: ${(props) => (props.imgStart ? '0' : 'none')};
-  border-bottom-right-radius: ${(props) => (props.imgStart ? '0' : 'none')};
-
-  @media (max-width: 1400px) {
-    display: none;
+  transition: all 0.4s;
+  &:hover {
+    color: ${(props) => props.theme.pupple};
   }
 `;
