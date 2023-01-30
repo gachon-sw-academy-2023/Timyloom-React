@@ -1,5 +1,4 @@
 import * as S from './SidebarStyle';
-import { ReactComponent as Logo } from '@/assets/images/logo.svg';
 import { useState } from 'react';
 import { AiOutlineHome, AiOutlineLeft, AiOutlineSetting, AiOutlineCalendar, AiOutlineTable } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
@@ -48,8 +47,12 @@ const board = [
   },
 ];
 
-function Sidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+type SidebarProps = {
+  sidebarOpen: boolean;
+  setSidebarOpen: Function;
+};
+
+function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
   const { pathname } = useLocation();
 
   const changeHandler = (e: MediaQueryListEvent) => {
@@ -60,43 +63,42 @@ function Sidebar() {
 
   const mediaQueryList = window.matchMedia(`(max-width: 768px)`);
   mediaQueryList.addEventListener('change', changeHandler);
-
   return (
-    <S.SidebarWrapper isOpen={sidebarOpen}>
-      <S.SidebarOpenButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p) => !p)}>
+    <S.SidebarWrapper isopen={sidebarOpen}>
+      <S.SidebarOpenButton isopen={sidebarOpen} onClick={() => setSidebarOpen((prev: boolean) => !prev)}>
         <AiOutlineLeft />
       </S.SidebarOpenButton>
       <S.LogoLink>
-        <S.Logo isOpen={sidebarOpen} />
+        <S.Logo isopen={sidebarOpen} />
       </S.LogoLink>
       <S.Divider />
       {linksArray.map(({ icon, label, to }) => (
         <S.SLinkWrapper key={label} isActive={pathname === to}>
-          <S.SLink to={to} isOpen={sidebarOpen}>
+          <S.SLink to={to} isopen={sidebarOpen}>
             <S.LinkIcon>{icon}</S.LinkIcon>
             {sidebarOpen && <S.LinkLabel>{label}</S.LinkLabel>}
           </S.SLink>
         </S.SLinkWrapper>
       ))}
-      <S.SidebarSubtitle isOpen={sidebarOpen}>Workspace Views</S.SidebarSubtitle>
       <S.Divider />
-
-      <S.ViewContainer isOpen={sidebarOpen}>
+      <S.SidebarSubtitle isopen={sidebarOpen}>Workspace Views</S.SidebarSubtitle>
+      <S.ViewContainer isopen={sidebarOpen}>
         {secondaryLinksArray.map(({ icon, label, to }) => (
           <S.SLinkWrapper key={label} isActive={pathname === to}>
-            <S.SLink to="/" isOpen={sidebarOpen} $column={true}>
+            <S.SLink to="/" isopen={sidebarOpen} $column={true}>
               <S.LinkIcon>{icon}</S.LinkIcon>
               {sidebarOpen && <S.LinkLabel $column={true}>{label}</S.LinkLabel>}
             </S.SLink>
           </S.SLinkWrapper>
         ))}
       </S.ViewContainer>
-      <S.SidebarSubtitle isOpen={sidebarOpen}>Your Boards</S.SidebarSubtitle>
       <S.Divider />
-      <S.BoardContainer isOpen={sidebarOpen}>
+      <S.SidebarSubtitle isopen={sidebarOpen}>Your Boards</S.SidebarSubtitle>
+      <S.BoardContainer isopen={sidebarOpen}>
         {board.map((item, index) => (
-          <S.BoardWrapper key={index} boardDesign={item.color}>
-            {item.title}
+          <S.BoardWrapper isopen={sidebarOpen} key={index}>
+            <S.BoardSquare boardDesign={item.color}></S.BoardSquare>
+            <S.BoardTitle isopen={sidebarOpen}>{item.title}</S.BoardTitle>
           </S.BoardWrapper>
         ))}
       </S.BoardContainer>
