@@ -64,13 +64,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
   const mediaQueryList = window.matchMedia(`(max-width: 768px)`);
   mediaQueryList.addEventListener('change', changeHandler);
   return (
-<<<<<<< HEAD
-    <S.SidebarWrapper isOpen={sidebarOpen}>
-      <S.SidebarOpenButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p: boolean) => !p)}>
-=======
     <S.SidebarWrapper isopen={sidebarOpen}>
       <S.SidebarOpenButton isopen={sidebarOpen} onClick={() => setSidebarOpen((prev: boolean) => !prev)}>
->>>>>>> 151843d35cf06f4f28dfe3fca3bf1833d3631837
         <AiOutlineLeft />
       </S.SidebarOpenButton>
       <S.LogoLink>
