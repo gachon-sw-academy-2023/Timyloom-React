@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import * as S from '@/pages/Onboarding/indexStyle';
-import { movePage } from '@/utils/movePage';
 import MainVideo from '@/assets/video/landing.mp4';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Slide } from 'react-awesome-reveal';
 import { fieldData } from '@/pages/Onboarding/fieldData';
+import { useNavigate } from 'react-router-dom';
 
 function Onboarding() {
   const [fields, setFields] = useState(fieldData);
   const [gradationColor, setGradationColor] = useState('');
+  const navigate = useNavigate();
 
   const handleField = (fieldIndex: number) => {
     const tempFields = fields;
@@ -68,7 +69,7 @@ function Onboarding() {
                   <S.StartBtn
                     gradationColor={gradationColor}
                     onClick={() => {
-                      movePage('/workspace/boards');
+                      navigate('/workspace/boards');
                     }}
                   >
                     START

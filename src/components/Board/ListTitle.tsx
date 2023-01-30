@@ -8,18 +8,14 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: any) => {
   const [newTitle, setnewTitle] = useState(title);
   const [editMode, seteditMode] = useState(false);
 
-  const handleTitle = (e: any) => {
-    switch (e.type) {
-      case 'blur':
-        saveTitle();
+  const handleTitleByonBlur = (e: any) => {
+    saveTitle();
+    seteditMode(false);
+  };
 
-        seteditMode(false);
-        break;
-      case 'keydown':
-        if (e.code === 'Enter' || e.code === 'Escape') {
-          saveTitle();
-          break;
-        }
+  const handleTitleByonKeyDown = (e: any) => {
+    if (e.code === 'Enter' || e.code === 'Escape') {
+      saveTitle();
     }
   };
 
@@ -44,6 +40,7 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: any) => {
     );
     setBoards((prev: any) => newBoards);
   };
+
   return (
     <S.Container {...dragHandleProps}>
       <S.TextAreaWrapper>
@@ -53,8 +50,8 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: any) => {
               setnewTitle((prev: any) => e.target.value);
             }}
             value={newTitle}
-            onBlur={handleTitle}
-            onKeyDown={handleTitle}
+            onBlur={handleTitleByonBlur}
+            onKeyDown={handleTitleByonKeyDown}
             autoFocus
             spellCheck="false"
           ></S.Textarea>
