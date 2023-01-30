@@ -10,14 +10,14 @@ const handleAddBoard = (boards: any, setBoards: any) => {
   setBoards((prev: any) => newBoards);
 };
 
-function Boards() {
+function Boards({ sidebarOpen }: any) {
   const [boards, setBoards] = useRecoilState(boardsAtom);
   let personalBoards = boards.filter((board) => board.owner === localStorage.getItem('id'));
 
   return (
-    <div>
-      <S.ContentWrapper>
-        <WorkspaceHeader />
+    <S.PageWrapper isopen={sidebarOpen}>
+      <WorkspaceHeader />
+      <S.ContentWrapper isopen={sidebarOpen}>
         <S.BoardContainer>
           {personalBoards.map((board, index) => (
             <S.BoardWrapper key={index} to={`/workspace/${board.boardId}`}>
@@ -35,7 +35,7 @@ function Boards() {
           </S.AddBoardButton>
         </S.BoardContainer>
       </S.ContentWrapper>
-    </div>
+    </S.PageWrapper>
   );
 }
 
