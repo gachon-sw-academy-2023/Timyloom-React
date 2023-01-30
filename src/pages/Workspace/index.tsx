@@ -5,6 +5,7 @@ import * as S from '@/pages/Workspace/indexStyle';
 import { Route, Routes } from 'react-router-dom';
 
 function Workspace() {
+
   return (
     <S.WorkspaceWrapper>
       <Sidebar />

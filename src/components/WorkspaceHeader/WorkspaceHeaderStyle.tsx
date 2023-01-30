@@ -31,10 +31,10 @@ export const SearchWrapper = styled.div`
 `;
 
 export const Search = styled.input`
-  width: 15vw;
-  min-width: 275px;
+  width: 14vw;
+  min-width: 250px;
   height: 50px;
-  background-color: ${(props) => props.theme.test1};
+  background-color: ${(props) => props.theme.primaryColor_1};
   border-radius: 10px;
   font-size: 17px;
   text-align: left;
@@ -44,13 +44,6 @@ export const Search = styled.input`
   border: none;
   transition: all 400ms;
   outline: none;
-  /* ::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    height: 1em;
-    width: 1em;
-    border-radius: 50em;
-    background-color: red;
-  } */
   &:focus {
     width: 25vw;
   }
@@ -58,10 +51,10 @@ export const Search = styled.input`
 export const SearchIcon = styled(SearchSvg)`
   position: absolute;
   pointer-events: none;
-  top: 0.6rem;
+  top: 0.8rem;
   left: 0.5rem;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 `;
 export const ProfileWrapper = styled.div`
   display: grid;

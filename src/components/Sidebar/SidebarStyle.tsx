@@ -4,24 +4,26 @@ import Logos_orange from '@/assets/images/timyloom_logo_orange.png';
 
 export const SidebarWrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
-  min-height: vh;
-  padding: 15px;
-  background: ${(props) => props.theme.primaryColor_2};
+  background: ${(props) => props.theme.primaryColor_1};
+  width: ${({ isOpen }) => (!isOpen ? `auto` : '250px')};
+  height: 100vh;
+
+  padding: ${({ isOpen }) => (!isOpen ? `24px 5px` : '24px 12px')};
   border: 1px solid ${(props) => props.theme.gray_3};
-  width: ${({ isOpen }) => (!isOpen ? `auto` : '300px')};
   box-shadow: -3px 0 5px 0 #555;
+  font-weight: 200;
 `;
 
 export const SidebarOpenButton = styled.button<{ isOpen: boolean }>`
   border: none;
   position: absolute;
   top: 48px;
-  right: ${({ isOpen }) => (!isOpen ? `-16px` : `-40px`)};
+  right: ${({ isOpen }) => (isOpen ? `-16px` : `-40px`)};
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: ${(props) => props.theme.primaryColor_2};
-  box-shadow: 0 0 4px #e6e6e6;
+  background: ${(props) => props.theme.primaryColor_1};
+  box-shadow: 0 0 4px gray;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,10 +42,18 @@ export const LogoLink = styled.div`
     width: 52px;
   }
   cursor: pointer;
-  height: 80px;
-  margin-bottom: 5px;
+  height: 90px;
+  margin-bottom: 24px;
 `;
 
+export const Logo = styled.div<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (!isOpen ? 'none' : ``)};
+  background-image: url(${Logos_orange});
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 190px;
+  height: 50px;
+`;
 export const LogoText = styled.div<{ isOpen: boolean }>`
   padding: 0.3rem;
   font-size: 35px;
@@ -54,16 +64,21 @@ export const LogoText = styled.div<{ isOpen: boolean }>`
 `;
 
 export const Divider = styled.div`
-  border: 1px solid ${(props) => props.theme.gray_2};
+  height: 1px;
   width: 100%;
-  margin: 0 0 15px;
+  background: #e2e2ea;
+  margin: 10px 0;
 `;
 
 export const SLinkWrapper = styled.div<{ isActive: boolean }>`
-  background: ${({ isActive, theme }) => (!isActive ? `transparent` : theme.primaryColor_1)};
+  background: ${({ isActive, theme }) => (!isActive ? `transparent` : theme.secondaryColor)};
   border-radius: 6px;
   margin: 8px 0;
   letter-spacing: 0.6px;
+
+  :hover {
+    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.bg3};
+  }
 
   :hover {
     box-shadow: inset 0 0 0 1px grey;
@@ -77,7 +92,7 @@ export const SLink = styled(Link)<{ isOpen: boolean; $column?: boolean }>`
   color: inherit;
   font-size: 16px;
   padding: 6px 0;
-  width: ${({ isOpen }) => (!isOpen ? 'fit-content' : `120px`)};
+  width: ${({ isOpen }) => (!isOpen ? 'fit-content' : `100px`)};
   flex-direction: ${({ $column }) => ($column ? 'column' : `row`)};
 `;
 
@@ -97,10 +112,11 @@ export const LinkLabel = styled.span<{ $column?: boolean }>`
   padding-right: ${({ $column }) => ($column ? '5px' : `100px`)};
 `;
 export const SidebarSubtitle = styled.div<{ isOpen: boolean }>`
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 10px 5px;
   display: ${({ isOpen }) => (!isOpen ? 'none' : ``)};
+  padding: 15px 8px;
+  color: gray;
+  align-items: center;
+  font-size: 14px;
 `;
 
 export const ViewContainer = styled.div<{ isOpen: boolean }>`
@@ -114,19 +130,22 @@ export const BoardContainer = styled.div<{ isOpen: boolean }>`
   justify-content: center;
 `;
 
-export const BoardWrapper = styled.div<{ boardDesign?: string }>`
+export const BoardWrapper = styled.div<{ isOpen: boolean }>`
+  justify-content: ${({ isOpen }) => (!isOpen ? 'center' : `left`)};
+  align-items: center;
+  display: flex;
+`;
+
+export const BoardSquare = styled.div<{ boardDesign?: string }>`
   border-radius: 5px;
-  border: 2px solid ${(props) => props.theme.gray_2};
+  border: 1px solid ${(props) => props.boardDesign};
   background-color: ${(props) => props.boardDesign};
-  margin: 5px;
+  margin: 8px;
   padding: 10px;
 `;
 
-export const Logo = styled.div<{ isOpen: boolean }>`
+export const BoardTitle = styled.div<{ isOpen: boolean }>`
+  padding-left: 15px;
+  font-size: 17px;
   display: ${({ isOpen }) => (!isOpen ? 'none' : ``)};
-  background-image: url(${Logos_orange});
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 190px;
-  height: 50px;
 `;

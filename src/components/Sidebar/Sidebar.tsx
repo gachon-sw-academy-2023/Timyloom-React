@@ -1,9 +1,7 @@
 import * as S from './SidebarStyle';
-import { ReactComponent as Logo } from '@/assets/images/logo.svg';
 import { useState } from 'react';
 import { AiOutlineHome, AiOutlineLeft, AiOutlineSetting, AiOutlineCalendar, AiOutlineTable } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
-import { movePage } from '@/utils/movePage';
 
 const linksArray = [
   {
@@ -49,8 +47,7 @@ const board = [
   },
 ];
 
-function Sidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
   const { pathname } = useLocation();
 
   const changeHandler = (e: MediaQueryListEvent) => {
@@ -79,9 +76,8 @@ function Sidebar() {
           </S.SLink>
         </S.SLinkWrapper>
       ))}
-      <S.SidebarSubtitle isOpen={sidebarOpen}>Workspace Views</S.SidebarSubtitle>
       <S.Divider />
-
+      <S.SidebarSubtitle isOpen={sidebarOpen}>Workspace Views</S.SidebarSubtitle>
       <S.ViewContainer isOpen={sidebarOpen}>
         {secondaryLinksArray.map(({ icon, label, to }) => (
           <S.SLinkWrapper key={label} isActive={pathname === to}>
@@ -92,12 +88,13 @@ function Sidebar() {
           </S.SLinkWrapper>
         ))}
       </S.ViewContainer>
-      <S.SidebarSubtitle isOpen={sidebarOpen}>Your Boards</S.SidebarSubtitle>
       <S.Divider />
+      <S.SidebarSubtitle isOpen={sidebarOpen}>Your Boards</S.SidebarSubtitle>
       <S.BoardContainer isOpen={sidebarOpen}>
         {board.map((item, index) => (
-          <S.BoardWrapper key={index} boardDesign={item.color}>
-            {item.title}
+          <S.BoardWrapper isOpen={sidebarOpen} key={index}>
+            <S.BoardSquare boardDesign={item.color}></S.BoardSquare>
+            <S.BoardTitle isOpen={sidebarOpen}>{item.title}</S.BoardTitle>
           </S.BoardWrapper>
         ))}
       </S.BoardContainer>
