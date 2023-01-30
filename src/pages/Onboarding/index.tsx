@@ -68,7 +68,7 @@ function Onboarding() {
                   <S.StartBtn
                     gradationColor={gradationColor}
                     onClick={() => {
-                      movePage('/workspace');
+                      movePage('/workspace/boards');
                     }}
                   >
                     START
