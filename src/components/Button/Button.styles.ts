@@ -10,11 +10,11 @@ const themeVariants = variant({
       backgroundColor: '#000000',
     },
     sign: {
-      backgroundColor: '#f1e5dd',
-      color: '#808080',
+      backgroundColor: '#a0c3ff',
+      color: 'white',
       '&:hover': {
-        backgroundColor: '#f8bd8d',
-        color: 'white',
+        backgroundColor: '#eef4fe',
+        color: '#808080',
       },
     },
     success: {
@@ -42,10 +42,10 @@ export const Container = styled.button<Omit<ButtonProps, 'children'>>`
       : css`
           border: none;
 
-          &:hover {
+          /* &:hover {
             background-color: ${(props) => props.theme.secondaryColor};
             color: ${(props) => props.theme.white};
-          }
+          } */
         `}
   ${({ radius }) =>
     radius === 'square'

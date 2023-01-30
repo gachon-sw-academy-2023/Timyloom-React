@@ -1,0 +1,70 @@
+import {
+  AiOutlineWindows,
+  AiOutlineSetting,
+  AiOutlineRobot,
+  AiOutlineShop,
+  AiOutlineBook,
+  AiOutlineUser,
+  AiOutlineTable,
+  AiOutlineLaptop,
+  AiOutlineLink,
+} from 'react-icons/ai';
+
+export const fieldData = [
+  {
+    title: 'IT',
+    index: 0,
+    color: '#00C875',
+    select: false,
+    icon: <AiOutlineLaptop size="50px" fill="#00C875" />,
+  },
+  {
+    title: 'Marketing',
+    index: 1,
+    color: '#A25DDC',
+    select: false,
+    icon: <AiOutlineShop size="50px" fill="#A25DDC" />,
+  },
+  {
+    title: 'HR',
+    index: 2,
+    color: '#00D2D2',
+    select: false,
+    icon: <AiOutlineUser size="50px" fill="#00D2D2" />,
+  },
+  {
+    title: 'Operations',
+    index: 3,
+    color: '#FF7575',
+    select: false,
+    icon: <AiOutlineLink size="50px" fill="#FF7575" />,
+  },
+  {
+    title: 'CRM',
+    index: 4,
+    color: '#579BFC',
+    select: false,
+    icon: <AiOutlineTable size="50px" fill="#579BFC" />,
+  },
+  {
+    title: 'Project ',
+    index: 5,
+    color: '#F04095',
+    select: false,
+    icon: <AiOutlineSetting size="50px" fill="#F04095" />,
+  },
+  {
+    title: 'Education',
+    index: 6,
+    color: '#d2ff3f',
+    select: false,
+    icon: <AiOutlineBook size="50px" fill="#d2ff3f" />,
+  },
+  {
+    title: 'Cooperation',
+    index: 7,
+    color: '#ff9f44',
+    select: false,
+    icon: <AiOutlineRobot size="50px" fill="#ff9f44" />,
+  },
+];

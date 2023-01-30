@@ -6,9 +6,9 @@ const colors = {
   gray_2: '#999999',
   gray_3: '#e2e2ea',
   purple: '#844685',
-  primaryColor_1: '#ccc1be',
-  primaryColor_2: '#f1e5dd',
-  secondaryColor: ' #f8bd8d',
+  primaryColor_1: '#eef4fe',
+  primaryColor_2: '#eef4fe',
+  secondaryColor: ' #a0c3ff',
   test1: '#EEE6E2',
   test2: '#FBF7F4',
 } as const;

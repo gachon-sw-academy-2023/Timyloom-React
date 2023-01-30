@@ -67,7 +67,7 @@ function Sidebar() {
       <S.SidebarOpenButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p) => !p)}>
         <AiOutlineLeft />
       </S.SidebarOpenButton>
-      <S.LogoLink to={'/'}>
+      <S.LogoLink>
         <S.Logo isOpen={sidebarOpen} />
       </S.LogoLink>
       <S.Divider />
@@ -81,6 +81,7 @@ function Sidebar() {
       ))}
       <S.SidebarSubtitle isOpen={sidebarOpen}>Workspace Views</S.SidebarSubtitle>
       <S.Divider />
+
       <S.ViewContainer isOpen={sidebarOpen}>
         {secondaryLinksArray.map(({ icon, label, to }) => (
           <S.SLinkWrapper key={label} isActive={pathname === to}>
