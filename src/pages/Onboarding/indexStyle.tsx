@@ -1,17 +1,28 @@
 import styled from 'styled-components';
 
 export const MainWrapper = styled.div`
-  max-width: 1920px;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: #eef4fe;
   padding: 0px 10vw;
 `;
 
-export const ContentsWrapper = styled.div`
-  box-sizing: border-box;
+export const LeftContentsContainer = styled.div`
+  text-align: center;
+`;
+
+export const Video = styled.video`
+  @media (max-width: 768px) {
+    width: 280px;
+  }
+`;
+
+export const RightContentsContainer = styled.div`
+  width: 700px;
   text-align: center;
   margin-top: 120px;
   @media (max-width: 900px) {
+    width: 350px;
     margin-top: 0px;
   }
 `;
@@ -39,95 +50,6 @@ export const StartBtn = styled.button<{ gradationColor: any }>`
     height: 35px;
     font-size: 0.75rem;
   }
-`;
-
-export const MainContent = styled.div<{ fontSize?: string; fontWeight?: string; color?: string }>`
-  font-size: ${(props) => (props.fontSize ? props.fontSize : '3vw')};
-  font-weight: ${(props) => (props.fontWeight ? 'none' : 'bold')};
-  color: ${(props) => (props.color ? props.color : 'black')};
-  @media (max-width: 900px) {
-    font-size: max(3vw, 40px);
-  }
-`;
-
-export const PhotoDiv = styled.div`
-  width: 80%;
-  height: 700px;
-  background-color: beige;
-  margin: 30px auto;
-`;
-
-export const ContextDiv = styled.div`
-  justify-content: center;
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: space-around;
-  padding: 50px 7vw;
-  span {
-    color: #494949;
-  }
-  strong {
-    font-size: 3vw;
-    color: #2c2c2c;
-    margin-right: 10px;
-  }
-`;
-
-export const ContextWrapperL = styled.div`
-  margin-bottom: 60px;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const ContextWrapperR = styled.div`
-  margin-bottom: 60px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: 50px;
-  @media (max-width: 768px) {
-    top: 0;
-  }
-`;
-
-export const ContextTitleBlock = styled.div`
-  text-align: left;
-`;
-
-export const TextWrapper = styled.div`
-  float: left;
-  height: 100%;
-  margin: auto;
-`;
-
-export const PhotoWrapper = styled.div`
-  float: right;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  margin: 0 auto;
-`;
-
-export const TextDiv = styled.div`
-  margin: 50px 10px;
-`;
-
-export const BlankDiv = styled.div`
-  height: 200px;
-`;
-
-export const HorizontalLine = styled.div`
-  width: 100%;
-  text-align: center;
-  border-bottom: 1px solid #aaa;
-  line-height: 0.1em;
-  margin: 10px 0 20px;
-`;
-
-export const DodgeImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 export const Field = styled.div<{ field: any }>`
@@ -195,23 +117,4 @@ export const MainTitle = styled.div`
   @media (max-width: 768px) {
     font-size: 1.3rem;
   }
-`;
-export const MainDescription = styled.div`
-  font-size: 1.2rem;
-  color: #0e0e0e;
-`;
-
-export const LeftContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 100px;
-`;
-
-export const Video = styled.video`
-  @media (max-width: 768px) {
-    width: 280px;
-  }
-`;
-export const VideoContainer = styled.div`
-  text-align: center;
 `;

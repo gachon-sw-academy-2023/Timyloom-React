@@ -1,14 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from '@/pages/Onboarding/indexStyle';
 import { movePage } from '@/utils/movePage';
-import dodge from '@/assets/images/dodge.jpg';
-import trello from '@/assets/images/Trello.png';
 import MainVideo from '@/assets/video/landing.mp4';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { Bounce, Fade, Flip, Hinge, JackInTheBox, Roll, Rotate, Slide, Zoom } from 'react-awesome-reveal';
-import { fieldData } from '@/pages/Onboarding/colorData';
-import { AiOutlineWindows } from 'react-icons/ai';
+import { Slide } from 'react-awesome-reveal';
+import { fieldData } from '@/pages/Onboarding/fieldData';
 
 function Onboarding() {
   const [fields, setFields] = useState(fieldData);
@@ -41,16 +38,16 @@ function Onboarding() {
         <Grid container spacing={2}>
           <Grid item xs={12} md={12} lg={6}>
             <Slide direction="left" triggerOnce>
-              <S.VideoContainer>
+              <S.LeftContentsContainer>
                 <S.Video src={MainVideo} autoPlay loop muted />
-              </S.VideoContainer>
+              </S.LeftContentsContainer>
             </Slide>
           </Grid>
           <Grid item xs={12} md={12} lg={6}>
             <Slide direction="right" triggerOnce>
-              <S.ContentsWrapper>
+              <S.RightContentsContainer>
                 <S.MainTitle>What schedule will you manage?</S.MainTitle>
-                <S.MainTitle>With us, everything is possible.</S.MainTitle>
+                <S.MainTitle>With us, everything is possible</S.MainTitle>
                 <S.FieldContainer>
                   {fields.map((field, index) => {
                     return (
@@ -61,7 +58,7 @@ function Onboarding() {
                         }}
                         field={field}
                       >
-                        <AiOutlineWindows size="50px" fill={field.color} />
+                        <div>{field.icon}</div>
                         <S.Title>{field.title}</S.Title>
                       </S.Field>
                     );
@@ -77,12 +74,11 @@ function Onboarding() {
                     START
                   </S.StartBtn>
                 </S.BtnWrapper>
-              </S.ContentsWrapper>
+              </S.RightContentsContainer>
             </Slide>
           </Grid>
         </Grid>
       </Box>
-      {/* react-awesome-reveal 데모입니다. 추후에 코드 정리 필요 */}
     </S.MainWrapper>
   );
 }
