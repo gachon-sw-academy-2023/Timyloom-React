@@ -61,7 +61,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 
   return (
     <S.SidebarWrapper isOpen={sidebarOpen}>
-      <S.SidebarOpenButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p) => !p)}>
+      <S.SidebarOpenButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p: boolean) => !p)}>
         <AiOutlineLeft />
       </S.SidebarOpenButton>
       <S.LogoLink>

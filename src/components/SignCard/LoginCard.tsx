@@ -71,8 +71,8 @@ function LoginCard() {
             <S.InputTitle value={password} data-placeholder="Password" isReg={true}></S.InputTitle>
           </S.InputWrapper>
         </S.InputContainer>
-        <S.SignLink href="/signup">Don’t have an account?</S.SignLink>
-        <Button onClick={handleLogin} size="lg" themes="sign" data-testid="login-button">
+        <S.SignLink to={'/signup'}>Don’t have an account?</S.SignLink>
+        <Button onClick={handleLogin} radius="circle" border={false} size="lg" themes="sign" data-testid="login-button">
           LOGIN
         </Button>
       </S.SignPanel>
