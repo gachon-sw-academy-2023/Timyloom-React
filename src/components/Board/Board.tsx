@@ -2,9 +2,13 @@ import List from '@/components/Board/List';
 import * as S from '@/components/Board/BoardStyle';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import AddList from './AddList';
+import { useRecoilState } from 'recoil';
+import { testAtom } from '@/recoil/testAtom';
 
 function Board({ boards, setBoards, boardId }: any) {
   let [board] = boards.filter((board: any) => board.boardId === boardId);
+  const [test, setTest] = useRecoilState(testAtom);
+
   let lists = board.lists;
 
   const onBeforeDragStart = () => {};
@@ -63,6 +67,7 @@ function Board({ boards, setBoards, boardId }: any) {
               ))}
               {provided.placeholder}
               <AddList></AddList>
+              {test && <div>모달 테스트입니다.</div>}
             </S.BoardContainer>
           )}
         </Droppable>
