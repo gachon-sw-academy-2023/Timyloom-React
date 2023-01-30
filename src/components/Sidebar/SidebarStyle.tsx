@@ -2,10 +2,9 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Logos_orange from '@/assets/images/timyloom_logo_orange.png';
 
-
 export const SidebarWrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
-  min-height: 100vh;
+  min-height: vh;
   padding: 15px;
   background: ${(props) => props.theme.primaryColor_2};
   border: 1px solid ${(props) => props.theme.gray_3};
@@ -113,7 +112,6 @@ export const BoardContainer = styled.div<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  display: ${({ isOpen }) => (!isOpen ? 'none' : ``)};
 `;
 
 export const BoardWrapper = styled.div<{ boardDesign?: string }>`
