@@ -3,15 +3,16 @@ import Swal from 'sweetalert2';
 import * as S from './CardStyle';
 import axios from 'axios';
 import Button from '@/components/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 function LoginCard() {
   const [inputs, setInputs] = useState({
     id: '',
     password: '',
   });
-
   const [showPassword, setShowPassword] = useState(false);
   const { id, password } = inputs;
+  const navigate = useNavigate();
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
@@ -35,7 +36,7 @@ function LoginCard() {
         switch (res.status) {
           case 200:
             localStorage.setItem('id', `${res.data.id}`);
-            document.location.href = '/';
+            navigate('/');
             break;
           case 202:
             Swal.fire({

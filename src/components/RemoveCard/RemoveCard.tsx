@@ -2,10 +2,12 @@ import * as S from '@/components/RemoveCard/RemoveCardStyle';
 import Button from '@/components/Button/Button';
 import Swal from 'sweetalert2';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function RemoveCard() {
+  const navigate = useNavigate();
   const handlePage = () => {
-    location.href = '/workspace';
+    navigate('workspace');
   };
 
   useEffect(() => {
@@ -26,7 +28,7 @@ function RemoveCard() {
   }, []);
 
   setInterval(() => {
-    location.href = '/workspace/boards';
+    navigate('/workspace/boards');
   }, 5000);
 
   return (

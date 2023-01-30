@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import * as S from './HeaderStyle';
 import { FaBars } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleToggleOpen = () => {
     setIsToggleOpen(!isToggleOpen);
@@ -11,15 +13,15 @@ function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem('id');
-    document.location.href = '/';
+    navigate('/');
   };
 
   const handleMoveLogin = () => {
-    document.location.href = '/login';
+    navigate('/login');
   };
 
   const handleMoveSignup = () => {
-    document.location.href = '/signup';
+    navigate('signup');
   };
 
   return (
