@@ -33,19 +33,6 @@ function AddCard({ listId }: any) {
     setCardTitle(e.target.value);
   };
 
-  //   const saveList = () => {
-  //     let listId = shortid.generate();
-  //     let tempBoard = boards.map((board, index) =>
-  //       board.boardId === boardId
-  //         ? {
-  //             ...board,
-  //             lists: [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [] }],
-  //           }
-  //         : board,
-  //     );
-  //     setBoards((prev) => tempBoard);
-  //   };
-
   const saveCard = () => {
     let cardId = shortid.generate();
     let tempBoard = boards.map((board, index) =>

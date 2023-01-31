@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import { selectedCardAtom } from '@/recoil/selectedCardAtom';
+import { CgClose } from 'react-icons/cg';
+import { BoardInterface, ListInterface, CardInterface } from '@/type';
+import { boardsAtom } from '@/recoil/boardsAtom';
 
 interface CardProps {
   listId: string;
@@ -20,6 +23,7 @@ interface CardDataInterface {
 const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
+  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
 
   const handleSaveModalData = () => {
     setSelectedCardId((prev) => ({
@@ -28,6 +32,22 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
       cardId: cardId,
     }));
   };
+
+  const handleDeleteCard = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    let newBoards = boards.map((board) =>
+      board.boardId === boardId
+        ? {
+            ...board,
+            lists: board.lists.map((list) =>
+              list.listId === listId ? { ...list, cards: list.cards.filter((card) => card.cardId != cardId) } : list,
+            ),
+          }
+        : board,
+    );
+    setBoards((prev) => newBoards);
+  };
+
   return (
     <>
       <Draggable draggableId={cardId} index={index}>
@@ -37,7 +57,12 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
             {...draggableProvided.draggableProps}
             {...draggableProvided.dragHandleProps}
           >
-            <S.TextAreaWrapper onClick={handleSaveModalData}>{cardData.cardTitle}</S.TextAreaWrapper>
+            <S.TextAreaWrapper onClick={handleSaveModalData}>
+              <S.CardTitleWrapper>{cardData.cardTitle}</S.CardTitleWrapper>
+              <S.DeleteWrapper onClick={handleDeleteCard}>
+                <CgClose />
+              </S.DeleteWrapper>
+            </S.TextAreaWrapper>
           </S.CardDraggable>
         )}
       </Draggable>
