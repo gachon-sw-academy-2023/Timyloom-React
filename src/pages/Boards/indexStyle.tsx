@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import boardbackground from '@/assets/images/backgroundimg.jpg';
 import { ReactComponent as Add } from '@/assets/images/add.svg';
 import { ReactComponent as UpArrow } from '@/assets/images/upArrow.svg';
+import Skeleton from '@mui/material/Skeleton';
 
 export const WorkspaceWrapper = styled.div`
   display: flex;
@@ -193,4 +194,16 @@ export const ScrollToTopSvg = styled((props) => <UpArrow {...props} />)`
     width: 40px;
     height: 40px;
   }
+`;
+
+export const SkeletonWrapper = styled.div`
+  width: 255px;
+  height: 170px;
+  margin: 25px;
+  position: relative;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.7rem;
+  overflow: hidden;
 `;

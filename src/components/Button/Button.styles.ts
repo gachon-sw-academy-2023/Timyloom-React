@@ -7,7 +7,8 @@ const themeVariants = variant({
   prop: 'themes',
   variants: {
     default: {
-      backgroundColor: '#000000',
+      backgroundColor: '#FFFFFF',
+      color: 'black',
     },
     sign: {
       backgroundColor: '#a0c3ff',
@@ -41,11 +42,6 @@ export const Container = styled.button<Omit<ButtonProps, 'children'>>`
         `
       : css`
           border: none;
-
-          /* &:hover {
-            background-color: ${(props) => props.theme.secondaryColor};
-            color: ${(props) => props.theme.white};
-          } */
         `}
   ${({ radius }) =>
     radius === 'square'
