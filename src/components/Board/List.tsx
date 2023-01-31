@@ -20,7 +20,14 @@ function List({ listId, listData, index, boardId }: any) {
               {(droppableProvided, droppableSnapshot) => (
                 <S.ListDroppable ref={droppableProvided.innerRef}>
                   {listData.cards.map((card: any, index: any) => (
-                    <Card key={card.cardId} cardId={card.cardId} listId={listId} cardData={card} index={index}></Card>
+                    <Card
+                      key={card.cardId}
+                      cardId={card.cardId}
+                      listId={listId}
+                      boardId={boardId}
+                      cardData={card}
+                      index={index}
+                    ></Card>
                   ))}
                   {droppableProvided.placeholder}
                 </S.ListDroppable>

@@ -1,15 +1,33 @@
 import List from '@/components/Board/List';
 import * as S from '@/components/Board/BoardStyle';
+import { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import AddList from './AddList';
 import { useRecoilState } from 'recoil';
-import { testAtom } from '@/recoil/testAtom';
+import { selectedCardAtom } from '@/recoil/selectedCardAtom';
+import { useDidMountEffect } from '@/hooks/useDidMountEffect';
+import Modal from '@/components/Modal/Modal';
 
 function Board({ boards, setBoards, boardId }: any) {
   let [board] = boards.filter((board: any) => board.boardId === boardId);
-  const [test, setTest] = useRecoilState(testAtom);
+  const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
+  const [cardData, setcardData] = useState<IUserInfo | null>({ cardTitle: '', cardId: '', position: '' });
+
+  interface IUserInfo {
+    cardTitle: string | undefined;
+    cardId: string | undefined;
+    position: string | undefined;
+  }
 
   let lists = board.lists;
+
+  useDidMountEffect(() => {
+    if (selectedCardId.isModalopen) {
+      let [list] = board.lists.filter((list: any) => list.listId === selectedCardId.listId);
+      let [card] = list.cards.filter((card: any) => card.cardId === selectedCardId.cardId);
+      setcardData({ ...card });
+    }
+  }, [selectedCardId]);
 
   const onBeforeDragStart = () => {};
 
@@ -67,11 +85,11 @@ function Board({ boards, setBoards, boardId }: any) {
               ))}
               {provided.placeholder}
               <AddList></AddList>
-              {test && <div>모달 테스트입니다.</div>}
             </S.BoardContainer>
           )}
         </Droppable>
       </DragDropContext>
+      <Modal showModal={selectedCardId.isModalopen} setShowModal={setSelectedCardId} data={cardData} />
     </>
   );
 }

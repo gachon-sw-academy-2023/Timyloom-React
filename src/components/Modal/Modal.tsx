@@ -70,11 +70,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({ showModal, setShowModal, d
   return (
     <>
       {showModal ? (
-        <ModalBackdrop
-          onClick={() => {
-            setShowModal(!showModal);
-          }}
-        >
+        <ModalBackdrop>
           {themes === 'default' ? (
             <ModalDefault showModal={showModal} setShowModal={setShowModal} data={data} />
           ) : themes === 'board' ? (
