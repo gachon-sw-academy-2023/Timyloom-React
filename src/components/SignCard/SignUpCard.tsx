@@ -68,7 +68,6 @@ function SignUpCard() {
       axios
         .post(`/signup`, inputs)
         .then((res) => {
-          console.log(res);
           switch (res.status) {
             case 200:
               Swal.fire({

@@ -1,21 +1,28 @@
 import WorkspaceHeader from '@/components/WorkspaceHeader/WorkspaceHeader';
 import * as S from '@/pages/Boards/indexStyle';
-import { useRecoilState } from 'recoil';
+import { SetterOrUpdater, useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import { defaultData } from '@/components/Board/BoardData';
 import { useState } from 'react';
 import Skeleton from '@mui/material/Skeleton';
+import { BoardInterface } from '@/typeTemp';
 
-const handleAddBoard = (boards: any, setBoards: any) => {
+interface BoardsProps {
+  sidebarOpen: boolean;
+}
+
+const handleAddBoard = (boards: BoardInterface[], setBoards: SetterOrUpdater<BoardInterface[]>) => {
   let newData = defaultData();
   let newBoards = [...JSON.parse(JSON.stringify(boards)), newData];
-  setBoards((prev: any) => newBoards);
+  setBoards((prev) => newBoards);
 };
 
-function Boards({ sidebarOpen }: any) {
+function Boards({ sidebarOpen }: BoardsProps) {
   const [loading, setLoading] = useState(true);
   const [boards, setBoards] = useRecoilState(boardsAtom);
-  let personalBoards = boards.filter((board) => board.owner === localStorage.getItem('id'));
+
+  console.log(JSON.stringify(boards));
+  let personalBoards = boards.filter((board: BoardInterface) => board.owner === localStorage.getItem('id'));
 
   setTimeout(() => {
     setLoading((prev) => false);
@@ -44,7 +51,7 @@ function Boards({ sidebarOpen }: any) {
       <WorkspaceHeader />
       <S.ContentWrapper isopen={sidebarOpen}>
         <S.BoardContainer>
-          {personalBoards.map((board, index) => (
+          {personalBoards.map((board: BoardInterface, index: number) => (
             <S.BoardWrapper key={index} to={`/workspace/${board.boardId}`}>
               <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
               <S.ImageWrapper />

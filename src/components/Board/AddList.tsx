@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import shortid from 'shortid';
+import { BoardInterface, ListInterface, CardInterface } from '@/typeTemp';
 
 function AddList() {
   const { boardId } = useParams();
@@ -34,8 +35,7 @@ function AddList() {
       board.boardId === boardId
         ? {
             ...board,
-            lists: [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [], position: 999 }],
-            //position이 꼭 필요할까...? 한번 검토해보자
+            lists: [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [] }],
           }
         : board,
     );

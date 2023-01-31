@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+interface fieldInterface {
+  title: string;
+  index: number;
+  color: string;
+  select: boolean;
+  icon: JSX.Element;
+}
+
 export const MainWrapper = styled.div`
   width: 100vw;
   background-color: #eef4fe;
@@ -30,7 +38,7 @@ export const BtnWrapper = styled.div`
   text-align: center;
 `;
 
-export const StartBtn = styled.button<{ gradationColor: any }>`
+export const StartBtn = styled.button<{ gradationColor: string }>`
   width: 200px;
   height: 70px;
   font-size: 1.5rem;
@@ -51,7 +59,7 @@ export const StartBtn = styled.button<{ gradationColor: any }>`
   }
 `;
 
-export const Field = styled.div<{ field: any }>`
+export const Field = styled.div<{ field: fieldInterface }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
