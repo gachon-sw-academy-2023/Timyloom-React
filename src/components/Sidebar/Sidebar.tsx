@@ -47,10 +47,10 @@ const board = [
   },
 ];
 
-type SidebarProps = {
+interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: Function;
-};
+}
 
 function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
   const { pathname } = useLocation();
