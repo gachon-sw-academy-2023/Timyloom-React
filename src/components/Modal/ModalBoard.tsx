@@ -25,7 +25,7 @@ const ModalCloseBtn = styled.button`
 `;
 
 const ModalView = styled.div`
-  background-color: white;
+  background-color: black;
   width: 20vw;
   height: 60vh;
   min-height: 400px;
