@@ -17,7 +17,6 @@ interface CardDataInterface {
 }
 
 const Card = ({ listId, cardId, cardData, index }: CardProps) => {
-  const [showModal, setShowModal] = useState(false);
   const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
 
   const handleSaveModalData = () => {
