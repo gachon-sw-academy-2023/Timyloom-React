@@ -1,8 +1,8 @@
 import * as S from '@/components/Board/CardStyle';
+import { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import { selectedCardAtom } from '@/recoil/selectedCardAtom';
-
 
 interface CardProps {
   listId: string;
@@ -18,14 +18,11 @@ interface CardDataInterface {
 
 const Card = ({ listId, cardId, cardData, index }: CardProps) => {
   const [showModal, setShowModal] = useState(false);
-  const [test, setTest] = useRecoilState(testAtom);
   const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
-
 
   const handleSaveModalData = () => {
     setSelectedCardId((prev) => ({
       isModalopen: !prev.isModalopen,
-      boardId: boardId,
       listId: listId,
       cardId: cardId,
     }));
