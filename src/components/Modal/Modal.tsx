@@ -30,7 +30,6 @@ type ModalProps = {
 interface ModalDataProps {
   cardTitle: string | undefined;
   cardId: string | undefined;
-  position: string | undefined;
 }
 const Modal: React.FunctionComponent<ModalProps> = ({
   showModal,

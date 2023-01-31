@@ -128,7 +128,8 @@ export const InputTitle = styled.div<{ value: string; isReg?: boolean }>`
     width: ${(props) => (props.value ? '100%' : '0')};
     height: 2px;
     transition: all 0.4s;
-    background: -webkit-linear-gradient(left, #ccc1be, #844685);
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
   }
 
   ::after {
@@ -157,21 +158,6 @@ export const InputTitle = styled.div<{ value: string; isReg?: boolean }>`
     ::after {
       font-size: 5px;
     }
-  }
-`;
-
-export const SignBtn = styled.button`
-  font-size: 15px;
-  padding: 1rem 2.5rem;
-  height: 5vh;
-  border-radius: 25px;
-  background-color: ${(props) => props.theme.primaryColor_2};
-  color: ${(props) => props.theme.gray_1};
-  border: none;
-
-  &:hover {
-    background-color: ${(props) => props.theme.secondaryColor};
-    color: ${(props) => props.theme.white};
   }
 `;
 

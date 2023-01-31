@@ -8,7 +8,8 @@ const colors = {
   purple: '#844685',
   primaryColor_1: '#eef4fe',
   primaryColor_2: '#eef4fe',
-  secondaryColor: ' #a0c3ff',
+  secondaryColor: ' #BED0F4',
+  secondaryColor_2: ' #a0c3ff',
   test1: '#EEE6E2',
   test2: '#FBF7F4',
 } as const;

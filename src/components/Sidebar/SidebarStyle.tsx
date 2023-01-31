@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import Logos_orange from '@/assets/images/timyloom_logo_orange.png';
 
 export const SidebarWrapper = styled.div<{ $isopen: boolean }>`
-  position: relative;
+  position: sticky;
   background: ${(props) => props.theme.primaryColor_1};
   width: ${({ $isopen }) => (!$isopen ? `auto` : '250px')};
   height: 100vh;
-
+  top: 0px;
   padding: ${({ $isopen }) => (!$isopen ? `24px 5px` : '24px 12px')};
   border: 1px solid ${(props) => props.theme.gray_3};
-  box-shadow: -3px 0 5px 0 #555;
   font-weight: 200;
 `;
 
@@ -18,7 +17,7 @@ export const SidebarOpenButton = styled.button<{ $isopen: boolean }>`
   border: none;
   position: absolute;
   top: 48px;
-  right: ${({ $isopen }) => ($isopen ? `-16px` : `-40px`)};
+  right: ${({ $isopen }) => ($isopen ? `-16px` : `16px`)};
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -77,11 +76,7 @@ export const SLinkWrapper = styled.div<{ isActive: boolean }>`
   letter-spacing: 0.6px;
 
   :hover {
-    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.bg3};
-  }
-
-  :hover {
-    box-shadow: inset 0 0 0 1px grey;
+    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.gray_2};
   }
 `;
 
