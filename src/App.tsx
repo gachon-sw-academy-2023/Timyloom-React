@@ -6,7 +6,6 @@ import Workspace from '@/pages/Workspace/index';
 import BoardPage from '@/pages/Board/index';
 import Remove from '@/pages/Remove';
 import NotFound from '@/pages/NotFound/index';
-import Sidebar from './components/Sidebar/Sidebar
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';

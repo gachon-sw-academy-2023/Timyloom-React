@@ -1,10 +1,13 @@
 import List from '@/components/Board/List';
+import { useState } from 'react';
 import * as S from '@/components/Board/BoardStyle';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import AddList from './AddList';
 import { useRecoilState, SetterOrUpdater } from 'recoil';
-import { testAtom } from '@/recoil/testAtom';
+import { selectedCardAtom } from '@/recoil/selectedCardAtom';
 import { BoardInterface, ListInterface } from '@/type';
+import { useDidMountEffect } from '@/hooks/useDidMountEffect';
+import Modal from '@/components/Modal/Modal';
 
 interface BoardProps {
   boards: BoardInterface[];
@@ -17,10 +20,10 @@ interface DndPositionInterface {
   droppableId: string;
 }
 
-
 function Board({ boards, setBoards, boardId }: BoardProps) {
   let [board] = boards.filter((board) => board.boardId === boardId);
-  const [test, setTest] = useRecoilState(testAtom);
+  const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
+  const [cardData, setcardData] = useState({ cardTitle: '', cardId: '' });
   let lists = board.lists;
 
   useDidMountEffect(() => {
