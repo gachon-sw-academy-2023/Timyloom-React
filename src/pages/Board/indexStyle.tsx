@@ -6,7 +6,7 @@ export const BoardWrapper = styled.div`
   background-color: #ffffff;
 `;
 
-export const BoardTitle = styled.textarea<{ boardTitle: any }>`
+export const BoardTitle = styled.textarea<{ boardTitle: string }>`
   cursor: pointer;
   width: ${(props) => `${props.boardTitle.length * 23}px`};
   min-width: 200px;

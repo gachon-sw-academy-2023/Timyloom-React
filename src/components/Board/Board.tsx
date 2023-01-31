@@ -1,21 +1,32 @@
 import List from '@/components/Board/List';
 import * as S from '@/components/Board/BoardStyle';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import AddList from './AddList';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, SetterOrUpdater } from 'recoil';
 import { testAtom } from '@/recoil/testAtom';
+import { BoardInterface, ListInterface } from '@/type';
 
-function Board({ boards, setBoards, boardId }: any) {
-  let [board] = boards.filter((board: any) => board.boardId === boardId);
+interface BoardProps {
+  boards: BoardInterface[];
+  setBoards: SetterOrUpdater<BoardInterface[]>;
+  boardId: string;
+}
+
+interface DndPositionInterface {
+  index: number;
+  droppableId: string;
+}
+
+function Board({ boards, setBoards, boardId }: BoardProps) {
+  let [board] = boards.filter((board) => board.boardId === boardId);
   const [test, setTest] = useRecoilState(testAtom);
-
   let lists = board.lists;
 
   const onBeforeDragStart = () => {};
 
   const onDragStart = () => {};
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
     const { source, destination, type } = result;
     switch (type) {
@@ -30,30 +41,34 @@ function Board({ boards, setBoards, boardId }: any) {
     }
   };
 
-  const reorderCardPosition = (source: any, destination: any, cardId: any, boardId: any) => {
-    let tempBoard = JSON.parse(JSON.stringify(boards)).filter((board: any) => board.boardId === boardId)[0];
-    let tempSourceCards = tempBoard.lists.filter((list: any) => list.listId === source.droppableId)[0].cards;
-    let tempDestinationCards = tempBoard.lists.filter((list: any) => list.listId === destination.droppableId)[0].cards;
+  const reorderCardPosition = (
+    source: DndPositionInterface,
+    destination: DndPositionInterface,
+    cardId: string,
+    boardId: string,
+  ) => {
+    let tempBoard = JSON.parse(JSON.stringify(boards)).filter((board: BoardInterface) => board.boardId === boardId)[0];
+    let tempSourceCards = tempBoard.lists.filter((list: ListInterface) => list.listId === source.droppableId)[0].cards;
+    let tempDestinationCards = tempBoard.lists.filter(
+      (list: ListInterface) => list.listId === destination.droppableId,
+    )[0].cards;
     let [reorderCard] = tempSourceCards.splice(source.index, 1);
     tempDestinationCards.splice(destination.index, 0, reorderCard);
-    let newBoard = tempBoard.lists.map((list: any) =>
+    let newBoard = tempBoard.lists.map((list: ListInterface) =>
       source.droppableId === list.listId ? { ...list, cards: tempSourceCards } : list,
     );
-    newBoard = tempBoard.lists.map((list: any) =>
+    newBoard = tempBoard.lists.map((list: ListInterface) =>
       destination.droppableId === list.listId ? { ...list, cards: tempDestinationCards } : list,
     );
-    setBoards((prev: any) =>
-      boards.map((board: any) => (boardId === board.boardId ? { ...board, lists: newBoard } : board)),
-    );
+    setBoards((prev) => boards.map((board) => (boardId === board.boardId ? { ...board, lists: newBoard } : board)));
   };
 
-  const reorderListPosition = (sourceIndex: any, destinationIndex: any, boardId: any) => {
-    let tempLists = JSON.parse(JSON.stringify(boards)).filter((board: any) => board.boardId === boardId)[0].lists;
+  const reorderListPosition = (sourceIndex: number, destinationIndex: number, boardId: string) => {
+    let tempLists = JSON.parse(JSON.stringify(boards)).filter((board: BoardInterface) => board.boardId === boardId)[0]
+      .lists;
     let [reorderList] = tempLists.splice(sourceIndex, 1);
     tempLists.splice(destinationIndex, 0, reorderList);
-    setBoards((prev: any) =>
-      boards.map((board: any) => (board.boardId === boardId ? { ...board, lists: tempLists } : board)),
-    );
+    setBoards((prev) => boards.map((board) => (board.boardId === boardId ? { ...board, lists: tempLists } : board)));
   };
 
   return (
@@ -62,7 +77,7 @@ function Board({ boards, setBoards, boardId }: any) {
         <Droppable droppableId="board" type="moveList" direction="horizontal">
           {(provided) => (
             <S.BoardContainer ref={provided.innerRef} {...provided.droppableProps}>
-              {lists.map((list: any, index: any) => (
+              {lists.map((list, index) => (
                 <List key={list.listId} boardId={boardId} listId={list.listId} listData={list} index={index}></List>
               ))}
               {provided.placeholder}

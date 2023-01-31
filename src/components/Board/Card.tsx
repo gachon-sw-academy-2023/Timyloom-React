@@ -5,7 +5,19 @@ import Modal from '@/components/Modal/Modal';
 import { useRecoilState } from 'recoil';
 import { testAtom } from '@/recoil/testAtom';
 
-const Card = ({ listId, cardId, cardData, index }: any) => {
+interface CardProps {
+  listId: string;
+  cardId: string;
+  cardData: CardDataInterface;
+  index: number;
+}
+
+interface CardDataInterface {
+  cardTitle: string;
+  cardId: string;
+}
+
+const Card = ({ listId, cardId, cardData, index }: CardProps) => {
   const [showModal, setShowModal] = useState(false);
   const [test, setTest] = useRecoilState(testAtom);
 

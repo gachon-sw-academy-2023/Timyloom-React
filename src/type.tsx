@@ -15,3 +15,5 @@ export interface CardInterface {
   cardTitle: string;
   cardId: string;
 }
+
+// import { BoardInterface, ListInterface, CardInterface  } from '@/typeTemp';

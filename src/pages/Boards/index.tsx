@@ -5,7 +5,7 @@ import { boardsAtom } from '@/recoil/boardsAtom';
 import { defaultData } from '@/components/Board/BoardData';
 import { useState } from 'react';
 import Skeleton from '@mui/material/Skeleton';
-import { BoardInterface } from '@/typeTemp';
+import { BoardInterface } from '@/type';
 
 interface BoardsProps {
   sidebarOpen: boolean;
@@ -20,8 +20,6 @@ const handleAddBoard = (boards: BoardInterface[], setBoards: SetterOrUpdater<Boa
 function Boards({ sidebarOpen }: BoardsProps) {
   const [loading, setLoading] = useState(true);
   const [boards, setBoards] = useRecoilState(boardsAtom);
-
-  console.log(JSON.stringify(boards));
   let personalBoards = boards.filter((board: BoardInterface) => board.owner === localStorage.getItem('id'));
 
   setTimeout(() => {
