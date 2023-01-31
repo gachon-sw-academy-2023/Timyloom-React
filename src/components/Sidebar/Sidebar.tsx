@@ -7,7 +7,7 @@ const linksArray = [
   {
     label: 'Workspace',
     icon: <AiOutlineHome />,
-    to: '/workspace',
+    to: '/workspace/boards',
   },
   {
     label: 'Setting',
@@ -20,7 +20,7 @@ const secondaryLinksArray = [
   {
     label: 'Table',
     icon: <AiOutlineTable />,
-    to: '/workspace',
+    to: '',
   },
   {
     label: 'Calender',
@@ -64,28 +64,28 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
   const mediaQueryList = window.matchMedia(`(max-width: 768px)`);
   mediaQueryList.addEventListener('change', changeHandler);
   return (
-    <S.SidebarWrapper isopen={sidebarOpen}>
-      <S.SidebarOpenButton isopen={sidebarOpen} onClick={() => setSidebarOpen((prev: boolean) => !prev)}>
+    <S.SidebarWrapper $isopen={sidebarOpen}>
+      <S.SidebarOpenButton $isopen={sidebarOpen} onClick={() => setSidebarOpen((prev: boolean) => !prev)}>
         <AiOutlineLeft />
       </S.SidebarOpenButton>
       <S.LogoLink>
-        <S.Logo isopen={sidebarOpen} />
+        <S.Logo $isopen={sidebarOpen} />
       </S.LogoLink>
       <S.Divider />
       {linksArray.map(({ icon, label, to }) => (
         <S.SLinkWrapper key={label} isActive={pathname === to}>
-          <S.SLink to={to} isopen={sidebarOpen}>
+          <S.SLink to={to} $isopen={sidebarOpen}>
             <S.LinkIcon>{icon}</S.LinkIcon>
             {sidebarOpen && <S.LinkLabel>{label}</S.LinkLabel>}
           </S.SLink>
         </S.SLinkWrapper>
       ))}
       <S.Divider />
-      <S.SidebarSubtitle isopen={sidebarOpen}>Workspace Views</S.SidebarSubtitle>
-      <S.ViewContainer isopen={sidebarOpen}>
+      <S.SidebarSubtitle $isopen={sidebarOpen}>Workspace Views</S.SidebarSubtitle>
+      <S.ViewContainer $isopen={sidebarOpen}>
         {secondaryLinksArray.map(({ icon, label, to }) => (
           <S.SLinkWrapper key={label} isActive={pathname === to}>
-            <S.SLink to="/" isopen={sidebarOpen} $column={true}>
+            <S.SLink to="/" $isopen={sidebarOpen} $column={true}>
               <S.LinkIcon>{icon}</S.LinkIcon>
               {sidebarOpen && <S.LinkLabel $column={true}>{label}</S.LinkLabel>}
             </S.SLink>
@@ -93,12 +93,12 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
         ))}
       </S.ViewContainer>
       <S.Divider />
-      <S.SidebarSubtitle isopen={sidebarOpen}>Your Boards</S.SidebarSubtitle>
-      <S.BoardContainer isopen={sidebarOpen}>
+      <S.SidebarSubtitle $isopen={sidebarOpen}>Your Boards</S.SidebarSubtitle>
+      <S.BoardContainer $isopen={sidebarOpen}>
         {board.map((item, index) => (
-          <S.BoardWrapper isopen={sidebarOpen} key={index}>
+          <S.BoardWrapper $isopen={sidebarOpen} key={index}>
             <S.BoardSquare boardDesign={item.color}></S.BoardSquare>
-            <S.BoardTitle isopen={sidebarOpen}>{item.title}</S.BoardTitle>
+            <S.BoardTitle $isopen={sidebarOpen}>{item.title}</S.BoardTitle>
           </S.BoardWrapper>
         ))}
       </S.BoardContainer>

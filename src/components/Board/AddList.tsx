@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as S from '@/components/Board/AddListStyle';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
