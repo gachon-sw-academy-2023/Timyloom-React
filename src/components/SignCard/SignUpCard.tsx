@@ -5,6 +5,7 @@ import axios from 'axios';
 import { checkId, checkPassword, checkSamePassword, checkEmail } from '@/utils/validation';
 import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import SyncLoader from 'react-spinners/SyncLoader';
 
 function SignUpCard() {
   const [inputs, setInputs] = useState({
@@ -21,6 +22,7 @@ function SignUpCard() {
   const [confirmPwValidation, setConfirmPwValidation] = useState(true);
   const [emailValidation, setEmailValidation] = useState(true);
   const { id, password, confirmPassword, name, email } = inputs;
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,6 +64,7 @@ function SignUpCard() {
 
   const handleSignUp = () => {
     if (checkId(id) && checkPassword(password) && checkSamePassword(password, confirmPassword) && checkEmail(email)) {
+      setIsLoading(true);
       axios
         .post(`/signup`, inputs)
         .then((res) => {
@@ -73,6 +76,7 @@ function SignUpCard() {
                 icon: 'success',
                 confirmButtonText: '확인',
               }).then(() => {
+                setIsLoading(false);
                 navigate('/');
               });
               break;
@@ -82,13 +86,14 @@ function SignUpCard() {
                 icon: 'error',
                 confirmButtonText: '확인',
               });
+              setIsLoading(false);
               break;
             default:
-              console.log('정의된 값이 아닙니다.');
+              setIsLoading(false);
           }
         })
         .catch((Error) => {
-          console.log(Error);
+          setIsLoading(false);
         });
     } else {
       Swal.fire({
@@ -177,7 +182,7 @@ function SignUpCard() {
           themes="sign"
           data-testid="signup-button"
         >
-          SIGN UP
+          {isLoading ? <SyncLoader color="#ffffff" size={10} /> : 'SIGN UP'}
         </Button>
       </S.SignPanel>
     </S.SignCard>
