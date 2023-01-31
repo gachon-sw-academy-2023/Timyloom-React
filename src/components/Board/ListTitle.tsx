@@ -2,43 +2,49 @@ import { boardsAtom } from '@/recoil/boardsAtom';
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import * as S from './ListTitleStyle';
+import { BoardInterface, ListInterface, CardInterface } from '@/type';
 
-const ListTitle = ({ dragHandleProps, listId, title, boardId }: any) => {
-  const [boards, setBoards] = useRecoilState(boardsAtom);
-  const [newTitle, setnewTitle] = useState(title);
-  const [editMode, seteditMode] = useState(false);
+interface ListTitleProps {
+  dragHandleProps: Object;
+  listId: string;
+  title: string;
+  boardId: string;
+}
 
-  const handleTitleByonBlur = (e: any) => {
+const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) => {
+  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [newTitle, setnewTitle] = useState<string>(title);
+  const [editMode, seteditMode] = useState<boolean>(false);
+
+  const handleTitleByonBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     saveTitle();
     seteditMode(false);
   };
 
-  const handleTitleByonKeyDown = (e: any) => {
+  const handleTitleByonKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.code === 'Enter' || e.code === 'Escape') {
       saveTitle();
     }
   };
 
   const saveTitle = () => {
-    let newBoards = boards.map((board: any) =>
+    let newBoards = boards.map((board) =>
       board.boardId === boardId
         ? {
             ...board,
-            lists: board.lists.map((list: any) => (list.listId === listId ? { ...list, listTitle: newTitle } : list)),
+            lists: board.lists.map((list) => (list.listId === listId ? { ...list, listTitle: newTitle } : list)),
           }
         : board,
     );
-    setBoards((prev: any) => newBoards);
+    setBoards((prev) => newBoards);
     seteditMode(false);
   };
 
   const handleDeleteList = () => {
-    let newBoards = boards.map((board: any) =>
-      board.boardId === boardId
-        ? { ...board, lists: board.lists.filter((list: any) => list.listId !== listId) }
-        : board,
+    let newBoards = boards.map((board) =>
+      board.boardId === boardId ? { ...board, lists: board.lists.filter((list) => list.listId !== listId) } : board,
     );
-    setBoards((prev: any) => newBoards);
+    setBoards((prev) => newBoards);
   };
 
   return (
@@ -47,7 +53,7 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: any) => {
         {editMode ? (
           <S.Textarea
             onChange={(e) => {
-              setnewTitle((prev: any) => e.target.value);
+              setnewTitle((prev) => e.target.value);
             }}
             value={newTitle}
             onBlur={handleTitleByonBlur}
