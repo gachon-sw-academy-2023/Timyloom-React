@@ -3,8 +3,24 @@ import { Draggable } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import { selectedCardAtom } from '@/recoil/selectedCardAtom';
 
-const Card = ({ boardId, listId, cardId, cardData, index }: any) => {
+
+interface CardProps {
+  listId: string;
+  cardId: string;
+  cardData: CardDataInterface;
+  index: number;
+}
+
+interface CardDataInterface {
+  cardTitle: string;
+  cardId: string;
+}
+
+const Card = ({ listId, cardId, cardData, index }: CardProps) => {
+  const [showModal, setShowModal] = useState(false);
+  const [test, setTest] = useRecoilState(testAtom);
   const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
+
 
   const handleSaveModalData = () => {
     setSelectedCardId((prev) => ({

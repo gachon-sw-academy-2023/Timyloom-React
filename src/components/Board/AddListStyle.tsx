@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const AddListWrapper = styled.div`
   width: 272px;
   flex: 0 0 272px;
-  /* instead of margin right for overflow-x scroll */
   border-right: 8px solid transparent;
   margin-left: 4px;
 `;

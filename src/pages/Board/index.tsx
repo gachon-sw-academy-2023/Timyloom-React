@@ -5,26 +5,27 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import Swal from 'sweetalert2';
+import { BoardInterface } from '@/typeTemp';
 
 function BoardPage() {
-  let { boardId } = useParams(); // 추후에 board를 구분하는 변수로 사용!
-  const [boards, setBoards] = useRecoilState(boardsAtom);
-  let [board] = boards.filter((board: any) => board.boardId === boardId);
-  const [boardTitle, setBoardTitle] = useState(board.boardTitle);
+  let { boardId } = useParams();
+  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  let [board] = boards.filter((board) => board.boardId === boardId);
+  const [boardTitle, setBoardTitle] = useState<string>(board.boardTitle);
 
-  const handleChange = (e: any) => {
-    setBoardTitle((prev: any) => e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setBoardTitle((prev) => e.target.value);
   };
 
-  const handleKeyDown = (e: any) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === 'Enter' || e.key === 'Escape') {
       removeFocus();
       e.preventDefault();
       handleSaveData();
-      let newBoards = boards.map((board: any) =>
+      let newBoards = boards.map((board: BoardInterface) =>
         board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board,
       );
-      setBoards((prev: any) => newBoards);
+      setBoards((prev) => newBoards);
     }
   };
 
@@ -32,10 +33,8 @@ function BoardPage() {
     (document.activeElement as HTMLElement).blur();
   };
   const handleSaveData = () => {
-    let newBoards = boards.map((board: any) =>
-      board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board,
-    );
-    setBoards((prev: any) => newBoards);
+    let newBoards = boards.map((board) => (board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board));
+    setBoards((prev) => newBoards);
   };
 
   const handleDeleteBoard = () => {

@@ -4,18 +4,19 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import shortid from 'shortid';
+import { BoardInterface } from '@/type';
 
 function AddList() {
   const { boardId } = useParams();
-  const [boards, setBoards] = useRecoilState(boardsAtom);
-  const [addStatus, setAddStatus] = useState(false);
-  const [listTitle, setListTitle] = useState('');
+  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [addStatus, setAddStatus] = useState<boolean>(false);
+  const [listTitle, setListTitle] = useState<string>('');
 
-  const handleStatusTrue = (e: any) => {
+  const handleStatusTrue = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAddStatus(true);
   };
 
-  const handleStatusFalse = (e: any) => {
+  const handleStatusFalse = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       setAddStatus(false);
       saveList();
@@ -24,7 +25,7 @@ function AddList() {
     }
   };
 
-  const handleChangeTitle = (e: any) => {
+  const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setListTitle(e.target.value);
   };
 
@@ -34,12 +35,10 @@ function AddList() {
       board.boardId === boardId
         ? {
             ...board,
-            lists: [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [], position: 999 }],
-            //position이 꼭 필요할까...? 한번 검토해보자
+            lists: [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [] }],
           }
         : board,
     );
-    console.log(tempBoard);
     setBoards((prev) => tempBoard);
   };
   return (

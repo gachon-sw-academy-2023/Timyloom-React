@@ -12,10 +12,9 @@ export const defaultData = () => {
       {
         listTitle: 'TODO LIST',
         listId: `l-${listUId}`,
-        position: 0,
         cards: [
-          { cardTitle: 'ACTIVE 1', cardId: `c-${cardUId}`, position: 0 },
-          { cardTitle: 'ACTIVE 2', cardId: `c-${listUId}`, position: 1 },
+          { cardTitle: 'ACTIVE 1', cardId: `c-${cardUId}` },
+          { cardTitle: 'ACTIVE 2', cardId: `c-${listUId}` },
         ],
       },
     ],
