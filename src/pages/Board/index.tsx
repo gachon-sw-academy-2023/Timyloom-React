@@ -6,6 +6,8 @@ import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import Swal from 'sweetalert2';
 import { BoardInterface } from '@/type';
+import { MdDeleteForever } from 'react-icons/md';
+import { AiFillSetting } from 'react-icons/ai';
 
 function BoardPage() {
   let { boardId } = useParams();
@@ -65,7 +67,12 @@ function BoardPage() {
           handleSaveData();
         }}
       ></S.BoardTitle>
-      <S.DeleteBtn onClick={handleDeleteBoard}>보드 삭제</S.DeleteBtn>
+      <S.DeleteBtn onClick={handleDeleteBoard}>
+        <MdDeleteForever size="30px" color="#333333" />
+      </S.DeleteBtn>
+      <S.SettingWrapper>
+        <AiFillSetting size="30px" color="#333333" />
+      </S.SettingWrapper>
       <Board boards={boards} setBoards={setBoards} boardId={boardId} />
     </S.BoardWrapper>
   );
