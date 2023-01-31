@@ -26,7 +26,7 @@ const ModalCloseBtn = styled.button`
 `;
 
 const ModalView = styled.div`
-  background-color: white;
+  background-color: gray;
   width: 20vw;
   height: 60vh;
   min-height: 400px;
@@ -75,11 +75,11 @@ const ModalLabel = styled.div`
 `;
 interface ModalProps {
   showModal: boolean;
-  setShowModal: SetterOrUpdater<boolean>;
-  data: IUserInfo;
+  setShowModal: Function;
+  data: ModalDataProps;
 }
 
-interface IUserInfo {
+interface ModalDataProps {
   cardTitle: string | undefined;
   cardId: string | undefined;
   position: string | undefined;

@@ -11,13 +11,7 @@ import Modal from '@/components/Modal/Modal';
 function Board({ boards, setBoards, boardId }: any) {
   let [board] = boards.filter((board: any) => board.boardId === boardId);
   const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
-  const [cardData, setcardData] = useState<IUserInfo | null>({ cardTitle: '', cardId: '', position: '' });
-
-  interface IUserInfo {
-    cardTitle: string | undefined;
-    cardId: string | undefined;
-    position: string | undefined;
-  }
+  const [cardData, setcardData] = useState({ cardTitle: '', cardId: '', position: '' });
 
   let lists = board.lists;
 
@@ -89,7 +83,13 @@ function Board({ boards, setBoards, boardId }: any) {
           )}
         </Droppable>
       </DragDropContext>
-      <Modal showModal={selectedCardId.isModalopen} setShowModal={setSelectedCardId} data={cardData} />
+      <Modal
+        showModal={selectedCardId.isModalopen}
+        setShowModal={setSelectedCardId}
+        data={cardData}
+        backdropOn={true}
+        themes="default"
+      />
     </>
   );
 }
