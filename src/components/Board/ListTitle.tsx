@@ -41,10 +41,15 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
     setBoards((prev) => newBoards);
     seteditMode(false);
   };
-
   const handleDeleteList = () => {
+    let log = {
+      logName: `${title} 리스트 삭제`,
+      date: new Date().getTime(),
+    };
     let newBoards = boards.map((board) =>
-      board.boardId === boardId ? { ...board, lists: board.lists.filter((list) => list.listId !== listId) } : board,
+      board.boardId === boardId
+        ? { ...board, logs: [...board.logs, log], lists: board.lists.filter((list) => list.listId !== listId) }
+        : board,
     );
     Swal.fire({
       title: 'Are you sure delete the list?',

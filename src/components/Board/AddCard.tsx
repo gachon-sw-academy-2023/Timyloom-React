@@ -35,10 +35,15 @@ function AddCard({ listId }: any) {
 
   const saveCard = () => {
     let cardId = shortid.generate();
+    let log = {
+      logName: `${cardTitle} 카드 생성`,
+      date: new Date().getTime(),
+    };
     let tempBoard = boards.map((board, index) =>
       board.boardId === boardId
         ? {
             ...board,
+            logs: [...board.logs, log],
             lists: board.lists.map((list) => {
               return list.listId == listId
                 ? { ...list, cards: [...list.cards, { cardTitle: cardTitle, cardId: `c-${cardId}` }] }

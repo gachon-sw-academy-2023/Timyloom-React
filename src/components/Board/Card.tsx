@@ -35,10 +35,15 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
 
   const handleDeleteCard = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
+    let log = {
+      logName: `${cardData.cardTitle} 카드 삭제`,
+      date: new Date().getTime(),
+    };
     let newBoards = boards.map((board) =>
       board.boardId === boardId
         ? {
             ...board,
+            logs: [...board.logs, log],
             lists: board.lists.map((list) =>
               list.listId === listId ? { ...list, cards: list.cards.filter((card) => card.cardId != cardId) } : list,
             ),

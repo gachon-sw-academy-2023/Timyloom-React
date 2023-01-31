@@ -39,10 +39,23 @@ export const DeleteBtn = styled.button`
 
   transition: all ease-in 100ms;
 `;
-export const SettingWrapper = styled.button`
+export const SettingBtn = styled.button`
   border: 0;
   position: absolute;
   right: 20px;
+  padding: 5px;
+  border-radius: 10px;
+  &:hover {
+    background-color: #eef4fe;
+  }
+
+  transition: all ease-in 100ms;
+`;
+
+export const LogBtn = styled.button`
+  border: 0;
+  position: absolute;
+  right: 120px;
   padding: 5px;
   border-radius: 10px;
   &:hover {

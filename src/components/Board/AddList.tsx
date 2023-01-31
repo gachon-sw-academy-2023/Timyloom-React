@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as S from '@/components/Board/AddListStyle';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -31,10 +31,15 @@ function AddList() {
 
   const saveList = () => {
     let listId = shortid.generate();
+    let log = {
+      logName: `${listTitle} 리스트 생성`,
+      date: new Date().getTime(),
+    };
     let tempBoard = boards.map((board, index) =>
       board.boardId === boardId
         ? {
             ...board,
+            logs: [...board.logs, log],
             lists: [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [] }],
           }
         : board,
