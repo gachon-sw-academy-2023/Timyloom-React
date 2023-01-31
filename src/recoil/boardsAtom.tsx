@@ -7,5 +7,5 @@ const { persistAtom } = recoilPersist();
 export const boardsAtom = atom({
   key: 'boardsAtom',
   effects_UNSTABLE: [persistAtom],
-  default: [boardsDummy],
+  default: boardsDummy,
 });
