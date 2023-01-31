@@ -5,6 +5,8 @@ import SignUp from '@/pages/Auth/SignUp/index';
 import Workspace from '@/pages/Workspace/index';
 import BoardPage from '@/pages/Board/index';
 import Remove from '@/pages/Remove';
+import NotFound from '@/pages/NotFound/index';
+import Sidebar from './components/Sidebar/Sidebar
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
@@ -32,6 +34,7 @@ function App() {
             <Route path="/workspace/*" element={<Workspace />}></Route>
             <Route path="/board/:boardId" element={<BoardPage />}></Route>
             <Route path="/remove/:boardId" element={<Remove />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

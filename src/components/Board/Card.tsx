@@ -1,9 +1,8 @@
 import * as S from '@/components/Board/CardStyle';
 import { Draggable } from 'react-beautiful-dnd';
-import { useState } from 'react';
-import Modal from '@/components/Modal/Modal';
 import { useRecoilState } from 'recoil';
-import { testAtom } from '@/recoil/testAtom';
+import { selectedCardAtom } from '@/recoil/selectedCardAtom';
+
 
 interface CardProps {
   listId: string;
@@ -20,14 +19,17 @@ interface CardDataInterface {
 const Card = ({ listId, cardId, cardData, index }: CardProps) => {
   const [showModal, setShowModal] = useState(false);
   const [test, setTest] = useRecoilState(testAtom);
+  const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
+
 
   const handleSaveModalData = () => {
-    setTest((prev) => ({
+    setSelectedCardId((prev) => ({
       isModalopen: !prev.isModalopen,
+      boardId: boardId,
+      listId: listId,
       cardId: cardId,
     }));
   };
-
   return (
     <>
       <Draggable draggableId={cardId} index={index}>
@@ -41,7 +43,6 @@ const Card = ({ listId, cardId, cardData, index }: CardProps) => {
           </S.CardDraggable>
         )}
       </Draggable>
-      <Modal showModal={showModal} setShowModal={setShowModal} data={cardData}></Modal>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import { MouseEventHandler, useState } from 'react';
 import styled from 'styled-components';
 import { CgClose } from 'react-icons/cg';
+import { SetterOrUpdater } from 'recoil';
 
 const ModalCloseBtn = styled.button`
   display: inline-flex;
@@ -25,7 +26,7 @@ const ModalCloseBtn = styled.button`
 `;
 
 const ModalView = styled.div`
-  background-color: white;
+  background-color: gray;
   width: 20vw;
   height: 60vh;
   min-height: 400px;
@@ -72,13 +73,19 @@ const ModalLabel = styled.div`
   width: calc(100% - 400px);
   box-sizing: border-box;
 `;
-type ModalProps = {
+interface ModalProps {
   showModal: boolean;
   setShowModal: Function;
-  data: any;
-};
+  data: ModalDataProps;
+}
+
+interface ModalDataProps {
+  cardTitle: string | undefined;
+  cardId: string | undefined;
+  position: string | undefined;
+}
+
 const ModalDefault: React.FunctionComponent<ModalProps> = ({ showModal, setShowModal, data }) => {
-  console.log(data);
   return (
     <>
       <ModalView>
