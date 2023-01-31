@@ -9,6 +9,7 @@ interface CardProps {
   cardId: string;
   cardData: CardDataInterface;
   index: number;
+  boardId: string;
 }
 
 interface CardDataInterface {
@@ -16,7 +17,7 @@ interface CardDataInterface {
   cardId: string;
 }
 
-const Card = ({ listId, cardId, cardData, index }: CardProps) => {
+const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
 

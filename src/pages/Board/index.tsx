@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import Swal from 'sweetalert2';
-import { BoardInterface } from '@/typeTemp';
+import { BoardInterface } from '@/type';
 
 function BoardPage() {
   let { boardId } = useParams();
