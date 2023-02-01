@@ -1,17 +1,21 @@
 import { useState } from 'react';
 import Board from '@/components/Board/Board';
+import Log from '@/pages/Log/index';
 import * as S from '@/pages/Board/indexStyle';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import Swal from 'sweetalert2';
-import { BoardInterface } from '@/typeTemp';
+import { BoardInterface } from '@/type';
+import { MdDeleteForever, MdOutlineAccessTime } from 'react-icons/md';
+import { AiFillSetting } from 'react-icons/ai';
 
 function BoardPage() {
   let { boardId } = useParams();
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
   let [board] = boards.filter((board) => board.boardId === boardId);
   const [boardTitle, setBoardTitle] = useState<string>(board.boardTitle);
+  const [isLogOpen, setIsLogOpen] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBoardTitle((prev) => e.target.value);
@@ -32,6 +36,7 @@ function BoardPage() {
   const removeFocus = () => {
     (document.activeElement as HTMLElement).blur();
   };
+
   const handleSaveData = () => {
     let newBoards = boards.map((board) => (board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board));
     setBoards((prev) => newBoards);
@@ -53,6 +58,10 @@ function BoardPage() {
     });
   };
 
+  const handleChangeLogState = () => {
+    setIsLogOpen((prev) => !prev);
+  };
+
   return (
     <S.BoardWrapper>
       <S.BoardTitle
@@ -65,8 +74,17 @@ function BoardPage() {
           handleSaveData();
         }}
       ></S.BoardTitle>
-      <S.DeleteBtn onClick={handleDeleteBoard}>보드 삭제</S.DeleteBtn>
+      <S.DeleteBtn onClick={handleDeleteBoard}>
+        <MdDeleteForever size="30px" color="#333333" />
+      </S.DeleteBtn>
+      <S.SettingBtn>
+        <AiFillSetting size="30px" color="#333333" />
+      </S.SettingBtn>
+      <S.LogBtn onClick={handleChangeLogState}>
+        <MdOutlineAccessTime size="30px" color="#333333" />
+      </S.LogBtn>
       <Board boards={boards} setBoards={setBoards} boardId={boardId} />
+      {isLogOpen && <Log logs={board.logs} />}
     </S.BoardWrapper>
   );
 }

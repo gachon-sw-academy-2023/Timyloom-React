@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const BoardWrapper = styled.div`
   width: 100%;
   height: 100vh;
+  margin: 10px 25px;
   background-color: #ffffff;
 `;
 
@@ -21,16 +22,45 @@ export const BoardTitle = styled.textarea<{ boardTitle: string }>`
   &:focus {
     cursor: text;
     background: white;
-    box-shadow: inset 0 0 0 2px #ee8d0d;
+    box-shadow: inset 0 0 0 2px #5d5d5d;
     outline: 0;
   }
 `;
 
 export const DeleteBtn = styled.button`
   border: 0;
-  padding: 10px;
+  position: absolute;
+  right: 70px;
+  padding: 5px;
   border-radius: 10px;
   &:hover {
-    background-color: #ffcdcd;
+    background-color: #ffdfdf;
   }
+
+  transition: all ease-in 100ms;
+`;
+export const SettingBtn = styled.button`
+  border: 0;
+  position: absolute;
+  right: 20px;
+  padding: 5px;
+  border-radius: 10px;
+  &:hover {
+    background-color: #eef4fe;
+  }
+
+  transition: all ease-in 100ms;
+`;
+
+export const LogBtn = styled.button`
+  border: 0;
+  position: absolute;
+  right: 120px;
+  padding: 5px;
+  border-radius: 10px;
+  &:hover {
+    background-color: #eef4fe;
+  }
+
+  transition: all ease-in 100ms;
 `;

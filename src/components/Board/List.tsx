@@ -3,6 +3,8 @@ import * as S from '@/components/Board/ListStyle';
 import Card from '@/components/Board/Card';
 import ListTitle from './ListTitle';
 import { BoardInterface, ListInterface, CardInterface } from '@/type';
+import { useState } from 'react';
+import AddCard from '@/components/Board/AddCard';
 
 interface ListProps {
   listId: string;
@@ -36,6 +38,7 @@ function List({ listId, listData, index, boardId }: ListProps) {
                       index={index}
                     ></Card>
                   ))}
+                  <AddCard listId={listId} />
                   {droppableProvided.placeholder}
                 </S.ListDroppable>
               )}

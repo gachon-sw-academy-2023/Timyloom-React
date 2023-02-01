@@ -2,6 +2,7 @@ export interface BoardInterface {
   boardTitle: string;
   boardId: string;
   owner: string;
+  logs: LogsInterface[];
   lists: ListInterface[];
 }
 
@@ -16,4 +17,7 @@ export interface CardInterface {
   cardId: string;
 }
 
-// import { BoardInterface, ListInterface, CardInterface  } from '@/typeTemp';
+export interface LogsInterface {
+  logName: string;
+  date: number;
+}
