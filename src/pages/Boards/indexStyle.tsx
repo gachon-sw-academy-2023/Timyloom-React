@@ -11,7 +11,7 @@ export const WorkspaceWrapper = styled.div`
   min-height: 100vh;
 `;
 
-export const PageWrapper = styled.div<{ isopen: boolean }>`
+export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

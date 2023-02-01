@@ -92,8 +92,8 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
               {lists.map((list, index) => (
                 <List key={list.listId} boardId={boardId} listId={list.listId} listData={list} index={index}></List>
               ))}
-              {provided.placeholder}
               <AddList></AddList>
+              {provided.placeholder}
             </S.BoardContainer>
           )}
         </Droppable>

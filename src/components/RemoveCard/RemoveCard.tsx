@@ -31,7 +31,7 @@ function RemoveCard() {
   }, []);
 
   setInterval(() => {
-    navigate('/workspace/boards');
+    location.replace('/workspace/boards');
   }, 5000);
 
   return (

@@ -21,25 +21,22 @@ export const Textdiv = styled.div`
 `;
 
 export const Textarea = styled.textarea`
-  background-color: red;
   width: 256px;
-  height: 21px;
+  height: 25px;
   font-size: 1rem;
   resize: none;
   background-color: #ffffff;
   border: none;
-  box-shadow: inset 0 0 0 2px #ee8d0d;
+  box-shadow: inset 0 0 0 2px #5d5d5d;
   outline: 0;
 `;
 
-export const Delete = styled.div`
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 0 5px;
-  color: #d4d4d4;
+export const DeleteWrapper = styled.div`
+  cursor: pointer;
+  opacity: 0;
+
   &:hover {
-    color: black;
-    transform: rotate(180deg);
+    opacity: 1;
   }
   transition: all 300ms ease-out;
 `;

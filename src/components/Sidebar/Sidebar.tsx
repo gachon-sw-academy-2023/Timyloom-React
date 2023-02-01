@@ -1,52 +1,9 @@
 import * as S from './SidebarStyle';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AiOutlineHome, AiOutlineLeft, AiOutlineSetting, AiOutlineCalendar, AiOutlineTable } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
-
-const linksArray = [
-  {
-    label: 'Workspace',
-    icon: <AiOutlineHome />,
-    to: '/workspace/boards',
-  },
-  {
-    label: 'Setting',
-    icon: <AiOutlineSetting />,
-    to: '/statistics',
-  },
-];
-
-const secondaryLinksArray = [
-  {
-    label: 'Table',
-    icon: <AiOutlineTable />,
-    to: '',
-  },
-  {
-    label: 'Calender',
-    icon: <AiOutlineCalendar />,
-    to: '',
-  },
-];
-
-const board = [
-  {
-    title: 'Board1',
-    link: '/',
-    color: 'pink',
-  },
-  {
-    title: 'Board2',
-    link: '/messages',
-    color: 'white',
-  },
-  {
-    title: 'Board3',
-    link: '/tasks',
-    color: 'skyblue',
-  },
-];
-
+import { linksArray, secondaryLinksArray, board } from '@/components/Sidebar/SidebarData';
+import { useRecoilState } from 'recoil';
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: Function;
