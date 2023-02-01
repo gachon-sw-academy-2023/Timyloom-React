@@ -15,7 +15,10 @@ export const boardsDummy = [
           { cardTitle: '헬스 하기', cardId: '104' },
           { cardTitle: '버스 예매하기', cardId: '105' },
           { cardTitle: '타입스크립트 공부', cardId: '106' },
-          { cardTitle: '독서 2권하기', cardId: '107' },
+          {
+            cardTitle: '독서 2권하기',
+            cardId: '107',
+          },
         ],
       },
       {
