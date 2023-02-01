@@ -13,8 +13,10 @@ function RemoveCard() {
   useEffect(() => {
     const Toast = Swal.mixin({
       toast: true,
-      position: 'top-right',
+      position: 'bottom-right',
       iconColor: 'white',
+      background: 'lightskyblue',
+      color: 'white',
       customClass: {
         popup: 'colored-toast',
       },
@@ -23,7 +25,8 @@ function RemoveCard() {
       timerProgressBar: true,
     });
     Toast.fire({
-      title: '5초뒤에 워크스페이스로 이동합니다',
+      icon: 'info',
+      title: '5초 뒤에 워크스페이스로<br/>이동합니다',
     });
   }, []);
 
