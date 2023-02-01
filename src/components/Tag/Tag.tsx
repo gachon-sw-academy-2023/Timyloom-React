@@ -17,24 +17,9 @@ const Tag = () => {
     let color_b = Math.floor(Math.random() * 127 + 128).toString(16);
     return `#${color_r + color_g + color_b}`;
   };
-  //   const saveTitle = () => {
-  //     let newBoards = boards.map((board) =>
-  //       board.boardId === boardId
-  //         ? {
-  //             ...board,
-  //             lists: board.lists.map((list) => (list.listId === listId ? { ...list, listTitle: newTitle } : list)),
-  //           }
-  //         : board,
-  //     );
-  //     setBoards((prev) => newBoards);
-  //     seteditMode(false);
-  //   };
+
   const submitTagItem = () => {
-    let updatedTagList = [...tagList];
-    console.log(labelItem);
-    updatedTagList.push(labelItem);
-    console.log(updatedTagList);
-    // setTagList(updatedTagList);
+    tagList.push(labelItem);
     console.log(tagList);
     setLabelItem({ labelTitle: '', labelColor: '' });
   };
@@ -48,10 +33,10 @@ const Tag = () => {
   return (
     <WholeBox>
       <TagBox>
-        {tagList.map((tagItem: any, index: number) => {
+        {tagList.map((labelItem: any, index: number) => {
           return (
-            <TagItem key={index}>
-              <Text>{tagItem}</Text>
+            <TagItem color={labelItem.labelColor} key={index}>
+              <Text>{labelItem.labelTitle}</Text>
               <Button onClick={deleteTagItem}>X</Button>
             </TagItem>
           );
@@ -60,7 +45,7 @@ const Tag = () => {
           type="text"
           placeholder="Press enter to add tags"
           onChange={(e) => setLabelItem({ labelTitle: e.target.value, labelColor: randomBrightColor() })}
-          //   value={labelItem}
+          value={labelItem.labelTitle}
           onKeyPress={onKeyPress}
         />
       </TagBox>
@@ -89,15 +74,15 @@ const TagBox = styled.div`
   }
 `;
 
-const TagItem = styled.div`
+const TagItem = styled.div<{ color: string }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 5px;
   padding: 5px;
-  background-color: red;
+  background-color: ${(props) => props.color};
   border-radius: 5px;
-  color: white;
+  color: black;
   font-size: 13px;
 `;
 
