@@ -19,20 +19,23 @@ const themeVariants = variant({
       },
     },
     success: {
-      border: 'none',
       backgroundColor: '#21D05F',
       color: '#FFFFFF',
     },
     danger: {
-      border: 'none',
       backgroundColor: '#FF4D4E',
       color: '#FFFFFF',
+      '&:hover': {
+        backgroundColor: '#eef4fe',
+        color: '#808080',
+      },
     },
   },
 });
 export const Container = styled.button<Omit<ButtonProps, 'children'>>`
   ${themeVariants}
-  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
   ${({ border }) =>
@@ -60,17 +63,21 @@ export const Container = styled.button<Omit<ButtonProps, 'children'>>`
     size === 'xs'
       ? css`
           padding: 0.4rem 0.8rem;
+          font-size: 0.8rem;
         `
       : size === 'sm'
       ? css`
           padding: 0.5rem 1.5rem;
+          font-size: 1rem;
         `
       : size === 'md'
       ? css`
           padding: 0.7rem 2rem;
+          font-size: 1.2rem;
         `
       : css`
           padding: 1rem 2.5rem;
+          font-size: 1.2rem;
         `}
   
   background-color: ${({ color }) => color && colors[color]};

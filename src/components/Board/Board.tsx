@@ -7,7 +7,7 @@ import { useRecoilState, SetterOrUpdater } from 'recoil';
 import { selectedCardAtom } from '@/recoil/selectedCardAtom';
 import { BoardInterface, ListInterface } from '@/type';
 import { useDidMountEffect } from '@/hooks/useDidMountEffect';
-import Modal from '@/components/Modal/Modal';
+import CardModal from '@/components/Modals/CardModal/CardModal';
 
 interface BoardProps {
   boards: BoardInterface[];
@@ -98,13 +98,7 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
           )}
         </Droppable>
       </DragDropContext>
-      <Modal
-        showModal={selectedCardId.isModalopen}
-        setShowModal={setSelectedCardId}
-        data={cardData}
-        backdropOn={true}
-        themes="default"
-      />
+      <CardModal showModal={selectedCardId.isModalopen} setShowModal={setSelectedCardId} data={cardData} />
     </>
   );
 }
