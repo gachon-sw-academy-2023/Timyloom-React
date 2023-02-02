@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Board from '@/components/Board/Board';
 import Log from '@/pages/Log/index';
 import * as S from '@/pages/Board/indexStyle';
@@ -19,8 +19,10 @@ function BoardPage() {
   let [board] = boards.filter((board) => board.boardId === boardId);
   const [boardTitle, setBoardTitle] = useState<string>(board.boardTitle);
   const [isLogOpen, setIsLogOpen] = useState(false);
-  const temporaryBoardIndex = useRef(0);
-  console.log(temporaryBoardIndex.current);
+
+  useEffect(() => {
+    setTemporaryBoard((prev) => []);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBoardTitle((prev) => e.target.value);

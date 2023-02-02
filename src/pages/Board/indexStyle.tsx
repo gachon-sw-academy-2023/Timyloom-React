@@ -52,6 +52,13 @@ export const SettingBtn = styled.button`
   transition: all ease-in 100ms;
 `;
 
+export const UtilContainer = styled.div`
+  background-color: yellow;
+  position: absolute;
+  right: 0;
+  top: 50;
+`;
+
 export const LogBtn = styled.button`
   border: 0;
   position: absolute;
@@ -72,18 +79,6 @@ export const GoBackBtn = styled.button<{ isGoBackAvavailable: boolean }>`
   padding: 5px;
   border-radius: 10px;
   opacity: ${(props) => (props.isGoBackAvavailable ? '1' : '0.3')};
-  &:hover {
-    background-color: #eef4fe;
-  }
-
-  transition: all ease-in 100ms;
-`;
-export const GoForwardBtn = styled.button`
-  border: 0;
-  position: absolute;
-  right: 180px;
-  padding: 5px;
-  border-radius: 10px;
   &:hover {
     background-color: #eef4fe;
   }

@@ -25,7 +25,7 @@ function App() {
       <ThemeProvider theme={colors}>
         <GlobalStyle />
         <BrowserRouter>
-          {/* {window.location.pathname !== '/workspace' && <Header />} */}
+          {window.location.pathname !== '/workspace' && <Header />}
           <Routes>
             <Route path="/" element={<Onboarding />}></Route>
             <Route path="/login" element={<Login />}></Route>
