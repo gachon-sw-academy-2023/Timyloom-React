@@ -3,12 +3,13 @@ import { ReactComponent as Gear } from '@/assets/images/gear.svg';
 
 export const CardWrapper = styled.div`
   padding: 30px;
-  margin: 0px 30px 150px 30px;
+  margin: 0px 30px 70px 30px;
   text-align: center;
   background-color: ${(props) => props.theme.primaryColor_1};
   width: 1200px;
   height: 600px;
-  border-radius: 15px;
+  border-radius: 20px;
+  box-shadow: 6px 6px 16px #cacfd8, -6px -6px 16px #ffffff;
 `;
 
 export const GearSvg = styled(Gear)`
