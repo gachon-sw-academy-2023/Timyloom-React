@@ -64,3 +64,29 @@ export const LogBtn = styled.button`
 
   transition: all ease-in 100ms;
 `;
+
+export const GoBackBtn = styled.button<{ isGoBackAvavailable: boolean }>`
+  border: 0;
+  position: absolute;
+  right: 230px;
+  padding: 5px;
+  border-radius: 10px;
+  opacity: ${(props) => (props.isGoBackAvavailable ? '1' : '0.3')};
+  &:hover {
+    background-color: #eef4fe;
+  }
+
+  transition: all ease-in 100ms;
+`;
+export const GoForwardBtn = styled.button`
+  border: 0;
+  position: absolute;
+  right: 180px;
+  padding: 5px;
+  border-radius: 10px;
+  &:hover {
+    background-color: #eef4fe;
+  }
+
+  transition: all ease-in 100ms;
+`;

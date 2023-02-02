@@ -3,14 +3,20 @@ import * as S from '@/components/Board/AddListStyle';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 import shortid from 'shortid';
 import { BoardInterface } from '@/type';
 
 function AddList() {
   const { boardId } = useParams();
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
   const [addStatus, setAddStatus] = useState<boolean>(false);
   const [listTitle, setListTitle] = useState<string>('');
+
+  useEffect(() => {
+    console.log(temporaryBoard);
+  }, [boards]);
 
   const handleStatusTrue = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAddStatus(true);
@@ -30,6 +36,7 @@ function AddList() {
   };
 
   const saveList = () => {
+    setTemporaryBoard((prev) => [...prev, boards]);
     let listId = shortid.generate();
     let log = {
       logName: `${listTitle} 리스트 생성`,
