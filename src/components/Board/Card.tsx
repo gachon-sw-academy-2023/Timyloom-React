@@ -6,6 +6,7 @@ import { selectedCardAtom } from '@/recoil/selectedCardAtom';
 import { CgClose } from 'react-icons/cg';
 import { BoardInterface, ListInterface, CardInterface } from '@/type';
 import { boardsAtom } from '@/recoil/boardsAtom';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 
 interface CardProps {
   listId: string;
@@ -24,6 +25,7 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
 
   const handleSaveModalData = () => {
     setSelectedCardId((prev) => ({
@@ -35,6 +37,7 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
 
   const handleDeleteCard = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
+    setTemporaryBoard((prev) => [...prev, boards]);
     let log = {
       logName: `${cardData.cardTitle} 카드 삭제`,
       date: new Date().getTime(),

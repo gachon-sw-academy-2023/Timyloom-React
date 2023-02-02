@@ -5,16 +5,18 @@ import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import shortid from 'shortid';
 import { BoardInterface } from '@/type';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 
 interface AddCardProps {
   listId: string;
 }
 
-function AddCard({ listId }: any) {
+function AddCard({ listId }: AddCardProps) {
   const { boardId } = useParams();
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
   const [addStatus, setAddStatus] = useState<boolean>(false);
   const [cardTitle, setCardTitle] = useState<string>('');
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
 
   const handleStatusTrue = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAddStatus(true);
@@ -34,6 +36,7 @@ function AddCard({ listId }: any) {
   };
 
   const saveCard = () => {
+    setTemporaryBoard((prev) => [...prev, boards]);
     let cardId = shortid.generate();
     let log = {
       logName: `${cardTitle} 카드 생성`,

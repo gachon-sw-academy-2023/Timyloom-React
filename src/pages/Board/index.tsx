@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Board from '@/components/Board/Board';
 import Log from '@/pages/Log/index';
 import * as S from '@/pages/Board/indexStyle';
@@ -9,13 +9,20 @@ import Swal from 'sweetalert2';
 import { BoardInterface } from '@/type';
 import { MdDeleteForever, MdOutlineAccessTime } from 'react-icons/md';
 import { AiFillSetting } from 'react-icons/ai';
+import { RiArrowGoBackLine } from 'react-icons/ri';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 
 function BoardPage() {
   let { boardId } = useParams();
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState(temporaryBoardAtom);
   let [board] = boards.filter((board) => board.boardId === boardId);
   const [boardTitle, setBoardTitle] = useState<string>(board.boardTitle);
   const [isLogOpen, setIsLogOpen] = useState(false);
+
+  useEffect(() => {
+    setTemporaryBoard((prev) => []);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBoardTitle((prev) => e.target.value);
@@ -40,6 +47,15 @@ function BoardPage() {
   const handleSaveData = () => {
     let newBoards = boards.map((board) => (board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board));
     setBoards((prev) => newBoards);
+  };
+
+  const handleGobackBoard = () => {
+    if (temporaryBoard.length !== 0) {
+      setBoards((prev) => temporaryBoard[temporaryBoard.length - 1]);
+      let newTemporaryBoard = [...temporaryBoard];
+      newTemporaryBoard.pop();
+      setTemporaryBoard((prev) => newTemporaryBoard);
+    }
   };
 
   const handleDeleteBoard = () => {
@@ -74,6 +90,9 @@ function BoardPage() {
           handleSaveData();
         }}
       ></S.BoardTitle>
+      <S.GoBackBtn isGoBackAvavailable={temporaryBoard.length !== 0} onClick={handleGobackBoard}>
+        <RiArrowGoBackLine size="30px" color="#333333" />
+      </S.GoBackBtn>
       <S.DeleteBtn onClick={handleDeleteBoard}>
         <MdDeleteForever size="30px" color="#333333" />
       </S.DeleteBtn>
