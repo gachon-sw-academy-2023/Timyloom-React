@@ -5,6 +5,7 @@ import * as S from './ListTitleStyle';
 import { BoardInterface, ListInterface, CardInterface } from '@/type';
 import { CgClose } from 'react-icons/cg';
 import Swal from 'sweetalert2';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 
 interface ListTitleProps {
   dragHandleProps: Object;
@@ -17,6 +18,7 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
   const [newTitle, setnewTitle] = useState<string>(title);
   const [editMode, seteditMode] = useState<boolean>(false);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
 
   const handleTitleByonBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     saveTitle();
@@ -42,6 +44,7 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
     seteditMode(false);
   };
   const handleDeleteList = () => {
+    setTemporaryBoard((prev) => [...prev, boards]);
     let log = {
       logName: `${title} 리스트 삭제`,
       date: new Date().getTime(),
