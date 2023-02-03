@@ -3,10 +3,7 @@ export const boardsDummy = [
     boardTitle: '개인 일정 정리 보드',
     boardId: '1',
     owner: 'bwj0509',
-    logs: [
-      { logName: '00보드 삭제', date: 1675190208724 },
-      { logName: 'aefaef 리스트 생성', date: 1675190208000 },
-    ],
+    logs: [],
     lists: [
       {
         listTitle: '주간 할일',
@@ -46,10 +43,7 @@ export const boardsDummy = [
     boardTitle: '티미룸 협업 보드',
     boardId: '2',
     owner: 'bwj0509',
-    logs: [
-      { logName: '00삭제', date: 1675190204444 },
-      { logName: 'aefaef 리스트 추가', date: 1675190201111 },
-    ],
+    logs: [],
     lists: [
       {
         listTitle: '주간 할일',

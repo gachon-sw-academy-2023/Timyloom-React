@@ -18,6 +18,14 @@ const themeVariants = variant({
         color: '#808080',
       },
     },
+    remove: {
+      backgroundColor: '#a0c3ff',
+      color: 'white',
+      '&:hover': {
+        backgroundColor: '#e2e2ea',
+        color: '#808080',
+      },
+    },
     success: {
       backgroundColor: '#21D05F',
       color: '#FFFFFF',
