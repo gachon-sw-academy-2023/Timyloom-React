@@ -15,6 +15,8 @@ export interface ListInterface {
 export interface CardInterface {
   cardTitle: string;
   cardId: string;
+  description: string;
+  date: any;
 }
 
 export interface LogsInterface {

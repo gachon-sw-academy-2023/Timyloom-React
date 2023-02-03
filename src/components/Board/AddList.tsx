@@ -14,10 +14,6 @@ function AddList() {
   const [addStatus, setAddStatus] = useState<boolean>(false);
   const [listTitle, setListTitle] = useState<string>('');
 
-  useEffect(() => {
-    console.log(temporaryBoard);
-  }, [boards]);
-
   const handleStatusTrue = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAddStatus(true);
   };
@@ -65,7 +61,7 @@ function AddList() {
           autoFocus
         ></S.AddListInput>
       ) : (
-        <S.AddListBtn onClick={handleStatusTrue}>새로운 리스트 추가</S.AddListBtn>
+        <S.AddListBtn onClick={handleStatusTrue}>Add another list</S.AddListBtn>
       )}
     </S.AddListWrapper>
   );

@@ -64,11 +64,24 @@ export const ModalHeader = styled.div`
   border-top-left-radius: 10px;
 `;
 
-export const ModalTitle = styled.div`
-  font-size: 24px;
-  font-weight: 600;
-  height: 32px;
-  margin-bottom: 20px;
+export const ModalTitle = styled.textarea<{ cardTitle: string }>`
+  cursor: pointer;
+  width: ${(props) => `${props.cardTitle.length * 23}px`};
+  min-width: 200px;
+  font-size: 1.3rem;
+  height: 40px;
+  margin: 10px 0px 0px 0px;
+  padding: 4px 8px;
+  border: none;
+  resize: none;
+  border-radius: 3px;
+  background: transparent;
+  &:focus {
+    cursor: text;
+    background: white;
+    box-shadow: inset 0 0 0 2px #5d5d5d;
+    outline: 0;
+  }
 `;
 
 export const ModalDescription = styled.div`
@@ -115,14 +128,14 @@ export const OptionWrapper = styled.div`
 
 export const DateCustomInput = styled.input`
   text-align: center;
-  padding: 0.5rem 0.5rem 0.7rem;
-  font-size: 1.5rem;
+  padding: 0.6rem 1.5rem 0.6rem;
+  font-size: 1rem;
   margin: 10px 20px;
   width: auto;
   border-color: #a0c3ff;
   border: 2px solid #eef4fe;
   border-radius: 10px;
-  color: white;
+  color: #000000;
   outline: none;
 
   ::placeholder {

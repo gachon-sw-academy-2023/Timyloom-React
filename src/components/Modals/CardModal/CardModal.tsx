@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { CgClose } from 'react-icons/cg';
 import * as S from '@/components/Modals/CardModal/CardModalStyle';
 import Button from '@/components/Button/Button';
@@ -6,52 +6,136 @@ import Label from '@/components/Label/Label';
 import { FaBookmark } from 'react-icons/fa';
 import { FcClock } from 'react-icons/fc';
 import { FaMap } from 'react-icons/fa';
+import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
+import { useRecoilState } from 'recoil';
+import { boardsAtom } from '@/recoil/boardsAtom';
+import { selectedCardAtom } from '@/recoil/selectedCardAtom';
 
-interface ModalProps {
-  showModal: boolean;
-  setShowModal: Function;
-  data: ModalDataProps;
-}
-
-interface ModalDataProps {
-  cardTitle: string;
+interface SelectedCardInfoProps {
+  isModalopen: boolean;
+  boardId: string;
+  listId: string;
   cardId: string;
+  cardData: any;
 }
 
 interface DateRefProps {
   ref: React.LegacyRef<HTMLInputElement> | null;
 }
 
-function CardModal({ showModal, setShowModal, data }: ModalProps) {
+function CardModal() {
+  const [selectedCard, setSelectedCard] = useRecoilState<any>(selectedCardAtom);
+  const [boards, setBoards] = useRecoilState(boardsAtom);
+  const [cardTitle, setCardTitle] = useState(selectedCard.cardData.cardTitle);
+  console.log(cardTitle);
   const handleModal = () => {
-    setShowModal(!showModal);
+    setSelectedCard((prev) => ({ ...prev, isModalopen: !prev.isModalopen }));
   };
+
+  const [selectedDayRange, setSelectedDayRange] = useState(selectedCard.cardData.date);
+  const startDate = selectedDayRange.from
+    ? `${selectedDayRange.from.year}-${selectedDayRange.from.month}-${selectedDayRange.from.day}`
+    : `not select`;
+  const endDate = selectedDayRange.to
+    ? `${selectedDayRange.to.year}-${selectedDayRange.to.month}-${selectedDayRange.to.day}`
+    : `not select`;
 
   useEffect(() => {
     {
-      showModal ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
+      selectedCard.isModalopen ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
     }
-  }, [showModal]);
+  }, [selectedCard.isModalopen]);
 
-  const [selectedDayRange, setSelectedDayRange] = useState({
-    from: null,
-    to: null,
-  });
+  useDidMountEffect(() => {
+    if (selectedDayRange.to !== null && selectedDayRange.from !== null) {
+      updateDayInfo();
+    }
+  }, [selectedDayRange]);
 
   const resetDate = () => {
     setSelectedDayRange({
-      from: null,
-      to: null,
+      from: {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
+        day: new Date().getDate(),
+      },
+      to: {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
+        day: new Date().getDate(),
+      },
     });
   };
 
+  const updateDayInfo = () => {
+    let newBoards = boards.map((board) =>
+      board.boardId === selectedCard.boardId
+        ? {
+            ...board,
+            lists: board.lists.map((list) =>
+              list.listId === selectedCard.listId
+                ? {
+                    ...list,
+                    cards: list.cards.map((card) =>
+                      card.cardId === selectedCard.cardId ? { ...card, date: selectedDayRange } : card,
+                    ),
+                  }
+                : list,
+            ),
+          }
+        : board,
+    );
+    setBoards((prev) => newBoards);
+  };
+
+  const handleChangeTitle = (e) => {
+    setCardTitle((prev) => e.target.value);
+  };
+
+  const handleTitleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === 'Escape') {
+      removeFocus();
+      e.preventDefault();
+      saveTitleData();
+    }
+  };
+  const removeFocus = () => {
+    (document.activeElement as HTMLElement).blur();
+  };
+
+  const saveTitleData = () => {
+    let newBoards = boards.map((board) =>
+      board.boardId === selectedCard.boardId
+        ? {
+            ...board,
+            lists: board.lists.map((list) =>
+              list.listId === selectedCard.listId
+                ? {
+                    ...list,
+                    cards: list.cards.map((card) =>
+                      card.cardId === selectedCard.cardId ? { ...card, cardTitle: cardTitle } : card,
+                    ),
+                  }
+                : list,
+            ),
+          }
+        : board,
+    );
+    setBoards((prev) => newBoards);
+  };
+
   const renderCustomInput = ({ ref }: DateRefProps) => (
-    <S.DateCustomInput readOnly ref={ref} placeholder="Select a day range" value={selectedDayRange.from ? `✅` : ''} />
+    <S.DateCustomInput
+      readOnly
+      ref={ref}
+      placeholder="Select a day range"
+      value={selectedCard.cardData.date.to !== null ? `${startDate} ~ ${endDate}` : ''}
+    />
   );
-  if (showModal)
+  if (selectedCard.isModalopen)
     return (
       <S.ModalBackdrop>
         <S.ModalView>
@@ -59,11 +143,26 @@ function CardModal({ showModal, setShowModal, data }: ModalProps) {
             <S.ModalCloseBtn onClick={handleModal}>
               <CgClose size="25" color="black" />
             </S.ModalCloseBtn>
-            <S.ModalTitle>
+            <S.ModalTitle
+              cardTitle={selectedCard.cardData.cardTitle}
+              spellCheck="false"
+              value={cardTitle}
+              onChange={handleChangeTitle}
+              onKeyDown={handleTitleKeyDown}
+              onBlur={() => {
+                saveTitleData();
+              }}
+            >
               <S.TitlelIcon size="30" />
-              {data.cardTitle}
+              {selectedCard.cardData.cardTitle}
             </S.ModalTitle>
-            <S.ModalDescription>Description을 적으세요!!</S.ModalDescription>
+            <S.ModalDescription
+              onClick={() => {
+                console.log('설명 바꿔줘!');
+              }}
+            >
+              {selectedCard.cardData.description}
+            </S.ModalDescription>
           </S.ModalHeader>
           <S.ModalOptionContainer>
             <S.OptionWrapper>
