@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Tag = () => {
+const Label = () => {
   const [labelItem, setLabelItem] = useState({ labelTitle: '', labelColor: '' });
   const [tagList, setTagList] = useState([] as any);
 
@@ -20,16 +20,17 @@ const Tag = () => {
 
   const submitTagItem = () => {
     tagList.push(labelItem);
-    console.log(tagList);
     setLabelItem({ labelTitle: '', labelColor: '' });
   };
 
   const deleteTagItem = (e: any) => {
     const deleteTagItem = e.target.parentElement.firstChild.innerText;
-    const filteredTagList = tagList.filter((tagItem: any) => tagItem !== deleteTagItem);
+    const filteredTagList = tagList.labelTitle.filter((tagItem: any) => tagItem !== deleteTagItem);
     setTagList(filteredTagList);
+    console.log(tagList);
   };
-
+  console.log(tagList);
+  console.log(labelItem);
   return (
     <WholeBox>
       <TagBox>
@@ -62,6 +63,7 @@ const WholeBox = styled.div`
 const TagBox = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   min-height: 50px;
   margin: 10px;
@@ -102,6 +104,7 @@ const Button = styled.button`
 
 const TagInput = styled.input`
   display: inline-flex;
+
   min-width: 150px;
   background: transparent;
   border: none;
@@ -109,4 +112,4 @@ const TagInput = styled.input`
   cursor: text;
 `;
 
-export default Tag;
+export default Label;
