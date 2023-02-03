@@ -27,10 +27,7 @@ const Label = () => {
     const deleteTagItem = e.target.parentElement.firstChild.innerText;
     const filteredTagList = tagList.labelTitle.filter((tagItem: any) => tagItem !== deleteTagItem);
     setTagList(filteredTagList);
-    console.log(tagList);
   };
-  console.log(tagList);
-  console.log(labelItem);
   return (
     <WholeBox>
       <TagBox>

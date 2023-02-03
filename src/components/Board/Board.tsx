@@ -23,18 +23,9 @@ interface DndPositionInterface {
 
 function Board({ boards, setBoards, boardId }: BoardProps) {
   let [board] = boards.filter((board) => board.boardId === boardId);
-  const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
-  const [cardData, setcardData] = useState({ cardTitle: '', cardId: '' });
+  const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
   let lists = board.lists;
-
-  useDidMountEffect(() => {
-    if (selectedCardId.isModalopen) {
-      let [list] = board.lists.filter((list: any) => list.listId === selectedCardId.listId);
-      let [card] = list.cards.filter((card: any) => card.cardId === selectedCardId.cardId);
-      setcardData({ ...card });
-    }
-  }, [selectedCardId]);
 
   const onBeforeDragStart = () => {};
 
@@ -109,7 +100,7 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
           )}
         </Droppable>
       </DragDropContext>
-      <CardModal showModal={selectedCardId.isModalopen} setShowModal={setSelectedCardId} data={cardData} />
+      {selectedCardId.isModalopen ? <CardModal></CardModal> : null}
     </>
   );
 }

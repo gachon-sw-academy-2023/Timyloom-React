@@ -49,7 +49,29 @@ function AddCard({ listId }: AddCardProps) {
             logs: [...board.logs, log],
             lists: board.lists.map((list) => {
               return list.listId == listId
-                ? { ...list, cards: [...list.cards, { cardTitle: cardTitle, cardId: `c-${cardId}` }] }
+                ? {
+                    ...list,
+                    cards: [
+                      ...list.cards,
+                      {
+                        cardTitle: cardTitle,
+                        cardId: `c-${cardId}`,
+                        description: 'Add your description',
+                        date: {
+                          from: {
+                            year: new Date().getFullYear(),
+                            month: new Date().getMonth() + 1,
+                            day: new Date().getDate(),
+                          },
+                          to: {
+                            year: new Date().getFullYear(),
+                            month: new Date().getMonth() + 1,
+                            day: new Date().getDate(),
+                          },
+                        },
+                      },
+                    ],
+                  }
                 : list;
             }),
           }

@@ -14,10 +14,6 @@ function AddList() {
   const [addStatus, setAddStatus] = useState<boolean>(false);
   const [listTitle, setListTitle] = useState<string>('');
 
-  useEffect(() => {
-    console.log(temporaryBoard);
-  }, [boards]);
-
   const handleStatusTrue = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAddStatus(true);
   };
