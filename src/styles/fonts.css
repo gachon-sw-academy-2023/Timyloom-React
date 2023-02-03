@@ -5,6 +5,19 @@
 }
 
 @font-face {
+    font-family: 'SCDreamRegular';
+    font-style: normal;
+    src: url('@/assets/fonts/S-CoreDreamOTF/SCDream-Regular.otf') format('opentype');
+    unicode-range: U+AC00-D7A3;
+}
+
+@font-face {
+    font-family: 'SCDreamMedium';
+    font-style: normal;
+    src: url('@/assets/fonts/S-CoreDreamOTF/SCDream-Medium.otf') format('opentype');
+}
+
+@font-face {
     font-family: 'Roboto';
     font-weight: 900;
     src: url('@/assets/fonts/Roboto/Roboto-Black.ttf') format('truetype');
