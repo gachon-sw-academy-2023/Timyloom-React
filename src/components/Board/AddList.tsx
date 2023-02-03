@@ -65,7 +65,7 @@ function AddList() {
           autoFocus
         ></S.AddListInput>
       ) : (
-        <S.AddListBtn onClick={handleStatusTrue}>새로운 리스트 추가</S.AddListBtn>
+        <S.AddListBtn onClick={handleStatusTrue}>Add another list</S.AddListBtn>
       )}
     </S.AddListWrapper>
   );

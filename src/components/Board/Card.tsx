@@ -7,6 +7,7 @@ import { CgClose } from 'react-icons/cg';
 import { BoardInterface, ListInterface, CardInterface } from '@/type';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
+import { FcClock } from 'react-icons/fc';
 
 interface CardProps {
   listId: string;
@@ -66,10 +67,17 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
             {...draggableProvided.dragHandleProps}
           >
             <S.TextAreaWrapper onClick={handleSaveModalData}>
-              <S.CardTitleWrapper>{cardData.cardTitle}</S.CardTitleWrapper>
-              <S.DeleteWrapper onClick={handleDeleteCard}>
-                <CgClose />
-              </S.DeleteWrapper>
+              <S.CardHeaderWrapper>
+                <S.CardTitleWrapper>{cardData.cardTitle}</S.CardTitleWrapper>
+                <S.DeleteWrapper onClick={handleDeleteCard}>
+                  <CgClose />
+                </S.DeleteWrapper>
+              </S.CardHeaderWrapper>
+              <S.InformationWrapper>
+                <FcClock size="20" />
+                <div>Mar.20.2022</div>
+              </S.InformationWrapper>
+              description
             </S.TextAreaWrapper>
           </S.CardDraggable>
         )}

@@ -69,7 +69,7 @@ function AddCard({ listId }: AddCardProps) {
           autoFocus
         ></S.AddCardInput>
       ) : (
-        <S.AddCardBtn onClick={handleStatusTrue}>새로운 카드 추가</S.AddCardBtn>
+        <S.AddCardBtn onClick={handleStatusTrue}>+ Add a Card</S.AddCardBtn>
       )}
     </S.AddCardWrapper>
   );
