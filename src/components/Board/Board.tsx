@@ -1,5 +1,5 @@
 import List from '@/components/Board/List';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from '@/components/Board/BoardStyle';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import AddList from './AddList';
@@ -8,6 +8,7 @@ import { selectedCardAtom } from '@/recoil/selectedCardAtom';
 import { BoardInterface, ListInterface } from '@/type';
 import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 import CardModal from '@/components/Modals/CardModal/CardModal';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 
 interface BoardProps {
   boards: BoardInterface[];
@@ -23,6 +24,7 @@ interface DndPositionInterface {
 function Board({ boards, setBoards, boardId }: BoardProps) {
   let [board] = boards.filter((board) => board.boardId === boardId);
   const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
   const [cardData, setcardData] = useState({ cardTitle: '', cardId: '' });
   let lists = board.lists;
 
@@ -43,10 +45,17 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
     const { source, destination, type } = result;
     switch (type) {
       case 'moveList':
-        reorderListPosition(source.index, destination.index, boardId); // 리스트정렬
+        if (source.index !== destination.index) {
+          reorderListPosition(source.index, destination.index, boardId); // 리스트정렬
+        }
         break;
       case 'moveCard':
-        reorderCardPosition(source, destination, result.draggableId, boardId); // 카드정렬
+        if (
+          source.droppableId !== destination.droppableId ||
+          (source.droppableId === destination.droppableId && source.index !== destination.index)
+        ) {
+          reorderCardPosition(source, destination, result.draggableId, boardId); // 카드정렬
+        }
         break;
       default:
         break;
@@ -72,6 +81,7 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
     newBoard = tempBoard.lists.map((list: ListInterface) =>
       destination.droppableId === list.listId ? { ...list, cards: tempDestinationCards } : list,
     );
+    setTemporaryBoard((prev) => [...prev, boards]);
     setBoards((prev) => boards.map((board) => (boardId === board.boardId ? { ...board, lists: newBoard } : board)));
   };
 
@@ -80,6 +90,7 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
       .lists;
     let [reorderList] = tempLists.splice(sourceIndex, 1);
     tempLists.splice(destinationIndex, 0, reorderList);
+    setTemporaryBoard((prev) => [...prev, boards]);
     setBoards((prev) => boards.map((board) => (board.boardId === boardId ? { ...board, lists: tempLists } : board)));
   };
 
