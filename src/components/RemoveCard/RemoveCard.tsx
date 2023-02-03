@@ -13,8 +13,10 @@ function RemoveCard() {
   useEffect(() => {
     const Toast = Swal.mixin({
       toast: true,
-      position: 'top-right',
+      position: 'bottom-right',
       iconColor: 'white',
+      background: 'lightskyblue',
+      color: 'white',
       customClass: {
         popup: 'colored-toast',
       },
@@ -23,19 +25,21 @@ function RemoveCard() {
       timerProgressBar: true,
     });
     Toast.fire({
-      title: '5초뒤에 워크스페이스로 이동합니다',
+      icon: 'info',
+      title: '5초 뒤에 워크스페이스로<br/>이동합니다',
     });
   }, []);
 
   setInterval(() => {
-    navigate('/workspace/boards');
+    location.replace('/workspace/boards');
   }, 5000);
 
   return (
     <S.CardWrapper>
+      <S.GearSvg />
       <S.CardTitle size="1.5rem">보드를 삭제하였습니다.</S.CardTitle>
       <S.CardTitle size="1.3rem">삭제된 보드는 30일간 보관되며 이후에 영구삭제 됩니다.</S.CardTitle>
-      <Button themes="sign" onClick={handlePage}>
+      <Button themes="remove" size="md" border={false} radius="square" onClick={handlePage}>
         Move to Workspace
       </Button>
     </S.CardWrapper>

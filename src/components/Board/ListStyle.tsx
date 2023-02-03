@@ -20,3 +20,15 @@ export const ListDroppable = styled.div`
   margin: 4px;
   padding: 0px 4px 2px 4px;
 `;
+
+export const AddCardBtn = styled.button`
+  font-size: 1rem;
+  background-color: #e7ff6e;
+  border: none;
+  border-radius: 5px;
+  padding: 7px;
+  &:hover {
+    background-color: #ffffffd1;
+  }
+  transition: all 100ms ease-in;
+`;

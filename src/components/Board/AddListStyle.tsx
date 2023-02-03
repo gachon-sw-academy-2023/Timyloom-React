@@ -23,11 +23,10 @@ export const AddListInput = styled.input`
   font-size: 1rem;
   background-color: #ffffffd1;
   border-radius: 3px;
-  margin: -4px 0;
   padding: 4px 8px;
   border: none;
   &:focus {
-    box-shadow: inset 0 0 0 2px #ee8d0d;
+    box-shadow: inset 0 0 0 2px #d5d5d5;
     outline: 0;
   }
 `;

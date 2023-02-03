@@ -28,7 +28,7 @@ function Boards({ sidebarOpen }: BoardsProps) {
 
   if (loading)
     return (
-      <S.PageWrapper isopen={sidebarOpen}>
+      <S.PageWrapper>
         <WorkspaceHeader />
         <S.BoardContainer>
           <S.SkeletonWrapper>
@@ -45,7 +45,7 @@ function Boards({ sidebarOpen }: BoardsProps) {
     );
 
   return (
-    <S.PageWrapper isopen={sidebarOpen}>
+    <S.PageWrapper>
       <WorkspaceHeader />
       <S.ContentWrapper isopen={sidebarOpen}>
         <S.BoardContainer>

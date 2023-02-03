@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
-import * as S from '@/components/Board/AddListStyle';
+import { useState } from 'react';
+import * as S from '@/components/Board/AddCardStyle';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
-import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 import shortid from 'shortid';
 import { BoardInterface } from '@/type';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 
-function AddList() {
+interface AddCardProps {
+  listId: string;
+}
+
+function AddCard({ listId }: AddCardProps) {
   const { boardId } = useParams();
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
-  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
   const [addStatus, setAddStatus] = useState<boolean>(false);
-  const [listTitle, setListTitle] = useState<string>('');
-
-  useEffect(() => {
-    console.log(temporaryBoard);
-  }, [boards]);
+  const [cardTitle, setCardTitle] = useState<string>('');
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
 
   const handleStatusTrue = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAddStatus(true);
@@ -25,21 +25,21 @@ function AddList() {
   const handleStatusFalse = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       setAddStatus(false);
-      saveList();
+      saveCard();
     } else if (e.key === 'Escape') {
       setAddStatus(false);
     }
   };
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setListTitle(e.target.value);
+    setCardTitle(e.target.value);
   };
 
-  const saveList = () => {
+  const saveCard = () => {
     setTemporaryBoard((prev) => [...prev, boards]);
-    let listId = shortid.generate();
+    let cardId = shortid.generate();
     let log = {
-      logName: `${listTitle} 리스트 생성`,
+      logName: `${cardTitle} 카드 생성`,
       date: new Date().getTime(),
     };
     let tempBoard = boards.map((board, index) =>
@@ -47,28 +47,32 @@ function AddList() {
         ? {
             ...board,
             logs: [...board.logs, log],
-            lists: [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [] }],
+            lists: board.lists.map((list) => {
+              return list.listId == listId
+                ? { ...list, cards: [...list.cards, { cardTitle: cardTitle, cardId: `c-${cardId}` }] }
+                : list;
+            }),
           }
         : board,
     );
     setBoards((prev) => tempBoard);
   };
   return (
-    <S.AddListWrapper>
+    <S.AddCardWrapper>
       {addStatus ? (
-        <S.AddListInput
+        <S.AddCardInput
           onChange={handleChangeTitle}
           onKeyDown={handleStatusFalse}
           onBlur={() => {
             setAddStatus(false);
           }}
           autoFocus
-        ></S.AddListInput>
+        ></S.AddCardInput>
       ) : (
-        <S.AddListBtn onClick={handleStatusTrue}>새로운 리스트 추가</S.AddListBtn>
+        <S.AddCardBtn onClick={handleStatusTrue}>새로운 카드 추가</S.AddCardBtn>
       )}
-    </S.AddListWrapper>
+    </S.AddCardWrapper>
   );
 }
 
-export default AddList;
+export default AddCard;

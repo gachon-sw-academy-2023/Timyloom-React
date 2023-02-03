@@ -1,51 +1,7 @@
 import * as S from './SidebarStyle';
-import { useState } from 'react';
-import { AiOutlineHome, AiOutlineLeft, AiOutlineSetting, AiOutlineCalendar, AiOutlineTable } from 'react-icons/ai';
+import { AiOutlineLeft } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
-
-const linksArray = [
-  {
-    label: 'Workspace',
-    icon: <AiOutlineHome />,
-    to: '/workspace/boards',
-  },
-  {
-    label: 'Setting',
-    icon: <AiOutlineSetting />,
-    to: '/statistics',
-  },
-];
-
-const secondaryLinksArray = [
-  {
-    label: 'Table',
-    icon: <AiOutlineTable />,
-    to: '',
-  },
-  {
-    label: 'Calender',
-    icon: <AiOutlineCalendar />,
-    to: '',
-  },
-];
-
-const board = [
-  {
-    title: 'Board1',
-    link: '/',
-    color: 'pink',
-  },
-  {
-    title: 'Board2',
-    link: '/messages',
-    color: 'white',
-  },
-  {
-    title: 'Board3',
-    link: '/tasks',
-    color: 'skyblue',
-  },
-];
+import { linksArray, secondaryLinksArray, board } from '@/components/Sidebar/SidebarData';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -68,8 +24,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
       <S.SidebarOpenButton $isopen={sidebarOpen} onClick={() => setSidebarOpen((prev: boolean) => !prev)}>
         <AiOutlineLeft />
       </S.SidebarOpenButton>
-      <S.LogoLink>
-        <S.Logo $isopen={sidebarOpen} />
+      <S.LogoLink to="/">
+        <S.Logo $isopen={sidebarOpen}>Timyloom</S.Logo>
       </S.LogoLink>
       <S.Divider />
       {linksArray.map(({ icon, label, to }) => (
