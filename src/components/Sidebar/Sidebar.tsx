@@ -1,9 +1,8 @@
 import * as S from './SidebarStyle';
-import { useState, useEffect } from 'react';
-import { AiOutlineHome, AiOutlineLeft, AiOutlineSetting, AiOutlineCalendar, AiOutlineTable } from 'react-icons/ai';
+import { AiOutlineLeft } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
 import { linksArray, secondaryLinksArray, board } from '@/components/Sidebar/SidebarData';
-import { useRecoilState } from 'recoil';
+
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: Function;
@@ -25,8 +24,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
       <S.SidebarOpenButton $isopen={sidebarOpen} onClick={() => setSidebarOpen((prev: boolean) => !prev)}>
         <AiOutlineLeft />
       </S.SidebarOpenButton>
-      <S.LogoLink>
-        <S.Logo $isopen={sidebarOpen} />
+      <S.LogoLink to="/">
+        <S.Logo $isopen={sidebarOpen}>Timyloom</S.Logo>
       </S.LogoLink>
       <S.Divider />
       {linksArray.map(({ icon, label, to }) => (

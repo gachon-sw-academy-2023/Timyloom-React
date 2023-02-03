@@ -30,36 +30,20 @@ export const SidebarOpenButton = styled.button<{ $isopen: boolean }>`
   transform: ${({ $isopen }) => (!$isopen ? `rotate(180deg)` : `initial`)};
 `;
 
-export const LogoLink = styled.div`
+export const LogoLink = styled(Link)`
   display: flex;
-  align-items: center;
   justify-content: center;
   text-decoration: none;
-
-  svg {
-    height: auto;
-    width: 52px;
+  font-size: 1.7rem;
+  color: #333333;
+  @media screen and (max-width: 768px) {
+    display: none;
   }
-  cursor: pointer;
-  height: 90px;
-  margin-bottom: 24px;
 `;
 
 export const Logo = styled.div<{ $isopen: boolean }>`
-  display: ${({ $isopen }) => (!$isopen ? 'none' : ``)};
-  background-image: url(${Logos_orange});
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 190px;
-  height: 50px;
-`;
-export const LogoText = styled.div<{ $isopen: boolean }>`
-  padding: 0.3rem;
-  font-size: 35px;
-  color: gray;
-  font-weight: bold;
-  display: ${({ $isopen }) => (!$isopen ? 'none' : ``)};
-  margin-left: 5px;
+  color: #333333;
+  font-family: 'Azonix';
 `;
 
 export const Divider = styled.div`
@@ -106,6 +90,7 @@ export const LinkLabel = styled.span<{ $column?: boolean }>`
   margin-left: 8px;
   padding-right: ${({ $column }) => ($column ? '5px' : `100px`)};
 `;
+
 export const SidebarSubtitle = styled.div<{ $isopen: boolean }>`
   display: ${({ $isopen }) => (!$isopen ? 'none' : ``)};
   padding: 15px 8px;
