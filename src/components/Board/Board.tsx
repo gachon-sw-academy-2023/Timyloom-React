@@ -1,12 +1,11 @@
 import List from '@/components/Board/List';
-import { useEffect, useState } from 'react';
+import Welcome from '@/components/Board/Welcome';
 import * as S from '@/components/Board/BoardStyle';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import AddList from './AddList';
 import { useRecoilState, SetterOrUpdater } from 'recoil';
 import { selectedCardAtom } from '@/recoil/selectedCardAtom';
 import { BoardInterface, ListInterface } from '@/type';
-import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 import CardModal from '@/components/Modals/CardModal/CardModal';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 
@@ -100,7 +99,8 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
           )}
         </Droppable>
       </DragDropContext>
-      {selectedCardId.isModalopen ? <CardModal></CardModal> : null}
+      {lists.length === 0 && <Welcome />}
+      {selectedCardId.isModalopen && <CardModal></CardModal>}
     </>
   );
 }
