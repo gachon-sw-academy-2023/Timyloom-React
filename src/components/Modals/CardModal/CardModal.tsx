@@ -1,109 +1,219 @@
-import { MouseEventHandler, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { CgClose } from 'react-icons/cg';
 import * as S from '@/components/Modals/CardModal/CardModalStyle';
 import Button from '@/components/Button/Button';
-import Tag from '@/components/Tag/Tag';
+import Label from '@/components/Label/Label';
 import { FaBookmark } from 'react-icons/fa';
 import { FcClock } from 'react-icons/fc';
-import { FcTodoList } from 'react-icons/fc';
 import { FaMap } from 'react-icons/fa';
+import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 
-interface ModalProps {
-  showModal: boolean;
-  setShowModal: Function;
-  data: ModalDataProps;
-}
+import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
+import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
+import { useRecoilState } from 'recoil';
+import { boardsAtom } from '@/recoil/boardsAtom';
+import { selectedCardAtom } from '@/recoil/selectedCardAtom';
 
-interface ModalDataProps {
-  cardTitle: string;
+interface SelectedCardInfoProps {
+  isModalopen: boolean;
+  boardId: string;
+  listId: string;
   cardId: string;
+  cardData: any;
 }
-function CardModal({ showModal, setShowModal, data }: ModalProps) {
+
+interface DateRefProps {
+  ref: React.LegacyRef<HTMLInputElement> | null;
+}
+
+function CardModal() {
+  const [selectedCard, setSelectedCard] = useRecoilState<any>(selectedCardAtom);
+  const [boards, setBoards] = useRecoilState(boardsAtom);
+  const [cardTitle, setCardTitle] = useState(selectedCard.cardData.cardTitle);
+  console.log(cardTitle);
   const handleModal = () => {
-    setShowModal(!showModal);
+    setSelectedCard((prev) => ({ ...prev, isModalopen: !prev.isModalopen }));
   };
+
+  const [selectedDayRange, setSelectedDayRange] = useState(selectedCard.cardData.date);
+  const startDate = selectedDayRange.from
+    ? `${selectedDayRange.from.year}-${selectedDayRange.from.month}-${selectedDayRange.from.day}`
+    : `not select`;
+  const endDate = selectedDayRange.to
+    ? `${selectedDayRange.to.year}-${selectedDayRange.to.month}-${selectedDayRange.to.day}`
+    : `not select`;
 
   useEffect(() => {
     {
-      showModal ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
+      selectedCard.isModalopen ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
     }
-  }, [showModal]);
+  }, [selectedCard.isModalopen]);
 
-  return (
-    <>
-      {showModal ? (
-        <S.ModalBackdrop>
-          <S.ModalView>
-            <S.ModalHeader>
-              <S.ModalCloseBtn onClick={handleModal}>
-                <CgClose size="25" color="black" />
-              </S.ModalCloseBtn>
-              <S.ModalTitle>
-                <S.TitlelIcon size="30" />
-                {data.cardTitle}
-              </S.ModalTitle>
-              <S.ModalDescription>Description을 적으세요!!</S.ModalDescription>
-            </S.ModalHeader>
-            <S.ModalOptionContainer>
-              <S.OptionWrapper>
-                <S.OptionTitleWrapper>
-                  <FaBookmark color="#a0c3ff" size="25" />
-                  <S.OptionTitle>Labels</S.OptionTitle>
-                </S.OptionTitleWrapper>
-                <S.OptionContentWrapper>
-                  <Tag />
-                </S.OptionContentWrapper>
-              </S.OptionWrapper>
-              <S.OptionWrapper>
-                <S.OptionTitleWrapper>
-                  <FcClock size="30" />
-                  <S.OptionTitle>Date</S.OptionTitle>
-                </S.OptionTitleWrapper>
-                <S.OptionContentWrapper>
-                  <Button radius="square" border={false} size="xs" themes="sign">
-                    Start
-                  </Button>
-                  <Button radius="square" border={false} size="xs" themes="sign">
-                    End
-                  </Button>
-                </S.OptionContentWrapper>
-              </S.OptionWrapper>
-              <S.OptionWrapper>
-                <S.OptionTitleWrapper>
-                  <FcTodoList size="25" />
-                  <S.OptionTitle>Checklist</S.OptionTitle>
-                </S.OptionTitleWrapper>
-                <S.OptionContentWrapper>
-                  <Button radius="square" border={false} size="xs" themes="sign">
-                    +
-                  </Button>
-                </S.OptionContentWrapper>
-              </S.OptionWrapper>
-              <S.OptionWrapper>
-                <S.OptionTitleWrapper>
-                  <FaMap color="#BED0F4" size="25" />
-                  <S.OptionTitle>Map</S.OptionTitle>
-                </S.OptionTitleWrapper>
-                <S.OptionContentWrapper>
-                  <Button radius="square" border={false} size="xs" themes="sign">
-                    +
-                  </Button>
-                </S.OptionContentWrapper>
-              </S.OptionWrapper>
-            </S.ModalOptionContainer>
+  useDidMountEffect(() => {
+    if (selectedDayRange.to !== null && selectedDayRange.from !== null) {
+      updateDayInfo();
+    }
+  }, [selectedDayRange]);
 
-            <S.ModalFooter>
+  const resetDate = () => {
+    setSelectedDayRange({
+      from: {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
+        day: new Date().getDate(),
+      },
+      to: {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
+        day: new Date().getDate(),
+      },
+    });
+  };
+
+  const updateDayInfo = () => {
+    let newBoards = boards.map((board) =>
+      board.boardId === selectedCard.boardId
+        ? {
+            ...board,
+            lists: board.lists.map((list) =>
+              list.listId === selectedCard.listId
+                ? {
+                    ...list,
+                    cards: list.cards.map((card) =>
+                      card.cardId === selectedCard.cardId ? { ...card, date: selectedDayRange } : card,
+                    ),
+                  }
+                : list,
+            ),
+          }
+        : board,
+    );
+    setBoards((prev) => newBoards);
+  };
+
+  const handleChangeTitle = (e) => {
+    setCardTitle((prev) => e.target.value);
+  };
+
+  const handleTitleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === 'Escape') {
+      removeFocus();
+      e.preventDefault();
+      saveTitleData();
+    }
+  };
+  const removeFocus = () => {
+    (document.activeElement as HTMLElement).blur();
+  };
+
+  const saveTitleData = () => {
+    let newBoards = boards.map((board) =>
+      board.boardId === selectedCard.boardId
+        ? {
+            ...board,
+            lists: board.lists.map((list) =>
+              list.listId === selectedCard.listId
+                ? {
+                    ...list,
+                    cards: list.cards.map((card) =>
+                      card.cardId === selectedCard.cardId ? { ...card, cardTitle: cardTitle } : card,
+                    ),
+                  }
+                : list,
+            ),
+          }
+        : board,
+    );
+    setBoards((prev) => newBoards);
+  };
+
+  const renderCustomInput = ({ ref }: DateRefProps) => (
+    <S.DateCustomInput
+      readOnly
+      ref={ref}
+      placeholder="Select a day range"
+      value={selectedCard.cardData.date.to !== null ? `${startDate} ~ ${endDate}` : ''}
+    />
+  );
+  if (selectedCard.isModalopen)
+    return (
+      <S.ModalBackdrop>
+        <S.ModalView>
+          <S.ModalHeader>
+            <S.ModalCloseBtn onClick={handleModal}>
+              <CgClose size="25" color="black" />
+            </S.ModalCloseBtn>
+            <S.ModalTitle
+              cardTitle={selectedCard.cardData.cardTitle}
+              spellCheck="false"
+              value={cardTitle}
+              onChange={handleChangeTitle}
+              onKeyDown={handleTitleKeyDown}
+              onBlur={() => {
+                saveTitleData();
+              }}
+            >
+              <S.TitlelIcon size="30" />
+              {selectedCard.cardData.cardTitle}
+            </S.ModalTitle>
+            <S.ModalDescription
+              onClick={() => {
+                console.log('설명 바꿔줘!');
+              }}
+            >
+              {selectedCard.cardData.description}
+            </S.ModalDescription>
+          </S.ModalHeader>
+          <S.ModalOptionContainer>
+            <S.OptionWrapper>
+              <S.OptionTitleWrapper>
+                <FaBookmark color="#a0c3ff" size="25" />
+                <S.OptionTitle>Labels</S.OptionTitle>
+              </S.OptionTitleWrapper>
+              <Label />
+            </S.OptionWrapper>
+            <S.OptionWrapper>
+              <S.OptionTitleWrapper>
+                <FcClock size="30" />
+                <S.OptionTitle>Date</S.OptionTitle>
+                <Button radius="square" border={false} size="xs" themes="sign" onClick={resetDate}>
+                  reset
+                </Button>
+              </S.OptionTitleWrapper>
+              <DatePicker
+                value={selectedDayRange}
+                onChange={setSelectedDayRange}
+                colorPrimary="#0fbcf9"
+                colorPrimaryLight="rgba(75, 207, 250, 0.4)"
+                renderInput={renderCustomInput}
+                shouldHighlightWeekends
+              />
+            </S.OptionWrapper>
+            <S.OptionWrapper>
+              <S.OptionTitleWrapper>
+                <FaMap color="#BED0F4" size="25" />
+                <S.OptionTitle>Map</S.OptionTitle>
+              </S.OptionTitleWrapper>
+              <S.OptionContentWrapper>
+                <Button radius="square" border={false} size="xs" themes="sign">
+                  +
+                </Button>
+              </S.OptionContentWrapper>
+            </S.OptionWrapper>
+          </S.ModalOptionContainer>
+
+          <S.ModalFooter>
+            <S.FooTerButtonContainer>
               <Button radius="square" border={false} size="xs" themes="sign">
                 SAVE
               </Button>
-              <S.ButtonDelete radius="square" border={false} size="xs" themes="danger">
+              <Button radius="square" border={false} size="xs" themes="danger">
                 DELETE
-              </S.ButtonDelete>
-            </S.ModalFooter>
-          </S.ModalView>
-        </S.ModalBackdrop>
-      ) : null}
-    </>
-  );
+              </Button>
+            </S.FooTerButtonContainer>
+          </S.ModalFooter>
+        </S.ModalView>
+      </S.ModalBackdrop>
+    );
 }
 export default CardModal;

@@ -31,8 +31,10 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const handleSaveModalData = () => {
     setSelectedCardId((prev) => ({
       isModalopen: !prev.isModalopen,
+      boardId: boardId,
       listId: listId,
       cardId: cardId,
+      cardData: cardData,
     }));
   };
 
