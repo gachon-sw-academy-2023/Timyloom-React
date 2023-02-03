@@ -30,8 +30,8 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
 
   useDidMountEffect(() => {
     if (selectedCardId.isModalopen) {
-      let [list] = board.lists.filter((list: any) => list.listId === selectedCardId.listId);
-      let [card] = list.cards.filter((card: any) => card.cardId === selectedCardId.cardId);
+      let [list] = board.lists.filter((list) => list.listId === selectedCardId.listId);
+      let [card] = list.cards.filter((card) => card.cardId === selectedCardId.cardId);
       setcardData({ ...card });
     }
   }, [selectedCardId]);
