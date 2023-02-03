@@ -19,11 +19,16 @@ export const ModalView = styled.div`
   flex-direction: column;
   background-color: white;
   width: 35vw;
-  min-width: 500px;
+  max-width: 500px;
+  min-width: 400px;
   height: auto;
   min-height: 100px;
-  overflow: hidden;
   border-radius: 10px;
+
+  @media (max-width: 425px) {
+    width: 250px;
+    min-width: 300px;
+  }
 `;
 
 export const ModalCloseBtn = styled.button`
@@ -55,6 +60,8 @@ export const ModalHeader = styled.div`
   padding: 20px 40px 8px 56px;
   position: relative;
   background-color: #eef4fe;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 `;
 
 export const ModalTitle = styled.div`
@@ -83,11 +90,11 @@ export const OptionTitleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const OptionTitle = styled.div`
-  margin-left: 8px;
+  margin: 0 10px;
   font-size: 15px;
   font-weight: 700;
 `;
@@ -96,9 +103,7 @@ export const OptionContentWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: left;
-`;
-export const ButtonDelete = styled(Button)`
-  margin-left: 20px;
+  margin: 10px 20px;
 `;
 export const OptionWrapper = styled.div`
   min-height: 60px;
@@ -107,8 +112,37 @@ export const OptionWrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
 `;
+
+export const DateCustomInput = styled.input`
+  text-align: center;
+  padding: 0.5rem 0.5rem 0.7rem;
+  font-size: 1.5rem;
+  margin: 10px 20px;
+  width: auto;
+  border-color: #a0c3ff;
+  border: 2px solid #eef4fe;
+  border-radius: 10px;
+  color: white;
+  outline: none;
+
+  ::placeholder {
+    color: gray;
+    font-size: 12px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100px;
+  }
+`;
+
 export const ModalFooter = styled.div`
-  height: 80px;
-  padding: 40px 10px 40px 420px;
-  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 30px;
+`;
+export const FooTerButtonContainer = styled.div`
+  width: 150px;
+  display: flex;
+  justify-content: space-evenly;
 `;
