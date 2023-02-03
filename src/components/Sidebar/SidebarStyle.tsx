@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Logos_orange from '@/assets/images/timyloom_logo_orange.png';
 
 export const SidebarWrapper = styled.div<{ $isopen: boolean }>`
   position: sticky;
@@ -22,7 +21,7 @@ export const SidebarOpenButton = styled.button<{ $isopen: boolean }>`
   height: 32px;
   border-radius: 50%;
   background: ${(props) => props.theme.primaryColor_1};
-  box-shadow: 0 0 4px gray;
+  box-shadow: 5px 5px 4px #cacfd8, -5px -5px 4px #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,17 +32,17 @@ export const SidebarOpenButton = styled.button<{ $isopen: boolean }>`
 export const LogoLink = styled(Link)`
   display: flex;
   justify-content: center;
+  padding-top: 22px;
   text-decoration: none;
-  font-size: 1.7rem;
+  font-size: 2rem;
   color: #333333;
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+  height: 85px;
 `;
 
 export const Logo = styled.div<{ $isopen: boolean }>`
   color: #333333;
   font-family: 'Azonix';
+  display: ${({ $isopen }) => (!$isopen ? 'none' : ``)};
 `;
 
 export const Divider = styled.div`
@@ -60,7 +59,11 @@ export const SLinkWrapper = styled.div<{ isActive: boolean }>`
   letter-spacing: 0.6px;
 
   :hover {
-    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.gray_2};
+    box-shadow: 2px 2px 4px #cacfd8, -2px -2px 4px #ffffff;
+  }
+
+  :active {
+    box-shadow: inset 2px 2px 4px #cacfd8, inset -2px -2px 2px #ffffff;
   }
 `;
 
