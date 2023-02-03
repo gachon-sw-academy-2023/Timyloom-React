@@ -23,7 +23,7 @@ const themeVariants = variant({
       color: '#FFFFFF',
     },
     danger: {
-      backgroundColor: '#FF4D4E',
+      backgroundColor: '#DB4455',
       color: '#FFFFFF',
       '&:hover': {
         backgroundColor: '#eef4fe',
