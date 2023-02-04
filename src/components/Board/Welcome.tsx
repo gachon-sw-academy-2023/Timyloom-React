@@ -5,9 +5,9 @@ function Welcome() {
   return (
     <S.WelcomeWrapper>
       <TypeAnimation
-        sequence={['Type faster or slower by setting speed.', 1000, '']}
+        sequence={['👆 Make your first list', 2000, '👆 Make everything with Timmy Room.', 1000]}
+        wrapper="div"
         speed={75}
-        wrapper="h2"
         repeat={Infinity}
       />
     </S.WelcomeWrapper>
