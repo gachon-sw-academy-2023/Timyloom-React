@@ -99,7 +99,8 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
           )}
         </Droppable>
       </DragDropContext>
-      {lists.length === 0 && <Welcome />}
+      {lists.length === 0 && <Welcome ment={0} />}
+      {lists.length === 1 && lists[0].cards.length === 0 && <Welcome ment={1} />}
       {selectedCardId.isModalopen && <CardModal></CardModal>}
     </>
   );
