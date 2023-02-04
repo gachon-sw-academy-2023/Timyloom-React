@@ -8,7 +8,7 @@ interface WelcomeProps {
 function Welcome({ ment }: WelcomeProps) {
   const sequence = [
     [`😀 Welcome ${localStorage.getItem('id')}.`, 2000, '👆 Make your first List.', 2000],
-    ['👆 Make your Card!', 2000, '👆 Make everything with Timmy Room.'],
+    ['👆 Make your Card!', 2000, '👆 Make everything with Timmyloom.', 2000],
   ];
 
   return (

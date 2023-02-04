@@ -30,7 +30,8 @@ function CardModal() {
   const [selectedCard, setSelectedCard] = useRecoilState<any>(selectedCardAtom);
   const [boards, setBoards] = useRecoilState(boardsAtom);
   const [cardTitle, setCardTitle] = useState(selectedCard.cardData.cardTitle);
-  console.log(cardTitle);
+  const [cardDescription, setCardDescription] = useState(selectedCard.cardData.cardDescription);
+
   const handleModal = () => {
     setSelectedCard((prev) => ({ ...prev, isModalopen: !prev.isModalopen }));
   };
@@ -94,19 +95,23 @@ function CardModal() {
   const handleChangeTitle = (e) => {
     setCardTitle((prev) => e.target.value);
   };
+  const handleChangeDescription = (e) => {
+    setCardDescription((prev) => e.target.value);
+  };
 
-  const handleTitleKeyDown = (e) => {
+  const handleKeyDown = (e, dataName: string) => {
     if (e.key === 'Enter' || e.key === 'Escape') {
       removeFocus();
       e.preventDefault();
-      saveTitleData();
+      updateData(dataName);
     }
   };
+
   const removeFocus = () => {
     (document.activeElement as HTMLElement).blur();
   };
 
-  const saveTitleData = () => {
+  const updateData = (dataName: string) => {
     let newBoards = boards.map((board) =>
       board.boardId === selectedCard.boardId
         ? {
@@ -115,9 +120,18 @@ function CardModal() {
               list.listId === selectedCard.listId
                 ? {
                     ...list,
-                    cards: list.cards.map((card) =>
-                      card.cardId === selectedCard.cardId ? { ...card, cardTitle: cardTitle } : card,
-                    ),
+                    cards: list.cards.map((card) => {
+                      switch (dataName) {
+                        case 'cardTitle':
+                          return card.cardId === selectedCard.cardId ? { ...card, cardTitle: cardTitle } : card;
+                        case 'cardDescription':
+                          return card.cardId === selectedCard.cardId
+                            ? { ...card, cardDescription: cardDescription }
+                            : card;
+                        default:
+                          break;
+                      }
+                    }),
                   }
                 : list,
             ),
@@ -148,20 +162,29 @@ function CardModal() {
               spellCheck="false"
               value={cardTitle}
               onChange={handleChangeTitle}
-              onKeyDown={handleTitleKeyDown}
+              onKeyDown={(e) => {
+                handleKeyDown(e, 'cardTitle');
+              }}
               onBlur={() => {
-                saveTitleData();
+                updateData('cardTitle');
               }}
             >
               <S.TitlelIcon size="30" />
               {selectedCard.cardData.cardTitle}
             </S.ModalTitle>
             <S.ModalDescription
-              onClick={() => {
-                console.log('설명 바꿔줘!');
+              cardDescription={selectedCard.cardData.cardDescription}
+              spellCheck="false"
+              value={cardDescription}
+              onChange={handleChangeDescription}
+              onKeyDown={(e) => {
+                handleKeyDown(e, 'cardDescription');
+              }}
+              onBlur={() => {
+                updateData('cardDescription');
               }}
             >
-              {selectedCard.cardData.description}
+              {selectedCard.cardData.cardDescription}
             </S.ModalDescription>
           </S.ModalHeader>
           <S.ModalOptionContainer>
