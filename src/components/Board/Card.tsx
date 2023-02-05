@@ -20,16 +20,18 @@ interface CardProps {
 interface CardDataInterface {
   cardTitle: string;
   cardId: string;
+  cardDescription: string;
+  cardData: any;
 }
 
 const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
+  const [selectedCard, setSelectedCard] = useRecoilState<any>(selectedCardAtom);
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
 
   const handleSaveModalData = () => {
-    setSelectedCardId((prev) => ({
+    setSelectedCard((prev) => ({
       isModalopen: !prev.isModalopen,
       boardId: boardId,
       listId: listId,
@@ -37,7 +39,6 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
       cardData: cardData,
     }));
   };
-
   const handleDeleteCard = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setTemporaryBoard((prev) => [...prev, boards]);
@@ -77,9 +78,9 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
               </S.CardHeaderWrapper>
               <S.InformationWrapper>
                 <FcClock size="20" />
-                <div>Mar.20.2022</div>
+                <div>{`${cardData.date.to.year}-${cardData.date.to.month}-${cardData.date.to.day}`}</div>
               </S.InformationWrapper>
-              description
+              {cardData.cardDescription}
             </S.TextAreaWrapper>
           </S.CardDraggable>
         )}

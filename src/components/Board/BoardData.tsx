@@ -9,16 +9,7 @@ export const defaultData = () => {
     boardId: `b-${boardUId}`,
     owner: localStorage.getItem('id'),
     logs: [],
-    lists: [
-      {
-        listTitle: 'TODO LIST',
-        listId: `l-${listUId}`,
-        cards: [
-          { cardTitle: 'ACTIVE 1', cardId: `c-${cardUId}` },
-          { cardTitle: 'ACTIVE 2', cardId: `c-${listUId}` },
-        ],
-      },
-    ],
+    lists: [],
   };
   return data;
 };

@@ -15,7 +15,7 @@ export interface ListInterface {
 export interface CardInterface {
   cardTitle: string;
   cardId: string;
-  description: string;
+  cardDescription: string;
   date: any;
 }
 
