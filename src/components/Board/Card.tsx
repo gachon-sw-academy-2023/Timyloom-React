@@ -71,7 +71,6 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
                 <FcClock size="20" />
                 <div>{`${cardData.date.to.year}-${cardData.date.to.month}-${cardData.date.to.day}`}</div>
               </S.InformationWrapper>
-              {cardData.cardDescription}
             </S.TextAreaWrapper>
           </S.CardDraggable>
         )}
