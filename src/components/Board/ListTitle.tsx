@@ -32,7 +32,7 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
   };
 
   const saveTitle = () => {
-    let newBoards = boards.map((board) =>
+    const newBoards = boards.map((board) =>
       board.boardId === boardId
         ? {
             ...board,
@@ -45,11 +45,11 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
   };
   const handleDeleteList = () => {
     setTemporaryBoard((prev) => [...prev, boards]);
-    let log = {
+    const log = {
       logName: `${title} 리스트 삭제`,
       date: new Date().getTime(),
     };
-    let newBoards = boards.map((board) =>
+    const newBoards = boards.map((board) =>
       board.boardId === boardId
         ? { ...board, logs: [...board.logs, log], lists: board.lists.filter((list) => list.listId !== listId) }
         : board,

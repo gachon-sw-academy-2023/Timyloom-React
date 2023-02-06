@@ -37,12 +37,12 @@ function AddCard({ listId }: AddCardProps) {
 
   const saveCard = () => {
     setTemporaryBoard((prev) => [...prev, boards]);
-    let cardId = shortid.generate();
-    let log = {
+    const cardId = shortid.generate();
+    const log = {
       logName: `${cardTitle} 카드 생성`,
       date: new Date().getTime(),
     };
-    let tempBoard = boards.map((board, index) =>
+    const tempBoard = boards.map((board, index) =>
       board.boardId === boardId
         ? {
             ...board,

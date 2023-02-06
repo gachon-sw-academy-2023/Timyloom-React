@@ -33,11 +33,11 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const handleDeleteCard = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setTemporaryBoard((prev) => [...prev, boards]);
-    let log = {
+    const log = {
       logName: `${cardData.cardTitle} 카드 삭제`,
       date: new Date().getTime(),
     };
-    let newBoards = boards.map((board) =>
+    const newBoards = boards.map((board) =>
       board.boardId === boardId
         ? {
             ...board,

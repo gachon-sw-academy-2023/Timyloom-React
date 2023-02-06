@@ -12,15 +12,15 @@ interface BoardsProps {
 }
 
 const handleAddBoard = (boards: BoardData[], setBoards: SetterOrUpdater<BoardData[]>) => {
-  let newData = defaultData();
-  let newBoards = [...JSON.parse(JSON.stringify(boards)), newData];
+  const newData = defaultData();
+  const newBoards = [...JSON.parse(JSON.stringify(boards)), newData];
   setBoards((prev) => newBoards);
 };
 
 function Boards({ sidebarOpen }: BoardsProps) {
   const [loading, setLoading] = useState(true);
   const [boards, setBoards] = useRecoilState(boardsAtom);
-  let personalBoards = boards.filter((board: BoardData) => board.owner === localStorage.getItem('id'));
+  const personalBoards = boards.filter((board: BoardData) => board.owner === localStorage.getItem('id'));
 
   setTimeout(() => {
     setLoading((prev) => false);

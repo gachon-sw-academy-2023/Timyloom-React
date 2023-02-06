@@ -16,10 +16,10 @@ import { SketchPicker } from 'react-color';
 import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 
 function BoardPage() {
-  let { boardId } = useParams();
+  const { boardId } = useParams();
   const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState(temporaryBoardAtom);
-  let [board] = boards.filter((board) => board.boardId === boardId);
+  const [board] = boards.filter((board) => board.boardId === boardId);
   const [boardTitle, setBoardTitle] = useState<string>(board.boardTitle);
   const [isLogOpen, setIsLogOpen] = useState(false);
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
@@ -66,14 +66,14 @@ function BoardPage() {
   };
 
   const handleSaveData = () => {
-    let newBoards = boards.map((board) => (board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board));
+    const newBoards = boards.map((board) => (board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board));
     setBoards((prev) => newBoards);
   };
 
   const handleGobackBoard = () => {
     if (temporaryBoard.length !== 0) {
       setBoards((prev) => temporaryBoard[temporaryBoard.length - 1]);
-      let newTemporaryBoard = [...temporaryBoard];
+      const newTemporaryBoard = [...temporaryBoard];
       newTemporaryBoard.pop();
       setTemporaryBoard((prev) => newTemporaryBoard);
     }

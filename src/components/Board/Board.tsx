@@ -21,10 +21,10 @@ interface DndPositionInterface {
 }
 
 function Board({ boards, setBoards, boardId }: BoardProps) {
-  let [board] = boards.filter((board) => board.boardId === boardId);
+  const [board] = boards.filter((board) => board.boardId === boardId);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
   const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
-  let lists = board.lists;
+  const lists = board.lists;
 
   const onBeforeDragStart = () => {};
 
@@ -58,11 +58,11 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
     cardId: string,
     boardId: string,
   ) => {
-    let tempBoard = JSON.parse(JSON.stringify(boards)).filter((board: BoardData) => board.boardId === boardId)[0];
-    let tempSourceCards = tempBoard.lists.filter((list: ListData) => list.listId === source.droppableId)[0].cards;
-    let tempDestinationCards = tempBoard.lists.filter((list: ListData) => list.listId === destination.droppableId)[0]
+    const tempBoard = JSON.parse(JSON.stringify(boards)).filter((board: BoardData) => board.boardId === boardId)[0];
+    const tempSourceCards = tempBoard.lists.filter((list: ListData) => list.listId === source.droppableId)[0].cards;
+    const tempDestinationCards = tempBoard.lists.filter((list: ListData) => list.listId === destination.droppableId)[0]
       .cards;
-    let [reorderCard] = tempSourceCards.splice(source.index, 1);
+    const [reorderCard] = tempSourceCards.splice(source.index, 1);
     tempDestinationCards.splice(destination.index, 0, reorderCard);
     let newBoard = tempBoard.lists.map((list: ListData) =>
       source.droppableId === list.listId ? { ...list, cards: tempSourceCards } : list,
@@ -75,8 +75,9 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
   };
 
   const reorderListPosition = (sourceIndex: number, destinationIndex: number, boardId: string) => {
-    let tempLists = JSON.parse(JSON.stringify(boards)).filter((board: BoardData) => board.boardId === boardId)[0].lists;
-    let [reorderList] = tempLists.splice(sourceIndex, 1);
+    const tempLists = JSON.parse(JSON.stringify(boards)).filter((board: BoardData) => board.boardId === boardId)[0]
+      .lists;
+    const [reorderList] = tempLists.splice(sourceIndex, 1);
     tempLists.splice(destinationIndex, 0, reorderList);
     setTemporaryBoard((prev) => [...prev, boards]);
     setBoards((prev) => boards.map((board) => (board.boardId === boardId ? { ...board, lists: tempLists } : board)));

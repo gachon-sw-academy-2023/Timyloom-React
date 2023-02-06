@@ -65,7 +65,7 @@ function CardModal() {
   };
 
   const updateDayInfo = () => {
-    let newBoards = boards.map((board: BoardData) =>
+    const newBoards = boards.map((board: BoardData) =>
       board.boardId === selectedCard.boardId
         ? {
             ...board,
@@ -105,7 +105,7 @@ function CardModal() {
   };
 
   const updateData = (dataName: string) => {
-    let newBoards = boards.map((board: BoardData) =>
+    const newBoards = boards.map((board: BoardData) =>
       board.boardId === selectedCard.boardId
         ? {
             ...board,

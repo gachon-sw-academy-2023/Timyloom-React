@@ -33,12 +33,12 @@ function AddList() {
 
   const saveList = () => {
     setTemporaryBoard((prev) => [...prev, boards]);
-    let listId = shortid.generate();
-    let log = {
+    const listId = shortid.generate();
+    const log = {
       logName: `${listTitle} 리스트 생성`,
       date: new Date().getTime(),
     };
-    let tempBoard = boards.map((board, index) =>
+    const tempBoard = boards.map((board, index) =>
       board.boardId === boardId
         ? {
             ...board,
