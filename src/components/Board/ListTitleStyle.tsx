@@ -10,33 +10,43 @@ export const Container = styled.div`
 export const TextAreaWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  width: 272px;
   background-color: #eef4fe;
+  min-height: 25px;
+  height: auto;
   padding: 10px 15px;
+  word-break: normal;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 `;
 
 export const Textdiv = styled.div`
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: flex-start;
   width: 256px;
-  height: 25px;
-  font-size: 1rem;
+  white-space: normal;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #5d5d5d;
 `;
 
 export const Textarea = styled.textarea`
+  display: block;
   width: 256px;
-  height: 25px;
-  font-size: 1rem;
-  resize: none;
-  background-color: #ffffff;
+  white-space: normal;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #5d5d5d;
+  background-color: #eef4fe;
   border: none;
-  box-shadow: inset 0 0 0 2px #5d5d5d;
   outline: 0;
+  &:focus {
+    min-height: 50px;
+    height: auto;
+    transition: all 300ms ease-out;
+  }
 `;
 
 export const DeleteWrapper = styled.div`

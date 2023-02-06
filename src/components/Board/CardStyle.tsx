@@ -26,8 +26,11 @@ export const TextAreaWrapper = styled.div`
 `;
 
 export const CardTitleWrapper = styled.div`
-  display: flex;
   font-size: 14px;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 150px;
 `;
 
 export const DeleteWrapper = styled.div`

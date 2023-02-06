@@ -56,6 +56,8 @@ export const TitlelIcon = styled(FcViewDetails)`
 `;
 
 export const ModalHeader = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 110px;
   padding: 20px 40px 8px 56px;
   position: relative;
