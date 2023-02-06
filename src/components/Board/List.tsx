@@ -3,7 +3,6 @@ import * as S from '@/components/Board/ListStyle';
 import Card from '@/components/Board/Card';
 import ListTitle from './ListTitle';
 import { BoardInterface, ListInterface, CardInterface } from '@/type';
-import { useState } from 'react';
 import AddCard from '@/components/Board/AddCard';
 
 interface ListProps {

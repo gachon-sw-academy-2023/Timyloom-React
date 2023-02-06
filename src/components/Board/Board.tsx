@@ -5,7 +5,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 import AddList from './AddList';
 import { useRecoilState, SetterOrUpdater } from 'recoil';
 import { selectedCardAtom } from '@/recoil/selectedCardAtom';
-import { BoardInterface, ListInterface } from '@/type';
+import { BoardInterface, ListInterface, SelectedCardInterface } from '@/type';
 import CardModal from '@/components/Modals/CardModal/CardModal';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 
@@ -22,7 +22,7 @@ interface DndPositionInterface {
 
 function Board({ boards, setBoards, boardId }: BoardProps) {
   let [board] = boards.filter((board) => board.boardId === boardId);
-  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
   const [selectedCardId, setSelectedCardId] = useRecoilState(selectedCardAtom);
   let lists = board.lists;
 

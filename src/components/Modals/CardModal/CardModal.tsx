@@ -1,36 +1,29 @@
 import { useState, useEffect } from 'react';
-import { CgClose } from 'react-icons/cg';
+import { useDidMountEffect } from '@/hooks/useDidMountEffect';
+import { SelectedCardInterface, BoardInterface, ListInterface, CardInterface } from '@/type';
 import * as S from '@/components/Modals/CardModal/CardModalStyle';
 import Button from '@/components/Button/Button';
 import Label from '@/components/Label/Label';
-import { FaBookmark } from 'react-icons/fa';
-import { FcClock } from 'react-icons/fc';
-import { FaMap } from 'react-icons/fa';
-import { useDidMountEffect } from '@/hooks/useDidMountEffect';
-
-import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
-import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import { selectedCardAtom } from '@/recoil/selectedCardAtom';
 
-interface SelectedCardInfoProps {
-  isModalopen: boolean;
-  boardId: string;
-  listId: string;
-  cardId: string;
-  cardData: any;
-}
+import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
+import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
+import { FaBookmark } from 'react-icons/fa';
+import { FcClock } from 'react-icons/fc';
+import { FaMap } from 'react-icons/fa';
+import { CgClose } from 'react-icons/cg';
 
 interface DateRefProps {
   ref: React.LegacyRef<HTMLInputElement> | null;
 }
 
 function CardModal() {
-  const [selectedCard, setSelectedCard] = useRecoilState<any>(selectedCardAtom);
-  const [boards, setBoards] = useRecoilState(boardsAtom);
-  const [cardTitle, setCardTitle] = useState(selectedCard.cardData.cardTitle);
-  const [cardDescription, setCardDescription] = useState(selectedCard.cardData.cardDescription);
+  const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardInterface>(selectedCardAtom);
+  const [boards, setBoards] = useRecoilState<BoardInterface>(boardsAtom);
+  const [cardTitle, setCardTitle] = useState<string>(selectedCard.cardData.cardTitle);
+  const [cardDescription, setCardDescription] = useState<string>(selectedCard.cardData.cardDescription);
 
   const handleModal = () => {
     setSelectedCard((prev) => ({ ...prev, isModalopen: !prev.isModalopen }));
@@ -72,15 +65,15 @@ function CardModal() {
   };
 
   const updateDayInfo = () => {
-    let newBoards = boards.map((board) =>
+    let newBoards = boards.map((board: BoardInterface) =>
       board.boardId === selectedCard.boardId
         ? {
             ...board,
-            lists: board.lists.map((list) =>
+            lists: board.lists.map((list: ListInterface) =>
               list.listId === selectedCard.listId
                 ? {
                     ...list,
-                    cards: list.cards.map((card) =>
+                    cards: list.cards.map((card: CardInterface) =>
                       card.cardId === selectedCard.cardId ? { ...card, date: selectedDayRange } : card,
                     ),
                   }
@@ -92,14 +85,14 @@ function CardModal() {
     setBoards((prev) => newBoards);
   };
 
-  const handleChangeTitle = (e) => {
+  const handleChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCardTitle((prev) => e.target.value);
   };
-  const handleChangeDescription = (e) => {
+  const handleChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCardDescription((prev) => e.target.value);
   };
 
-  const handleKeyDown = (e, dataName: string) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>, dataName: string) => {
     if (e.key === 'Enter' || e.key === 'Escape') {
       removeFocus();
       e.preventDefault();
@@ -112,15 +105,15 @@ function CardModal() {
   };
 
   const updateData = (dataName: string) => {
-    let newBoards = boards.map((board) =>
+    let newBoards = boards.map((board: BoardInterface) =>
       board.boardId === selectedCard.boardId
         ? {
             ...board,
-            lists: board.lists.map((list) =>
+            lists: board.lists.map((list: ListInterface) =>
               list.listId === selectedCard.listId
                 ? {
                     ...list,
-                    cards: list.cards.map((card) => {
+                    cards: list.cards.map((card: CardInterface) => {
                       switch (dataName) {
                         case 'cardTitle':
                           return card.cardId === selectedCard.cardId ? { ...card, cardTitle: cardTitle } : card;
