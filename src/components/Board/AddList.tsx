@@ -10,7 +10,7 @@ import { BoardInterface } from '@/type';
 function AddList() {
   const { boardId } = useParams();
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
-  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
   const [addStatus, setAddStatus] = useState<boolean>(false);
   const [listTitle, setListTitle] = useState<string>('');
 

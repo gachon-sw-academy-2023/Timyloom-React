@@ -16,7 +16,7 @@ function AddCard({ listId }: AddCardProps) {
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
   const [addStatus, setAddStatus] = useState<boolean>(false);
   const [cardTitle, setCardTitle] = useState<string>('');
-  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
 
   const handleStatusTrue = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAddStatus(true);

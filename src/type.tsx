@@ -16,10 +16,29 @@ export interface CardInterface {
   cardTitle: string;
   cardId: string;
   cardDescription: string;
-  date: any;
+  date: DateRangeInterface;
+}
+
+export interface DateRangeInterface {
+  from: DateInterface;
+  to: DateInterface;
+}
+
+export interface DateInterface {
+  year: number;
+  month: number;
+  day: number;
 }
 
 export interface LogsInterface {
   logName: string;
   date: number;
+}
+
+export interface SelectedCardInterface {
+  isModalopen: boolean;
+  boardId: string;
+  listId: string;
+  cardId: string;
+  cardData: CardInterface;
 }
