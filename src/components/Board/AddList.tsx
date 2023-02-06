@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import * as S from '@/components/Board/AddListStyle';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { boardsAtom } from '@/recoil/boardsAtom';
-import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
+import { boardsAtom } from '@/recoil/boards';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import shortid from 'shortid';
 import { BoardInterface } from '@/type';
 

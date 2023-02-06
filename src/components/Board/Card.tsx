@@ -1,11 +1,11 @@
 import * as S from '@/components/Board/CardStyle';
 import { Draggable } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
-import { selectedCardAtom } from '@/recoil/selectedCardAtom';
+import { selectedCardAtom } from '@/recoil/selectedCard';
 import { CgClose } from 'react-icons/cg';
 import { BoardInterface, CardInterface, SelectedCardInterface } from '@/type';
-import { boardsAtom } from '@/recoil/boardsAtom';
-import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
+import { boardsAtom } from '@/recoil/boards';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import { FcClock } from 'react-icons/fc';
 
 interface CardProps {

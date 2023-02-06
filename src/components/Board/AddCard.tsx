@@ -2,10 +2,10 @@ import { useState } from 'react';
 import * as S from '@/components/Board/AddCardStyle';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { boardsAtom } from '@/recoil/boardsAtom';
+import { boardsAtom } from '@/recoil/boards';
 import shortid from 'shortid';
 import { BoardInterface } from '@/type';
-import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 
 interface AddCardProps {
   listId: string;

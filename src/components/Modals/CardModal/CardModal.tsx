@@ -5,8 +5,8 @@ import * as S from '@/components/Modals/CardModal/CardModalStyle';
 import Button from '@/components/Button/Button';
 import Label from '@/components/Label/Label';
 import { useRecoilState } from 'recoil';
-import { boardsAtom } from '@/recoil/boardsAtom';
-import { selectedCardAtom } from '@/recoil/selectedCardAtom';
+import { boardsAtom } from '@/recoil/boards';
+import { selectedCardAtom } from '@/recoil/selectedCard';
 
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
