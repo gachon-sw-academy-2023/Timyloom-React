@@ -10,7 +10,7 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const CardWrapper = styled.div`
+export const RemoveCardWrapper = styled.div`
   padding: 30px;
   margin: 0px 30px 70px 30px;
   text-align: center;

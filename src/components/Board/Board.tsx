@@ -4,10 +4,10 @@ import * as S from '@/components/Board/BoardStyle';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import AddList from './AddList';
 import { useRecoilState, SetterOrUpdater } from 'recoil';
-import { selectedCardAtom } from '@/recoil/selectedCardAtom';
+import { selectedCardAtom } from '@/recoil/selectedCard';
 import { BoardInterface, ListInterface, SelectedCardInterface } from '@/type';
 import CardModal from '@/components/Modals/CardModal/CardModal';
-import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 
 interface BoardProps {
   boards: BoardInterface[];

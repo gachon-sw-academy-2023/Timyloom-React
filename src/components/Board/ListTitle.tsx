@@ -1,11 +1,11 @@
-import { boardsAtom } from '@/recoil/boardsAtom';
+import { boardsAtom } from '@/recoil/boards';
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import * as S from './ListTitleStyle';
 import { BoardInterface, ListInterface, CardInterface } from '@/type';
 import { CgClose } from 'react-icons/cg';
 import Swal from 'sweetalert2';
-import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 
 interface ListTitleProps {
   dragHandleProps: Object;

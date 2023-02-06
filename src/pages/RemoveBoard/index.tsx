@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { BoardInterface } from '@/type';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { boardsAtom } from '@/recoil/boardsAtom';
+import { boardsAtom } from '@/recoil/boards';
 import * as S from '@/pages/RemoveBoard/indexStyle';
 import Button from '@/components/Button/Button';
 import Swal from 'sweetalert2';
