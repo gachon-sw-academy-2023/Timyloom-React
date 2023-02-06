@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const BoardWrapper = styled.div`
+export const BoardWrapper = styled.div<{ color: string }>`
   width: 100%;
   height: 100vh;
-  margin: 10px 25px;
-  background-color: #ffffff;
+  padding: 10px 25px;
+  background-color: ${(props) => `${props.color}`}; ;
 `;
 
 export const BoardTitle = styled.textarea<{ boardTitle: string }>`
@@ -84,4 +84,19 @@ export const GoBackBtn = styled.button<{ isGoBackAvavailable: boolean }>`
   }
 
   transition: all ease-in 100ms;
+`;
+
+export const PopOver = styled.div`
+  position: absolute;
+  z-index: 2;
+  top: 50px;
+  right: 0px;
+`;
+
+export const Cover = styled.div`
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 `;

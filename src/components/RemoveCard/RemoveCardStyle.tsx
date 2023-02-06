@@ -15,7 +15,7 @@ export const CardWrapper = styled.div`
 export const GearSvg = styled(Gear)`
   width: 100px;
   height: 100px;
-  margin-top: 15vh;
+  margin-top: 12vh;
   animation: rotation 2000ms infinite linear;
 
   @keyframes rotation {
@@ -30,6 +30,7 @@ export const GearSvg = styled(Gear)`
 
 export const CardTitle = styled.div<{ size: string }>`
   width: 100%;
+  font-family: 'SCDreamMedium', 'Roboto', sans-serif;
   font-size: ${(props) => props.size};
   margin: 10px;
 `;
