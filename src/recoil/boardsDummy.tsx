@@ -3,6 +3,7 @@ export const boardsDummy = [
     boardTitle: '개인 일정 정리 보드',
     boardId: '1',
     owner: 'bwj0509',
+    backgroundColor: '#a41010',
     logs: [],
     lists: [
       {

@@ -12,7 +12,7 @@ export const TextAreaWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 272px;
-  background-color: #eef4fe;
+  background-color: #ffffffd9;
   min-height: 25px;
   height: auto;
   padding: 10px 15px;
@@ -39,7 +39,7 @@ export const Textarea = styled.textarea`
   font-size: 1.1rem;
   font-weight: 600;
   color: #5d5d5d;
-  background-color: #eef4fe;
+  background-color: #ffffff;
   border: none;
   outline: 0;
   &:focus {

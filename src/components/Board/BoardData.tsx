@@ -8,6 +8,7 @@ export const defaultData = () => {
     boardTitle: '새로운 보드',
     boardId: `b-${boardUId}`,
     owner: localStorage.getItem('id'),
+    backgroundColor: '#ffffff',
     logs: [],
     lists: [],
   };
