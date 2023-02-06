@@ -5,13 +5,13 @@ import { boardsAtom } from '@/recoil/boards';
 import { defaultData } from '@/components/Board/BoardData';
 import { useState } from 'react';
 import Skeleton from '@mui/material/Skeleton';
-import { BoardInterface } from '@/type';
+import { BoardData } from '@/type';
 
 interface BoardsProps {
   sidebarOpen: boolean;
 }
 
-const handleAddBoard = (boards: BoardInterface[], setBoards: SetterOrUpdater<BoardInterface[]>) => {
+const handleAddBoard = (boards: BoardData[], setBoards: SetterOrUpdater<BoardData[]>) => {
   let newData = defaultData();
   let newBoards = [...JSON.parse(JSON.stringify(boards)), newData];
   setBoards((prev) => newBoards);
@@ -20,7 +20,7 @@ const handleAddBoard = (boards: BoardInterface[], setBoards: SetterOrUpdater<Boa
 function Boards({ sidebarOpen }: BoardsProps) {
   const [loading, setLoading] = useState(true);
   const [boards, setBoards] = useRecoilState(boardsAtom);
-  let personalBoards = boards.filter((board: BoardInterface) => board.owner === localStorage.getItem('id'));
+  let personalBoards = boards.filter((board: BoardData) => board.owner === localStorage.getItem('id'));
 
   setTimeout(() => {
     setLoading((prev) => false);
@@ -49,7 +49,7 @@ function Boards({ sidebarOpen }: BoardsProps) {
       <WorkspaceHeader />
       <S.ContentWrapper isopen={sidebarOpen}>
         <S.BoardContainer>
-          {personalBoards.map((board: BoardInterface, index: number) => (
+          {personalBoards.map((board: BoardData, index: number) => (
             <S.BoardWrapper key={index} to={`/workspace/${board.boardId}`}>
               <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
               <S.ImageWrapper />

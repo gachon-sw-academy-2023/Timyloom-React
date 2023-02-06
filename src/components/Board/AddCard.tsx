@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import shortid from 'shortid';
-import { BoardInterface } from '@/type';
+import { BoardData } from '@/type';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 
 interface AddCardProps {
@@ -13,7 +13,7 @@ interface AddCardProps {
 
 function AddCard({ listId }: AddCardProps) {
   const { boardId } = useParams();
-  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [addStatus, setAddStatus] = useState<boolean>(false);
   const [cardTitle, setCardTitle] = useState<string>('');
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);

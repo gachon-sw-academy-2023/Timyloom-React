@@ -5,11 +5,11 @@ import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import shortid from 'shortid';
-import { BoardInterface } from '@/type';
+import { BoardData } from '@/type';
 
 function AddList() {
   const { boardId } = useParams();
-  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
   const [addStatus, setAddStatus] = useState<boolean>(false);
   const [listTitle, setListTitle] = useState<string>('');

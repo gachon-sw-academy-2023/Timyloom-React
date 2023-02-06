@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import Swal from 'sweetalert2';
-import { BoardInterface } from '@/type';
+import { BoardData } from '@/type';
 import { MdDeleteForever, MdOutlineAccessTime } from 'react-icons/md';
 import { AiFillSetting, AiOutlineConsoleSql } from 'react-icons/ai';
 import { RiArrowGoBackLine } from 'react-icons/ri';
@@ -17,7 +17,7 @@ import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 
 function BoardPage() {
   let { boardId } = useParams();
-  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState(temporaryBoardAtom);
   let [board] = boards.filter((board) => board.boardId === boardId);
   const [boardTitle, setBoardTitle] = useState<string>(board.boardTitle);
