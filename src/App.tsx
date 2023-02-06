@@ -4,7 +4,7 @@ import Login from '@/pages/Auth/Login/index';
 import SignUp from '@/pages/Auth/SignUp/index';
 import Workspace from '@/pages/Workspace/index';
 import BoardPage from '@/pages/Board/index';
-import Remove from '@/pages/Remove';
+import Remove from '@/pages/RemoveBoard';
 import NotFound from '@/pages/NotFound/index';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
