@@ -11,6 +11,8 @@ import { MdDeleteForever, MdOutlineAccessTime } from 'react-icons/md';
 import { AiFillSetting } from 'react-icons/ai';
 import { RiArrowGoBackLine } from 'react-icons/ri';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
+import rgbHex from 'rgb-hex';
+import { SketchPicker } from 'react-color';
 
 function BoardPage() {
   let { boardId } = useParams();
@@ -19,6 +21,8 @@ function BoardPage() {
   let [board] = boards.filter((board) => board.boardId === boardId);
   const [boardTitle, setBoardTitle] = useState<string>(board.boardTitle);
   const [isLogOpen, setIsLogOpen] = useState(false);
+  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [color, setColor] = useState('#ffffff');
 
   useEffect(() => {
     setTemporaryBoard((prev) => []);
@@ -74,8 +78,20 @@ function BoardPage() {
     setIsLogOpen((prev) => !prev);
   };
 
+  const handleShowColorPicker = () => {
+    setShowColorPicker(!showColorPicker);
+  };
+
+  const handleCloseColorPicker = () => {
+    setShowColorPicker(false);
+  };
+
+  const handleColorChange = (sketchColor: { rgb: { r: number; g: number; b: number; a?: number | undefined } }) => {
+    setColor('#' + rgbHex(sketchColor.rgb.r, sketchColor.rgb.g, sketchColor.rgb.b, sketchColor.rgb.a));
+  };
+
   return (
-    <S.BoardWrapper>
+    <S.BoardWrapper color={color}>
       <S.BoardTitle
         spellCheck="false"
         boardTitle={boardTitle}
@@ -92,8 +108,14 @@ function BoardPage() {
       <S.DeleteBtn onClick={handleDeleteBoard}>
         <MdDeleteForever size="30px" color="#333333" />
       </S.DeleteBtn>
-      <S.SettingBtn>
+      <S.SettingBtn onClick={handleShowColorPicker}>
         <AiFillSetting size="30px" color="#333333" />
+        {showColorPicker ? (
+          <S.PopOver>
+            <S.Cover onClick={handleCloseColorPicker} />
+            <SketchPicker color={color} onChange={handleColorChange} />
+          </S.PopOver>
+        ) : null}
       </S.SettingBtn>
       <S.LogBtn onClick={handleChangeLogState}>
         <MdOutlineAccessTime size="30px" color="#333333" />
