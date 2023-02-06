@@ -1,15 +1,9 @@
 import styled from 'styled-components';
 
-export const CardDraggable = styled.div<{ isDragging?: string }>`
-  background-color: ${(props) => (props.isDragging ? '#4FB740' : '#ffffff')};
-  border-radius: 3px;
+export const CardDraggable = styled.div`
+  background-color: #ffffff;
   margin-bottom: 8px;
   position: relative;
-  box-shadow: #091e4240 0px 1px 1px, #091e4221 0px 0px 1px 1px;
-
-  &:hover {
-    box-shadow: #091e4240 0px 4px 8px -2px, #091e4214 0px 0px 0px 1px;
-  }
 `;
 
 export const TextAreaWrapper = styled.div`
@@ -19,18 +13,25 @@ export const TextAreaWrapper = styled.div`
   padding: 20px;
   margin-bottom: 15px;
   height: auto;
-  border-radius: 10px;
+  border-radius: 5px;
+
+  box-shadow: #091e4240 0px 1px 1px, #091e4221 0px 0px 1px 1px;
 
   &:hover {
+    box-shadow: #091e4240 0px 4px 8px -2px, #091e4214 0px 0px 0px 1px;
   }
 `;
 
 export const CardTitleWrapper = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   display: block;
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 150px;
+  height: auto;
+  width: 120px;
+  color: black;
+  font-weight: 600;
+  align-items: center;
 `;
 
 export const DeleteWrapper = styled.div`
@@ -58,5 +59,6 @@ export const InformationWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 `;

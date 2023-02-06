@@ -21,7 +21,16 @@ export interface ButtonProps {
   onClick?: () => void;
 }
 
-export const Button = ({ size, color, border, textColor, radius, themes, children, ...props }: ButtonProps) => {
+export const Button = ({
+  size,
+  color,
+  border,
+  textColor,
+  radius,
+  themes = 'default',
+  children,
+  ...props
+}: ButtonProps) => {
   return (
     <S.Container
       size={size}

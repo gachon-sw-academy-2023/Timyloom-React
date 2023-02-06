@@ -7,6 +7,7 @@ import { BoardInterface, CardInterface, SelectedCardInterface } from '@/type';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 import { FcClock } from 'react-icons/fc';
+import Checkbox from '@mui/material/Checkbox';
 
 interface CardProps {
   listId: string;
@@ -15,6 +16,7 @@ interface CardProps {
   index: number;
   boardId: string;
 }
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardInterface>(selectedCardAtom);
@@ -63,13 +65,24 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
             <S.TextAreaWrapper onClick={handleSaveModalData}>
               <S.CardHeaderWrapper>
                 <S.CardTitleWrapper>{cardData.cardTitle}</S.CardTitleWrapper>
+                <Checkbox
+                  style={{ position: 'absolute', top: '8px', left: '150px' }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  {...label}
+                />
                 <S.DeleteWrapper onClick={handleDeleteCard}>
                   <CgClose />
                 </S.DeleteWrapper>
               </S.CardHeaderWrapper>
               <S.InformationWrapper>
                 <FcClock size="20" />
-                <div>{`${cardData.date.to.year}-${cardData.date.to.month}-${cardData.date.to.day}`}</div>
+
+                <div style={{ marginLeft: '10px' }}>
+                  {`${cardData.date.to.year}.${cardData.date.to.month}.${cardData.date.to.day}`}~
+                  {`${cardData.date.to.year}.${cardData.date.to.month}.${cardData.date.to.day}`}
+                </div>
               </S.InformationWrapper>
             </S.TextAreaWrapper>
           </S.CardDraggable>
