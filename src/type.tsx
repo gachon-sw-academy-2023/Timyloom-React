@@ -40,5 +40,5 @@ export interface SelectedCardInterface {
   boardId: string;
   listId: string;
   cardId: string;
-  cardData: any;
+  cardData: CardInterface;
 }

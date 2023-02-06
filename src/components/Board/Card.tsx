@@ -50,7 +50,7 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
     );
     setBoards((prev) => newBoards);
   };
-  console.log(selectedCard);
+
   return (
     <>
       <Draggable draggableId={cardId} index={index}>
