@@ -84,10 +84,24 @@ export const ModalTitle = styled.textarea<{ cardTitle: string }>`
   }
 `;
 
-export const ModalDescription = styled.div`
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
+export const ModalDescription = styled.textarea<{ cardDescription: string }>`
+  cursor: pointer;
+  width: ${(props) => `${props.cardDescription.length * 10}px`};
+  min-width: 200px;
+  font-size: 0.9rem;
+  height: 30px;
+  margin: 0px 0px 0px 3px;
+  padding: 4px 8px;
+  border: none;
+  resize: none;
+  border-radius: 3px;
+  background: transparent;
+  &:focus {
+    cursor: text;
+    background: white;
+    box-shadow: inset 0 0 0 2px #5d5d5d;
+    outline: 0;
+  }
 `;
 
 export const ModalOptionContainer = styled.div`
