@@ -11,7 +11,7 @@ export const ListWrapper = styled.div`
 `;
 
 export const ListContent = styled.div`
-  background-color: white;
+  background-color: #ffffff70;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 `;

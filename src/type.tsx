@@ -2,6 +2,7 @@ export interface BoardInterface {
   boardTitle: string;
   boardId: string;
   owner: string;
+  backgroundColor: string;
   logs: LogsInterface[];
   lists: ListInterface[];
 }
