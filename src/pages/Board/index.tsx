@@ -8,11 +8,12 @@ import { boardsAtom } from '@/recoil/boardsAtom';
 import Swal from 'sweetalert2';
 import { BoardInterface } from '@/type';
 import { MdDeleteForever, MdOutlineAccessTime } from 'react-icons/md';
-import { AiFillSetting } from 'react-icons/ai';
+import { AiFillSetting, AiOutlineConsoleSql } from 'react-icons/ai';
 import { RiArrowGoBackLine } from 'react-icons/ri';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 import rgbHex from 'rgb-hex';
 import { SketchPicker } from 'react-color';
+import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 
 function BoardPage() {
   let { boardId } = useParams();
@@ -21,12 +22,32 @@ function BoardPage() {
   let [board] = boards.filter((board) => board.boardId === boardId);
   const [boardTitle, setBoardTitle] = useState<string>(board.boardTitle);
   const [isLogOpen, setIsLogOpen] = useState(false);
-  const [showColorPicker, setShowColorPicker] = useState(false);
-  const [color, setColor] = useState('#ffffff');
+  const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState(board.backgroundColor);
 
   useEffect(() => {
     setTemporaryBoard((prev) => []);
   }, []);
+
+  useDidMountEffect(() => {
+    if (!isColorPickerOpen) {
+      setBoards((prev) =>
+        boards.map((board) => (board.boardId === boardId ? { ...board, backgroundColor: backgroundColor } : board)),
+      );
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Background color change',
+      });
+    }
+  }, [isColorPickerOpen]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBoardTitle((prev) => e.target.value);
@@ -78,20 +99,16 @@ function BoardPage() {
     setIsLogOpen((prev) => !prev);
   };
 
-  const handleShowColorPicker = () => {
-    setShowColorPicker(!showColorPicker);
-  };
-
-  const handleCloseColorPicker = () => {
-    setShowColorPicker(false);
+  const handleColorPickerStatus = (e: React.MouseEvent<HTMLInputElement>) => {
+    setIsColorPickerOpen((prev) => !isColorPickerOpen);
   };
 
   const handleColorChange = (sketchColor: { rgb: { r: number; g: number; b: number; a?: number | undefined } }) => {
-    setColor('#' + rgbHex(sketchColor.rgb.r, sketchColor.rgb.g, sketchColor.rgb.b, sketchColor.rgb.a));
+    setBackgroundColor('#' + rgbHex(sketchColor.rgb.r, sketchColor.rgb.g, sketchColor.rgb.b, sketchColor.rgb.a));
   };
 
   return (
-    <S.BoardWrapper color={color}>
+    <S.BoardWrapper backgroundColor={backgroundColor}>
       <S.BoardTitle
         spellCheck="false"
         boardTitle={boardTitle}
@@ -108,15 +125,14 @@ function BoardPage() {
       <S.DeleteBtn onClick={handleDeleteBoard}>
         <MdDeleteForever size="30px" color="#333333" />
       </S.DeleteBtn>
-      <S.SettingBtn onClick={handleShowColorPicker}>
+      <S.SettingBtn onClick={handleColorPickerStatus}>
         <AiFillSetting size="30px" color="#333333" />
-        {showColorPicker ? (
-          <S.PopOver>
-            <S.Cover onClick={handleCloseColorPicker} />
-            <SketchPicker color={color} onChange={handleColorChange} />
-          </S.PopOver>
-        ) : null}
       </S.SettingBtn>
+      {isColorPickerOpen && (
+        <S.PopOver>
+          <SketchPicker color={backgroundColor} onChange={handleColorChange} />
+        </S.PopOver>
+      )}
       <S.LogBtn onClick={handleChangeLogState}>
         <MdOutlineAccessTime size="30px" color="#333333" />
       </S.LogBtn>

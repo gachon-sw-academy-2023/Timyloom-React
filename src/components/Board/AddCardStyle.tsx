@@ -8,13 +8,12 @@ export const AddCardWrapper = styled.div`
 export const AddCardBtn = styled.button`
   width: 100%;
   font-size: 1rem;
-  background-color: #eef4fe;
-  /* box-shadow: #091e4240 0px 1px 1px, #091e4221 0px 0px 1px 1px; */
+  background-color: #ffffff60;
   border: none;
   border-radius: 5px;
   padding: 3px;
   &:hover {
-    box-shadow: #091e4240 0px 4px 8px -2px, #091e4214 0px 0px 0px 1px;
+    box-shadow: #00000040 0px 4px 8px -2px, #00000013 0px 0px 0px 1px;
   }
   transition: all 100ms ease-in;
 `;
@@ -28,7 +27,7 @@ export const AddCardInput = styled.input`
   border-radius: 3px;
   border: none;
   &:focus {
-    box-shadow: inset 0 0 0 2px #bed0f4;
+    box-shadow: inset 0 0 0 2px #00000045;
     outline: 0;
   }
 `;
