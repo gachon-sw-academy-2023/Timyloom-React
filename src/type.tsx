@@ -1,19 +1,19 @@
-export interface BoardInterface {
+export interface BoardData {
   boardTitle: string;
   boardId: string;
   owner: string;
   backgroundColor: string;
   logs: LogsInterface[];
-  lists: ListInterface[];
+  lists: ListData[];
 }
 
-export interface ListInterface {
+export interface ListData {
   listTitle: string;
   listId: string;
-  cards: CardInterface[];
+  cards: CardData[];
 }
 
-export interface CardInterface {
+export interface CardData {
   cardTitle: string;
   cardId: string;
   cardDescription: string;
@@ -36,10 +36,10 @@ export interface LogsInterface {
   date: number;
 }
 
-export interface SelectedCardInterface {
+export interface SelectedCardData {
   isModalopen: boolean;
   boardId: string;
   listId: string;
   cardId: string;
-  cardData: CardInterface;
+  cardData: CardDataInterface;
 }

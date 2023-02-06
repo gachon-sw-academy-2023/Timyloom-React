@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BoardInterface } from '@/type';
+import { BoardData } from '@/type';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 function RemoveBoard() {
   const { boardId } = useParams();
-  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
 
   useEffect(() => {
     setBoards((prev) => boards.filter((board) => board.boardId !== boardId));

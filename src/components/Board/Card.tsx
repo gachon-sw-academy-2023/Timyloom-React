@@ -3,7 +3,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import { selectedCardAtom } from '@/recoil/selectedCard';
 import { CgClose } from 'react-icons/cg';
-import { BoardInterface, CardInterface, SelectedCardInterface } from '@/type';
+import { BoardData, CardData, SelectedCardData } from '@/type';
 import { boardsAtom } from '@/recoil/boards';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import { FcClock } from 'react-icons/fc';
@@ -11,14 +11,14 @@ import { FcClock } from 'react-icons/fc';
 interface CardProps {
   listId: string;
   cardId: string;
-  cardData: CardInterface;
+  cardData: CardData;
   index: number;
   boardId: string;
 }
 
 const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
-  const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardInterface>(selectedCardAtom);
-  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardData>(selectedCardAtom);
+  const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
 
   const handleSaveModalData = () => {
@@ -33,11 +33,11 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const handleDeleteCard = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setTemporaryBoard((prev) => [...prev, boards]);
-    let log = {
+    const log = {
       logName: `${cardData.cardTitle} 카드 삭제`,
       date: new Date().getTime(),
     };
-    let newBoards = boards.map((board) =>
+    const newBoards = boards.map((board) =>
       board.boardId === boardId
         ? {
             ...board,
