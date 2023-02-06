@@ -1,10 +1,9 @@
 import * as S from '@/components/Board/CardStyle';
-import { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import { selectedCardAtom } from '@/recoil/selectedCardAtom';
 import { CgClose } from 'react-icons/cg';
-import { BoardInterface, ListInterface, CardInterface } from '@/type';
+import { BoardInterface, CardInterface, SelectedCardInterface } from '@/type';
 import { boardsAtom } from '@/recoil/boardsAtom';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
 import { FcClock } from 'react-icons/fc';
@@ -12,23 +11,15 @@ import { FcClock } from 'react-icons/fc';
 interface CardProps {
   listId: string;
   cardId: string;
-  cardData: CardDataInterface;
+  cardData: CardInterface;
   index: number;
   boardId: string;
 }
 
-interface CardDataInterface {
-  cardTitle: string;
-  cardId: string;
-  cardDescription: string;
-  cardData: any;
-}
-
 const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedCard, setSelectedCard] = useRecoilState<any>(selectedCardAtom);
+  const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardInterface>(selectedCardAtom);
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
-  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
 
   const handleSaveModalData = () => {
     setSelectedCard((prev) => ({

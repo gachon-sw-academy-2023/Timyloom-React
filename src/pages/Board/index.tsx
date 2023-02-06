@@ -33,11 +33,6 @@ function BoardPage() {
       removeFocus();
       e.preventDefault();
       handleSaveData();
-      // let newBoards = boards.map((board: BoardInterface) =>
-      //   board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board,
-      // );
-      // setBoards((prev) => newBoards);
-      // 작동에 문제없다면 지울것.. 실수로 두번 넣은거 같음
     }
   };
 

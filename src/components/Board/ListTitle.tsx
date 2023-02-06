@@ -18,7 +18,7 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
   const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
   const [newTitle, setnewTitle] = useState<string>(title);
   const [editMode, seteditMode] = useState<boolean>(false);
-  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any>(temporaryBoardAtom);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
 
   const handleTitleByonBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     saveTitle();
