@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import * as S from '@/components/Board/AddListStyle';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { boardsAtom } from '@/recoil/boardsAtom';
-import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
+import { boardsAtom } from '@/recoil/boards';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import shortid from 'shortid';
-import { BoardInterface } from '@/type';
+import { BoardData } from '@/type';
 
 function AddList() {
   const { boardId } = useParams();
-  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
   const [addStatus, setAddStatus] = useState<boolean>(false);
   const [listTitle, setListTitle] = useState<string>('');
@@ -33,12 +33,12 @@ function AddList() {
 
   const saveList = () => {
     setTemporaryBoard((prev) => [...prev, boards]);
-    let listId = shortid.generate();
-    let log = {
+    const listId = shortid.generate();
+    const log = {
       logName: `${listTitle} 리스트 생성`,
       date: new Date().getTime(),
     };
-    let tempBoard = boards.map((board, index) =>
+    const tempBoard = boards.map((board, index) =>
       board.boardId === boardId
         ? {
             ...board,

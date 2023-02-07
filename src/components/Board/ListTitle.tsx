@@ -1,11 +1,11 @@
-import { boardsAtom } from '@/recoil/boardsAtom';
+import { boardsAtom } from '@/recoil/boards';
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import * as S from './ListTitleStyle';
-import { BoardInterface, ListInterface, CardInterface } from '@/type';
+import { BoardData, ListData, CardData } from '@/type';
 import { CgClose } from 'react-icons/cg';
 import Swal from 'sweetalert2';
-import { temporaryBoardAtom } from '@/recoil/temporaryBoardAtom';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 
 interface ListTitleProps {
   dragHandleProps: Object;
@@ -15,7 +15,7 @@ interface ListTitleProps {
 }
 
 const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) => {
-  const [boards, setBoards] = useRecoilState<BoardInterface[]>(boardsAtom);
+  const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [newTitle, setnewTitle] = useState<string>(title);
   const [editMode, seteditMode] = useState<boolean>(false);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
@@ -32,7 +32,7 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
   };
 
   const saveTitle = () => {
-    let newBoards = boards.map((board) =>
+    const newBoards = boards.map((board) =>
       board.boardId === boardId
         ? {
             ...board,
@@ -45,11 +45,11 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
   };
   const handleDeleteList = () => {
     setTemporaryBoard((prev) => [...prev, boards]);
-    let log = {
+    const log = {
       logName: `${title} 리스트 삭제`,
       date: new Date().getTime(),
     };
-    let newBoards = boards.map((board) =>
+    const newBoards = boards.map((board) =>
       board.boardId === boardId
         ? { ...board, logs: [...board.logs, log], lists: board.lists.filter((list) => list.listId !== listId) }
         : board,

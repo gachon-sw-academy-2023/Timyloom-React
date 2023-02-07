@@ -1,12 +1,12 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { useDidMountEffect } from '@/hooks/useDidMountEffect';
-import { SelectedCardInterface, BoardInterface, ListInterface, CardInterface } from '@/type';
+import { SelectedCardData, BoardData, ListData, CardData } from '@/type';
 import * as S from '@/components/Modals/CardModal/CardModalStyle';
 import Button from '@/components/Button/Button';
 import Label from '@/components/Label/Label';
 import { useRecoilState } from 'recoil';
-import { boardsAtom } from '@/recoil/boardsAtom';
-import { selectedCardAtom } from '@/recoil/selectedCardAtom';
+import { boardsAtom } from '@/recoil/boards';
+import { selectedCardAtom } from '@/recoil/selectedCard';
 
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
@@ -20,8 +20,8 @@ interface DateRefProps {
 }
 
 function CardModal() {
-  const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardInterface>(selectedCardAtom);
-  const [boards, setBoards] = useRecoilState<BoardInterface>(boardsAtom);
+  const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardData>(selectedCardAtom);
+  const [boards, setBoards] = useRecoilState<BoardData>(boardsAtom);
   const [cardTitle, setCardTitle] = useState<string>(selectedCard.cardData.cardTitle);
   const [cardDescription, setCardDescription] = useState<string>(selectedCard.cardData.cardDescription);
 
@@ -76,15 +76,15 @@ function CardModal() {
   };
 
   const updateDayInfo = () => {
-    let newBoards = boards.map((board: BoardInterface) =>
+    const newBoards = boards.map((board: BoardData) =>
       board.boardId === selectedCard.boardId
         ? {
             ...board,
-            lists: board.lists.map((list: ListInterface) =>
+            lists: board.lists.map((list: ListData) =>
               list.listId === selectedCard.listId
                 ? {
                     ...list,
-                    cards: list.cards.map((card: CardInterface) =>
+                    cards: list.cards.map((card: CardData) =>
                       card.cardId === selectedCard.cardId ? { ...card, date: selectedDayRange } : card,
                     ),
                   }
@@ -116,15 +116,15 @@ function CardModal() {
   };
 
   const updateData = (dataName: string) => {
-    let newBoards = boards.map((board: BoardInterface) =>
+    const newBoards = boards.map((board: BoardData) =>
       board.boardId === selectedCard.boardId
         ? {
             ...board,
-            lists: board.lists.map((list: ListInterface) =>
+            lists: board.lists.map((list: ListData) =>
               list.listId === selectedCard.listId
                 ? {
                     ...list,
-                    cards: list.cards.map((card: CardInterface) => {
+                    cards: list.cards.map((card: CardData) => {
                       switch (dataName) {
                         case 'cardTitle':
                           return card.cardId === selectedCard.cardId ? { ...card, cardTitle: cardTitle } : card;
