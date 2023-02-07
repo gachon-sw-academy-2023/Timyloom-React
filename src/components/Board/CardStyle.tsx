@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import { Checkbox } from 'pretty-checkbox-react';
+
+export const CheckboxCustom = styled(Checkbox)`
+  margin: auto 10px auto 0px;
+`;
 
 export const CardDraggable = styled.div`
   background-color: #ffffff;
@@ -10,7 +15,7 @@ export const TextAreaWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 15px;
   margin-bottom: 15px;
   height: auto;
   border-radius: 5px;
@@ -24,14 +29,14 @@ export const TextAreaWrapper = styled.div`
 
 export const CardTitleWrapper = styled.div`
   font-size: 16px;
-  display: block;
+  display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
-  height: auto;
-  width: 120px;
+  width: 143px;
   color: black;
+  padding-right: 10px;
+  margin: auto 0;
   font-weight: 600;
-  align-items: center;
 `;
 
 export const DeleteWrapper = styled.div`
@@ -51,7 +56,8 @@ export const DeleteWrapper = styled.div`
 export const CardHeaderWrapper = styled.div`
   display: flex;
   align-items: column;
-  justify-content: space-between;
+  justify-content: left;
+  height: 45px;
   padding-bottom: 20px;
 `;
 

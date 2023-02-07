@@ -41,7 +41,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
       <S.ViewContainer $isopen={sidebarOpen}>
         {secondaryLinksArray.map(({ icon, label, to }) => (
           <S.SLinkWrapper key={label} isActive={pathname === to}>
-            <S.SLink to="/" $isopen={sidebarOpen} $column={true}>
+            <S.SLink to={to} $isopen={sidebarOpen} $column={true}>
               <S.LinkIcon>{icon}</S.LinkIcon>
               {sidebarOpen && <S.LinkLabel $column={true}>{label}</S.LinkLabel>}
             </S.SLink>
