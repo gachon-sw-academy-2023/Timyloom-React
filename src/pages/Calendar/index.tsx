@@ -15,8 +15,9 @@ interface eventData {
 
 function Calendar() {
   const [boards, setBoards] = useRecoilState(boardsAtom);
+  const personalBoards = boards.filter((board: BoardData) => board.owner === localStorage.getItem('id'));
   let events: eventData[] = [];
-  boards.forEach((board: BoardData) =>
+  personalBoards.forEach((board: BoardData) =>
     board.lists.forEach((list: ListData) =>
       list.cards.forEach((card: CardData) => {
         const startDate =
