@@ -24,6 +24,7 @@ function BoardPage() {
   const [isLogOpen, setIsLogOpen] = useState(false);
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(board.backgroundColor);
+  const [brightness, setBrightness] = useState(255);
 
   useEffect(() => {
     setTemporaryBoard((prev) => []);
@@ -32,7 +33,9 @@ function BoardPage() {
   useDidMountEffect(() => {
     if (!isColorPickerOpen) {
       setBoards((prev) =>
-        boards.map((board) => (board.boardId === boardId ? { ...board, backgroundColor: backgroundColor } : board)),
+        boards.map((board) =>
+          board.boardId === boardId ? { ...board, backgroundColor: backgroundColor, brightness: brightness } : board,
+        ),
       );
       const Toast = Swal.mixin({
         toast: true,
@@ -104,6 +107,7 @@ function BoardPage() {
   };
 
   const handleColorChange = (sketchColor: { rgb: { r: number; g: number; b: number; a?: number | undefined } }) => {
+    setBrightness((prev) => ((sketchColor.rgb.r + sketchColor.rgb.g + sketchColor.rgb.b) / 3) * sketchColor.rgb.a);
     setBackgroundColor('#' + rgbHex(sketchColor.rgb.r, sketchColor.rgb.g, sketchColor.rgb.b, sketchColor.rgb.a));
   };
 
@@ -112,6 +116,7 @@ function BoardPage() {
       <S.BoardTitle
         spellCheck="false"
         boardTitle={boardTitle}
+        brightness={board.brightness}
         value={boardTitle}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

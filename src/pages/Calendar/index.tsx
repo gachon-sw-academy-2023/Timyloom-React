@@ -1,14 +1,21 @@
-import { useState } from 'react';
 import * as S from '@/pages/Calendar/indexStyle';
-import FullCalendar from '@fullcalendar/react'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import { BoardData, ListData, CardData } from '@/type';
 
+interface eventData {
+  title: string;
+  start: string;
+  end: string;
+  color: string;
+  textColor: string;
+}
+
 function Calendar() {
   const [boards, setBoards] = useRecoilState(boardsAtom);
-  let events: any = [];
+  let events: eventData[] = [];
   boards.forEach((board: BoardData) =>
     board.lists.forEach((list: ListData) =>
       list.cards.forEach((card: CardData) => {
@@ -28,11 +35,13 @@ function Calendar() {
           title: card.cardTitle,
           start: startDate,
           end: endDate,
+          color: board.backgroundColor,
+          textColor: board.brightness > 100 ? '#000000' : '#ffffff',
         });
       }),
     ),
   );
-  console.log(events);
+
   return (
     <S.Container>
       <FullCalendar

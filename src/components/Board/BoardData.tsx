@@ -9,6 +9,7 @@ export const defaultData = () => {
     boardId: `b-${boardUId}`,
     owner: localStorage.getItem('id'),
     backgroundColor: '#ffffff',
+    brightness: 255,
     logs: [],
     lists: [],
   };

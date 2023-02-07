@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import boardbackground from '@/assets/images/backgroundimg.jpg';
 import { ReactComponent as Add } from '@/assets/images/add.svg';
 import { ReactComponent as UpArrow } from '@/assets/images/upArrow.svg';
-import Skeleton from '@mui/material/Skeleton';
 
 export const WorkspaceWrapper = styled.div`
   display: flex;
@@ -76,7 +74,7 @@ export const BoardTitle = styled.div`
   }
 `;
 
-export const BoardWrapper = styled(Link)`
+export const BoardWrapper = styled(Link)<{ brightness: number }>`
   width: 255px;
   height: 170px;
   margin: 25px;
@@ -108,6 +106,7 @@ export const BoardWrapper = styled(Link)`
     transform: translate(-45%, -10%);
     width: 300px;
     transition: all 300ms;
+    color: ${(props) => (props.brightness > 100 ? '#000000' : '#ffffff')};
   }
 
   @media screen and (max-width: 425px) {

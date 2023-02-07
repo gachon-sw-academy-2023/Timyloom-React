@@ -7,7 +7,8 @@ export const BoardWrapper = styled.div<{ backgroundColor: string }>`
   background-color: ${(props) => `${props.backgroundColor}`};
 `;
 
-export const BoardTitle = styled.textarea<{ boardTitle: string }>`
+export const BoardTitle = styled.textarea<{ boardTitle: string; brightness: number }>`
+  color: ${(props) => `${props.brightness > 100 ? '#000000' : '#ffffff'}`};
   cursor: pointer;
   width: ${(props) => `${props.boardTitle.length * 23}px`};
   min-width: 200px;
@@ -24,6 +25,7 @@ export const BoardTitle = styled.textarea<{ boardTitle: string }>`
     background: white;
     box-shadow: inset 0 0 0 2px #5d5d5d;
     outline: 0;
+    color: #000000;
   }
 `;
 
