@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 import { SelectedCardData, BoardData, ListData, CardData } from '@/type';
 import * as S from '@/components/Modals/CardModal/CardModalStyle';
@@ -25,9 +25,20 @@ function CardModal() {
   const [cardTitle, setCardTitle] = useState<string>(selectedCard.cardData.cardTitle);
   const [cardDescription, setCardDescription] = useState<string>(selectedCard.cardData.cardDescription);
 
+  const textRef = useRef(null);
+  const textRef2 = useRef(null);
+  const handleResizeHeight = useCallback(() => {
+    textRef.current.style.height = textRef.current.scrollHeight + 'px';
+    textRef2.current.style.height = textRef2.current.scrollHeight + 'px';
+  }, []);
+
   const handleModal = () => {
     setSelectedCard((prev) => ({ ...prev, isModalopen: !prev.isModalopen }));
   };
+  useEffect(() => {
+    console.log('맨 처음 렌더링될 때 한 번만 실행');
+    console.log(textRef2.current.style.height);
+  }, [textRef2]);
 
   const [selectedDayRange, setSelectedDayRange] = useState(selectedCard.cardData.date);
   const startDate = selectedDayRange.from
@@ -142,16 +153,18 @@ function CardModal() {
       value={selectedCard.cardData.date.to !== null ? `${startDate} ~ ${endDate}` : ''}
     />
   );
+
   if (selectedCard.isModalopen)
     return (
       <S.ModalBackdrop>
-        <S.ModalView>
+        <S.ModalView onClick={handleResizeHeight}>
           <S.ModalHeader>
             <S.ModalCloseBtn onClick={handleModal}>
               <CgClose size="25" color="black" />
             </S.ModalCloseBtn>
             <S.ModalTitle
-              cardTitle={selectedCard.cardData.cardTitle}
+              ref={textRef}
+              onInput={handleResizeHeight}
               spellCheck="false"
               value={cardTitle}
               onChange={handleChangeTitle}
@@ -166,6 +179,8 @@ function CardModal() {
               {selectedCard.cardData.cardTitle}
             </S.ModalTitle>
             <S.ModalDescription
+              ref={textRef2}
+              onInput={handleResizeHeight}
               cardDescription={selectedCard.cardData.cardDescription}
               spellCheck="false"
               value={cardDescription}

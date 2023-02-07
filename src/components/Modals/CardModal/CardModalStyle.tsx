@@ -58,7 +58,8 @@ export const TitlelIcon = styled(FcViewDetails)`
 export const ModalHeader = styled.div`
   display: flex;
   flex-direction: column;
-  height: 110px;
+  min-height: 110px;
+  height: auto;
   padding: 20px 40px 8px 56px;
   position: relative;
   background-color: #eef4fe;
@@ -66,12 +67,12 @@ export const ModalHeader = styled.div`
   border-top-left-radius: 10px;
 `;
 
-export const ModalTitle = styled.textarea<{ cardTitle: string }>`
+export const ModalTitle = styled.textarea`
   cursor: pointer;
-  width: ${(props) => `${props.cardTitle.length * 23}px`};
   min-width: 200px;
+  width: 80%;
   font-size: 1.3rem;
-  height: 40px;
+  height: auto;
   margin: 10px 0px 0px 0px;
   padding: 4px 8px;
   border: none;
@@ -81,18 +82,18 @@ export const ModalTitle = styled.textarea<{ cardTitle: string }>`
   &:focus {
     cursor: text;
     background: white;
-    box-shadow: inset 0 0 0 2px #5d5d5d;
+    box-shadow: inset 0 0 0 2px #a0c3ff;
     outline: 0;
   }
 `;
 
 export const ModalDescription = styled.textarea<{ cardDescription: string }>`
   cursor: pointer;
-  width: ${(props) => `${props.cardDescription.length * 10}px`};
+  width: 80%;
   min-width: 200px;
   font-size: 0.9rem;
   height: 30px;
-  margin: 0px 0px 0px 3px;
+  margin: 20px 0px 0px 3px;
   padding: 4px 8px;
   border: none;
   resize: none;
