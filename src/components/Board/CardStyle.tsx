@@ -1,10 +1,25 @@
 import styled from 'styled-components';
+import { Checkbox } from 'pretty-checkbox-react';
 
-export const CardDraggable = styled.div<{ isDragging?: string }>`
-  background-color: ${(props) => (props.isDragging ? '#4FB740' : '#ffffff')};
-  border-radius: 3px;
+export const CheckboxCustom = styled(Checkbox)`
+  margin: auto 10px auto 0px;
+`;
+
+export const CardDraggable = styled.div`
+  background-color: #ffffff;
   margin-bottom: 8px;
   position: relative;
+`;
+
+export const TextAreaWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 15px;
+  margin-bottom: 15px;
+  height: auto;
+  border-radius: 5px;
+
   box-shadow: #091e4240 0px 1px 1px, #091e4221 0px 0px 1px 1px;
 
   &:hover {
@@ -12,25 +27,16 @@ export const CardDraggable = styled.div<{ isDragging?: string }>`
   }
 `;
 
-export const TextAreaWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 20px;
-  margin-bottom: 15px;
-  height: auto;
-  border-radius: 10px;
-
-  &:hover {
-  }
-`;
-
 export const CardTitleWrapper = styled.div`
-  font-size: 14px;
-  display: block;
+  font-size: 16px;
+  display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 150px;
+  width: 143px;
+  color: black;
+  padding-right: 10px;
+  margin: auto 0;
+  font-weight: 600;
 `;
 
 export const DeleteWrapper = styled.div`
@@ -50,7 +56,8 @@ export const DeleteWrapper = styled.div`
 export const CardHeaderWrapper = styled.div`
   display: flex;
   align-items: column;
-  justify-content: space-between;
+  justify-content: left;
+  height: 45px;
   padding-bottom: 20px;
 `;
 
@@ -58,5 +65,6 @@ export const InformationWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 `;

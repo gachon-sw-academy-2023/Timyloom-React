@@ -7,6 +7,9 @@ import { BoardData, CardData, SelectedCardData } from '@/type';
 import { boardsAtom } from '@/recoil/boards';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import { FcClock } from 'react-icons/fc';
+import { ImCheckmark } from 'react-icons/im';
+import { useCheckboxState } from 'pretty-checkbox-react';
+import '@djthoms/pretty-checkbox';
 
 interface CardProps {
   listId: string;
@@ -20,6 +23,8 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardData>(selectedCardAtom);
   const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
+
+  const checkbox = useCheckboxState();
 
   const handleSaveModalData = () => {
     setSelectedCard((prev) => ({
@@ -62,14 +67,29 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
           >
             <S.TextAreaWrapper onClick={handleSaveModalData}>
               <S.CardHeaderWrapper>
+                <S.CheckboxCustom
+                  icon={<ImCheckmark className="svg" data-type="svg" color="white" />}
+                  color="info"
+                  {...checkbox}
+                  onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+                    e.stopPropagation();
+                    console.log(checkbox.state);
+                  }}
+                />
+
                 <S.CardTitleWrapper>{cardData.cardTitle}</S.CardTitleWrapper>
+
                 <S.DeleteWrapper onClick={handleDeleteCard}>
                   <CgClose />
                 </S.DeleteWrapper>
               </S.CardHeaderWrapper>
               <S.InformationWrapper>
                 <FcClock size="20" />
-                <div>{`${cardData.date.to.year}-${cardData.date.to.month}-${cardData.date.to.day}`}</div>
+
+                <div>
+                  {`${cardData.date.to.year}.${cardData.date.to.month}.${cardData.date.to.day} `}~
+                  {` ${cardData.date.to.year}.${cardData.date.to.month}.${cardData.date.to.day}`}
+                </div>
               </S.InformationWrapper>
             </S.TextAreaWrapper>
           </S.CardDraggable>
