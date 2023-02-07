@@ -37,7 +37,7 @@ export const BoardContainer = styled.div`
   justify-content: left;
 `;
 
-export const ImageWrapper = styled.div<{ backgroundColor: string }>`
+export const BackgroundWrapper = styled.div<{ backgroundColor: string }>`
   width: 100%;
   height: 170%;
   border-radius: 100%;
@@ -92,7 +92,7 @@ export const BoardWrapper = styled(Link)`
     box-shadow: #091e4240 0px 4px 8px -2px, #091e4214 0px 0px 0px 1px;
   }
 
-  &:hover ${ImageWrapper} {
+  &:hover ${BackgroundWrapper} {
     width: 255px;
     height: 170px;
     border-radius: 10px;
@@ -115,7 +115,7 @@ export const BoardWrapper = styled(Link)`
     height: 200px;
     margin: 20px;
 
-    &:hover ${ImageWrapper} {
+    &:hover ${BackgroundWrapper} {
       width: 200px;
       height: 200px;
     }
