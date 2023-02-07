@@ -21,6 +21,7 @@ function Boards({ sidebarOpen }: BoardsProps) {
   const [loading, setLoading] = useState(true);
   const [boards, setBoards] = useRecoilState(boardsAtom);
   const personalBoards = boards.filter((board: BoardData) => board.owner === localStorage.getItem('id'));
+  const [backgroundColor, setBackgroundColor] = useState(personalBoards.backgroundColor);
 
   setTimeout(() => {
     setLoading((prev) => false);
@@ -52,7 +53,7 @@ function Boards({ sidebarOpen }: BoardsProps) {
           {personalBoards.map((board: BoardData, index: number) => (
             <S.BoardWrapper key={index} to={`/workspace/${board.boardId}`}>
               <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
-              <S.ImageWrapper />
+              <S.ImageWrapper backgroundColor={board.backgroundColor} />
             </S.BoardWrapper>
           ))}
           <S.AddBoardButton

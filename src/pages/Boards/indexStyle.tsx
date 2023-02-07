@@ -37,14 +37,11 @@ export const BoardContainer = styled.div`
   justify-content: left;
 `;
 
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled.div<{ backgroundColor: string }>`
   width: 100%;
   height: 170%;
   border-radius: 100%;
-  background-image: url(${boardbackground});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: ${(props) => `${props.backgroundColor}`};
   position: absolute;
   top: 20%;
   left: 50%;
@@ -63,7 +60,7 @@ export const BoardTitle = styled.div`
   position: absolute;
   width: 100px;
   height: 30px;
-  top: 30%;
+  top: 20%;
   left: 0;
   transform: translate(0, -30%);
   border-radius: 5px;
@@ -105,9 +102,7 @@ export const BoardWrapper = styled(Link)`
   }
 
   &:hover ${BoardTitle} {
-    color: #ffffff;
-    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     top: 10%;
     left: 40%;
     transform: translate(-45%, -10%);
