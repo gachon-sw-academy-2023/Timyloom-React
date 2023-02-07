@@ -22,7 +22,7 @@ export const secondaryLinksArray = [
   {
     label: 'Calender',
     icon: <AiOutlineCalendar />,
-    to: '',
+    to: '/workspace/calendar',
   },
 ];
 
