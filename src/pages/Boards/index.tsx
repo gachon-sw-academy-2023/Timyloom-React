@@ -50,7 +50,7 @@ function Boards({ sidebarOpen }: BoardsProps) {
       <S.ContentWrapper isopen={sidebarOpen}>
         <S.BoardContainer>
           {personalBoards.map((board: BoardData, index: number) => (
-            <S.BoardWrapper key={index} to={`/workspace/${board.boardId}`}>
+            <S.BoardWrapper key={index} to={`/workspace/${board.boardId}`} brightness={board.brightness}>
               <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
               <S.BackgroundWrapper backgroundColor={board.backgroundColor} />
             </S.BoardWrapper>

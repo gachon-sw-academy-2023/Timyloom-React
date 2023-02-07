@@ -3,6 +3,7 @@ export interface BoardData {
   boardId: string;
   owner: string;
   backgroundColor: string;
+  brightness: number;
   logs: LogsInterface[];
   lists: ListData[];
 }
