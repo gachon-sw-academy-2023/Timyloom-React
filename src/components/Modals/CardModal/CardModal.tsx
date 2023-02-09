@@ -19,7 +19,7 @@ interface DateRefProps {
 }
 
 function CardModal() {
-  const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardData>(selectedCardAtom);
+  const [selectedCard, setSelectedCard] = useRecoilState<any>(selectedCardAtom);
   const [boards, setBoards] = useRecoilState<BoardData>(boardsAtom);
   const [cardTitle, setCardTitle] = useState<string>(selectedCard.cardData.cardTitle);
   const [cardDescription, setCardDescription] = useState<string>(selectedCard.cardData.cardDescription);
@@ -32,7 +32,7 @@ function CardModal() {
   }, []);
 
   const handleModal = () => {
-    setSelectedCard((prev) => ({ ...prev, isModalopen: !prev.isModalopen }));
+    setSelectedCard((prev: any) => ({ ...prev, isModalopen: !prev.isModalopen }));
   };
   const [selectedDayRange, setSelectedDayRange] = useState(selectedCard.cardData.date);
   const startDate = selectedDayRange.from
@@ -139,7 +139,7 @@ function CardModal() {
     setBoards((prev) => newBoards);
   };
 
-  const renderCustomInput = ({ ref }: DateRefProps) => (
+  const renderCustomInput = ({ ref }: any) => (
     <S.DateCustomInput
       readOnly
       ref={ref}

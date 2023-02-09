@@ -1,4 +1,4 @@
-export const boardsDummy = [
+export const boardsDummy: any = [
   {
     boardTitle: '개인 일정 정리 보드',
     boardId: '1',

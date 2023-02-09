@@ -20,14 +20,14 @@ interface CardProps {
 }
 
 const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
-  const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardData>(selectedCardAtom);
+  const [selectedCard, setSelectedCard] = useRecoilState<any>(selectedCardAtom);
   const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
 
   const checkbox = useCheckboxState();
 
   const handleSaveModalData = () => {
-    setSelectedCard((prev) => ({
+    setSelectedCard((prev: any) => ({
       isModalopen: !prev.isModalopen,
       boardId: boardId,
       listId: listId,

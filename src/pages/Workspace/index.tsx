@@ -12,7 +12,7 @@ function Workspace() {
     <S.WorkspaceWrapper>
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <Routes>
-        <Route path="boards" element={<Boards sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />}></Route>
+        <Route path="boards" element={<Boards sidebarOpen={sidebarOpen} />}></Route>
         <Route path=":boardId" element={<Board />}></Route>
         <Route path="calendar" element={<Calendar />}></Route>
       </Routes>

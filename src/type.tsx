@@ -1,10 +1,11 @@
 export interface BoardData {
+  map: any;
   boardTitle: string;
   boardId: string;
   owner: string;
   backgroundColor: string;
   brightness: number;
-  logs: LogsInterface[];
+  logs: any;
   lists: ListData[];
 }
 
@@ -43,5 +44,5 @@ export interface SelectedCardData {
   boardId: string;
   listId: string;
   cardId: string;
-  cardData: CardDataInterface;
+  cardData: CardData;
 }
