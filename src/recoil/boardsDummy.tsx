@@ -15,6 +15,7 @@ export const boardsDummy = [
             cardTitle: '헬스 하기',
             cardId: '104',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },
@@ -24,6 +25,7 @@ export const boardsDummy = [
             cardTitle: '버스 예매하기',
             cardId: '105',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },
@@ -33,6 +35,7 @@ export const boardsDummy = [
             cardTitle: '타입스크립트 공부',
             cardId: '106',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },
@@ -42,6 +45,7 @@ export const boardsDummy = [
             cardTitle: '독서 2권하기',
             cardId: '107',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },
@@ -57,6 +61,7 @@ export const boardsDummy = [
             cardTitle: 'JEST 공부',
             cardId: '101',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },
@@ -66,6 +71,7 @@ export const boardsDummy = [
             cardTitle: 'StoryBook 공부',
             cardId: '102',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },
@@ -75,6 +81,7 @@ export const boardsDummy = [
             cardTitle: 'MSW 공부',
             cardId: '103',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },
@@ -90,6 +97,7 @@ export const boardsDummy = [
             cardTitle: '취업하기',
             cardId: '108',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },
@@ -99,6 +107,7 @@ export const boardsDummy = [
             cardTitle: '축구 예매하기',
             cardId: '109',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },
@@ -108,6 +117,7 @@ export const boardsDummy = [
             cardTitle: '타입스크립트 마스터',
             cardId: '110',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },
@@ -117,6 +127,7 @@ export const boardsDummy = [
             cardTitle: '독서 200권하기',
             cardId: '111',
             cardDescription: 'cardDescription test message',
+            isDone: false,
             date: {
               from: { year: 2023, month: 2, day: 3 },
               to: { year: 2023, month: 2, day: 10 },

@@ -11,7 +11,7 @@ export const CardDraggable = styled.div`
   position: relative;
 `;
 
-export const TextAreaWrapper = styled.div`
+export const TextAreaWrapper = styled.div<{ isDone: boolean }>`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -19,6 +19,7 @@ export const TextAreaWrapper = styled.div`
   margin-bottom: 15px;
   height: auto;
   border-radius: 5px;
+  opacity: ${(props) => (props.isDone ? '0.4' : '1')};
 
   box-shadow: #091e4240 0px 1px 1px, #091e4221 0px 0px 1px 1px;
 
