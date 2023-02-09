@@ -21,6 +21,7 @@ function Boards({ sidebarOpen }: BoardsProps) {
   const [loading, setLoading] = useState(true);
   const [boards, setBoards] = useRecoilState(boardsAtom);
   const personalBoards = boards.filter((board: BoardData) => board.owner === localStorage.getItem('id'));
+  const [searchTerm, setSearchTerm] = useState('');
 
   setTimeout(() => {
     setLoading((prev) => false);
@@ -29,7 +30,7 @@ function Boards({ sidebarOpen }: BoardsProps) {
   if (loading)
     return (
       <S.PageWrapper>
-        <WorkspaceHeader />
+        <WorkspaceHeader setSearchTerm={setSearchTerm} />
         <S.BoardContainer>
           <S.SkeletonWrapper>
             <Skeleton variant="rounded" animation="wave" width={255} height={170} />
@@ -46,15 +47,17 @@ function Boards({ sidebarOpen }: BoardsProps) {
 
   return (
     <S.PageWrapper>
-      <WorkspaceHeader />
+      <WorkspaceHeader setSearchTerm={setSearchTerm} />
       <S.ContentWrapper isopen={sidebarOpen}>
         <S.BoardContainer>
-          {personalBoards.map((board: BoardData, index: number) => (
-            <S.BoardWrapper key={index} to={`/workspace/${board.boardId}`} brightness={board.brightness}>
-              <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
-              <S.BackgroundWrapper backgroundColor={board.backgroundColor} />
-            </S.BoardWrapper>
-          ))}
+          {personalBoards
+            .filter((board: any) => board.boardTitle.toLowerCase().includes(searchTerm))
+            .map((board: BoardData, index: number) => (
+              <S.BoardWrapper key={index} to={`/workspace/${board.boardId}`} brightness={board.brightness}>
+                <S.BoardTitle>{board.boardTitle}</S.BoardTitle>
+                <S.BackgroundWrapper backgroundColor={board.backgroundColor} />
+              </S.BoardWrapper>
+            ))}
           <S.AddBoardButton
             onClick={() => {
               handleAddBoard(boards, setBoards);

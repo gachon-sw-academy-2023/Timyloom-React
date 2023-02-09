@@ -21,12 +21,12 @@ export const SidebarOpenButton = styled.button<{ $isopen: boolean }>`
   height: 32px;
   border-radius: 50%;
   background: ${(props) => props.theme.primaryColor_1};
-  box-shadow: 5px 5px 4px #cacfd8, -5px -5px 4px #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transform: ${({ $isopen }) => (!$isopen ? `rotate(180deg)` : `initial`)};
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
 
 export const LogoLink = styled(Link)`

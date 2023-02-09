@@ -51,7 +51,7 @@ export const ModalCloseBtn = styled.button`
 
 export const TitlelIcon = styled(FcViewDetails)`
   position: absolute;
-  top: 20px;
+  top: 35px;
   left: 20px;
 `;
 
@@ -72,7 +72,7 @@ export const ModalTitle = styled.textarea`
   min-width: 200px;
   width: 80%;
   font-size: 1.3rem;
-  height: auto;
+  height: 40px;
   margin: 10px 0px 0px 0px;
   padding: 4px 8px;
   border: none;
@@ -87,7 +87,7 @@ export const ModalTitle = styled.textarea`
   }
 `;
 
-export const ModalDescription = styled.textarea<{ cardDescription: string }>`
+export const ModalDescription = styled.textarea`
   cursor: pointer;
   width: 80%;
   min-width: 200px;
@@ -102,7 +102,7 @@ export const ModalDescription = styled.textarea<{ cardDescription: string }>`
   &:focus {
     cursor: text;
     background: white;
-    box-shadow: inset 0 0 0 2px #5d5d5d;
+    box-shadow: inset 0 0 0 2px #a0c3ff;
     outline: 0;
   }
 `;

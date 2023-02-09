@@ -3,17 +3,16 @@ import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 import { SelectedCardData, BoardData, ListData, CardData } from '@/type';
 import * as S from '@/components/Modals/CardModal/CardModalStyle';
 import Button from '@/components/Button/Button';
-import Label from '@/components/Label/Label';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import { selectedCardAtom } from '@/recoil/selectedCard';
 
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
-import { FaBookmark } from 'react-icons/fa';
 import { FcClock } from 'react-icons/fc';
 import { FaMap } from 'react-icons/fa';
 import { CgClose } from 'react-icons/cg';
+import { GrPowerReset } from 'react-icons/gr';
 
 interface DateRefProps {
   ref: React.LegacyRef<HTMLInputElement> | null;
@@ -25,21 +24,16 @@ function CardModal() {
   const [cardTitle, setCardTitle] = useState<string>(selectedCard.cardData.cardTitle);
   const [cardDescription, setCardDescription] = useState<string>(selectedCard.cardData.cardDescription);
 
-  const textRef = useRef(null);
-  const textRef2 = useRef(null);
+  const cardTitleTextRef = useRef(null);
+  const cardDesciptionTextRef = useRef(null);
   const handleResizeHeight = useCallback(() => {
-    textRef.current.style.height = textRef.current.scrollHeight + 'px';
-    textRef2.current.style.height = textRef2.current.scrollHeight + 'px';
+    cardTitleTextRef.current.style.height = cardTitleTextRef.current.scrollHeight + 'px';
+    cardDesciptionTextRef.current.style.height = cardDesciptionTextRef.current.scrollHeight + 'px';
   }, []);
 
   const handleModal = () => {
     setSelectedCard((prev) => ({ ...prev, isModalopen: !prev.isModalopen }));
   };
-  useEffect(() => {
-    console.log('맨 처음 렌더링될 때 한 번만 실행');
-    console.log(textRef2.current.style.height);
-  }, [textRef2]);
-
   const [selectedDayRange, setSelectedDayRange] = useState(selectedCard.cardData.date);
   const startDate = selectedDayRange.from
     ? `${selectedDayRange.from.year}-${selectedDayRange.from.month}-${selectedDayRange.from.day}`
@@ -157,13 +151,14 @@ function CardModal() {
   if (selectedCard.isModalopen)
     return (
       <S.ModalBackdrop>
-        <S.ModalView onClick={handleResizeHeight}>
+        <S.ModalView>
           <S.ModalHeader>
             <S.ModalCloseBtn onClick={handleModal}>
               <CgClose size="25" color="black" />
             </S.ModalCloseBtn>
+            <S.TitlelIcon size="30" />
             <S.ModalTitle
-              ref={textRef}
+              ref={cardTitleTextRef}
               onInput={handleResizeHeight}
               spellCheck="false"
               value={cardTitle}
@@ -175,19 +170,18 @@ function CardModal() {
                 updateData('cardTitle');
               }}
             >
-              <S.TitlelIcon size="30" />
               {selectedCard.cardData.cardTitle}
             </S.ModalTitle>
             <S.ModalDescription
-              ref={textRef2}
+              ref={cardDesciptionTextRef}
               onInput={handleResizeHeight}
-              cardDescription={selectedCard.cardData.cardDescription}
               spellCheck="false"
               value={cardDescription}
               onChange={handleChangeDescription}
               onKeyDown={(e) => {
                 handleKeyDown(e, 'cardDescription');
               }}
+              placeholder="Add your description"
               onBlur={() => {
                 updateData('cardDescription');
               }}
@@ -198,17 +192,10 @@ function CardModal() {
           <S.ModalOptionContainer>
             <S.OptionWrapper>
               <S.OptionTitleWrapper>
-                <FaBookmark color="#a0c3ff" size="25" />
-                <S.OptionTitle>Labels</S.OptionTitle>
-              </S.OptionTitleWrapper>
-              <Label />
-            </S.OptionWrapper>
-            <S.OptionWrapper>
-              <S.OptionTitleWrapper>
                 <FcClock size="30" />
                 <S.OptionTitle>Date</S.OptionTitle>
-                <Button radius="square" border={false} size="xs" themes="sign" onClick={resetDate}>
-                  reset
+                <Button radius="square" border={false} size="xs" themes="reset" onClick={resetDate}>
+                  <GrPowerReset size="20" />
                 </Button>
               </S.OptionTitleWrapper>
               <DatePicker
