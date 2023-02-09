@@ -4,6 +4,7 @@ export const boardsDummy = [
     boardId: '1',
     owner: 'bwj0509',
     backgroundColor: '#a41010',
+    brightness: 100,
     logs: [],
     lists: [
       {

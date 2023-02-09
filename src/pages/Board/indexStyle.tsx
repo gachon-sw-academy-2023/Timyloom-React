@@ -21,7 +21,8 @@ export const BoardHeaderContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const BoardTitleContainer = styled.textarea`
+export const BoardTitleContainer = styled.textarea<{ brightness: number }>`
+  color: ${(props) => `${props.brightness > 100 ? '#000000' : '#ffffff'}`};
   margin: 10px 0px 5px 0px;
   padding: 4px 8px;
   cursor: pointer;
@@ -38,6 +39,7 @@ export const BoardTitleContainer = styled.textarea`
     background: white;
     box-shadow: inset 0 0 0 2px #5d5d5d;
     outline: 0;
+    color: #000000;
   }
 `;
 
