@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import Board from '@/components/Board/Board';
 import Log from '@/pages/Log/index';
 import * as S from '@/pages/Board/indexStyle';
@@ -25,6 +25,11 @@ function BoardPage() {
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(board.backgroundColor);
   const [brightness, setBrightness] = useState(255);
+
+  const boardTitleTextRef = useRef(null);
+  const handleResizeHeight = useCallback(() => {
+    boardTitleTextRef.current.style.height = boardTitleTextRef.current.scrollHeight + 'px';
+  }, []);
 
   useEffect(() => {
     setTemporaryBoard((prev) => []);
@@ -112,38 +117,43 @@ function BoardPage() {
   };
 
   return (
-    <S.BoardWrapper backgroundColor={backgroundColor}>
-      <S.BoardTitle
-        spellCheck="false"
-        boardTitle={boardTitle}
-        brightness={board.brightness}
-        value={boardTitle}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        onBlur={() => {
-          handleSaveData();
-        }}
-      ></S.BoardTitle>
-      <S.GoBackBtn isGoBackAvavailable={temporaryBoard.length !== 0} onClick={handleGobackBoard}>
-        <RiArrowGoBackLine size="30px" color="#333333" />
-      </S.GoBackBtn>
-      <S.DeleteBtn onClick={handleDeleteBoard}>
-        <MdDeleteForever size="30px" color="#333333" />
-      </S.DeleteBtn>
-      <S.SettingBtn onClick={handleColorPickerStatus}>
-        <AiFillSetting size="30px" color="#333333" />
-      </S.SettingBtn>
-      {isColorPickerOpen && (
-        <S.PopOver>
-          <SketchPicker color={backgroundColor} onChange={handleColorChange} />
-        </S.PopOver>
-      )}
-      <S.LogBtn onClick={handleChangeLogState}>
-        <MdOutlineAccessTime size="30px" color="#333333" />
-      </S.LogBtn>
+    <S.BoardContainer backgroundColor={backgroundColor}>
+      <S.BoardHeaderContainer>
+        <S.BoardTitleContainer
+          ref={boardTitleTextRef}
+          onInput={handleResizeHeight}
+          spellCheck="false"
+          brightness={board.brightness}
+          value={boardTitle}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          onBlur={() => {
+            handleSaveData();
+          }}
+        ></S.BoardTitleContainer>
+        <S.BoardUtilContainer>
+          <S.GoBackBtn isGoBackAvavailable={temporaryBoard.length !== 0} onClick={handleGobackBoard}>
+            <RiArrowGoBackLine size="30px" color="#333333" />
+          </S.GoBackBtn>
+          <S.DeleteBtn onClick={handleDeleteBoard}>
+            <MdDeleteForever size="30px" color="#333333" />
+          </S.DeleteBtn>
+          <S.SettingBtn onClick={handleColorPickerStatus}>
+            <AiFillSetting size="30px" color="#333333" />
+          </S.SettingBtn>
+          {isColorPickerOpen && (
+            <S.PopOver>
+              <SketchPicker color={backgroundColor} onChange={handleColorChange} />
+            </S.PopOver>
+          )}
+          <S.LogBtn onClick={handleChangeLogState}>
+            <MdOutlineAccessTime size="30px" color="#333333" />
+          </S.LogBtn>
+        </S.BoardUtilContainer>
+      </S.BoardHeaderContainer>
       <Board boards={boards} setBoards={setBoards} boardId={boardId} />
       {isLogOpen && <Log logs={board.logs} />}
-    </S.BoardWrapper>
+    </S.BoardContainer>
   );
 }
 export default BoardPage;

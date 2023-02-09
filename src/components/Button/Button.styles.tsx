@@ -38,10 +38,16 @@ const themeVariants = variant({
         color: '#808080',
       },
     },
+    reset: {
+      backgroundColor: '#eef4fe',
+      padding: '0.2rem 0.4rem',
+      '&:hover': {
+        backgroundColor: '#a0c3ff',
+      },
+    },
   },
 });
 export const Container = styled.button<Omit<ButtonProps, 'children'>>`
-  ${themeVariants}
   text-align: center;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
@@ -87,6 +93,7 @@ export const Container = styled.button<Omit<ButtonProps, 'children'>>`
           padding: 1rem 2.5rem;
           font-size: 1.2rem;
         `}
+  ${themeVariants}
   
   background-color: ${({ color }) => color && colors[color]};
   color: ${({ textColor }) => textColor && colors[textColor]};

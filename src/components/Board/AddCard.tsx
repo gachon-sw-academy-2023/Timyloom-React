@@ -56,7 +56,7 @@ function AddCard({ listId }: AddCardProps) {
                       {
                         cardTitle: cardTitle,
                         cardId: `c-${cardId}`,
-                        cardDescription: 'Add your description',
+                        cardDescription: '',
                         date: {
                           from: {
                             year: new Date().getFullYear(),

@@ -17,7 +17,7 @@ export interface ButtonProps {
     | 'gray_1'
     | 'gray_2'
     | 'gray_3';
-  themes?: 'default' | 'sign' | 'remove' | 'success' | 'danger';
+  themes?: 'default' | 'sign' | 'remove' | 'success' | 'danger' | 'reset';
   onClick?: () => void;
 }
 
