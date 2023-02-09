@@ -5,15 +5,15 @@ import Avatar from '@/assets/images/avatar.jpg';
 
 const textNotification = `React can also render on the server using Node and power mobile apps using React Native`;
 
-function Header() {
-  const [search, setSearch] = useState('');
-  const [searchResult, setSearchResult] = useState([]);
+interface HeaderProps {
+  setKeyword: Function;
+}
 
+function Header({ setKeyword }: HeaderProps) {
   const [alarmNotification, setAlarmNotification] = useState('true');
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setSearch(e.target.value);
+    setKeyword((prev: string) => e.target.value);
   };
 
   return (

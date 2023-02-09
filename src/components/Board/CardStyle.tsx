@@ -57,8 +57,6 @@ export const CardHeaderWrapper = styled.div`
   display: flex;
   align-items: column;
   justify-content: left;
-  height: 45px;
-  padding-bottom: 20px;
 `;
 
 export const InformationWrapper = styled.div`
