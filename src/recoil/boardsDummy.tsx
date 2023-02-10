@@ -2,6 +2,7 @@ export const boardsDummy = [
   {
     boardTitle: '개인 일정 정리 보드',
     boardId: '1',
+    lastUpdate: 1676027961189,
     owner: 'bwj0509',
     backgroundColor: '#a41010',
     brightness: 100,

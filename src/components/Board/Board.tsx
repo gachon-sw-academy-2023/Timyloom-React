@@ -82,7 +82,6 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
     setTemporaryBoard((prev) => [...prev, boards]);
     setBoards((prev) => boards.map((board) => (board.boardId === boardId ? { ...board, lists: tempLists } : board)));
   };
-
   return (
     <>
       <DragDropContext onBeforeDragStart={onBeforeDragStart} onDragStart={onDragStart} onDragEnd={onDragEnd}>

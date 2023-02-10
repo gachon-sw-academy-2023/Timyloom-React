@@ -2,6 +2,7 @@ export interface BoardData {
   boardTitle: string;
   boardId: string;
   owner: string;
+  lastUpdate: number;
   backgroundColor: string;
   brightness: number;
   logs: LogsInterface[];
@@ -43,5 +44,5 @@ export interface SelectedCardData {
   boardId: string;
   listId: string;
   cardId: string;
-  cardData: CardDataInterface;
+  cardData: CardData;
 }

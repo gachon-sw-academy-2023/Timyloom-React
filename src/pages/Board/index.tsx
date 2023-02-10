@@ -74,7 +74,9 @@ function BoardPage() {
   };
 
   const handleSaveData = () => {
-    const newBoards = boards.map((board) => (board.boardId === boardId ? { ...board, boardTitle: boardTitle } : board));
+    const newBoards = boards.map((board) =>
+      board.boardId === boardId ? { ...board, boardTitle: boardTitle, lastUpdate: new Date().getTime() } : board,
+    );
     setBoards((prev) => newBoards);
   };
 
