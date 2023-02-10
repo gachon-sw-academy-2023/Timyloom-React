@@ -9,28 +9,38 @@ interface fieldInterface {
 }
 
 export const MainWrapper = styled.div`
-  width: 100vw;
   background-color: #eef4fe;
-  padding: 0px 10vw;
+  height: calc(100% - 70px);
+  overflow-y: auto;
+  display: flex;
 `;
 
 export const LeftContentsContainer = styled.div`
-  text-align: center;
+  padding: 0 10vw;
 `;
 
 export const Video = styled.video`
-  @media (max-width: 768px) {
-    width: 280px;
+  margin: auto;
+  display: block;
+
+  @media (max-width: 1028px) {
+    width: 90%;
   }
 `;
 
 export const RightContentsContainer = styled.div`
   width: 700px;
   text-align: center;
-  margin-top: 120px;
-  @media (max-width: 900px) {
-    width: 350px;
-    margin-top: 0px;
+  margin: 100px auto 60px;
+
+  @media (max-width: 768px) {
+    width: 400px;
+    margin: 20px auto 60px;
+  }
+
+  @media (max-width: 425px) {
+    margin: 20px auto 60px;
+    width: 300px;
   }
 `;
 
@@ -52,10 +62,10 @@ export const StartBtn = styled.button<{ gradationColor: string }>`
   &:hover {
     cursor: pointer;
   }
-  @media (max-width: 900px) {
-    width: 100px;
-    height: 35px;
-    font-size: 0.75rem;
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 50px;
+    font-size: 1rem;
   }
 `;
 
@@ -80,8 +90,8 @@ export const Field = styled.div<{ field: fieldInterface }>`
     border: ${(props) => `6px solid ${props.field.color}`};
   }
   @media (max-width: 768px) {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     margin: 5px;
 
     border: ${(props) => (props.field.select ? `2px solid ${props.field.color}` : 'none')};
@@ -93,11 +103,12 @@ export const Field = styled.div<{ field: fieldInterface }>`
     }
 
     > :first-child {
-      display: none;
+      display: flex;
+      margin: auto;
     }
 
     > :last-child {
-      font-size: 0.5rem;
+      font-size: 0.7rem;
       margin: auto;
     }
   }
@@ -114,6 +125,15 @@ export const FieldContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+
+  @media (max-width: 768px) {
+    width: 370px;
+    margin: auto;
+  }
+  @media (max-width: 425px) {
+    width: 200px;
+    margin: auto;
+  }
 `;
 
 export const MainTitle = styled.div`
@@ -122,6 +142,9 @@ export const MainTitle = styled.div`
   color: #063183;
   margin-bottom: 20px;
   @media (max-width: 768px) {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+  }
+  @media (max-width: 425px) {
+    font-size: 1.2rem;
   }
 `;
