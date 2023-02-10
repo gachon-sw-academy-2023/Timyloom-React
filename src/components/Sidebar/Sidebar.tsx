@@ -1,7 +1,10 @@
 import * as S from './SidebarStyle';
 import { AiOutlineLeft } from 'react-icons/ai';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { linksArray, secondaryLinksArray, board } from '@/components/Sidebar/SidebarData';
+import { SetterOrUpdater, useRecoilState } from 'recoil';
+import { boardsAtom } from '@/recoil/boards';
+import { BoardData } from '@/type';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -10,11 +13,19 @@ interface SidebarProps {
 
 function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
   const { pathname } = useLocation();
+  const [boards, setBoards] = useRecoilState(boardsAtom);
+  const personalBoards = boards.filter((board: BoardData) => board.owner === localStorage.getItem('id'));
+  const navigate = useNavigate();
 
   const changeHandler = (e: MediaQueryListEvent) => {
     {
       mediaQueryList.matches ? setSidebarOpen(false) : setSidebarOpen(true);
     }
+  };
+
+  const handlePageMove = (boardId: string) => {
+    navigate(`/workspace/${boardId}`);
+    window.location.reload();
   };
 
   const mediaQueryList = window.matchMedia(`(max-width: 768px)`);
@@ -51,10 +62,17 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
       <S.Divider />
       <S.SidebarSubtitle $isopen={sidebarOpen}>Your Boards</S.SidebarSubtitle>
       <S.BoardContainer $isopen={sidebarOpen}>
-        {board.map((item, index) => (
-          <S.BoardWrapper $isopen={sidebarOpen} key={index}>
-            <S.BoardSquare boardDesign={item.color}></S.BoardSquare>
-            <S.BoardTitle $isopen={sidebarOpen}>{item.title}</S.BoardTitle>
+        {personalBoards.map((board: BoardData, index: number) => (
+          <S.BoardWrapper
+            $isopen={sidebarOpen}
+            key={index}
+            onClick={() => {
+              handlePageMove(board.boardId);
+            }}
+          >
+            {console.log(board.logs)}
+            <S.BoardSquare boardDesign={board.backgroundColor}></S.BoardSquare>
+            <S.BoardTitle $isopen={sidebarOpen}>{board.boardTitle}</S.BoardTitle>
           </S.BoardWrapper>
         ))}
       </S.BoardContainer>

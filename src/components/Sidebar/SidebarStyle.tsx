@@ -113,10 +113,12 @@ export const BoardContainer = styled.div<{ $isopen: boolean }>`
   justify-content: center;
 `;
 
-export const BoardWrapper = styled.div<{ $isopen: boolean }>`
+export const BoardWrapper = styled(Link)<{ $isopen: boolean }>`
   justify-content: ${({ $isopen }) => (!$isopen ? 'center' : `left`)};
   align-items: center;
   display: flex;
+  text-decoration: none;
+  color: black;
 `;
 
 export const BoardSquare = styled.div<{ boardDesign?: string }>`
