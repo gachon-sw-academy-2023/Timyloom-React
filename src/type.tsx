@@ -18,6 +18,7 @@ export interface CardData {
   cardTitle: string;
   cardId: string;
   cardDescription: string;
+  isDone: boolean;
   date: DateRangeInterface;
 }
 

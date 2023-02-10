@@ -17,7 +17,7 @@ export const secondaryLinksArray = [
   {
     label: 'Table',
     icon: <AiOutlineTable />,
-    to: '/workspace/boards',
+    to: '/workspace/table',
   },
   {
     label: 'Calender',

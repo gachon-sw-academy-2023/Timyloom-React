@@ -35,6 +35,7 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
       cardData: cardData,
     }));
   };
+
   const handleDeleteCard = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setTemporaryBoard((prev) => [...prev, boards]);
@@ -56,6 +57,28 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
     setBoards((prev) => newBoards);
   };
 
+  const handleDoneStatus = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    e.stopPropagation();
+    const newBoards = boards.map((board) =>
+      board.boardId === boardId
+        ? {
+            ...board,
+            lists: board.lists.map((list) =>
+              list.listId === listId
+                ? {
+                    ...list,
+                    cards: list.cards.map((card) =>
+                      card.cardId === cardId ? { ...card, isDone: !checkbox.state } : card,
+                    ),
+                  }
+                : list,
+            ),
+          }
+        : board,
+    );
+    setBoards((prev) => newBoards);
+  };
+
   return (
     <>
       <Draggable draggableId={cardId} index={index}>
@@ -65,16 +88,14 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
             {...draggableProvided.draggableProps}
             {...draggableProvided.dragHandleProps}
           >
-            <S.TextAreaWrapper onClick={handleSaveModalData}>
+            <S.TextAreaWrapper onClick={handleSaveModalData} isDone={cardData.isDone}>
               <S.CardHeaderWrapper>
                 <S.CheckboxCustom
                   icon={<ImCheckmark className="svg" data-type="svg" color="white" />}
                   color="info"
                   {...checkbox}
-                  onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-                    e.stopPropagation();
-                    console.log(checkbox.state);
-                  }}
+                  checked={cardData.isDone}
+                  onClick={handleDoneStatus}
                 />
 
                 <S.CardTitleWrapper>{cardData.cardTitle}</S.CardTitleWrapper>
