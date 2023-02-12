@@ -1,9 +1,11 @@
 export const getRandomColor = () => {
-  var r = Math.floor(Math.random() * 256);
-  var g = Math.floor(Math.random() * 256);
-  var b = Math.floor(Math.random() * 256);
-  var brightness = (r + g + b) / 3;
-  var colorCode = `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  const brightness = (red + green + blue) / 3;
+  const colorCode = `#${red.toString(16).padStart(2, '0')}${green.toString(16).padStart(2, '0')}${blue
+    .toString(16)
+    .padStart(2, '0')}`;
   return {
     brightness: brightness,
     colorCode: colorCode,
