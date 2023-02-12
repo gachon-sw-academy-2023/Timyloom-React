@@ -15,10 +15,8 @@ function RemoveBoard() {
     setBoards((prev) => boards.filter((board) => board.boardId !== boardId));
   }, []);
 
-  const navigate = useNavigate();
-
   const handlePage = () => {
-    navigate('workspace');
+    location.replace('/workspace/boards');
   };
 
   useEffect(() => {

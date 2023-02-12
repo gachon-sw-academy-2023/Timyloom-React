@@ -117,6 +117,9 @@ export const BoardWrapper = styled.div<{ $isopen: boolean }>`
   justify-content: ${({ $isopen }) => (!$isopen ? 'center' : `left`)};
   align-items: center;
   display: flex;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
 `;
 
 export const BoardSquare = styled.div<{ boardDesign?: string }>`
