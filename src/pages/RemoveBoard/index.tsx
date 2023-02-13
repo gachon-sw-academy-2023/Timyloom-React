@@ -17,20 +17,19 @@ function RemoveBoard() {
   };
 
   useEffect(() => {
-    setBoards((prev) => boards.filter((board) => board.boardId !== boardId));
     //db 코드
-
     axios
       .post('/delete/board', { boardId: boardId })
       .then((res) => {
         switch (res.status) {
           case 200:
+            setBoards((prev) => res.data);
             break;
           default:
             break;
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => alert(error));
 
     const Toast = Swal.mixin({
       toast: true,

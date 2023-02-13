@@ -40,23 +40,6 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const handleDeleteCard = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setTemporaryBoard((prev) => [...prev, boards]);
-    const log = {
-      logName: `${cardData.cardTitle} 카드 삭제`,
-      date: new Date().getTime(),
-    };
-    const newBoards = boards.map((board) =>
-      board.boardId === boardId
-        ? {
-            ...board,
-            logs: [...board.logs, log],
-            lists: board.lists.map((list) =>
-              list.listId === listId ? { ...list, cards: list.cards.filter((card) => card.cardId != cardId) } : list,
-            ),
-          }
-        : board,
-    );
-    setBoards((prev) => newBoards);
-    // db데이터 삭제 부분
     const [board] = boards.filter((board) => board.boardId === boardId);
     const newBoard = {
       ...board,
@@ -65,10 +48,11 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
       ),
     };
     axios
-      .post('/create/board', newBoard)
+      .post('/update/board', newBoard)
       .then((res) => {
         switch (res.status) {
           case 200:
+            setBoards((prev) => res.data);
             break;
           default:
             break;
@@ -79,24 +63,33 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
 
   const handleDoneStatus = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     e.stopPropagation();
-    const newBoards = boards.map((board) =>
-      board.boardId === boardId
-        ? {
-            ...board,
-            lists: board.lists.map((list) =>
-              list.listId === listId
-                ? {
-                    ...list,
-                    cards: list.cards.map((card) =>
-                      card.cardId === cardId ? { ...card, isDone: !checkbox.state } : card,
-                    ),
-                  }
-                : list,
-            ),
-          }
-        : board,
-    );
-    setBoards((prev) => newBoards);
+    //db 작성 부분
+    const [board] = boards.filter((board) => board.boardId === boardId);
+    const newBoard = {
+      ...board,
+      lists: board.lists.map((list) =>
+        list.listId === listId
+          ? {
+              ...list,
+              cards: list.cards.map((card) => (card.cardId === cardId ? { ...card, isDone: !card.isDone } : card)),
+            }
+          : list,
+      ),
+    };
+    axios
+      .post(`/update/board`, newBoard)
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            setBoards((prev) => res.data);
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((Error) => {
+        alert(Error);
+      });
   };
 
   return (

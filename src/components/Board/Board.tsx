@@ -9,7 +9,6 @@ import { BoardData, ListData, SelectedCardData } from '@/type';
 import CardModal from '@/components/Modals/CardModal/CardModal';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import axios from 'axios';
-
 interface BoardProps {
   boards: BoardData[];
   setBoards: SetterOrUpdater<BoardData[]>;
@@ -72,16 +71,12 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
       destination.droppableId === list.listId ? { ...list, cards: tempDestinationCards } : list,
     );
     setTemporaryBoard((prev) => [...prev, boards]);
-
-    //db 코드
     axios
       .post(`/update/board`, { ...tempBoard, lists: newBoard })
       .then((res) => {
         switch (res.status) {
           case 200:
-            setBoards((prev) =>
-              boards.map((board) => (boardId === board.boardId ? { ...board, lists: newBoard } : board)),
-            );
+            setBoards((prev) => res.data);
             break;
           default:
             break;
@@ -102,13 +97,11 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
     //db 코드
     const [board] = boards.filter((board) => board.boardId === boardId);
     axios
-      .post(`/update/board`, { ...board, list: tempLists })
+      .post(`/update/board`, { ...board, lists: tempLists })
       .then((res) => {
         switch (res.status) {
           case 200:
-            setBoards((prev) =>
-              boards.map((board) => (board.boardId === boardId ? { ...board, lists: tempLists } : board)),
-            );
+            setBoards((prev) => res.data);
             break;
           default:
             break;

@@ -33,15 +33,6 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
   };
 
   const saveTitle = () => {
-    const newBoards = boards.map((board) =>
-      board.boardId === boardId
-        ? {
-            ...board,
-            lists: board.lists.map((list) => (list.listId === listId ? { ...list, listTitle: newTitle } : list)),
-          }
-        : board,
-    );
-    setBoards((prev) => newBoards);
     seteditMode(false);
     //db작성 코드 부분
     const [board] = boards.filter((board) => board.boardId === boardId);
@@ -50,10 +41,11 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
       lists: board.lists.map((list) => (list.listId === listId ? { ...list, listTitle: newTitle } : list)),
     };
     axios
-      .post('/create/board', newBoard)
+      .post('/update/board', newBoard)
       .then((res) => {
         switch (res.status) {
           case 200:
+            setBoards((prev) => res.data);
             break;
           default:
             break;
@@ -61,23 +53,13 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
       })
       .catch((error) => alert(error));
   };
+
   const handleDeleteList = () => {
     setTemporaryBoard((prev) => [...prev, boards]);
-    const log = {
-      logName: `${title} 리스트 삭제`,
-      date: new Date().getTime(),
-    };
-    const newBoards = boards.map((board) =>
-      board.boardId === boardId
-        ? { ...board, logs: [...board.logs, log], lists: board.lists.filter((list) => list.listId !== listId) }
-        : board,
-    );
-
     //db 코드 작성 부분
     const [board] = boards.filter((board) => board.boardId === boardId);
     const newBoard = {
       ...board,
-      logs: [...board.logs, log],
       lists: board.lists.filter((list) => list.listId !== listId),
     };
 
@@ -91,13 +73,13 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        setBoards((prev) => newBoards);
         //db코드 작성부분
         axios
-          .post('/create/board', newBoard)
+          .post('/update/board', newBoard)
           .then((res) => {
             switch (res.status) {
               case 200:
+                setBoards((prev) => res.data);
                 break;
               default:
                 break;

@@ -39,47 +39,6 @@ function AddCard({ listId }: AddCardProps) {
   const saveCard = () => {
     setTemporaryBoard((prev) => [...prev, boards]);
     const cardId = shortid.generate();
-    const log = {
-      logName: `${cardTitle} 카드 생성`,
-      date: new Date().getTime(),
-    };
-    const tempBoard = boards.map((board, index) =>
-      board.boardId === boardId
-        ? {
-            ...board,
-            logs: [...board.logs, log],
-            lists: board.lists.map((list) => {
-              return list.listId == listId
-                ? {
-                    ...list,
-                    cards: [
-                      ...list.cards,
-                      {
-                        cardTitle: cardTitle,
-                        cardId: `c-${cardId}`,
-                        cardDescription: '',
-                        isDone: false,
-                        date: {
-                          from: {
-                            year: new Date().getFullYear(),
-                            month: new Date().getMonth() + 1,
-                            day: new Date().getDate(),
-                          },
-                          to: {
-                            year: new Date().getFullYear(),
-                            month: new Date().getMonth() + 1,
-                            day: new Date().getDate(),
-                          },
-                        },
-                      },
-                    ],
-                  }
-                : list;
-            }),
-          }
-        : board,
-    );
-    setBoards((prev) => tempBoard);
     //axios 추가하고 있는 부분!
     const [board] = boards.filter((board) => board.boardId === boardId);
     const newBoard = {
@@ -118,6 +77,7 @@ function AddCard({ listId }: AddCardProps) {
       .then((res) => {
         switch (res.status) {
           case 200:
+            setBoards((prev) => res.data);
             break;
           default:
             break;
@@ -127,6 +87,7 @@ function AddCard({ listId }: AddCardProps) {
         alert(Error);
       });
   };
+
   return (
     <S.AddCardWrapper>
       {addStatus ? (

@@ -24,7 +24,7 @@ export const boardsHandlers = [
     const reqBoardData = await req.json();
     update(reqBoardData);
 
-    return res(ctx.status(200), ctx.json({ message: '보드를 변경하였습니다.' }));
+    return res(ctx.status(200), ctx.json(await getAll()));
   }),
 
   //delete Board
@@ -32,6 +32,6 @@ export const boardsHandlers = [
     const reqData = await req.json();
     deleteRecord(reqData.boardId);
 
-    return res(ctx.status(200), ctx.json({ message: '보드를 삭제하였습니다.' }));
+    return res(ctx.status(200), ctx.json(await getAll()));
   }),
 ];
