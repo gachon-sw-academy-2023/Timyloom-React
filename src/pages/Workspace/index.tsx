@@ -39,7 +39,7 @@ function Workspace() {
           '-' +
           ('00' + card.date.to.month.toString()).slice(-2) +
           '-' +
-          ('00' + card.date.to.day.toString()).slice(-2);
+          ('00' + (card.date.to.day + 1).toString()).slice(-2);
         events.push({
           id: card.cardId,
           title: card.cardTitle,
@@ -51,7 +51,7 @@ function Workspace() {
       }),
     ),
   );
-
+  console.log(events);
   return (
     <S.WorkspaceWrapper>
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />

@@ -5,7 +5,6 @@ export interface BoardData {
   lastUpdate: number;
   backgroundColor: string;
   brightness: number;
-  logs: LogsInterface[];
   lists: ListData[];
 }
 
@@ -32,11 +31,6 @@ export interface DateInterface {
   year: number;
   month: number;
   day: number;
-}
-
-export interface LogsInterface {
-  logName: string;
-  date: number;
 }
 
 export interface SelectedCardData {

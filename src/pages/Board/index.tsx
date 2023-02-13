@@ -1,14 +1,13 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Board from '@/components/Board/Board';
-import Log from '@/pages/Log/index';
 import * as S from '@/pages/Board/indexStyle';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import Swal from 'sweetalert2';
 import { BoardData } from '@/type';
-import { MdDeleteForever, MdOutlineAccessTime } from 'react-icons/md';
-import { AiFillSetting, AiOutlineConsoleSql } from 'react-icons/ai';
+import { MdDeleteForever, MdOutlineColorLens } from 'react-icons/md';
+import { AiFillSetting } from 'react-icons/ai';
 import { RiArrowGoBackLine } from 'react-icons/ri';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import rgbHex from 'rgb-hex';
@@ -22,7 +21,6 @@ function BoardPage() {
   const [temporaryBoard, setTemporaryBoard] = useRecoilState(temporaryBoardAtom);
   const [board] = boards.filter((board) => board.boardId === boardId);
   const [boardTitle, setBoardTitle] = useState<string>(board.boardTitle);
-  const [isLogOpen, setIsLogOpen] = useState(false);
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(board.backgroundColor);
   const [brightness, setBrightness] = useState(255);
@@ -125,10 +123,6 @@ function BoardPage() {
     });
   };
 
-  const handleChangeLogState = () => {
-    setIsLogOpen((prev) => !prev);
-  };
-
   const handleColorPickerStatus = (e: React.MouseEvent<HTMLInputElement>) => {
     setIsColorPickerOpen((prev) => !isColorPickerOpen);
   };
@@ -157,24 +151,20 @@ function BoardPage() {
           <S.GoBackBtn isGoBackAvavailable={temporaryBoard.length !== 0} onClick={handleGobackBoard}>
             <RiArrowGoBackLine size="30px" color="#333333" />
           </S.GoBackBtn>
+          <S.SettingBtn onClick={handleColorPickerStatus}>
+            <MdOutlineColorLens size="30px" color="#333333" />
+          </S.SettingBtn>
           <S.DeleteBtn onClick={handleDeleteBoard}>
             <MdDeleteForever size="30px" color="#333333" />
           </S.DeleteBtn>
-          <S.SettingBtn onClick={handleColorPickerStatus}>
-            <AiFillSetting size="30px" color="#333333" />
-          </S.SettingBtn>
           {isColorPickerOpen && (
             <S.PopOver>
               <SketchPicker color={backgroundColor} onChange={handleColorChange} />
             </S.PopOver>
           )}
-          <S.LogBtn onClick={handleChangeLogState}>
-            <MdOutlineAccessTime size="30px" color="#333333" />
-          </S.LogBtn>
         </S.BoardUtilContainer>
       </S.BoardHeaderContainer>
       <Board boards={boards} setBoards={setBoards} boardId={boardId} />
-      {isLogOpen && <Log logs={board.logs} />}
     </S.BoardContainer>
   );
 }
