@@ -14,6 +14,7 @@ import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import rgbHex from 'rgb-hex';
 import { SketchPicker } from 'react-color';
 import { useDidMountEffect } from '@/hooks/useDidMountEffect';
+import axios from 'axios';
 
 function BoardPage() {
   const { boardId } = useParams();
@@ -37,11 +38,20 @@ function BoardPage() {
 
   useDidMountEffect(() => {
     if (!isColorPickerOpen) {
-      setBoards((prev) =>
-        boards.map((board) =>
-          board.boardId === boardId ? { ...board, backgroundColor: backgroundColor, brightness: brightness } : board,
-        ),
-      );
+      const newBoard = { ...board, backgroundColor: backgroundColor, brightness: brightness };
+      axios
+        .post('/update/board', newBoard)
+        .then((res) => {
+          switch (res.status) {
+            case 200:
+              setBoards((prev) => res.data);
+              break;
+            default:
+              break;
+          }
+        })
+        .catch((error) => alert(error));
+
       const Toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -74,10 +84,20 @@ function BoardPage() {
   };
 
   const handleSaveData = () => {
-    const newBoards = boards.map((board) =>
-      board.boardId === boardId ? { ...board, boardTitle: boardTitle, lastUpdate: new Date().getTime() } : board,
-    );
-    setBoards((prev) => newBoards);
+    axios
+      .post(`/update/board`, { ...board, boardTitle: boardTitle, lastUpdate: new Date().getTime() })
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            setBoards((prev) => res.data);
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((Error) => {
+        alert(Error);
+      });
   };
 
   const handleGobackBoard = () => {
