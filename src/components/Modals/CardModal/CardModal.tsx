@@ -6,7 +6,7 @@ import Button from '@/components/Button/Button';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import { selectedCardAtom } from '@/recoil/selectedCard';
-import { todayDate } from '@/utils/standardDateFormat';
+import { todayDate } from '@/utils/handleDateFormat';
 import axios from 'axios';
 
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';

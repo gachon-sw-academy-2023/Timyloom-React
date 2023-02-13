@@ -10,7 +10,7 @@ import { FcClock } from 'react-icons/fc';
 import { ImCheckmark } from 'react-icons/im';
 import { useCheckboxState } from 'pretty-checkbox-react';
 import axios from 'axios';
-import { standardDateFormat } from '@/utils/standardDateFormat';
+import { standardDateFormat } from '@/utils/handleDateFormat';
 import '@djthoms/pretty-checkbox';
 
 interface CardProps {
