@@ -6,6 +6,7 @@ import { boardsAtom } from '@/recoil/boards';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import shortid from 'shortid';
 import { BoardData } from '@/type';
+import axios from 'axios';
 
 function AddList() {
   const { boardId } = useParams();
@@ -34,20 +35,26 @@ function AddList() {
   const saveList = () => {
     setTemporaryBoard((prev) => [...prev, boards]);
     const listId = shortid.generate();
-    const log = {
-      logName: `${listTitle} 리스트 생성`,
-      date: new Date().getTime(),
-    };
-    const tempBoard = boards.map((board, index) =>
-      board.boardId === boardId
-        ? {
-            ...board,
-            logs: [...board.logs, log],
-            lists: [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [] }],
-          }
-        : board,
-    );
-    setBoards((prev) => tempBoard);
+    ///axios 추가 부분
+    const [board] = boards.filter((board) => board.boardId === boardId);
+    const newLists = [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [] }];
+    axios
+      .post(`/update/board`, {
+        ...board,
+        lists: newLists,
+      })
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            setBoards((prev) => res.data);
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((Error) => {
+        alert(Error);
+      });
   };
   return (
     <S.AddListWrapper>
