@@ -6,6 +6,7 @@ import { boardsAtom } from '@/recoil/boards';
 import shortid from 'shortid';
 import { BoardData } from '@/type';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
+import axios from 'axios';
 
 interface AddCardProps {
   listId: string;
@@ -79,6 +80,52 @@ function AddCard({ listId }: AddCardProps) {
         : board,
     );
     setBoards((prev) => tempBoard);
+    //axios 추가하고 있는 부분!
+    const [board] = boards.filter((board) => board.boardId === boardId);
+    const newBoard = {
+      ...board,
+      lists: board.lists.map((list) =>
+        list.listId === listId
+          ? {
+              ...list,
+              cards: [
+                ...list.cards,
+                {
+                  cardTitle: cardTitle,
+                  cardId: `c-${cardId}`,
+                  cardDescription: '',
+                  isDone: false,
+                  date: {
+                    from: {
+                      year: new Date().getFullYear(),
+                      month: new Date().getMonth() + 1,
+                      day: new Date().getDate(),
+                    },
+                    to: {
+                      year: new Date().getFullYear(),
+                      month: new Date().getMonth() + 1,
+                      day: new Date().getDate(),
+                    },
+                  },
+                },
+              ],
+            }
+          : list,
+      ),
+    };
+    axios
+      .post(`/update/board`, newBoard)
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((Error) => {
+        alert(Error);
+      });
   };
   return (
     <S.AddCardWrapper>

@@ -35,7 +35,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
 
   const mediaQueryList = window.matchMedia(`(max-width: 768px)`);
   mediaQueryList.addEventListener('change', changeHandler);
-  console.log(sortedBoards);
   return (
     <S.SidebarWrapper $isopen={sidebarOpen}>
       <S.SidebarOpenButton $isopen={sidebarOpen} onClick={() => setSidebarOpen((prev: boolean) => !prev)}>

@@ -3,9 +3,10 @@ import * as S from '@/pages/Boards/indexStyle';
 import { SetterOrUpdater, useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import { defaultData } from '@/components/Board/BoardData';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Skeleton from '@mui/material/Skeleton';
 import { BoardData } from '@/type';
+import axios from 'axios';
 
 interface BoardsProps {
   sidebarOpen: boolean;
@@ -13,8 +14,18 @@ interface BoardsProps {
 
 const handleAddBoard = (boards: BoardData[], setBoards: SetterOrUpdater<BoardData[]>) => {
   const newData = defaultData();
-  const newBoards = [...JSON.parse(JSON.stringify(boards)), newData];
-  setBoards((prev) => newBoards);
+  axios
+    .post('/create/board', newData)
+    .then((res) => {
+      switch (res.status) {
+        case 200:
+          setBoards((prev) => [...prev, newData]);
+          break;
+        default:
+          break;
+      }
+    })
+    .catch((error) => alert(error));
 };
 
 function Boards({ sidebarOpen }: BoardsProps) {
@@ -27,7 +38,19 @@ function Boards({ sidebarOpen }: BoardsProps) {
     setLoading((prev) => false);
   }, 1000);
 
-  console.log(boards);
+  useEffect(() => {
+    axios.get('/boards').then((res) => {
+      switch (res.status) {
+        case 200:
+          setBoards((prev: any) => res.data);
+          setLoading((prev) => false);
+          break;
+        default:
+          break;
+      }
+    });
+  }, []);
+
   if (loading)
     return (
       <S.PageWrapper>

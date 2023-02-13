@@ -14,6 +14,7 @@ import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import rgbHex from 'rgb-hex';
 import { SketchPicker } from 'react-color';
 import { useDidMountEffect } from '@/hooks/useDidMountEffect';
+import axios from 'axios';
 
 function BoardPage() {
   const { boardId } = useParams();
@@ -77,7 +78,25 @@ function BoardPage() {
     const newBoards = boards.map((board) =>
       board.boardId === boardId ? { ...board, boardTitle: boardTitle, lastUpdate: new Date().getTime() } : board,
     );
+    const testNewBoardData = {
+      boardId: boardId,
+      title: boardTitle,
+    };
+    console.log(board);
     setBoards((prev) => newBoards);
+    axios
+      .post(`/update/board`, { ...board, boardTitle: boardTitle, lastUpdate: new Date().getTime() })
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((Error) => {
+        alert(Error);
+      });
   };
 
   const handleGobackBoard = () => {

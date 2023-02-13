@@ -9,6 +9,7 @@ import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import { FcClock } from 'react-icons/fc';
 import { ImCheckmark } from 'react-icons/im';
 import { useCheckboxState } from 'pretty-checkbox-react';
+import axios from 'axios';
 import '@djthoms/pretty-checkbox';
 
 interface CardProps {
@@ -55,6 +56,25 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
         : board,
     );
     setBoards((prev) => newBoards);
+    // db데이터 삭제 부분
+    const [board] = boards.filter((board) => board.boardId === boardId);
+    const newBoard = {
+      ...board,
+      lists: board.lists.map((list) =>
+        list.listId === listId ? { ...list, cards: list.cards.filter((card) => card.cardId != cardId) } : list,
+      ),
+    };
+    axios
+      .post('/create/board', newBoard)
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((error) => alert(error));
   };
 
   const handleDoneStatus = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {

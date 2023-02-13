@@ -6,6 +6,7 @@ import { BoardData, ListData, CardData } from '@/type';
 import { CgClose } from 'react-icons/cg';
 import Swal from 'sweetalert2';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
+import axios from 'axios';
 
 interface ListTitleProps {
   dragHandleProps: Object;
@@ -42,6 +43,23 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
     );
     setBoards((prev) => newBoards);
     seteditMode(false);
+    //db작성 코드 부분
+    const [board] = boards.filter((board) => board.boardId === boardId);
+    const newBoard = {
+      ...board,
+      lists: board.lists.map((list) => (list.listId === listId ? { ...list, listTitle: newTitle } : list)),
+    };
+    axios
+      .post('/create/board', newBoard)
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((error) => alert(error));
   };
   const handleDeleteList = () => {
     setTemporaryBoard((prev) => [...prev, boards]);
@@ -54,6 +72,15 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
         ? { ...board, logs: [...board.logs, log], lists: board.lists.filter((list) => list.listId !== listId) }
         : board,
     );
+
+    //db 코드 작성 부분
+    const [board] = boards.filter((board) => board.boardId === boardId);
+    const newBoard = {
+      ...board,
+      logs: [...board.logs, log],
+      lists: board.lists.filter((list) => list.listId !== listId),
+    };
+
     Swal.fire({
       title: 'Are you sure delete the list?',
       text: "You won't be able to revert this!",
@@ -65,6 +92,18 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
     }).then((result) => {
       if (result.isConfirmed) {
         setBoards((prev) => newBoards);
+        //db코드 작성부분
+        axios
+          .post('/create/board', newBoard)
+          .then((res) => {
+            switch (res.status) {
+              case 200:
+                break;
+              default:
+                break;
+            }
+          })
+          .catch((error) => alert(error));
       }
     });
   };

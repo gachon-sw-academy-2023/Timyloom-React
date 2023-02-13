@@ -8,6 +8,7 @@ import { selectedCardAtom } from '@/recoil/selectedCard';
 import { BoardData, ListData, SelectedCardData } from '@/type';
 import CardModal from '@/components/Modals/CardModal/CardModal';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
+import axios from 'axios';
 
 interface BoardProps {
   boards: BoardData[];
@@ -71,7 +72,24 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
       destination.droppableId === list.listId ? { ...list, cards: tempDestinationCards } : list,
     );
     setTemporaryBoard((prev) => [...prev, boards]);
-    setBoards((prev) => boards.map((board) => (boardId === board.boardId ? { ...board, lists: newBoard } : board)));
+
+    //db 코드
+    axios
+      .post(`/update/board`, { ...tempBoard, lists: newBoard })
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            setBoards((prev) =>
+              boards.map((board) => (boardId === board.boardId ? { ...board, lists: newBoard } : board)),
+            );
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((Error) => {
+        alert(Error);
+      });
   };
 
   const reorderListPosition = (sourceIndex: number, destinationIndex: number, boardId: string) => {
@@ -79,8 +97,26 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
       .lists;
     const [reorderList] = tempLists.splice(sourceIndex, 1);
     tempLists.splice(destinationIndex, 0, reorderList);
-    setTemporaryBoard((prev) => [...prev, boards]);
-    setBoards((prev) => boards.map((board) => (board.boardId === boardId ? { ...board, lists: tempLists } : board)));
+    setTemporaryBoard((prev) => [...prev, boards]); // 임시보드s 를 저장하는게 아닌 임시보드를 저장하는 방법으로 리팩토링 해보자!
+
+    //db 코드
+    const [board] = boards.filter((board) => board.boardId === boardId);
+    axios
+      .post(`/update/board`, { ...board, list: tempLists })
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            setBoards((prev) =>
+              boards.map((board) => (board.boardId === boardId ? { ...board, lists: tempLists } : board)),
+            );
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((Error) => {
+        alert(Error);
+      });
   };
   return (
     <>
