@@ -12,7 +12,6 @@ export const defaultData = () => {
     owner: localStorage.getItem('id'),
     backgroundColor: getRandomColor().colorCode,
     brightness: getRandomColor().brightness,
-    logs: [],
     lists: [],
   };
   return data;
