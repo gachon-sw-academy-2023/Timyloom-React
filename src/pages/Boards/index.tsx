@@ -2,7 +2,7 @@ import WorkspaceHeader from '@/components/WorkspaceHeader/WorkspaceHeader';
 import * as S from '@/pages/Boards/indexStyle';
 import { SetterOrUpdater, useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
-import { defaultData } from '@/components/Board/BoardData';
+import { defaultData } from '@/utils/generateBoard';
 import { useState, useEffect } from 'react';
 import Skeleton from '@mui/material/Skeleton';
 import { BoardData } from '@/type';
