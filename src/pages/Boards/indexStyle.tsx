@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import boardbackground from '@/assets/images/backgroundimg.jpg';
 import { ReactComponent as Add } from '@/assets/images/add.svg';
 import { ReactComponent as UpArrow } from '@/assets/images/upArrow.svg';
-import Skeleton from '@mui/material/Skeleton';
 
 export const WorkspaceWrapper = styled.div`
   display: flex;
@@ -11,7 +9,7 @@ export const WorkspaceWrapper = styled.div`
   min-height: 100vh;
 `;
 
-export const PageWrapper = styled.div<{ isopen: boolean }>`
+export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -37,14 +35,11 @@ export const BoardContainer = styled.div`
   justify-content: left;
 `;
 
-export const ImageWrapper = styled.div`
+export const BackgroundWrapper = styled.div<{ backgroundColor: string }>`
   width: 100%;
   height: 170%;
   border-radius: 100%;
-  background-image: url(${boardbackground});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: ${(props) => `${props.backgroundColor}`};
   position: absolute;
   top: 20%;
   left: 50%;
@@ -63,7 +58,7 @@ export const BoardTitle = styled.div`
   position: absolute;
   width: 100px;
   height: 30px;
-  top: 30%;
+  top: 20%;
   left: 0;
   transform: translate(0, -30%);
   border-radius: 5px;
@@ -79,7 +74,7 @@ export const BoardTitle = styled.div`
   }
 `;
 
-export const BoardWrapper = styled(Link)`
+export const BoardWrapper = styled(Link)<{ brightness: number }>`
   width: 255px;
   height: 170px;
   margin: 25px;
@@ -95,7 +90,7 @@ export const BoardWrapper = styled(Link)`
     box-shadow: #091e4240 0px 4px 8px -2px, #091e4214 0px 0px 0px 1px;
   }
 
-  &:hover ${ImageWrapper} {
+  &:hover ${BackgroundWrapper} {
     width: 255px;
     height: 170px;
     border-radius: 10px;
@@ -105,14 +100,13 @@ export const BoardWrapper = styled(Link)`
   }
 
   &:hover ${BoardTitle} {
-    color: #ffffff;
-    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     top: 10%;
     left: 40%;
     transform: translate(-45%, -10%);
     width: 300px;
     transition: all 300ms;
+    color: ${(props) => (props.brightness > 100 ? '#000000' : '#ffffff')};
   }
 
   @media screen and (max-width: 425px) {
@@ -120,7 +114,7 @@ export const BoardWrapper = styled(Link)`
     height: 200px;
     margin: 20px;
 
-    &:hover ${ImageWrapper} {
+    &:hover ${BackgroundWrapper} {
       width: 200px;
       height: 200px;
     }

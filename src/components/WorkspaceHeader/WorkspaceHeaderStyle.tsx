@@ -12,8 +12,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 12vh;
-  min-height: 100px;
+  height: 65px;
   border-bottom: 2px solid ${(props) => props.theme.gray_3};
 
   @media screen and (max-width: 768px) {
@@ -33,7 +32,7 @@ export const SearchWrapper = styled.div`
 export const Search = styled.input`
   width: 14vw;
   min-width: 250px;
-  height: 50px;
+  height: 40px;
   background-color: ${(props) => props.theme.primaryColor_1};
   border-radius: 10px;
   font-size: 17px;
@@ -51,7 +50,7 @@ export const Search = styled.input`
 export const SearchIcon = styled(SearchSvg)`
   position: absolute;
   pointer-events: none;
-  top: 0.8rem;
+  top: 0.5rem;
   left: 0.5rem;
   width: 25px;
   height: 25px;
@@ -69,8 +68,8 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const Avatar = styled.img<{ avatarSmall?: boolean }>`
-  width: ${(props) => (props.avatarSmall ? '30px' : '60px')};
-  height: ${(props) => (props.avatarSmall ? '30px' : '60px')};
+  width: ${(props) => (props.avatarSmall ? '30px' : '45px')};
+  height: ${(props) => (props.avatarSmall ? '30px' : '45px')};
   border-radius: 40px;
 `;
 

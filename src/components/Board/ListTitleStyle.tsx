@@ -9,37 +9,52 @@ export const Container = styled.div`
 
 export const TextAreaWrapper = styled.div`
   display: flex;
-  background-color: #d4d4d4;
-  padding: 10px 8px;
-  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+  width: 272px;
+  background-color: #ffffffd9;
+  min-height: 25px;
+  height: auto;
+  padding: 10px 15px;
+  word-break: normal;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 `;
 
 export const Textdiv = styled.div`
+  display: block;
+  align-items: center;
+  justify-content: flex-start;
   width: 256px;
-  height: 25px;
-  font-size: 1rem;
+  white-space: normal;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #5d5d5d;
 `;
 
 export const Textarea = styled.textarea`
-  background-color: red;
+  display: block;
   width: 256px;
-  height: 21px;
-  font-size: 1rem;
-  resize: none;
+  white-space: normal;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #5d5d5d;
   background-color: #ffffff;
   border: none;
-  box-shadow: inset 0 0 0 2px #ee8d0d;
   outline: 0;
+  &:focus {
+    min-height: 50px;
+    height: auto;
+    transition: all 300ms ease-out;
+  }
 `;
 
-export const Delete = styled.div`
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 0 5px;
-  color: #d4d4d4;
+export const DeleteWrapper = styled.div`
+  cursor: pointer;
+  opacity: 0;
+
   &:hover {
-    color: black;
-    transform: rotate(180deg);
+    opacity: 1;
   }
   transition: all 300ms ease-out;
 `;

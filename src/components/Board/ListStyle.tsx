@@ -11,12 +11,25 @@ export const ListWrapper = styled.div`
 `;
 
 export const ListContent = styled.div`
-  background-color: #d4d4d4;
-  border-radius: 5px;
+  background-color: #ffffff70;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 `;
 
 export const ListDroppable = styled.div`
   min-height: 50px;
-  margin: 4px;
-  padding: 0px 4px 2px 4px;
+  margin: 20px 4px;
+  padding: 0px 10px 2px 10px;
+`;
+
+export const AddCardBtn = styled.button`
+  font-size: 1rem;
+  background-color: #e7ff6e;
+  border: none;
+  border-radius: 5px;
+  padding: 7px;
+  &:hover {
+    background-color: #ffffffd1;
+  }
+  transition: all 100ms ease-in;
 `;

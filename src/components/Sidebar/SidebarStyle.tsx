@@ -1,66 +1,48 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Logos_orange from '@/assets/images/timyloom_logo_orange.png';
 
-export const SidebarWrapper = styled.div<{ isopen: boolean }>`
-  position: relative;
+export const SidebarWrapper = styled.div<{ $isopen: boolean }>`
+  position: sticky;
   background: ${(props) => props.theme.primaryColor_1};
-  width: ${({ isopen }) => (!isopen ? `auto` : '250px')};
+  width: ${({ $isopen }) => (!$isopen ? `auto` : '250px')};
   height: 100vh;
-
-  padding: ${({ isopen }) => (!isopen ? `24px 5px` : '24px 12px')};
+  top: 0px;
+  padding: ${({ $isopen }) => (!$isopen ? `24px 5px` : '24px 12px')};
   border: 1px solid ${(props) => props.theme.gray_3};
-  box-shadow: -3px 0 5px 0 #555;
   font-weight: 200;
 `;
 
-export const SidebarOpenButton = styled.button<{ isopen: boolean }>`
+export const SidebarOpenButton = styled.button<{ $isopen: boolean }>`
   border: none;
   position: absolute;
   top: 48px;
-  right: ${({ isopen }) => (isopen ? `-16px` : `-40px`)};
+  right: ${({ $isopen }) => ($isopen ? `-16px` : `16px`)};
   width: 32px;
   height: 32px;
   border-radius: 50%;
   background: ${(props) => props.theme.primaryColor_1};
-  box-shadow: 0 0 4px gray;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transform: ${({ isopen }) => (!isopen ? `rotate(180deg)` : `initial`)};
+  transform: ${({ $isopen }) => (!$isopen ? `rotate(180deg)` : `initial`)};
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
 
-export const LogoLink = styled.div`
+export const LogoLink = styled(Link)`
   display: flex;
-  align-items: center;
   justify-content: center;
+  padding-top: 22px;
   text-decoration: none;
-
-  svg {
-    height: auto;
-    width: 52px;
-  }
-  cursor: pointer;
-  height: 90px;
-  margin-bottom: 24px;
+  font-size: 2rem;
+  color: #333333;
+  height: 85px;
 `;
 
-export const Logo = styled.div<{ isopen: boolean }>`
-  display: ${({ isopen }) => (!isopen ? 'none' : ``)};
-  background-image: url(${Logos_orange});
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 190px;
-  height: 50px;
-`;
-export const LogoText = styled.div<{ isopen: boolean }>`
-  padding: 0.3rem;
-  font-size: 35px;
-  color: gray;
-  font-weight: bold;
-  display: ${({ isopen }) => (!isopen ? 'none' : ``)};
-  margin-left: 5px;
+export const Logo = styled.div<{ $isopen: boolean }>`
+  color: #333333;
+  font-family: 'Azonix';
+  display: ${({ $isopen }) => (!$isopen ? 'none' : ``)};
 `;
 
 export const Divider = styled.div`
@@ -77,22 +59,22 @@ export const SLinkWrapper = styled.div<{ isActive: boolean }>`
   letter-spacing: 0.6px;
 
   :hover {
-    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.bg3};
+    box-shadow: 2px 2px 4px #cacfd8, -2px -2px 4px #ffffff;
   }
 
-  :hover {
-    box-shadow: inset 0 0 0 1px grey;
+  :active {
+    box-shadow: inset 2px 2px 4px #cacfd8, inset -2px -2px 2px #ffffff;
   }
 `;
 
-export const SLink = styled(Link)<{ isopen: boolean; $column?: boolean }>`
+export const SLink = styled(Link)<{ $isopen: boolean; $column?: boolean }>`
   display: flex;
   align-items: center;
   text-decoration: none;
   color: inherit;
   font-size: 16px;
   padding: 6px 0;
-  width: ${({ isopen }) => (!isopen ? 'fit-content' : `100px`)};
+  width: ${({ $isopen }) => (!$isopen ? 'fit-content' : `100px`)};
   flex-direction: ${({ $column }) => ($column ? 'column' : `row`)};
 `;
 
@@ -111,29 +93,33 @@ export const LinkLabel = styled.span<{ $column?: boolean }>`
   margin-left: 8px;
   padding-right: ${({ $column }) => ($column ? '5px' : `100px`)};
 `;
-export const SidebarSubtitle = styled.div<{ isopen: boolean }>`
-  display: ${({ isopen }) => (!isopen ? 'none' : ``)};
+
+export const SidebarSubtitle = styled.div<{ $isopen: boolean }>`
+  display: ${({ $isopen }) => (!$isopen ? 'none' : ``)};
   padding: 15px 8px;
   color: gray;
   align-items: center;
   font-size: 14px;
 `;
 
-export const ViewContainer = styled.div<{ isopen: boolean }>`
-  display: ${({ isopen }) => (!isopen ? '' : `flex`)};
+export const ViewContainer = styled.div<{ $isopen: boolean }>`
+  display: ${({ $isopen }) => (!$isopen ? '' : `flex`)};
   justify-content: space-between;
 `;
 
-export const BoardContainer = styled.div<{ isopen: boolean }>`
+export const BoardContainer = styled.div<{ $isopen: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
-export const BoardWrapper = styled.div<{ isopen: boolean }>`
-  justify-content: ${({ isopen }) => (!isopen ? 'center' : `left`)};
+export const BoardWrapper = styled.div<{ $isopen: boolean }>`
+  justify-content: ${({ $isopen }) => (!$isopen ? 'center' : `left`)};
   align-items: center;
   display: flex;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
 `;
 
 export const BoardSquare = styled.div<{ boardDesign?: string }>`
@@ -144,8 +130,8 @@ export const BoardSquare = styled.div<{ boardDesign?: string }>`
   padding: 10px;
 `;
 
-export const BoardTitle = styled.div<{ isopen: boolean }>`
+export const BoardTitle = styled.div<{ $isopen: boolean }>`
   padding-left: 15px;
   font-size: 17px;
-  display: ${({ isopen }) => (!isopen ? 'none' : ``)};
+  display: ${({ $isopen }) => (!$isopen ? 'none' : ``)};
 `;

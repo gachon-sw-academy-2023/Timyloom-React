@@ -2,8 +2,17 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import * as S from '@/components/Board/ListStyle';
 import Card from '@/components/Board/Card';
 import ListTitle from './ListTitle';
+import { BoardData, ListData, CardData } from '@/type';
+import AddCard from '@/components/Board/AddCard';
 
-function List({ listId, listData, index, boardId }: any) {
+interface ListProps {
+  listId: string;
+  listData: ListData;
+  index: number;
+  boardId: string;
+}
+
+function List({ listId, listData, index, boardId }: ListProps) {
   return (
     <Draggable draggableId={listId} index={index}>
       {(provided) => (
@@ -15,13 +24,20 @@ function List({ listId, listData, index, boardId }: any) {
               listId={listId}
               title={listData.listTitle}
             ></ListTitle>
-
             <Droppable droppableId={listId} type="moveCard">
               {(droppableProvided, droppableSnapshot) => (
                 <S.ListDroppable ref={droppableProvided.innerRef}>
-                  {listData.cards.map((card: any, index: any) => (
-                    <Card key={card.cardId} cardId={card.cardId} listId={listId} cardData={card} index={index}></Card>
+                  {listData.cards.map((card: CardData, index: number) => (
+                    <Card
+                      key={card.cardId}
+                      cardId={card.cardId}
+                      listId={listId}
+                      boardId={boardId}
+                      cardData={card}
+                      index={index}
+                    ></Card>
                   ))}
+                  <AddCard listId={listId} />
                   {droppableProvided.placeholder}
                 </S.ListDroppable>
               )}

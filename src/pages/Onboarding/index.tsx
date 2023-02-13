@@ -17,26 +17,26 @@ function Onboarding() {
     tempFields[fieldIndex].select = !tempFields[fieldIndex].select;
     setFields((prev) => [...tempFields]);
 
-    let colorArr = gradationColor.split(', ');
+    const colorArr = gradationColor.split(', ');
     if (colorArr[0] === '') {
       colorArr.pop();
     }
 
     if (colorArr.indexOf(tempFields[fieldIndex].color) >= 0) {
       colorArr.splice(colorArr.indexOf(tempFields[fieldIndex].color), 1);
-      let newGradationColor = colorArr.join(', ');
+      const newGradationColor = colorArr.join(', ');
       setGradationColor((prev) => newGradationColor);
     } else {
       colorArr.push(tempFields[fieldIndex].color);
-      let newGradationColor = colorArr.join(', ');
+      const newGradationColor = colorArr.join(', ');
       setGradationColor((prev) => newGradationColor);
     }
   };
 
   return (
     <S.MainWrapper>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={0}>
+      <Box sx={{ flexGrow: 1, my: 'auto' }}>
+        <Grid container spacing={0} sx={{ my: 'auto' }}>
           <Grid item xs={12} md={12} lg={6}>
             <Slide direction="left" triggerOnce>
               <S.LeftContentsContainer>

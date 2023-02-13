@@ -4,6 +4,7 @@ import * as S from './CardStyle';
 import axios from 'axios';
 import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import SyncLoader from 'react-spinners/SyncLoader';
 
 function LoginCard() {
   const [inputs, setInputs] = useState({
@@ -12,6 +13,7 @@ function LoginCard() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const { id, password } = inputs;
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,13 +31,14 @@ function LoginCard() {
   };
 
   const handleLogin = () => {
+    setIsLoading(true);
     axios
       .post(`/login`, inputs)
       .then((res) => {
-        console.log(res);
         switch (res.status) {
           case 200:
             localStorage.setItem('id', `${res.data.id}`);
+            setIsLoading(false);
             navigate('/');
             break;
           case 202:
@@ -44,10 +47,11 @@ function LoginCard() {
               icon: 'error',
               confirmButtonText: '확인',
             });
+            setIsLoading(false);
         }
       })
       .catch((Error) => {
-        console.log(Error);
+        setIsLoading(false);
       });
   };
 
@@ -74,7 +78,7 @@ function LoginCard() {
         </S.InputContainer>
         <S.SignLink to={'/signup'}>Don’t have an account?</S.SignLink>
         <Button onClick={handleLogin} radius="circle" border={false} size="lg" themes="sign" data-testid="login-button">
-          LOGIN
+          {isLoading ? <SyncLoader color="#ffffff" size={10} /> : 'LOGIN'}
         </Button>
       </S.SignPanel>
       <S.ImgPanel imgStart={false}></S.ImgPanel>

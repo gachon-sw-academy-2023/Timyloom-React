@@ -1,21 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as S from '@/components/Board/AddListStyle';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { boardsAtom } from '@/recoil/boardsAtom';
+import { boardsAtom } from '@/recoil/boards';
+import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import shortid from 'shortid';
+import { BoardData } from '@/type';
+import axios from 'axios';
 
 function AddList() {
   const { boardId } = useParams();
-  const [boards, setBoards] = useRecoilState(boardsAtom);
-  const [addStatus, setAddStatus] = useState(false);
-  const [listTitle, setListTitle] = useState('');
+  const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
+  const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
+  const [addStatus, setAddStatus] = useState<boolean>(false);
+  const [listTitle, setListTitle] = useState<string>('');
 
-  const handleStatusTrue = (e: any) => {
+  const handleStatusTrue = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAddStatus(true);
   };
 
-  const handleStatusFalse = (e: any) => {
+  const handleStatusFalse = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       setAddStatus(false);
       saveList();
@@ -24,23 +28,33 @@ function AddList() {
     }
   };
 
-  const handleChangeTitle = (e: any) => {
+  const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setListTitle(e.target.value);
   };
 
   const saveList = () => {
-    let listId = shortid.generate();
-    let tempBoard = boards.map((board, index) =>
-      board.boardId === boardId
-        ? {
-            ...board,
-            lists: [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [], position: 999 }],
-            //position이 꼭 필요할까...? 한번 검토해보자
-          }
-        : board,
-    );
-    console.log(tempBoard);
-    setBoards((prev) => tempBoard);
+    setTemporaryBoard((prev) => [...prev, boards]);
+    const listId = shortid.generate();
+    ///axios 추가 부분
+    const [board] = boards.filter((board) => board.boardId === boardId);
+    const newLists = [...board.lists, { listTitle: listTitle, listId: `l-${listId}`, cards: [] }];
+    axios
+      .post(`/update/board`, {
+        ...board,
+        lists: newLists,
+      })
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            setBoards((prev) => res.data);
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((Error) => {
+        alert(Error);
+      });
   };
   return (
     <S.AddListWrapper>
@@ -54,7 +68,7 @@ function AddList() {
           autoFocus
         ></S.AddListInput>
       ) : (
-        <S.AddListBtn onClick={handleStatusTrue}>새로운 리스트 추가</S.AddListBtn>
+        <S.AddListBtn onClick={handleStatusTrue}>Add another list</S.AddListBtn>
       )}
     </S.AddListWrapper>
   );
