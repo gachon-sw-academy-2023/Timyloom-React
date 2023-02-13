@@ -26,11 +26,6 @@ function BoardPage() {
   const [backgroundColor, setBackgroundColor] = useState(board.backgroundColor);
   const [brightness, setBrightness] = useState(255);
 
-  const boardTitleTextRef = useRef(null);
-  const handleResizeHeight = useCallback(() => {
-    boardTitleTextRef.current.style.height = boardTitleTextRef.current.scrollHeight + 'px';
-  }, []);
-
   useEffect(() => {
     setTemporaryBoard((prev) => []);
   }, []);
@@ -122,8 +117,6 @@ function BoardPage() {
     <S.BoardContainer backgroundColor={backgroundColor}>
       <S.BoardHeaderContainer>
         <S.BoardTitleContainer
-          ref={boardTitleTextRef}
-          onInput={handleResizeHeight}
           spellCheck="false"
           brightness={board.brightness}
           value={boardTitle}

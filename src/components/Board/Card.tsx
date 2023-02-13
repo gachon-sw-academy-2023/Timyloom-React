@@ -108,7 +108,7 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
                 <FcClock size="20" />
 
                 <div>
-                  {`${cardData.date.to.year}.${cardData.date.to.month}.${cardData.date.to.day} `}~
+                  {`${cardData.date.from.year}.${cardData.date.from.month}.${cardData.date.from.day} `}~
                   {` ${cardData.date.to.year}.${cardData.date.to.month}.${cardData.date.to.day}`}
                 </div>
               </S.InformationWrapper>
