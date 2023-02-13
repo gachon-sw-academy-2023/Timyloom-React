@@ -7,6 +7,7 @@ export const defaultData = () => {
   const data = {
     boardTitle: '새로운 보드',
     boardId: `b-${boardUId}`,
+    lastUpdate: new Date().getTime(),
     owner: localStorage.getItem('id'),
     backgroundColor: '#ffffff',
     brightness: 255,

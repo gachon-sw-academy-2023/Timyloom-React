@@ -27,6 +27,7 @@ function Boards({ sidebarOpen }: BoardsProps) {
     setLoading((prev) => false);
   }, 1000);
 
+  console.log(boards);
   if (loading)
     return (
       <S.PageWrapper>
