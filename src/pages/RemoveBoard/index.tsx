@@ -6,20 +6,31 @@ import { boardsAtom } from '@/recoil/boards';
 import * as S from '@/pages/RemoveBoard/indexStyle';
 import Button from '@/components/Button/Button';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 function RemoveBoard() {
   const { boardId } = useParams();
   const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
-
-  useEffect(() => {
-    setBoards((prev) => boards.filter((board) => board.boardId !== boardId));
-  }, []);
 
   const handlePage = () => {
     location.replace('/workspace/boards');
   };
 
   useEffect(() => {
+    //db 코드
+    axios
+      .post('/delete/board', { boardId: boardId })
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            setBoards((prev) => res.data);
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((error) => alert(error));
+
     const Toast = Swal.mixin({
       toast: true,
       position: 'bottom-right',
@@ -30,18 +41,18 @@ function RemoveBoard() {
         popup: 'colored-toast',
       },
       showConfirmButton: false,
-      timer: 5000,
+      timer: 10000,
       timerProgressBar: true,
     });
     Toast.fire({
       icon: 'info',
-      title: '5초 뒤에 워크스페이스로<br/>이동합니다',
+      title: '10초 뒤에 워크스페이스로<br/>이동합니다',
     });
   }, []);
 
   setInterval(() => {
     location.replace('/workspace/boards');
-  }, 5000);
+  }, 10000);
 
   return (
     <S.Container>

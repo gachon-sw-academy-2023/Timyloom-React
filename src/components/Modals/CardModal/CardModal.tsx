@@ -6,6 +6,7 @@ import Button from '@/components/Button/Button';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import { selectedCardAtom } from '@/recoil/selectedCard';
+import axios from 'axios';
 
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
@@ -20,7 +21,7 @@ interface DateRefProps {
 
 function CardModal() {
   const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardData>(selectedCardAtom);
-  const [boards, setBoards] = useRecoilState<BoardData>(boardsAtom);
+  const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [cardTitle, setCardTitle] = useState<string>(selectedCard.cardData.cardTitle);
   const [cardDescription, setCardDescription] = useState<string>(selectedCard.cardData.cardDescription);
 
@@ -63,24 +64,33 @@ function CardModal() {
   };
 
   const updateDayInfo = () => {
-    const newBoards = boards.map((board: BoardData) =>
-      board.boardId === selectedCard.boardId
-        ? {
-            ...board,
-            lists: board.lists.map((list: ListData) =>
-              list.listId === selectedCard.listId
-                ? {
-                    ...list,
-                    cards: list.cards.map((card: CardData) =>
-                      card.cardId === selectedCard.cardId ? { ...card, date: selectedDayRange } : card,
-                    ),
-                  }
-                : list,
-            ),
-          }
-        : board,
-    );
-    setBoards((prev) => newBoards);
+    // axios 작성 부분
+    const [board] = boards.filter((board) => board.boardId === selectedCard.boardId);
+    const newBoard = {
+      ...board,
+      lists: board.lists.map((list: ListData) =>
+        list.listId === selectedCard.listId
+          ? {
+              ...list,
+              cards: list.cards.map((card: CardData) =>
+                card.cardId === selectedCard.cardId ? { ...card, date: selectedDayRange } : card,
+              ),
+            }
+          : list,
+      ),
+    };
+    axios
+      .post('/update/board', newBoard)
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            setBoards((prev) => res.data);
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((error) => alert(error));
   };
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -94,7 +104,7 @@ function CardModal() {
     if (e.key === 'Enter' || e.key === 'Escape') {
       removeFocus();
       e.preventDefault();
-      updateData(dataName);
+      updateModalData(dataName);
     }
   };
 
@@ -102,34 +112,40 @@ function CardModal() {
     (document.activeElement as HTMLElement).blur();
   };
 
-  const updateData = (dataName: string) => {
-    const newBoards = boards.map((board: BoardData) =>
-      board.boardId === selectedCard.boardId
-        ? {
-            ...board,
-            lists: board.lists.map((list: ListData) =>
-              list.listId === selectedCard.listId
-                ? {
-                    ...list,
-                    cards: list.cards.map((card: CardData) => {
-                      switch (dataName) {
-                        case 'cardTitle':
-                          return card.cardId === selectedCard.cardId ? { ...card, cardTitle: cardTitle } : card;
-                        case 'cardDescription':
-                          return card.cardId === selectedCard.cardId
-                            ? { ...card, cardDescription: cardDescription }
-                            : card;
-                        default:
-                          break;
-                      }
-                    }),
-                  }
-                : list,
-            ),
-          }
-        : board,
-    );
-    setBoards((prev) => newBoards);
+  const updateModalData = (dataName: string) => {
+    const [board] = boards.filter((board) => board.boardId === selectedCard.boardId);
+    const newBoard = {
+      ...board,
+      lists: board.lists.map((list: ListData) =>
+        list.listId === selectedCard.listId
+          ? {
+              ...list,
+              cards: list.cards.map((card: CardData) => {
+                switch (dataName) {
+                  case 'cardTitle':
+                    return card.cardId === selectedCard.cardId ? { ...card, cardTitle: cardTitle } : card;
+                  case 'cardDescription':
+                    return card.cardId === selectedCard.cardId ? { ...card, cardDescription: cardDescription } : card;
+                  default:
+                    break;
+                }
+              }),
+            }
+          : list,
+      ),
+    };
+    axios
+      .post('/update/board', newBoard)
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            setBoards((prev) => res.data);
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((error) => alert(error));
   };
 
   const renderCustomInput = ({ ref }: DateRefProps) => (
@@ -158,7 +174,7 @@ function CardModal() {
                 handleKeyDown(e, 'cardTitle');
               }}
               onBlur={() => {
-                updateData('cardTitle');
+                updateModalData('cardTitle');
               }}
             >
               {selectedCard.cardData.cardTitle}
@@ -172,7 +188,7 @@ function CardModal() {
               }}
               placeholder="Add your description"
               onBlur={() => {
-                updateData('cardDescription');
+                updateModalData('cardDescription');
               }}
             >
               {selectedCard.cardData.cardDescription}

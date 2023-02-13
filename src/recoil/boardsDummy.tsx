@@ -6,7 +6,6 @@ export const boardsDummy = [
     owner: 'bwj0509',
     backgroundColor: '#a41010',
     brightness: 100,
-    logs: [],
     lists: [
       {
         listTitle: '주간 할일',

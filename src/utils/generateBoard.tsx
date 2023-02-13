@@ -1,4 +1,5 @@
 import shortid from 'shortid';
+import { getRandomColor } from '@/utils/getRandomColor';
 
 export const defaultData = () => {
   const boardUId = shortid.generate();
@@ -9,9 +10,8 @@ export const defaultData = () => {
     boardId: `b-${boardUId}`,
     lastUpdate: new Date().getTime(),
     owner: localStorage.getItem('id'),
-    backgroundColor: '#ffffff',
-    brightness: 255,
-    logs: [],
+    backgroundColor: getRandomColor().colorCode,
+    brightness: getRandomColor().brightness,
     lists: [],
   };
   return data;

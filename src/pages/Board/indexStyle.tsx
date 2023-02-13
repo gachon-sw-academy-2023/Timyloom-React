@@ -49,7 +49,7 @@ export const DeleteBtn = styled.button`
   padding: 5px;
   border-radius: 10px;
   &:hover {
-    background-color: #ffdfdf;
+    background-color: #feabab;
   }
 
   transition: all ease-in 100ms;
@@ -59,34 +59,16 @@ export const SettingBtn = styled.button`
   padding: 5px;
   border-radius: 10px;
   &:hover {
-    background-color: #eef4fe;
+    background-color: #d0d0d0;
   }
 
   transition: all ease-in 300ms;
-`;
-
-export const UtilContainer = styled.div`
-  position: absolute;
-  right: 0;
-  top: 50;
-`;
-
-export const LogBtn = styled.button`
-  border: 0;
-  padding: 5px;
-  border-radius: 10px;
-  &:hover {
-    background-color: #eef4fe;
-  }
-
-  transition: all ease-in 100ms;
 `;
 
 export const GoBackBtn = styled.button<{ isGoBackAvavailable: boolean }>`
   border: 0;
   border-radius: 10px;
   padding: 5px;
-  margin-right: 40px;
   opacity: ${(props) => (props.isGoBackAvavailable ? '1' : '0.3')};
   &:hover {
     background-color: #eef4fe;
@@ -102,7 +84,7 @@ export const GoBackBtn = styled.button<{ isGoBackAvavailable: boolean }>`
 export const PopOver = styled.div`
   position: absolute;
   z-index: 2;
-  top: 130px;
+  top: 150px;
   right: 10px;
 
   @media screen and (max-width: 510px) {
@@ -114,10 +96,6 @@ export const PopOver = styled.div`
     top: 300px;
     right: 10px;
   }
-`;
-
-export const Cover = styled.div`
-  background-color: red;
 `;
 
 export const BoardUtilContainer = styled.div`
