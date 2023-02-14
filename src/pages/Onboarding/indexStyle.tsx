@@ -10,9 +10,8 @@ interface fieldInterface {
 
 export const MainWrapper = styled.div`
   background-color: #eef4fe;
-  height: calc(100% - 70px);
-  overflow-y: auto;
   display: flex;
+  flex-direction: column;
 `;
 
 export const LeftContentsContainer = styled.div`
