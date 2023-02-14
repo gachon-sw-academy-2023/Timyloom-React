@@ -10,7 +10,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest --config ./jest.config.cjs",
-    "coverage": "jest --config ./jest.config.cjs --coverage"
+    "coverage": "jest --config ./jest.config.cjs --coverage",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@djthoms/pretty-checkbox": "^3.1.0",
@@ -33,6 +34,7 @@
     "react-indexed-db": "^1.0.12",
     "react-router-dom": "^6.6.1",
     "react-spinners": "^0.13.8",
+    "react-textarea-autosize": "^8.4.0",
     "react-type-animation": "^2.1.2",
     "recoil": "^0.7.6",
     "recoil-persist": "^4.2.0",
@@ -74,6 +76,7 @@
     "@vitejs/plugin-react": "^3.0.0",
     "babel-jest": "^29.3.1",
     "babel-loader": "^8.3.0",
+    "cypress": "^12.5.1",
     "eslint": "^8.31.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.6.0",

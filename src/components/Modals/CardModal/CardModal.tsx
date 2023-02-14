@@ -6,6 +6,7 @@ import Button from '@/components/Button/Button';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import { selectedCardAtom } from '@/recoil/selectedCard';
+import { todayDate } from '@/utils/handleDateFormat';
 import axios from 'axios';
 
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
@@ -16,7 +17,7 @@ import { CgClose } from 'react-icons/cg';
 import { GrPowerReset } from 'react-icons/gr';
 
 interface DateRefProps {
-  ref: React.LegacyRef<HTMLInputElement> | null;
+  ref: React.Ref<HTMLInputElement> | null;
 }
 
 function CardModal() {
@@ -24,30 +25,18 @@ function CardModal() {
   const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [cardTitle, setCardTitle] = useState<string>(selectedCard.cardData.cardTitle);
   const [cardDescription, setCardDescription] = useState<string>(selectedCard.cardData.cardDescription);
-
-  const cardTitleTextRef = useRef(null);
-  const cardDesciptionTextRef = useRef(null);
-  const handleResizeHeight = useCallback(() => {
-    cardTitleTextRef.current.style.height = cardTitleTextRef.current.scrollHeight + 'px';
-    cardDesciptionTextRef.current.style.height = cardDesciptionTextRef.current.scrollHeight + 'px';
-  }, []);
+  const [selectedDayRange, setSelectedDayRange] = useState(selectedCard.cardData.date);
 
   const handleModal = () => {
     setSelectedCard((prev) => ({ ...prev, isModalopen: !prev.isModalopen }));
   };
-  const [selectedDayRange, setSelectedDayRange] = useState(selectedCard.cardData.date);
+
   const startDate = selectedDayRange.from
     ? `${selectedDayRange.from.year}-${selectedDayRange.from.month}-${selectedDayRange.from.day}`
     : `not select`;
   const endDate = selectedDayRange.to
     ? `${selectedDayRange.to.year}-${selectedDayRange.to.month}-${selectedDayRange.to.day}`
     : `not select`;
-
-  useEffect(() => {
-    {
-      selectedCard.isModalopen ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
-    }
-  }, [selectedCard.isModalopen]);
 
   useDidMountEffect(() => {
     if (selectedDayRange.to !== null && selectedDayRange.from !== null) {
@@ -56,18 +45,7 @@ function CardModal() {
   }, [selectedDayRange]);
 
   const resetDate = () => {
-    setSelectedDayRange({
-      from: {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-        day: new Date().getDate(),
-      },
-      to: {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-        day: new Date().getDate(),
-      },
-    });
+    setSelectedDayRange(todayDate);
   };
 
   const updateDayInfo = () => {
@@ -174,8 +152,6 @@ function CardModal() {
             </S.ModalCloseBtn>
             <S.TitlelIcon size="30" />
             <S.ModalTitle
-              ref={cardTitleTextRef}
-              onInput={handleResizeHeight}
               spellCheck="false"
               value={cardTitle}
               onChange={handleChangeTitle}
@@ -189,8 +165,6 @@ function CardModal() {
               {selectedCard.cardData.cardTitle}
             </S.ModalTitle>
             <S.ModalDescription
-              ref={cardDesciptionTextRef}
-              onInput={handleResizeHeight}
               spellCheck="false"
               value={cardDescription}
               onChange={handleChangeDescription}
@@ -235,17 +209,6 @@ function CardModal() {
               </S.OptionContentWrapper>
             </S.OptionWrapper>
           </S.ModalOptionContainer>
-
-          <S.ModalFooter>
-            <S.FooTerButtonContainer>
-              <Button radius="square" border={false} size="xs" themes="sign">
-                SAVE
-              </Button>
-              <Button radius="square" border={false} size="xs" themes="danger">
-                DELETE
-              </Button>
-            </S.FooTerButtonContainer>
-          </S.ModalFooter>
         </S.ModalView>
       </S.ModalBackdrop>
     );
