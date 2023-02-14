@@ -65,10 +65,13 @@ function AddList() {
           onBlur={() => {
             setAddStatus(false);
           }}
+          data-testid="addList-input"
           autoFocus
         ></S.AddListInput>
       ) : (
-        <S.AddListBtn onClick={handleStatusTrue}>Add another list</S.AddListBtn>
+        <S.AddListBtn onClick={handleStatusTrue} data-testid="addList-button">
+          Add another list
+        </S.AddListBtn>
       )}
     </S.AddListWrapper>
   );

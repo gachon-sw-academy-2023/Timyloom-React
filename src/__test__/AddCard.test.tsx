@@ -48,7 +48,7 @@ describe('AddCard Test', () => {
     fireEvent.click(addCardButton);
 
     const addCardInput = screen.getByTestId('addCard-input');
-    fireEvent.change(addCardInput, { target: { value: '새로운 보드' } });
-    expect((addCardInput as HTMLInputElement).value).toBe('새로운 보드');
+    fireEvent.change(addCardInput, { target: { value: '새로운 카드' } });
+    expect((addCardInput as HTMLInputElement).value).toBe('새로운 카드');
   });
 });
