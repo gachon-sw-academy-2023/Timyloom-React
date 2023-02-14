@@ -2,12 +2,15 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import SignUp from '../components/SignCard/SignUpCard';
 import colors from '../styles/colors';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('SignUp Test', () => {
   beforeEach(() => {
     render(
       <ThemeProvider theme={colors}>
-        <SignUp />
+        <BrowserRouter>
+          <SignUp />
+        </BrowserRouter>
       </ThemeProvider>,
     );
   });

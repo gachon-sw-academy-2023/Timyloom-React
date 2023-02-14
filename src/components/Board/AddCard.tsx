@@ -97,10 +97,13 @@ function AddCard({ listId }: AddCardProps) {
           onBlur={() => {
             setAddStatus(false);
           }}
+          data-testid="addCard-input"
           autoFocus
         ></S.AddCardInput>
       ) : (
-        <S.AddCardBtn onClick={handleStatusTrue}>+ Add a Card</S.AddCardBtn>
+        <S.AddCardBtn onClick={handleStatusTrue} data-testid="addCard-button">
+          + Add a Card
+        </S.AddCardBtn>
       )}
     </S.AddCardWrapper>
   );

@@ -2,12 +2,15 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Login from '../components/SignCard/LoginCard';
 import colors from '../styles/colors';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('Login Test', () => {
   beforeEach(() => {
     render(
       <ThemeProvider theme={colors}>
-        <Login />
+        <BrowserRouter>
+          <Login />
+        </BrowserRouter>
       </ThemeProvider>,
     );
   });
