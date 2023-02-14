@@ -71,3 +71,14 @@ export const Img = styled.img`
   margin: 0 0 0 0;
   border-radius: 10px;
 `;
+
+export const Video = styled.video`
+  width: 900px;
+  border: 15px solid #ffffff;
+  margin: auto;
+  display: block;
+
+  @media (max-width: 1028px) {
+    width: 90%;
+  }
+`;

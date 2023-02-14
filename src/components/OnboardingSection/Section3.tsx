@@ -1,11 +1,7 @@
 import * as S from './OnboardingSectionStyle';
 import { TypeAnimation } from 'react-type-animation';
-import test from '@/assets/images/test.png';
-import { Slide, JackInTheBox } from 'react-awesome-reveal';
-
-const lightTheme = true;
-const imgStart = true;
-
+import { JackInTheBox } from 'react-awesome-reveal';
+import section3Video from '@/assets/video/section3.mp4';
 function Section3() {
   const sequence = [
     [
@@ -22,14 +18,14 @@ function Section3() {
         <S.InfoRow imgStart>
           <JackInTheBox triggerOnce>
             <S.ImgWrapper>
-              <S.Img src={test} />
+              <S.Video src={section3Video} autoPlay loop muted />
             </S.ImgWrapper>
           </JackInTheBox>
 
           <JackInTheBox triggerOnce>
             <S.TextWrapper>
               <S.Title>Various Views</S.Title>
-              <S.Description darkText>
+              <S.Description>
                 Intuitive and freely
                 <br />
                 <TypeAnimation sequence={sequence[0]} wrapper="div" speed={75} repeat={Infinity} />
