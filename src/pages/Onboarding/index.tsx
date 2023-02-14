@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as S from '@/pages/Onboarding/indexStyle';
+import Section1 from '@/components/OnboardingSection/Section1';
+import Section2 from '@/components/OnboardingSection/Section2';
+import Section3 from '@/components/OnboardingSection/Section3';
 import MainVideo from '@/assets/video/landing.mp4';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -35,7 +38,7 @@ function Onboarding() {
 
   return (
     <S.MainWrapper>
-      <Box sx={{ flexGrow: 1, my: 'auto' }}>
+      <Box sx={{ flexGrow: 1, my: 'auto', mt: '100px' }}>
         <Grid container spacing={0} sx={{ my: 'auto' }}>
           <Grid item xs={12} md={12} lg={6}>
             <Slide direction="left" triggerOnce>
@@ -80,6 +83,9 @@ function Onboarding() {
           </Grid>
         </Grid>
       </Box>
+      <Section1 />
+      <Section2 />
+      <Section3 />
     </S.MainWrapper>
   );
 }

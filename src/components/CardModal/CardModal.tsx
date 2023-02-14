@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 import { SelectedCardData, BoardData, ListData, CardData } from '@/type';
-import * as S from '@/components/Modals/CardModal/CardModalStyle';
+import * as S from '@/components/CardModal/CardModalStyle';
 import Button from '@/components/Button/Button';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
