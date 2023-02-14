@@ -36,12 +36,6 @@ function CardModal() {
     ? `${selectedDayRange.to.year}-${selectedDayRange.to.month}-${selectedDayRange.to.day}`
     : `not select`;
 
-  useEffect(() => {
-    {
-      selectedCard.isModalopen ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
-    }
-  }, [selectedCard.isModalopen]);
-
   useDidMountEffect(() => {
     if (selectedDayRange.to !== null && selectedDayRange.from !== null) {
       updateDayInfo();
