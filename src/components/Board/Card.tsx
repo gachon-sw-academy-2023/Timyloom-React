@@ -10,6 +10,7 @@ import { FcClock } from 'react-icons/fc';
 import { ImCheckmark } from 'react-icons/im';
 import { useCheckboxState } from 'pretty-checkbox-react';
 import axios from 'axios';
+import { standardDateFormat } from '@/utils/handleDateFormat';
 import '@djthoms/pretty-checkbox';
 
 interface CardProps {
@@ -24,7 +25,7 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
   const [selectedCard, setSelectedCard] = useRecoilState<SelectedCardData>(selectedCardAtom);
   const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [temporaryBoard, setTemporaryBoard] = useRecoilState<any[]>(temporaryBoardAtom);
-
+  const date = standardDateFormat(cardData.date);
   const checkbox = useCheckboxState();
 
   const handleSaveModalData = () => {
@@ -119,10 +120,8 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
               </S.CardHeaderWrapper>
               <S.InformationWrapper>
                 <FcClock size="20" />
-
                 <div>
-                  {`${cardData.date.to.year}.${cardData.date.to.month}.${cardData.date.to.day} `}~
-                  {` ${cardData.date.to.year}.${cardData.date.to.month}.${cardData.date.to.day}`}
+                  {date.startDate}~{date.endDate}
                 </div>
               </S.InformationWrapper>
             </S.TextAreaWrapper>
