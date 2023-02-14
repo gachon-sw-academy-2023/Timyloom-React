@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FcViewDetails } from 'react-icons/fc';
-import Button from '@/components/Button/Button';
+import TextareaAutosize from 'react-textarea-autosize';
 
 export const ModalBackdrop = styled.div`
   background: rgba(0, 0, 0, 0.5);
@@ -67,7 +67,7 @@ export const ModalHeader = styled.div`
   border-top-left-radius: 10px;
 `;
 
-export const ModalTitle = styled.textarea`
+export const ModalTitle = styled(TextareaAutosize)`
   cursor: pointer;
   min-width: 200px;
   width: 80%;
@@ -87,7 +87,7 @@ export const ModalTitle = styled.textarea`
   }
 `;
 
-export const ModalDescription = styled.textarea`
+export const ModalDescription = styled(TextareaAutosize)`
   cursor: pointer;
   width: 80%;
   min-width: 200px;
@@ -163,16 +163,4 @@ export const DateCustomInput = styled.input`
   @media (max-width: 768px) {
     width: 100px;
   }
-`;
-
-export const ModalFooter = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding: 30px;
-`;
-export const FooTerButtonContainer = styled.div`
-  width: 150px;
-  display: flex;
-  justify-content: space-evenly;
 `;

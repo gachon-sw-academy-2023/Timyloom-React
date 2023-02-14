@@ -6,11 +6,6 @@ export const linksArray = [
     icon: <AiOutlineHome />,
     to: '/workspace/boards',
   },
-  {
-    label: 'Setting',
-    icon: <AiOutlineSetting />,
-    to: '/statistics',
-  },
 ];
 
 export const secondaryLinksArray = [

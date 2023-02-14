@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import TextareaAutosize from 'react-textarea-autosize';
 
 export const BoardContainer = styled.div<{ backgroundColor: string }>`
   width: 100%;
@@ -21,7 +22,7 @@ export const BoardHeaderContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const BoardTitleContainer = styled.textarea<{ brightness: number }>`
+export const BoardTitleContainer = styled(TextareaAutosize)<{ brightness: number }>`
   color: ${(props) => `${props.brightness > 100 ? '#000000' : '#ffffff'}`};
   margin: 10px 0px 5px 0px;
   padding: 4px 8px;

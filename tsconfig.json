@@ -19,10 +19,11 @@
     "baseUrl": ".", 
     "paths": {
       "@/*": [  
-        "src/*"
-      ]
+        "src/*",
+      ],
+      "$cypress/*": ["../cypress/*"] 
     }
   },
-  "include": ["src"],
+  "include": ["src", "./node_modules/cypress", "cypress"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
