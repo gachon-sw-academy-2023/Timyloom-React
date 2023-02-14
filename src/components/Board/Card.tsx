@@ -40,7 +40,6 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
 
   const handleDeleteCard = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    setTemporaryBoard((prev) => [...prev, boards]);
     const [board] = boards.filter((board) => board.boardId === boardId);
     const newBoard = {
       ...board,
@@ -53,6 +52,7 @@ const Card = ({ listId, cardId, cardData, index, boardId }: CardProps) => {
       .then((res) => {
         switch (res.status) {
           case 200:
+            setTemporaryBoard((prev) => [...prev, board]);
             setBoards((prev) => res.data);
             break;
           default:

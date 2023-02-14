@@ -1,5 +1,5 @@
 import { boardsAtom } from '@/recoil/boards';
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import * as S from './ListTitleStyle';
 import { BoardData, ListData, CardData } from '@/type';
@@ -34,7 +34,6 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
 
   const saveTitle = () => {
     seteditMode(false);
-    //db작성 코드 부분
     const [board] = boards.filter((board) => board.boardId === boardId);
     const newBoard = {
       ...board,
@@ -55,8 +54,6 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
   };
 
   const handleDeleteList = () => {
-    setTemporaryBoard((prev) => [...prev, boards]);
-    //db 코드 작성 부분
     const [board] = boards.filter((board) => board.boardId === boardId);
     const newBoard = {
       ...board,
@@ -79,6 +76,7 @@ const ListTitle = ({ dragHandleProps, listId, title, boardId }: ListTitleProps) 
           .then((res) => {
             switch (res.status) {
               case 200:
+                setTemporaryBoard((prev) => [...prev, board]);
                 setBoards((prev) => res.data);
                 break;
               default:

@@ -70,13 +70,14 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
     newBoard = tempBoard.lists.map((list: ListData) =>
       destination.droppableId === list.listId ? { ...list, cards: tempDestinationCards } : list,
     );
-    setTemporaryBoard((prev) => [...prev, boards]);
+
     axios
       .post(`/update/board`, { ...tempBoard, lists: newBoard })
       .then((res) => {
         switch (res.status) {
           case 200:
             setBoards((prev) => res.data);
+            setTemporaryBoard((prev) => [...prev, board]);
             break;
           default:
             break;
@@ -92,7 +93,6 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
       .lists;
     const [reorderList] = tempLists.splice(sourceIndex, 1);
     tempLists.splice(destinationIndex, 0, reorderList);
-    setTemporaryBoard((prev) => [...prev, boards]); // 임시보드s 를 저장하는게 아닌 임시보드를 저장하는 방법으로 리팩토링 해보자!
 
     //db 코드
     const [board] = boards.filter((board) => board.boardId === boardId);
@@ -102,6 +102,7 @@ function Board({ boards, setBoards, boardId }: BoardProps) {
         switch (res.status) {
           case 200:
             setBoards((prev) => res.data);
+            setTemporaryBoard((prev) => [...prev, board]);
             break;
           default:
             break;

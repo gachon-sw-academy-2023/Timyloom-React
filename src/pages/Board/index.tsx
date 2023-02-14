@@ -95,10 +95,23 @@ function BoardPage() {
 
   const handleGobackBoard = () => {
     if (temporaryBoard.length !== 0) {
-      setBoards((prev) => temporaryBoard[temporaryBoard.length - 1]);
-      const newTemporaryBoard = [...temporaryBoard];
-      newTemporaryBoard.pop();
-      setTemporaryBoard((prev) => newTemporaryBoard);
+      const tempboard = JSON.parse(JSON.stringify(temporaryBoard));
+      const lastUpdatedBoard = tempboard.pop();
+      axios
+        .post(`/revert`, lastUpdatedBoard)
+        .then((res) => {
+          switch (res.status) {
+            case 200:
+              setTemporaryBoard((prev) => tempboard);
+              setBoards((prev) => res.data);
+              break;
+            default:
+              break;
+          }
+        })
+        .catch((Error) => {
+          alert(Error);
+        });
     }
   };
 

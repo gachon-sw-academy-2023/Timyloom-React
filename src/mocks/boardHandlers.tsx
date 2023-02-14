@@ -34,4 +34,12 @@ export const boardsHandlers = [
 
     return res(ctx.status(200), ctx.json(await getAll()));
   }),
+
+  //revert Board
+  rest.post('/revert', async (req, res, ctx) => {
+    const reqBoardData = await req.json();
+    update(reqBoardData);
+
+    return res(ctx.status(200), ctx.json(await getAll()));
+  }),
 ];
