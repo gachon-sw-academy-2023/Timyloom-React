@@ -51,7 +51,6 @@ function Workspace() {
       }),
     ),
   );
-  console.log(events);
   return (
     <S.WorkspaceWrapper>
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />

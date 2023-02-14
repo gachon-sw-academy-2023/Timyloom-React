@@ -33,7 +33,6 @@ function AddList() {
   };
 
   const saveList = () => {
-    setTemporaryBoard((prev) => [...prev, boards]);
     const listId = shortid.generate();
     ///axios 추가 부분
     const [board] = boards.filter((board) => board.boardId === boardId);
@@ -46,6 +45,7 @@ function AddList() {
       .then((res) => {
         switch (res.status) {
           case 200:
+            setTemporaryBoard((prev) => [...prev, board]);
             setBoards((prev) => res.data);
             break;
           default:

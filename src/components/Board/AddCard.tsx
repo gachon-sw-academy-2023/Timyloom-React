@@ -37,9 +37,7 @@ function AddCard({ listId }: AddCardProps) {
   };
 
   const saveCard = () => {
-    setTemporaryBoard((prev) => [...prev, boards]);
     const cardId = shortid.generate();
-    //axios 추가하고 있는 부분!
     const [board] = boards.filter((board) => board.boardId === boardId);
     const newBoard = {
       ...board,
@@ -78,6 +76,7 @@ function AddCard({ listId }: AddCardProps) {
         switch (res.status) {
           case 200:
             setBoards((prev) => res.data);
+            setTemporaryBoard((prev) => [...prev, board]);
             break;
           default:
             break;
