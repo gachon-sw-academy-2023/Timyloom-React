@@ -6,7 +6,7 @@ import AddList from './AddList';
 import { useRecoilState, SetterOrUpdater } from 'recoil';
 import { selectedCardAtom } from '@/recoil/selectedCard';
 import { BoardData, ListData, SelectedCardData } from '@/type';
-import CardModal from '@/components/Modals/CardModal/CardModal';
+import CardModal from '@/components/CardModal/CardModal';
 import { temporaryBoardAtom } from '@/recoil/temporaryBoard';
 import axios from 'axios';
 interface BoardProps {
