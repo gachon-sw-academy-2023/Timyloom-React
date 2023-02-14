@@ -6,6 +6,7 @@ import Button from '@/components/Button/Button';
 import { useRecoilState } from 'recoil';
 import { boardsAtom } from '@/recoil/boards';
 import { selectedCardAtom } from '@/recoil/selectedCard';
+import { todayDate } from '@/utils/handleDateFormat';
 import axios from 'axios';
 
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
@@ -24,11 +25,12 @@ function CardModal() {
   const [boards, setBoards] = useRecoilState<BoardData[]>(boardsAtom);
   const [cardTitle, setCardTitle] = useState<string>(selectedCard.cardData.cardTitle);
   const [cardDescription, setCardDescription] = useState<string>(selectedCard.cardData.cardDescription);
+  const [selectedDayRange, setSelectedDayRange] = useState(selectedCard.cardData.date);
 
   const handleModal = () => {
     setSelectedCard((prev) => ({ ...prev, isModalopen: !prev.isModalopen }));
   };
-  const [selectedDayRange, setSelectedDayRange] = useState(selectedCard.cardData.date);
+
   const startDate = selectedDayRange.from
     ? `${selectedDayRange.from.year}-${selectedDayRange.from.month}-${selectedDayRange.from.day}`
     : `not select`;
@@ -43,18 +45,7 @@ function CardModal() {
   }, [selectedDayRange]);
 
   const resetDate = () => {
-    setSelectedDayRange({
-      from: {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-        day: new Date().getDate(),
-      },
-      to: {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-        day: new Date().getDate(),
-      },
-    });
+    setSelectedDayRange(todayDate);
   };
 
   const updateDayInfo = () => {
