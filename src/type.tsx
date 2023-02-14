@@ -15,8 +15,8 @@ export interface ListData {
 }
 
 export interface CardData {
-  cardTitle: string;
   cardId: string;
+  cardTitle: string;
   cardDescription: string;
   isDone: boolean;
   date: DateRangeInterface;

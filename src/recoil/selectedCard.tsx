@@ -11,6 +11,7 @@ export const selectedCardAtom = atom({
       cardId: '',
       cardTitle: '',
       cardDescription: '',
+      isDone: false,
       date: {
         from: {
           year: 2023,

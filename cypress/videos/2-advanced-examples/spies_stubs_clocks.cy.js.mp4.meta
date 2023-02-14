@@ -1,0 +1,36 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=5048
+END=7713
+title=Spies, Stubs, and Clock cy.spy() - wrap a method in a spy
+[CHAPTER]
+TIMEBASE=1/1000
+START=7669
+END=10396
+title=Spies, Stubs, and Clock cy.spy() retries until assertions pass
+[CHAPTER]
+TIMEBASE=1/1000
+START=12183
+END=13138
+title=Spies, Stubs, and Clock cy.stub() - create a stub and/or replace a function with stub
+[CHAPTER]
+TIMEBASE=1/1000
+START=13133
+END=14098
+title=Spies, Stubs, and Clock cy.clock() - control time in the browser
+[CHAPTER]
+TIMEBASE=1/1000
+START=13948
+END=15066
+title=Spies, Stubs, and Clock cy.tick() - move time in the browser
+[CHAPTER]
+TIMEBASE=1/1000
+START=16083
+END=16187
+title=Spies, Stubs, and Clock cy.stub() matches depending on arguments
+[CHAPTER]
+TIMEBASE=1/1000
+START=16193
+END=16293
+title=Spies, Stubs, and Clock matches call arguments using Sinon matchers
