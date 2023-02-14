@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { checkId, checkPassword, checkSamePassword, checkEmail, checkPhone } from '../utils/validation';
 
 describe('confirmReg Test', () => {

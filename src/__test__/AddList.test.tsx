@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import AddList from '@/components/Board/AddList';
 import colors from '../styles/colors';

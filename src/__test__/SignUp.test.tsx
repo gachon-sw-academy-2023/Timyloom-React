@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import SignUp from '../components/SignCard/SignUpCard';
 import colors from '../styles/colors';
